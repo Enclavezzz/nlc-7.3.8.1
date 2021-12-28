@@ -1,0 +1,175 @@
+--attach_luaicp('nlc_init', false)
+function trim(s)
+	return(string.gsub(s, "^%s*(.-)%s*$", "%1"))
+end
+
+sprintf = string.format
+
+function wprintf(msg, ...)
+ SetGameState()
+ -- CheckStack()
+ SetDbgVar("wprintf_msg", msg, true) 
+ ODS( sprintf (msg,...) )
+end
+
+-- LuaSafeCall("wprintf", "#func", "Hello world!")
+
+function str_explode(div,str,clear)
+	local t={}
+	local cpt = string.find(str, div, 1, true)
+	if cpt then
+		repeat
+			if clear then
+				table.insert(t, trim(string.sub(str, 1, cpt-1)))
+			else
+				table.insert(t, string.sub(str, 1, cpt-1))
+			end
+			str = string.sub(str, cpt+string.len(div))
+			cpt = string.find(str, div, 1, true)
+		until cpt==nil
+	end
+	if clear then
+		table.insert(t, trim(str))
+	else
+		table.insert(t, str)
+	end
+	return t
+end
+
+local vm = FindConfigStr("vid_mode");
+vm = string.sub(vm, 10);
+local XY = str_explode("x", vm, true)
+local ratio = XY[2]/XY[1]
+
+local xdb
+--ODS("[~T]. #DBG: NLC init processing: ~C0A"..vm .."~C07" );
+--[[
+if CheckInList("$mod_dir$/globaldict.ltx", "vid_modes", "wide_screen", vm) >= 0 then
+   ODS("[~T].~C0E #DBG: Copying file for WideScreen ~C07");	
+   CopyFile("$fs_root$/fsgame.ltx", "$mod_dir$/fsgame.ltx")
+end
+
+if CheckInList("$mod_dir$/globaldict.ltx", "vid_modes", "std_screen", vm) >= 0 then
+   ODS("[~T].~C0F #DBG: Copying file for typical screen... ~C07");	
+   -- TODO: place code here
+end
+]]
+
+if ratio <= 0.5625 then 
+	xdb = "16x9.xdb"
+elseif ratio > 0.5625 and ratio <= 0.625 then
+	xdb = "16x10.xdb"
+elseif ratio > 0.625 and ratio <= 0.75 then 
+--' Архивы квадратных моников пока что идентичны
+	xdb = "4x3.xdb" 	
+elseif ratio > 0.75 then
+	xdb = "5x4.xdb"
+end
+-- CopyFile("$fs_root$/resolutions/"..xdb, "$mod_dir$/nlc.xdb9")
+--ODS("[~T]. #DBG: File: $fs_root$/resolutions/"..xdb .."~C07 is copied" );
+-- DumpDir('$game_data$')
+-- DumpDir('$mod_dir$')
+
+local function check_build()
+ local build =  xr_build_id or -1 
+ if build == 3312 then
+    return true
+ else   
+    wprintf(" ~C0C#WARN(xray_patch.script):~C07 incompatible xr_build %d%s", xr_build_id, xr_build_ext or ".")    
+    return false
+ end    
+end
+
+
+function do_vertex_patch()
+  if not check_build() then 
+     return 0
+  end
+
+  local src_module = "xr_3da.exe"
+  local ofs_tab = { }
+  local func = '?Create@_VertexStream@@QAEXXZ'
+  local v1, v2
+  
+  if GetGlobalVar("vbuff_patched")~="" then 
+     return 1 
+  end  -- более одного раза вызывать нет смысла
+
+  local ofs_pair =  { a1 = "$17", a2 = "$2D" }
+  
+  local func_addr = GetProcAddr(src_module, func)
+  if (string.find(func_addr, "$0",1,true)==nil) or string.find(func_addr, "$0000",1,true) then
+     ODS("~C0C #DBG(VertexPatch):~C0F Не найдена функция "..func.." в модуле "..src_module..":~C07 "..func_addr)
+     return 0
+  else
+     ODS(" #DBG(VertexPatch): Адрес функции =~C0D "..func_addr.."~C07")
+  end
+  
+  RunCommand("MW_ENABLE", 'do_vertex_patch')
+  v1 = ReadDMA(func_addr, ofs_pair.a1, "dump", 7)
+  v2 = ReadDMA(func_addr, ofs_pair.a2, "dump", 5)
+  
+  v1 = tostring (v1)
+  v2 = tostring (v2)
+  
+  if (v1=="C7 46 04 00 00 18 00") and (v2=="68 00 00 18 00") then
+    ODS("~C0F #DBG(VertexPatch): Okay, now xr_3da be repatched in memory ;) ~C07")
+    local s = UnlockDMA(func_addr, ofs_pair.a2)
+    if string.find (s, "#SUCCESS") then
+      ODS("[~T]. "..s)
+      local w1 = WriteDMA(func_addr, ofs_pair.a1, "C7 46 04 00 00 40 00", "dump")
+      local w2 = WriteDMA(func_addr, ofs_pair.a2, "68 00 00 40 00", "dump")
+      local r1 = ReadDMA(func_addr, ofs_pair.a1, "dump", 7)
+      local r2 = ReadDMA(func_addr, ofs_pair.a2, "dump", 5)
+      ODS(" vertex patch w1 ~C0A "..w1.."~C07")
+      ODS(" vertex patch w2 ~C0A "..w2.."~C07")
+      ODS(" nearest ptr a1 = ~C0D"..NearestPtr(func_addr, ofs_pair.a1).."~C07")
+      ODS(" nearest ptr a2 = ~C0D"..NearestPtr(func_addr, ofs_pair.a2).."~C07")
+      SetGlobalVar("vbuff_patched", "yes")
+      
+      return 1 
+    else
+      ODS("!~C0C[~T]. #ERROR: UnlockDMA returned:~C0F"..s..".~C07")
+      SetGlobalVar("vbuff_patched", "no:u")      
+    end
+  else
+   ODS("~C0C #DBG(VertexPatch):~C07 Байты подлежащие правке отличаются от ожидаемых оригинальных для патча "..tostring(game_patch))
+   ODS(" a1 = ~C0D"..ofs_pair.a1.."~C07, bytes r1 = ~C0A "..v1.."~C07")
+   ODS(" a2 = ~C0D"..ofs_pair.a2.."~C07, bytes r2 = ~C0A "..v2.."~C07")
+   ODS(" nearest ptr a1 = ~C0D"..NearestPtr(func_addr, ofs_pair.a1).."~C07")
+   ODS(" nearest ptr a2 = ~C0D"..NearestPtr(func_addr, ofs_pair.a2).."~C07")
+   SetGlobalVar("vbuff_patched", "no:b")
+  end
+  
+  return 0
+end
+
+function do_gamespy_patch()
+ if not check_build() then 
+    return 0
+ end
+
+ local dll = LoadFreeLib("$fs_root$\\bin\\xrGameSpy.dll")  
+ local ptr = CalcPtr('xrGameSpy.dll', '$14264', '+')
+ if ptr == nil then return 0 end                                         
+ local url = ReadDMA(ptr, 0, 'ansi')  
+ ODS('[~T]. #DBG: Gamespy URL = '..url)
+ if url == '%s.available.gamespy.com' then
+  
+  UnlockDMA (ptr, 0)  
+  WriteDMA (ptr, 8, 117, 'byte')   -- avaiuable !  
+  url = ReadDMA(ptr, 0, 'ansi')
+  ODS('[~T]. #DBG: patched URL = '..url)
+  
+  return 1 
+ end
+ 
+ return 0 
+end
+
+
+if CalcPtr("xr_3da.exe", "0") ~= nil then
+   ODS("[~T/~U]. #DBG: обработка ранних патчей движка для Xray 1.0006 build-3312") 
+   do_vertex_patch()
+   do_gamespy_patch()
+end   
