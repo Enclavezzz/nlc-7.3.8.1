@@ -1,0 +1,54 @@
+-- запускаем скрипт очистки
+
+function attach( sm )
+	-- issued in function actor_binder:safe_net_spawn(data) in bind_stalker.script
+	sm:subscribe({ signal = "on_safe_spawn",  fun = this.on_safe_spawn })
+end
+
+function on_safe_spawn()
+	
+	if
+		const.ground_levels[ level.name() ] -- наземные уровни
+	
+	then
+		-- "on_update" issued in function actor_binder:update(delta) in bind_stalker.script
+		ogse_signals.get_mgr():subscribe({ signal = "on_update_6sec", fun = this.on_upd_if_raining })
+	end
+end
+
+function on_upd_if_raining()
+	ogse_signals.get_mgr():reschedule( 6000 ) -- шедулим на 5 секунд реальных. А может - больше? 6 - это точно жирно
+	local rain_factor	= level.rain_factor()
+	if rain_factor <= 0.02 then return end 		-- дождя нет вообще, возврат
+	local range = 10
+	local RP = ray_pick(
+						db.actor:position(), vector():set( 0, 1, 0 ), 200, rq_target.rqtStatic, nil
+						)
+	if RP:query() then  range = RP:get_distance() end
+		
+	if range <= 10 then return end 				--   мы под крышей, какой дождь, возврат
+	if lua_random(1,100) > 40 then return end	-- добавим рандома, а то жирно каждый раз чистить масочку
+	
+	local armor = db.actor:item_in_slot( 6 )
+	if not armor then return end
+	
+	local armor_custom = vergas_masks.set_get_armor_custom( 2 )
+	if not armor_custom 
+	or armor_custom == "none|none|none" then return end  -- костюм без маски, возврат
+	
+	-- а вот теперь почистим, раз все проверки прошли
+	-- единственное - как быт ут убедиться, что никто и ничто именно 
+	-- в этот момент не пытается нам ТОЖЕ где-то изменить состояние маски?!
+		log2( "Mask condition is %s", tostring( armor_custom ) )
+		local t = vergas_lib.str_explode( "|", armor_custom, true )
+		local number_dirt_phase = tonumber( t[ 2 ] )
+		number_dirt_phase = number_dirt_phase - lua_random( 2 )
+		if number_dirt_phase < 1 then
+			number_dirt_phase = 1
+		end
+		armor_custom = t[1].."|"..tostring( number_dirt_phase ).."|0"
+		vergas_masks.set_get_armor_custom( 1, armor_custom )
+	
+
+end
+

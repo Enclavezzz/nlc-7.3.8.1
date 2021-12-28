@@ -1,0 +1,40 @@
+function add_first_spawn()
+	local ts1={position={x=8.97,y=20.41,z=157.24},gv=95,lv=286255} -- железка
+	local ts2={position={x=13.66,y=20.36,z=157.33},gv=94,lv=290857} -- железка
+	local ts3={position={x=17.82,y=20.30,z=157.25},gv=94,lv=295485} -- железка
+	local ts6={position={x=52.933674,y=0.119193,z=32.361916},gv=1240,lv=29236}
+	local ts7={position={x=36.842201,y=4.009082,z=146.218796},gv=1412,lv=67530}
+	local ts8={position={x=32.948345,y=4.009004,z=146.217117},gv=1412,lv=67411}
+	local ts10={position={x=116.996399,y=20.131187,z=160.005692},gv=240,lv=419813}
+	local ts11={position={x=-147.209732,y=0.314984,z=-298.227020},gv=3239,lv=6039}
+	local shape={shtype=0,radius=5.0,center={0,0.5,0}}
+	amk_anoms.spawn_anomaly("amk_zone_sakbuzz_strong", ts1.position, ts1.gv, ts1.lv, shape, "static")
+	amk_anoms.spawn_anomaly("amk_zone_sakbuzz_strong", ts2.position, ts2.gv, ts2.lv, shape, "static")
+	amk_anoms.spawn_anomaly("amk_zone_sakbuzz_strong", ts3.position, ts3.gv, ts3.lv, shape, "static")
+	amk_anoms.spawn_anomaly("amk_zone_mincer_strong", ts6.position, ts6.gv, ts6.lv, shape, "static")
+	amk_anoms.spawn_anomaly("amk_zone_mincer_strong", ts7.position, ts7.gv, ts7.lv, shape, "static")
+	amk_anoms.spawn_anomaly("amk_zone_sakbuzz_strong", ts8.position, ts8.gv, ts8.lv, shape, "static")
+	amk_anoms.spawn_anomaly("amk_zone_sakbuzz_strong", ts10.position, ts10.gv, ts10.lv, shape, "static")
+	amk_anoms.spawn_anomaly("amk_zone_mincer_strong", ts11.position, ts11.gv, ts11.lv, shape, "static")
+	doc.zone_mine()	
+end
+function trade_many_remove()
+  	local sum = db.actor:money()
+	if sum > 0 then db.actor:give_money(-sum) nlc_vars.trade_me_re = sum end
+end
+function trade_many_add()
+	if nlc_vars.trade_me_re == nil then return end
+	local sum = db.actor:money()
+	if sum > 0 then db.actor:give_money(-sum) end
+  	sum = nlc_vars.trade_me_re or 1
+	if sum > 0 then db.actor:give_money(sum) nlc_vars.trade_me_re = nil end
+end
+function blowout_dialog()
+    if 
+		db.blowout_active == true 
+	then 
+		return false 
+	else
+		return true 
+	end
+end

@@ -1,0 +1,177 @@
+-- fix_manager v. 1.0
+-- Как пользоваться:
+-- 1. Названия выполняемых функций должны быть внесены в таблицу fixes_pack (функции run_fixes) в ковычках, через запятую: "script_name.fix_name", "other_script_name.othter_fix_name", ...
+-- 2. В следующей под этой инструкцией функции (fix_mgr) есть строка run_fixes(). В скобках указываются аргументы для переключения режимов работы 
+-- Аргументы-строки передаются в ковычках, наприер run_fixes("all"), числовые аргументы без ковычек, например, run_fixes(2,5)
+-- Список доступных аргументов:
+-- 1) без аргументов --- "авто" режим, помнит названия выполненных ранее функций, и не вызывает их повторно;
+-- 2) "all" --- выполняет все функции из таблицы при каждой загрузке сейва (переходе на другую локацию)  
+-- 3) "all_once" --- выполняет все функции из таблицы единожды
+-- 4) любое число от 1 и до последнего порядкового номера из таблицы fixes_pack --- единожды выполняет указанную функцию
+-- 5) 2 числа (через запятую) --- выполняет единожды все функции из fixes_pack в заданном диапазоне включительно
+-- 6) "clear" --- сброс всех сохранённых переменных, кроме используемой в работе "авто" режима 
+-- 7) "clear_def" --- то же, что выше, но для "авто" режима
+-- Пояснения к опциям:
+-- все опции кроме "авто" и "all" для повторного использования требуют предварительный "clear"
+
+function fix_mgr()
+	run_fixes()
+end
+
+function run_fixes(...)
+    
+	local fixes_pack = {
+		"s_fixes.fix_lab_vis",
+		"s_fixes.red_forest_eco_restr",
+		"s_fixes.red_forest_kill_restr",
+		"s_fixes.del_war_docs"
+	}
+	
+	local fixes_count = (#fixes_pack)
+	if fixes_count == 0 then 
+		log2("[ s_fixes ]: fixes_pack is empty")
+		return
+	end
+	
+	local arg = {...}
+
+	if (#arg) == 0 then --- если аргументы отсутствуют
+		local fixes_done_tbl = stored_table("fixes_done_tbl", true) or {} --- таблица для хранения названий всех фиксов, сделанных в авто режиме
+		log2("[ s_fixes ]: performig 'auto' mode")
+		local fix_tbl = {}
+		for _, fix_name in pairs(fixes_pack) do
+			if str_in_tab (fix_name,fixes_done_tbl) then
+				log2("[ s_fixes ]: script = %s has already been executed earlier --> ignoring", fix_name)
+			else
+				log2("[ s_fixes ]: trying to apply fix = %s", fix_name)
+				loadstring(fix_name.."()")()
+			end	
+			table.insert(fix_tbl, fix_name)
+		end
+			nlc_vars.fixes_done_tbl = fix_tbl	
+	elseif (#arg) == 1 then --- если передан один аргумент	
+		if type(arg[1]) == "string" then --- если строка
+			if arg[1] == "all_once" then --- если аргумент "all_once"
+				local all_fixes_once = nlc_vars.all_fixes_once or false
+				if all_fixes_once == true then
+					log2("[ s_fixes ]: all_fixes_once is set to %s, no fixes applied", tostring(all_fixes_once))
+					return
+				end
+				log2("[ s_fixes ]: option = %s, trying to apply %d fix(es), all_fixes_once = %s", arg[1], fixes_count, tostring(all_fixes_once))
+				for i = 1, fixes_count do
+					loadstring(fixes_pack[ i ].."()")()
+				end
+				nlc_vars.all_fixes_once = true	
+			elseif arg[1] == "all" then --- если аргумент "all"
+				log2("[ s_fixes ]: option = %s, trying to apply %d fix(es)", arg[1], fixes_count)
+				for i = 1, fixes_count do
+					loadstring(fixes_pack[ i ].."()")()
+				end
+			elseif arg[1] == "clear" then --- если аргумент "clear"
+				log2("[ s_fixes ]: clearing vars")
+				nlc_vars.all_fixes_once = false
+				nlc_vars.single_num_fix = false
+				nlc_vars.range_num_fix = false
+			elseif arg[1] == "clear_def" then --- если аргумент "clear_def"
+				log2("[ s_fixes ]: clearing 'auto' mode vars")
+				nlc_vars.fixes_done_tbl = {}
+			else --- если передан некорректный аргумент-строка
+				log2("[ s_fixes ]: unknown option %s, abort", arg[1])
+				return
+			end
+		elseif type(arg[1]) == "number" then --- если аргументом передано одно число
+			local single_num_fix = nlc_vars.single_num_fix or false
+			if single_num_fix == true then
+				log2("[ s_fixes ]: single_num_fix is set to %s, no fixes applied", tostring(single_num_fix))
+			else
+				local num = math.modf(arg[1])
+				if num >= 1 and num <= fixes_count then
+					log2("[ s_fixes ]: trying to apply index %d fix, tbl length = %d", num, fixes_count)
+					loadstring(fixes_pack[ num ].."()")()
+					nlc_vars.single_num_fix = true
+				else
+					log2("[ s_fixes ]: argument %d is out of range, tbl length = %d, abort", num, fixes_count)
+				end	
+			end			
+		else
+			log2("[ s_fixes ]: unknown argument type, abort")
+			return
+		end	
+	elseif (#arg) == 2 then --- если передано 2 аргумента 
+		local range_num_fix = nlc_vars.range_num_fix or false
+		if range_num_fix == true then
+			log2("[ s_fixes ]: range_num_fix is set to %s, no fixes applied", tostring(range_num_fix))
+		else
+			if type(arg[1]) == "number" and type(arg[2]) == "number" then --- оба аргумента - числа	
+				local num1, num2 = math.modf(arg[1]), math.modf(arg[2])
+				if (num1 >= 1 and num1 <= fixes_count) and (num2 >= num1 and num2 <= fixes_count) then
+					log2("[ s_fixes ]: trying to apply fixes from index %d to index %d, tbl length = %d", num1, num2, fixes_count)
+					for i = num1, num2 do
+						loadstring(fixes_pack[ i ].."()")()
+					end
+					nlc_vars.range_num_fix = true
+				else --- один или оба аргумента за пределами таблицы
+					log2("[ s_fixes ]: one or both arguments %d, %d are out of range, tbl length = %d, abort", num1, num2, fixes_count)
+				end	
+			else --- один или оба аргумента - не число
+				log2("[ s_fixes ]: one or both arguments are not a number, abort")
+			end	
+		end
+	else --- слишком много аргументов
+		log2("[ s_fixes ]: too many arguments in function, abort")  
+	end
+end
+
+function fix_lab_vis()
+	local obj = g_sim:object("x18_attantion")
+	if obj then
+		local pk = get_netpk(obj,1)
+		ASSERT(( pk and pk:isOk()), "can't read netpacket of %s", obj:name())
+		local data = pk:get()
+		data.visual_name = "new_item\\notes_writing_book_2"
+		pk:set(data)
+	end
+end
+
+function red_forest_eco_restr()
+	local res = g_sim:create("space_restrictor",vector():set(-152.3122,2.2915,-28.1060),6298,3240)
+    local custom = "[logic]\nactive = sr_idle@idle\n[sr_idle@idle]\non_info = {+info_saharov_scientist_rf_start} sr_idle@work\n[sr_idle@work]\non_actor_inside = nil %+scientist_red_forest_dead =doc.red_corpses()%"
+	kotovod_restrictors.rewrite_restrictor(res, custom, 10.0)
+end
+
+function red_forest_kill_restr()
+	local res = g_sim:create("space_restrictor",vector():set(-135.3259,0.2873,-304.2229),6830,3239)
+    local custom = "[logic]\nactive = sr_idle@work\n[sr_idle@work]\non_actor_inside = %=sak.red_kill_zone()%"
+	kotovod_restrictors.rewrite_restrictor(res, custom, 15.0)
+end
+
+function del_war_docs()
+	for id=1,BAD_OBJ_ID,1 do
+		local obj = g_sim:object(id)
+		if obj then
+			local lvl = g_sim:level_name(game_graph():vertex(obj.m_game_vertex_id):level_id())
+			local sec = obj:section_name()
+			if lvl == "warlab" and sec == "war_document" then
+				local pos = obj.position
+				log2("[del_war_docs]: found %s @ lvl = %s, name = %s, id = %d | pos.x = %s, pos.y = %s, pos.z = %s >> releasing",sec,lvl,obj:name(),obj.id,pos.x,pos.y,pos.z)
+				misc.release_obj(obj)
+			end
+		end
+	end
+end
+
+function get_profile_name()
+	local f = getFS()
+	local r = f:r_open("$fs_root$", "fsgame.ltx")
+	if r then
+		r:r_seek(162)
+	end
+	local str = r:r_stringZ()
+	local p_name = str:match("[%S]+")
+	p_name = p_name:gsub("%$+%S","")
+	f:r_close(r)
+	if p_name == "" or strpos(p_name,"_data",1,true) then
+		p_name = 'none'
+	end
+	return p_name
+end

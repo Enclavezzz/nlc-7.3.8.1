@@ -1,0 +1,65 @@
+-- Имитация скриптовой атаки мутантов на ГГ. 
+-- При попадании ГГ по любому из мутантов, остальным живым мутам
+-- находящимся в радиусе 40 м от ГГ, будет наноситься нулевой хит
+-- от имени актора и будет сбрасываться panic_threshold в 0
+-- заставляя их бежать в сторону ГГ 
+
+function attach( sm )
+sm:subscribe({ signal = "on_monster_hit", fun = this.on_monster_has_been_hit_by_actor })
+sm:subscribe({ signal = "on_monster_update", fun = this.on_alive_monster_has_been_updated })
+end
+-- сигнал on_monster_hit генерируется в коллбэке на хит моба в bind_monster
+-- сигнал on_monster_update генерируется на апдейте моба в bind_monster
+local last_time_mob_got_hit_by_actor = time_global()
+
+function  on_monster_has_been_hit_by_actor( obj, amount, local_direction, who, bone_index )
+	if const.underground(level.name()) then
+		return
+	end
+	if  obj:alive() 
+		and IsMonster( obj ) 
+		and not string.find( obj:name(), "rat_", 1, true )
+		and who:id() == db.actor:id() then
+			--установим флажок  last_time_mob_got_hit_by_actor в текущее для хита время
+			last_time_mob_got_hit_by_actor = time_global()
+			--log2 ( "Mob %s was hit by actor on time %s", obj:name(),  tostring( last_time_mob_got_hit_by_actor ))
+	end
+end
+
+function on_alive_monster_has_been_updated( obj, delta )
+	if const.underground(level.name()) then
+		return
+	end
+	local dist_between_actor_and_mob
+	local delta_interval = time_global() - last_time_mob_got_hit_by_actor
+	
+	if		( delta_interval > 0 and delta_interval <= 500 )  
+	  and 	obj:alive() 
+	  and	IsMonster( obj )
+	  -- химера и кровосос сильно страшные, не будем их звать
+	  and	( obj:clsid()~= CLID_CHIMERA or obj:clsid()~= CLID_BLOODSUCKER )
+	  -- крысы нам тоже рядышком не нужны
+	  and not string.find( obj:name(), "rat_", 1, true )
+	  then
+				dist_between_actor_and_mob = obj:position():distance_to( db.actor:position() )
+				if dist_between_actor_and_mob <= 40
+				then
+					-- сбросим панику в 0
+					obj:set_custom_panic_threshold(0)
+					-- нанесем нулевой хит от имени актора
+					local h = hit()
+					h.draftsman = db.actor
+					h.direction = db.actor:direction() -- хит от направления, где актор?
+					h.type = hit.fire_wound
+					h.impulse = 0
+					h.power = 0
+					obj:hit(h)
+					-- log2 ( "Zero hit invoked on mob %s", obj:name() )
+					-- но заставит ли это моба "увидеть" актора? 
+					dsh_battle_radius.create_radius( obj, 10, nil, true )
+				end
+
+	end
+	
+end
+

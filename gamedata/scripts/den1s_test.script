@@ -1,0 +1,128 @@
+tbl_arts = {
+    [ "lvl1" ] = {          -- 1 УРОВЕНЬ --
+        "af_medusa", "af_vyvert", "af_blood", "af_electra_sparkler",
+        "af_drops", "af_ameba_slime", "af_rusty_thorn"
+    },
+    [ "lvl2" ] = {          -- 2 УРОВЕНЬ --
+        "af_cristal_flower", "af_gravi", "af_mincer_meat", "af_electra_flash",
+        "af_fireball", "af_ameba_slug", "af_rusty_kristall"
+    },
+    [ "lvl3" ] = {          -- 3 УРОВЕНЬ --
+        "af_cristall", "af_electra_moonlight", "af_night_star", "af_gold_fish",
+        "af_rusty_sea-urchin", "af_soul", "af_ameba_mica"
+    },
+    [ "lvl4" ] = {          -- ПУСТЫШКИ --
+        "af_dummy_spring", "af_dummy_dummy", "af_dummy_battery",
+        "af_dummy_pellicle", "af_dummy_glassbeads", "af_dummy_kolobok"
+    },
+    [ "lvl5" ] = {          -- МОДИФИКАТЫ --
+        "af_armor_1", "af_babka_1", "af_cry_1", "af_dik_1", "af_dummy_simbion",
+        "af_kol_1", "af_pudd_1", "af_spirit_1", "af_dummy_buliz"
+    },
+    [ "lvl6" ] = {          -- МЕЗОМОДИФИКАТЫ --
+        "af_armor_2", "af_babka_2", "af_cry_2", "af_dik_2",
+        "af_kol_2", "af_pudd_2", "af_spirit_2"
+    },
+    [ "lvl7" ] = {          -- ГИПЕРМОДИФИКАТЫ --
+        "af_armor_3", "af_babka_3", "af_cry_3", "af_dik_3",
+        "af_kol_3", "af_pudd_3", "af_spirit_3"
+    },
+    [ "lvl8" ] = {          -- АБСОЛЮТЫ --
+        "af_armor_4", "af_babka_4", "af_cry_4", "af_dik_4",
+        "af_kol_4", "af_pudd_4", "af_spirit_4"
+    },
+    [ "lvl9" ] = {          -- КАПСУЛЫ 3ур --
+        "af_night_star_capsule", "af_gold_fish_capsule", "af_cristall_capsule", "af_soul_capsule",
+        "af_electra_moonlight_capsule", "af_rusty_sea-urchin_capsule", "af_ameba_mica_capsule"
+    },
+    [ "lvl10" ] = {         -- КАПСУЛЫ ПУСТЫШКИ --
+        "af_dummy_spring_capsule", "af_dummy_dummy_capsule", "af_dummy_battery_capsule",
+        "af_dummy_pellicle_capsule", "af_dummy_kolobok_capsule", "af_dummy_glassbeads_capsule"
+    },
+    [ "lvl11" ] = {         -- УНИКИ --
+        "af_dummy_green_medusa", "af_dummy_green_vyvert", "af_dummy_green_blood",
+        "af_red_dummy_spring", "af_red_dummy_battery", "af_red_dummy_pellicle",
+        "af_medus_new",
+        "af_crist_new",
+        "af_flower_new",
+        "af_star_new",
+        "af_glass_new",
+        "af_dummy_fire",
+        "af_sul_new"
+    }
+} 
+
+tbl_arts = den1s_test.tbl_arts
+
+function on_new_game()
+	-- заполним нулями с НИ таблицу найденных артов
+    for _, v in ipairs({
+		"st_pda_arts_found_1",
+		"st_pda_arts_found_2",
+		"st_pda_arts_found_3",
+	}) do
+        xr_statistic.add_pts( "arts", game.translate_string( v ), 0, 0 )
+    end
+	-- заполним нулями с НИ таблицу прочей статистики
+    for _, v in ipairs({
+		"st_pda_otherstats_blowouts",
+		"st_pda_otherstats_black_tip",
+	}) do
+        xr_statistic.add_pts( "otherstats", game.translate_string( v ), 0, 0 )
+    end
+	
+end
+
+function add_art_to_vars( id )
+    if id ~= nil then
+        local lname = level.name()
+        local tbl   = xray_vars.load_table( nlc_vars, "tbl_bio_art", {} )
+        if tbl[ lname ] == nil then tbl[ lname ] = {} end
+        table.insert( tbl[ lname ], id )
+        nlc_vars.tbl_bio_art = tbl
+    end 
+end
+
+function art_is_bio_art( id )
+    local lname = level.name()
+    local tbl   = xray_vars.load_table( nlc_vars, "tbl_bio_art", {} )
+    if tbl ~= nil then
+        for k, v in pairs( tbl ) do
+            if k == lname then
+                for i = 1, #v do
+                    if id == v[ i ] then 
+                        v[ i ] = -1
+                        nlc_vars.tbl_bio_art = tbl
+                        return true
+                    end
+                end
+            end
+        end
+    end
+    return false
+end
+
+function haldle_art_for_stats( sect, id )
+	if art_is_bio_art( id ) then                                -- природный арт, нужно заполнить статистику
+		for k, v in pairs( tbl_arts ) do
+			for i = 1, #v do
+				if strposx( sect, v[ i ] ) then
+				
+					if k == "lvl1" then                         -- арт первого уровня
+						xr_statistic.add_pts( "arts",
+                            game.translate_string( "st_pda_arts_found_1" ), 1, 0.5
+						)
+					elseif k == "lvl2" then                     -- арт второго уровня
+						xr_statistic.add_pts( "arts",
+                            game.translate_string( "st_pda_arts_found_2" ), 1, 0.5
+						)
+					elseif k == "lvl9" or k == "lvl10" then     -- капсула
+						xr_statistic.add_pts( "arts",
+                            game.translate_string( "st_pda_arts_found_3" ), 1, 0.5
+						)
+					end
+                end
+            end
+        end
+    end
+end

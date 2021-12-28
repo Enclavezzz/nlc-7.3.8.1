@@ -1,0 +1,24 @@
+--den1s
+function on_monster_kill_check_parts( obj, who )
+	if who == nil then return  end -- если мут убился "об воздух" - оставляем запчасть
+	 -- если его убил актор или что угодно, кроме других НПС - оставляем
+    if ( not obj ) or ( who:id() == db.actor:id() ) or ( not IsStalker(who) ) then return end
+	
+	-- если этоу нас квестовый мутант, которому обязательно нужно оставить запчасть,
+	-- и неважно, кто его убил - тоже выходим, ничего не делая
+	
+	local keep_always = get_bool( obj:section(), "Spawn_Inventory_Item_Keep", false )
+	if keep_always then
+		return
+	end 
+	
+    obj:iterate_inventory(
+        function( obj, item )
+            if strposx( item:section(), "mutant_" ) then
+                local sobj = alife():object( item:id() )
+                if sobj then alife():release( sobj ) end
+            end
+        end,
+        obj
+    )
+end

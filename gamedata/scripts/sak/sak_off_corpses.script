@@ -1,0 +1,225 @@
+tabl_corpses = {}
+tabl_weapons = {}
+sids_off = {}
+
+local summ_corpses		 = 2
+local summ_weapons		 = 2
+local dist_to_corpses	 = 55
+local dist_to_weapons	 = 40
+
+local filt_corpses={
+				["aver_stalker_corps_01"] = "rad_stalker_help", 
+				["dsc_trup_03"] = "esc_return",
+				["esc_exit_bandit_2"] = "gar_hellcar_thanks",
+				["gar_stalker"] = "gar_dram_novice_mp5_m1_done",  
+				["gar_stalker_0000"] = "gar_hellcar_thanks",
+				["gar_stalker_0001"] = "gar_hellcar_thanks",
+				["gar_stalker_0002"] = "gar_hellcar_thanks",
+				["gar_stalker_0005"] = "gar_hellcar_thanks",
+				["gar_trup_bratka"] = "gar_hellcar_thanks",
+				["dsc_stalker_corps1_01"] = "esc_return",
+				["dsc_stalker_corps1_02"] = "esc_return",
+				["dsc_stalker_corps1_03"] = "esc_return",
+				["mar_ecolog_corpse_1"] = "mar_ecolog_corpse", -- поршень поменял
+				["mar_ecolog_corpse_2"] = "mar_ecolog_corpse", -- поршень поменял
+				["mar_ecolog_corpse_3"] = "mar_ecolog_corpse", -- поршень поменял
+				["red_stalker_corps_0001"] = "gar_hellcar_help",
+				["gen_military_body_1"] = "mil_find_prizrak_done",
+				["gen_military_body_2"] = "mil_find_prizrak_done",
+				["gen_military_body_3"] = "mil_find_prizrak_done",
+				["esc_stalker_corpse"] = "gar_hellcar_help",  
+				["esc_stalker_corps1"] = "gar_hellcar_help",  
+				["esc_stalker_corps1_0000"] = "gar_hellcar_help", 
+				["esc_stalker_corps1_0001"] = "gar_hellcar_help",
+				["esc_stalker"] = "gar_hellcar_help",
+				["esc_trup_bratka"] = "gar_hellcar_help",
+				["esc_stalker_0000"] = "gar_hellcar_help",
+				["esc_trup_scene"] = "gar_hellcar_help",
+				["val_sos_dead1"] = "val_sos_actor_near_wounded", 
+				["val_sos_dead2"] = "val_sos_actor_near_wounded",  
+				["val_escort_bandit1_dead"] = "val_escort_scene_end", 
+				["val_escort_bandit2_dead"] = "val_escort_scene_end",
+				["vil_stalker_corps"] = "yan_kill_brain_done",
+				["bar_stalker"] = "agroprom_military_case_know", 
+				["ros_stalker"] = "deactivate_radar_fall", 
+				["rostok_dead_stalker_01"] = "yan_kill_brain_done",
+				["rostok_dead_stalker_03"] = "yan_kill_brain_done",
+				["rostok_dead_stalker_02"] = "yan_kill_brain_done",
+				["bar_ecolog_crush_dead"] = "yan_kill_brain_done",
+				["bar_ecolog_crush_dead_0000"] = "yan_kill_brain_done", 
+				["bar_ecolog_crush_dead_0001"] = "yan_kill_brain_done", 
+				["rostok_dead_stalker_0000"] = "yan_kill_brain_done",
+				["bar_ecolog_crush_dead_0002"] = "yan_kill_brain_done",
+				["bar_ecolog_crush_dead_0003"] = "yan_kill_brain_done",
+				["yan_stalker"] = "yan_kill_brain_done",
+				["mil_stalker_0001"] = "mil_miser_task_complete", -- поршень поменял
+				["mil_stalker_0002"] = "mil_miser_task_complete",  -- поршень поменял
+				["mil_stalker"] = "mil_miser_task_complete",  -- поршень поменял
+				["mil_stalker_0000"] = "mil_miser_task_complete",  -- поршень поменял
+				["rad_stalker_dead"] = "rad_stalker_help", 
+				["rad_stalker_0005_dead"] = "rad_stalker_help", 
+				["rad_stalker_0006_dead_scientist"] = "rad_stalker_help", 
+				["rad_stalker_0007_dead_scientist"] = "rad_stalker_help",
+				["rad_stalker_0008_dead_scientist"] = "rad_stalker_help", 
+				["mil_zil_zombied_01"] = "rad_stalker_help", 
+				["mil_zil_zombied_02"] = "rad_stalker_help", 
+				["kat_bandit_0006"] = "agroprom_military_case_know",
+				["red_stalker_rjaboy"] = "mil_ryaboi_end",
+				["mil_stalker_respawn_2"] = "mil_kurjer_dead",
+				["aver_stalker_corps_01"] = "mar_ecolog_corpse",  
+				["rad_stalker_0001_dead"] = "barmen_find_item_2_done"
+				}  
+
+function compare_dist(a, b)
+	return a.dist < b.dist
+end
+
+function release_trash(tab, limit)
+	if table_size(tab) <= limit then
+		return tab
+	end
+	-- convert to pairs
+	local plist = {}
+	for i, d in pairs(tab) do
+		local p = { id = i, dist = d }
+		table.insert (plist, p) 
+	end
+  
+	table.sort(plist, compare_dist) -- place first pairs with max dist
+	while #plist > limit do
+		local id = plist[1].id 
+                                                               
+		if g_sim:object(id) then  
+			--wprintf("~C0C #ERROR:~C07 destroy_trash = %s",g_sim:object(id):name())  
+			misc.release_obj (id, 'destroy_trash')
+		end
+		table.remove(plist, 1) -- без этого цикл будет бесконечным!
+	end
+  
+	local result = {}
+  
+	for i, p in ipairs(plist) do
+		result [p.id] = p.dist
+	end
+  
+	return result
+end        
+        
+function off_corpses(loks)
+    -- уборщик мусора, в частности трупов и брошенного лута. Организован в частности для облегчения производительности игры.
+
+	if nil == tabl_corpses then
+		wprintf("~C0C #ERROR:~C07 tabl_corpses == nil ")
+		return   
+	end
+	if nil == tabl_weapons then
+		wprintf("~C0C #ERROR:~C07 tabl_weapons == nil ")
+		return
+	end
+
+    local ids,cnt = registry.all_objects(true)
+    local objs = registry.convert_ids(ids, server_obj)
+    -- local objs,cnt = registry.local_objects(true, server_obj, 15) -- проверять лишь объекты на текущей локации
+	_G.g_sim = alife()
+    if g_sim == nil then
+		return
+    end   
+    local actorpos = db.actor:position()
+
+	for n, obj in ipairs(objs) do        
+        local id = obj.id      
+		local posobj = obj.position
+		local npc_name = obj:name() or "nil"
+        local sect_name = "?"                            
+        local cid = get_clsid(obj)
+		--ODS( string.format('[~T]. #DBG: candidat_name %30s', npc_name) )
+        if obj.section_name then
+			sect_name = obj:section_name()
+        end         
+         
+        if (id ~= 0) and IsStalker(obj) and (obj.alive == nil) then
+			wprintf("[~T].~C0C #ERROR:~C07 strange, object id = %d, clsid = %d, name = %s, but alive == nil ", id, cid, npc_name)
+			if obj.health then
+				wprintf(" obj.health = %.3f ", obj.health)
+			end           
+			SleepEx(100)                             
+        end
+        
+                    
+		if (id ~= 0) and IsStalker(obj) and not obj.is_alive then
+          
+            --wprintf(" possible trup id = %5d, name = %-30s, clsid = %3d, gvid = %5d, level = %s ", id, npc_name, cid, obj.m_game_vertex_id, obj.level_name) 
+			if (obj.m_story_id > 10000 or sids_off[id]) and ( ( filt_corpses[npc_name] == nil and filt_corpses[sect_name] == nil ) or db.actor:has_info(filt_corpses[npc_name]) or db.actor:has_info(filt_corpses[sect_name]) ) then
+				--ODS( string.format('[~T]. #DBG: candidat1  id %5d, addr %s  name %30s, info %30s, clsid = %4d', id, FormatPtr(addr), npc_name, tostring(filt_corpses[npc_name]), cid) )
+                local dist = posobj:distance_to(actorpos) 
+				if level.name()=="l12u_sarcofag" then
+					dist_to_corpses = 3
+				end	
+				if dist > dist_to_corpses then 
+					tabl_corpses [id] = dist
+				end
+			end
+		end
+      
+		if loks then
+			if strposx(npc_name,"amk_kanistra") and obj.parent_id~=nil and obj.parent_id~=BAD_OBJ_ID and obj.parent_id~=0 and g_sim:object(obj.parent_id):section_name()~="rucksack" then
+				local hran_id=obj.parent_id 
+				local obj1=g_sim:object(hran_id)
+				if box_is_protected(obj1)~=true then
+					misc.release_obj (obj, 'sak_off_corpses.77')        
+					g_sim:create("kanistra",obj1.position, obj1.m_level_vertex_id, obj1.m_game_vertex_id, obj1.id)
+				end
+			end
+            -- оружием считается и безобидный хабар
+			if (strposx(npc_name,"vodka") or strpos(npc_name,"medkit") or strpos(npc_name,"antirad") or strpos(npc_name,"bandage")) and
+                tonumber(npc_name.sub(-5,-5)) ~=nil and (obj.parent_id==nil or obj.parent_id==BAD_OBJ_ID) then
+				--ODS( string.format('[~T]. #DBG: candidat1  id %5d,  name %30s', id, npc_name))
+				local dist = posobj:distance_to(actorpos)
+				if (dist > dist_to_weapons) then
+					tabl_weapons[obj.id] = dist  
+				end
+			end
+		end
+
+		if (obj.parent_id==nil or obj.parent_id==BAD_OBJ_ID) and
+			not str_in_tab(npc_name, {"_m1", "_m2", "hunters_toz_new", "wpn_gungauss", "wpn_gm94", "outfit_bandit_m1", "wpn_spas12_m1", "quest"}) then
+			if isWeapon(obj) or str_in_tab(npc_name, {"grenade_", "outfit", "knife"}) then
+				local dist = posobj:distance_to(actorpos)
+				if (dist > dist_to_weapons) then 
+					--ODS( string.format('[~T]. #DBG: candidat2  id %5d, addr %s  name %30s, section %30s, clsid = %4d', id, FormatPtr(addr), npc_name, sect_name, cid) )
+					tabl_weapons[obj.id] = dist  
+				end
+			end
+		end
+	end
+
+	if tabl_corpses and table_size(tabl_corpses) > summ_corpses then              
+        tabl_corpses = release_trash (tabl_corpses, summ_corpses * 2)
+        tabl_corpses = release_trash (tabl_corpses, summ_corpses)
+        tabl_corpses = release_trash (tabl_corpses, summ_corpses)    
+	end
+	if tabl_weapons and table_size(tabl_weapons) > summ_weapons then
+		tabl_weapons = release_trash (tabl_weapons, summ_weapons)  
+	end
+end
+
+local protected = {
+	31, 742, 2230, 2231, 2232, 2233, 2234, 2235, 2236, 2237, 2238, 2239, 2240, 2241,
+	2280, 2281, 2282, 2283, 2284, 2285, 2286, 2287, 2288, 2289,
+	2290, 2291, 2292, 2293, 2294, 2295, 2296, 2297, 2298, 2299,   
+	5862, 9115, 9132, 9140, 9141, 9142, 9143, 9144
+	}
+function box_is_protected(v)
+	if v then
+		for k, o in pairs(protected) do
+			if type(o)=="number" and v.m_story_id then
+				if o==v.m_story_id then return true end
+			elseif type(o)=="string" then
+				if o==v:name() then return true end
+			end
+		end
+	end
+	return false
+end
+
+dbglog = wprintf

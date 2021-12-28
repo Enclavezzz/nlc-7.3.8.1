@@ -1,0 +1,16 @@
+-- -*- mode: lua; coding: windows-1251-dos -*-
+-- список явно подключаемых модулей
+-- здесь надо регистрировать модули, которые не будут подключаться автоматически
+-- например те, у которых имя модуля не начинается на ogse
+addons = {
+		"xr_kamp",
+		"ogse_anomaly_evader",
+		"dsh_monster_attack",
+		"dsh_battle_radius",
+		"xr_combat_ignore",
+		"dsh_enemies",
+		"oxy_wnp",
+		"cleaning_masks_if_raining",
+		"set_far_dist_vision",
+		"projectors"
+		}

@@ -1,0 +1,521 @@
+-- -*- mode: lua; coding: windows-1251-dos -*-
+-----------------------------------------------------------------------
+--- ogse_anomaly_evader.script
+--- Модуль обхода аномалий
+--- KamikaZze, OGS Evolution Team 2011
+--- version 1.3 (20/08/2012)
+-----------------------------------------------------------------------
+--- Настройки схемы
+-----------------------------------------------------------------------
+
+local excluded_npc = {
+  [ 29 ] = true,                -- учебная плоть блин
+}
+ -- [ "peshera_plennyi"      ] = true,
+ 
+local invisible_for_anoms = {}
+ -- [ "peshera_plennyi"   ] = true,
+ -- [ "sim_stalker_fraer" ] = true,
+
+
+local excluded_sect = {
+  "anim_ph_",
+}
+
+local monster_excluded_sect = {
+  "amk_zone_radioactive_",
+}
+
+local excluded_comms = {        -- запретные коммунити
+  [ "zombied" ] = true,
+}
+
+local excluded_locations = {}
+
+local monster_excluded_locations = {
+  [ "l10_radar" ]		= true,
+  [ "red_forest" ]		= true,
+  [ "labx8" ]			= true,
+  [ "hospital" ]		= true,
+  [ "l11_pripyat" ]		= true,
+  [ "deadcity" ]		= true,
+  [ "generators" ]		= true,
+}
+
+local excluded_by_name = {
+  -- Росток, электры в тоннеле
+[ "amk_zone_witches_galantine_180" ]                = true,
+[ "ros_tutorial_witches_galantine_average" ]        = true,
+[ "ros_tutorial_witches_galantine_average_0000" ]   = true,
+
+-- Подземка Агро, холодцы на путях солдат и бандосов
+[ "kat2_zone_buzz_0014" ]					= true,
+[ "kat2_zone_buzz_0019" ]					= true,
+[ "kat2_zone_buzz_0053" ]					= true,
+[ "kat2_zone_buzz_0057" ]					= true,
+-- Подземка х-18
+[ "dar_zone_mincer_strong "] 				= true,
+[ "dar_zone_zharka_static_strong "]			= true,
+[ "dar_zone_zharka_static_strong_0000 "]	= true,
+[ "dar_zone_zharka_static_strong_0001 "]	= true,
+[ "dar_zone_zharka_static_strong_0002 "]	= true,                
+[ "dar_zone_zharka_static_strong_0003 "]	= true,
+[ "dar_zone_zharka_static_strong_0004 "]	= true,
+[ "dar_zone_zharka_static_strong_0005 "]	= true,
+}
+
+local custom_detect_radius = {
+[ "marsh_ecolog1_sev_khutor" ] = 70, -- Gluzov
+[ "sanek2" ]				   = 70, -- Sanek na ZabHutore
+[ "sanek" ]					   = 50, -- Sanek na Bolotah
+["diador"]					   = 70, -- Diador
+}
+
+local added_restrictions = {}
+local last_position      = {}
+
+
+function attach( sm )
+  sm:subscribe({ signal = "on_after_blowout",       fun = this.on_after_blowout })         -- amk_anoms\ogse_surge_mgr
+  sm:subscribe({ signal = "on_anomaly_spawn",       fun = this.on_anomaly_spawn })         -- amk_anoms
+  sm:subscribe({ signal = "on_anomaly_net_destroy", fun = this.on_anomaly_net_destroy })   -- amk_anoms
+  sm:subscribe({ signal = "on_monster_death",       fun = this.on_death   })   --bind_monster
+  sm:subscribe({ signal = "on_monster_net_destroy", fun = this.on_death   })   --bind_monster
+  sm:subscribe({ signal = "on_monster_spawn", fun = this.on_monster_spawn }) --bind_monster
+  sm:subscribe({ signal = "on_monster_update", fun = this.on_monster_update }) --bind_monster
+  sm:subscribe({ signal = "on_npc_death",           fun = this.on_death   }) -- xr_motivator
+  sm:subscribe({ signal = "on_npc_net_destroy",     fun = this.on_death   }) -- xr_motivator
+  sm:subscribe({ signal = "on_npc_spawn",     fun = this.on_npc_spawn     }) -- xr_motivator
+  sm:subscribe({ signal = "on_npc_update",    fun = this.on_monster_update })-- xr_motivator
+  sm:subscribe({ signal = "on_spawn", fun = this.on_spawn }) -- bind_stalker.script
+  sm:subscribe({ signal = "on_save",  fun = this.on_save  })  -- bind_stalker.script
+end
+
+-- ; some anomalies shouldn't be deleted by MOVE_MGR, 'cos they are needed  all game long
+
+function excluded_anom( anomid )
+		local sobj = alife():object( anomid )
+		if not sobj then return true end
+			if excluded_by_name[ sobj:name() ] ~= nil then return true end
+			for _, k in ipairs( excluded_sect ) do
+				if string.find( sobj:section_name(), k, 1, true ) then
+					return true
+				end
+			end
+		return false
+end
+
+function on_monster_spawn( obj, binder )
+  added_restrictions[ obj:id() ] = nil
+  last_position[ obj:id()      ] = nil
+  if
+    ( not obj:alive() )
+    or get_bool( obj:section(), "ogse_anomaly_evader.disable", false )
+  then
+    return
+  end
+  local s = {}
+ --[[ if obj:clsid() == clsid.burer_s then
+    -- только бюреры замечены в подвисаниях, т.ч. имеет смысл следить
+    -- только за ними
+    table.insert( s, {
+      [ "signal" ] = "on_update",
+      [ "self"   ] = obj,
+      [ "fun"    ] = this.check_deadlock,
+      [ "script_name" ] = "ogse_anomaly_evader.check_deadlock",
+    })
+  end
+  --]]
+  local all_anoms, process = false, true
+if get_bool( obj:section(), "ogse_anomaly_evader.all_anoms", false ) then
+    all_anoms = true
+    binder[ "ogse_anomaly_evader.all_anoms" ] = true
+end
+  if not all_anoms then
+    if
+      excluded_npc[ obj:story_id() ]
+      or excluded_locations[ level.name() ]
+      or monster_excluded_locations[ level.name() ]
+    then
+      process = false
+    end
+  end
+  if process  then
+   -- and not battle.is_battle_spawned( obj ) 
+     table.insert( s, {
+      [ "signal" ] = "on_update",
+      [ "self"   ] = obj,
+      [ "fun"    ] = this.update_norm,
+      [ "script_name" ] = "ogse_anomaly_evader.update_norm",
+    })
+  end
+  if table.getn( s ) > 0 then
+    binder[ "ogse_anomaly_evader.subscribed" ] = s
+    local sm = ogse_signals.get_mgr()
+    for _, sig in ipairs( s ) do
+      sm:subscribe( sig )
+--	  log2( "Subscribed in on_monster_spawn" )
+--	  s%", tostring(obj:name()))
+    end
+  end
+end
+
+
+function on_npc_spawn( obj, binder )
+  added_restrictions[ obj:id() ] = nil
+  last_position[ obj:id()      ] = nil
+  if not obj:alive() then return end
+  local all_anoms = false
+if
+		invisible_for_anoms[ obj:name() ]
+and
+		get_bool(obj:section(), "ogse_anomaly_evader.all_anoms", false )
+then
+		all_anoms = true
+		binder[ "ogse_anomaly_evader.all_anoms" ] = true
+end
+  if not all_anoms then
+    if
+      excluded_npc[ obj:profile_name() ]
+      or excluded_npc[ obj:name() ]
+      or excluded_npc[ obj:story_id() ]
+      or excluded_comms[ obj:character_community() ]
+      or excluded_locations[ level.name() ]
+    then
+      return
+    end
+  end
+	if all_anoms or obj:relation( db.actor ) ~= game_object.enemy then
+	--set_anomaly_invisibility( obj, true )
+	binder[ "ogse_anomaly_evader.anomaly_invisibility" ] = true
+	end 
+
+local s = {
+    {
+      [ "signal" ] = "on_update",
+      [ "self"   ] = obj,
+      [ "fun"    ] = this.update_norm,
+      [ "script_name" ] = "ogse_anomaly_evader.update_norm",
+    },
+  }
+  binder[ "ogse_anomaly_evader.subscribed" ] = s
+  local sm = ogse_signals.get_mgr()
+  for _, sig in ipairs( s ) do
+    sm:subscribe( sig )
+--	log2( "Subscribed in On_NPC_spawn" )
+--	s%", tostring(obj:name()))
+  end
+end
+
+
+function on_death( obj )
+  local binder     = obj:binded_object()
+  local subscribed = binder[ "ogse_anomaly_evader.subscribed" ]
+  if subscribed then
+    local sm = ogse_signals.get_mgr()
+    for _, sig in ipairs( subscribed ) do
+      sm:unsubscribe( sig )
+    end
+    binder[ "ogse_anomaly_evader.subscribed" ] = nil
+  end
+  -- cleanup( obj )
+  added_restrictions[ obj:id() ] = nil
+  last_position[ obj:id() ]      = nil
+if binder[ "ogse_anomaly_evader.anomaly_invisibility" ] then
+-- set_anomaly_invisibility( obj, false )
+binder[ "ogse_anomaly_evader.anomaly_invisibility" ] = nil
+end
+end
+
+
+function remove_restriction( npc, anomid )
+  local sobj = alife():object( anomid )
+  for npc_id, anoms in pairs( added_restrictions ) do
+    local npc_obj = level.object_by_id( npc_id )
+    if npc_obj and anoms[ anomid ] then
+      anoms[ anomid ] = nil
+      npc_obj:remove_restrictions( "", sobj:name() )
+    end
+  end
+  alife():release( sobj )
+end
+
+
+function cleanup( obj )
+  local nid   = obj:id()
+  local anoms = added_restrictions[ nid ]
+  if anoms then
+    local restrs = {}
+    for k, v in pairs( anoms ) do
+      local sobj = alife():object( k )
+      if sobj then
+        table.insert( restrs, sobj:name() )
+      end
+    end
+    if table.getn( restrs ) > 0 then
+      local s = table.concat( restrs, "," )
+      ASSERT( s:len() < 3072, "too long: %s", s:len() )
+      obj:remove_restrictions( "", s )
+    end
+    added_restrictions[ nid ] = nil
+    last_position[ nid ]      = nil
+  end
+end
+
+
+function on_monster_update( obj )
+  local binder = obj:binded_object()
+  binder[ "ogse_anomaly_evader.last_monster_update" ] = time_global() + 10000
+end
+
+--[[ DOnt need to check burers in NLC
+function check_deadlock( obj )
+  ogse_signals.get_mgr():reschedule( 1000 )
+  local binder = obj:binded_object()
+  local t = binder[ "ogse_anomaly_evader.last_monster_update" ]
+  if not t then return end
+  local d = t - time_global()
+  if d > 0 then
+    if d > 1000 then
+      ogse_signals.get_mgr():reschedule( d )
+    end
+  else
+    log2(
+      "[%s]: bad mob '%s' detected: %s secs",
+      script_name(), obj:name(), d / 1000
+    )
+    on_death( obj )
+    amkii_equip.refit_npc( obj, obj:id() )
+  end
+end
+--]]
+
+-- как часто выполнять обход аномалий (в мс) и в каком радиусе
+-- запоминать аномалии.
+local freq, def_detect_radius = 1000, 30
+local is_blowout = false
+
+function get_detect_radius( obj )
+return custom_detect_radius[ obj:name() ] or def_detect_radius
+end
+
+function update_norm( obj )
+  ogse_signals.get_mgr():reschedule( freq + math.random( freq ) )
+  local binder = obj:binded_object()
+  if is_blowout then return end
+  local detect_radius = get_detect_radius( obj )
+  local curr_pos = obj:position()
+  local prev_pos = last_position[ obj:id() ]
+  if prev_pos then
+    if prev_pos:distance_to( curr_pos ) < detect_radius / 2 then
+      return
+    else
+      last_position[ obj:id() ] = curr_pos
+    end
+  else
+    last_position[ obj:id() ] = curr_pos
+  end
+
+  if not added_restrictions[ obj:id() ] then
+    added_restrictions[ obj:id() ] = {}
+  end
+
+  local restr = {}
+  for _, o in ipairs( amk_anoms.get_anomaly_list( obj, detect_radius ) ) do
+    local sobj = alife():object( o.id )
+    if sobj then
+      local sect_anom = sobj:section_name()
+      local ignore    = ( excluded_by_name[ sobj:name() ] ~= nil )
+      if not ignore then
+        for _, k in ipairs( excluded_sect ) do
+          if string.find( sect_anom, k, 1, true ) then
+            ignore = true
+            break
+          end
+        end
+      end
+      if obj:is_monster() and not ignore then
+        for _, k in ipairs( monster_excluded_sect ) do
+          if string.find( sect_anom, k, 1, true ) then
+            ignore = true
+            break
+          end
+        end
+      end
+      if not ignore then
+        restr[ sobj:name() ] = true
+      end
+    end
+  end
+
+  local del = {}
+  for k, _ in pairs( added_restrictions[ obj:id() ] ) do
+    if restr[ k ] then
+      restr[ k ] = nil -- уже установлен
+    else
+      table.insert( del, k ) -- удалить старый
+    end
+  end
+  if table.getn( del ) > 0 then
+    for _, k in ipairs( del ) do
+      added_restrictions[ obj:id() ][ k ] = nil
+    end
+    local s = table.concat( del, "," )
+    ASSERT( s:len() < 3072, "too long: %s", s:len() )
+    obj:remove_restrictions( "", s )
+  end
+
+  local add = {}
+  for k, _ in pairs( restr ) do
+    if not should_npc_miss_this_anomaly( obj, binder ) then
+      table.insert( add, k )
+    end
+  end
+  if table.getn( add ) > 0 then
+    local s = table.concat( add, "," )
+    if obj:in_restrictions():len() + 1 + s:len() < 3072 then
+      obj:add_restrictions( "", s )
+	  log2( "For object %s were added restrictions listed below -", tostring(obj:name()), tostring(s) )
+	 -- misc.dump_table(s)
+      for _, k in ipairs( add ) do
+        added_restrictions[ obj:id() ][ k ] = true
+      end
+    else
+      log2(
+        "[%s]: %s: in_restrictions is too long: %s, %s",
+        script_name(), obj:name(), obj:in_restrictions():len(), s:len()
+       )
+      log2(
+        "[%s]: %s: in_restrictions() = %s",
+        script_name(), obj:name(), obj:in_restrictions()
+       )
+      log2(
+        "[%s]: change detect radius: %s -> %s",
+        script_name(), detect_radius, detect_radius * 0.75
+       )
+       detect_radius = detect_radius * 0.75
+      log2(
+        "[%s]: change detect freq:   %s -> %s",
+        script_name(), freq, freq * 0.75
+       )
+       freq = freq * 0.75
+       ogse_signals.get_mgr():reschedule( 200 )
+    end
+  end
+end
+
+
+local monster_miss_cnt = 0
+function should_npc_miss_this_anomaly( npc, binder )
+  local miss_this_anomaly = false
+  if IsMonster( npc ) 
+  and
+  not binder[ "ogse_anomaly_evader.all_anoms" ]
+  then
+    if monster_miss_cnt == 0 then
+      miss_this_anomaly = true
+      monster_miss_cnt  = init_monster_miss_cnt()
+    else
+      monster_miss_cnt = monster_miss_cnt - 1
+    end
+  end
+  return miss_this_anomaly
+end
+
+
+function init_monster_miss_cnt()
+  return ( 1 + level.get_game_difficulty() ) * 2
+end
+
+
+local known_anomaly = {}
+function remember_generated_anomalies()
+  known_anomaly = {}
+  for id, _ in pairs( amk_anoms.anom_list ) do
+    known_anomaly[ id ] = true
+  end
+end
+
+
+function on_spawn()
+monster_miss_cnt = nlc_vars[ "ogse_anomaly_evader.monster_miss_cnt" ] or init_monster_miss_cnt()
+remember_generated_anomalies()
+end
+
+
+function on_save()
+nlc_vars[ "ogse_anomaly_evader.monster_miss_cnt" ] = monster_miss_cnt
+end
+
+
+function pre_blow_off()
+  is_blowout = true
+  for id, _ in pairs( added_restrictions ) do
+    local obj = level.object_by_id( id )
+    if obj then
+    cleanup( obj )
+    end
+  end
+end
+
+
+function on_after_blowout()
+  is_blowout    = false
+  last_position = {}
+  remember_generated_anomalies()
+end
+
+
+function on_anomaly_spawn( obj, binder )
+  if known_anomaly[ obj:id() ] then return end
+  local sect = obj:section()
+  for _, k in ipairs( excluded_sect ) do
+    if string.find( sect, k, 1, true ) then return end
+  end
+  known_anomaly[ obj:id() ] = true
+--log2 ( "AEV_1 found anomaly spawned. Name =" )
+--s% ", tostring(obj:section_name())
+
+if obj:position() then  
+  local pos    = obj:position()
+--  log2 ( "AEV_1 found anomaly spawned normally" )
+  local radius = amk_anoms.anom_list[ obj:id() ].radius
+  local recalc = {}
+  for id, _ in pairs( last_position ) do
+    local npc = level.object_by_id( id )
+    if npc then
+      local ignore = false
+      if npc:is_monster() then
+        for _, k in ipairs( monster_excluded_sect ) do
+          if string.find( sect, k, 1, true ) then
+            ignore = true
+            break
+          end
+        end
+      end
+      if
+        ( not ignore )
+        and npc:position():distance_to( pos ) - radius < get_detect_radius( npc )
+      then
+        table.insert( recalc, id )
+      end
+    end
+  end
+  for _, id in ipairs( recalc ) do
+    last_position[ id ] = nil
+  end
+else  -- not normal spawn
+-- log2 ("AEV_1 found abnormal anomaly!")
+end
+  
+end
+
+
+function on_anomaly_net_destroy( obj, binder )
+  known_anomaly[ obj:id() ] = nil
+end
+
+
+function get_freq()
+  return freq
+end

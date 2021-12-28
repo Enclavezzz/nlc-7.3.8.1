@@ -1,0 +1,42 @@
+-- ANTIPROVAL - added by Oxy  - binder implementation by DSH, idea belongs to D.Chikin  ---------------
+-- 06.12.2018
+
+function bind_artefact( obj )
+  if not get_bool( obj:section(), "bind_det_arts.ignore", false ) then
+    obj:bind_object( artefact_binder( obj ) )
+  end
+end
+
+
+class "artefact_binder"( object_binder )
+function artefact_binder:__init( obj ) super( obj )
+  self.first_update = false
+end
+
+
+function artefact_binder:net_spawn( data )
+--  ODS( string.format( "dsh_name found nothing %s", 1 ) )
+  if not object_binder.net_spawn( self, data ) then
+    return false
+  end
+ --[[ -- for art properties to deteriorate together with their states. Now detached - needs function change_all_af_effects in _g.script
+ local sobj = alife():object( self.object:id() )
+  if sobj then
+    change_all_af_effects( self.object )
+	ODS( string.format( "art_name = %s", tostring( sobj:name() ) ) )
+  end
+  --]]
+  return true
+end
+
+
+function artefact_binder:update()
+  if not self.first_update then
+    local item = self.object
+    local ps   = item:get_physics_shell()
+    if ps and not item:parent() then
+      ps:apply_force( 0, item:mass() * 1100, 0 )
+    end
+    self.first_update = true
+  end
+end

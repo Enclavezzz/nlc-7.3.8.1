@@ -1,0 +1,169 @@
+function trader_miniquest_precond(trader, actor)
+	local zz = false
+	-- Читаем customdata
+	local obj = alife():story_object(story_ids.bar_barman)
+	if (obj) then
+		local pk = get_netpk(obj)
+		local data = pk:get()
+		local cd = amk.parse_custom_data(data.custom_data)
+		if (cd.microquest and cd.microquest.reward_money and cd.microquest.reward_items and tonumber(cd.microquest.reward_money) > 0 and cd.microquest.reward_items~="") then
+			zz = true
+		end
+	end
+	return zz
+end
+
+function trader_miniquest_free_transfer(trader, actor)
+	news_main.on_miniquest_reward(trader)
+end
+
+function give_agroprom_reward()
+	sak.create_items(db.actor,"vodka",1)
+	sak.create_items(db.actor, "conserva",2)
+	sak.create_items(db.actor,"medkit",2)
+	sak.create_items(db.actor,"antirad",2)	
+    dialogs.relocate_money(db.actor, 5000, "in")
+end
+
+function give_extra_task(actor, npc)
+	if barman_darklab_documents_given(actor,npc) or
+		barman_x16_given(actor,npc) or
+		has_alife_info("bar_deactivate_radar_start")
+	then
+		return true
+	end
+	return false
+end
+function dont_give_extra_task(actor, npc)
+	return not give_extra_task(actor, npc)
+end
+
+function barman_need_complete_job(actor,npc)
+	if barman_darklab_documents_given(actor,npc) and 
+		have_darklab_documents(actor,npc)
+	then
+		return true
+	end
+	return false
+end
+
+-- ********************************************************
+--			БАРМЕН В КОМНАТЕ
+-- ********************************************************
+
+function barman_darklab_documents_given(actor,npc)
+	if has_alife_info("bar_darklab_document_start") and
+		not has_alife_info("bar_darklab_document_done") 
+	then
+		return true
+	end
+	return false
+end
+
+function have_darklab_documents(first_speaker, second_speaker)
+	return first_speaker:object("dar_document4")~=nil
+end
+
+function hasnt_darklab_documents(first_speaker, second_speaker)
+	return first_speaker:object("dar_document4")==nil
+end
+
+function give_darklab_documents(first_speaker, second_speaker)
+	dialogs.relocate_item_section(second_speaker, "dar_document4", "out")
+end
+function give_darklab_reward()
+	--dialogs.relocate_money(db.actor, 20000, "in")
+	sak.create_items(db.actor, "vodka",2)
+	sak.create_items(db.actor, "af_blood_dyn5d",1)
+	--sak.create_items(db.actor, "ammo_vog-25",10)
+end
+
+-- Документы с Янтаря
+function barman_x16_given(actor,npc)
+	if has_alife_info("bar_x16_documents_start") and
+		not has_alife_info("bar_x16_documents_done")
+	then
+		return true
+	end
+	return false
+end
+
+function add_x16_documents()
+	sak.create_items(db.actor, "lab_x16_documents",1)
+end
+function add_spec_outfit_m1()
+	sak.create_items(db.actor, "ecolog_outfit_m1",1)
+end
+
+function not_have_spec_outfit_m1()
+	return not have_spec_outfit_m1()
+end
+
+--это чтобы Сахаров забрал и намазанный костюм
+function have_spec_outfit_m1()
+  return sak.have_items_count("ecolog_outfit_m1",1)~=false or sak.have_items_count("ecolog_q_outfit_q_m1",1)~=false
+end
+function give_spec_outfit_m1()
+	if sak.have_items_count("ecolog_outfit_m1",1) then
+		sak_inventory.release_actor_items("ecolog_outfit_m1",1)
+	elseif sak.have_items_count("ecolog_q_outfit_q_m1",1) then
+		sak_inventory.release_actor_items("ecolog_q_outfit_q_m1",1)
+	end
+end
+
+function give_x16_reward(first_speaker, second_speaker)
+	dialogs.relocate_money(second_speaker, 45000, "in")
+	sak.create_items(db.actor, "vodka",5)
+	sak.create_items(db.actor, "ammo_5.45x39_fmj",8)
+	sak.create_items(db.actor, "ammo_vog-25",20)
+end
+
+-- Выдача задания на отключение радара
+function barman_need_radar(actor,npc)
+	if has_alife_info("bar_deactivate_radar_start")	then
+		return true
+	end
+	return false
+end
+
+-- ********************************************************
+--			БАРМЕН ЗА ПРИЛАВКОМ
+-- ********************************************************
+--Долг архивные документы
+function have_dolg_arhive_document(first_speaker, second_speaker)
+	return first_speaker:object("dolg_arhive_documents")~=nil
+end
+
+function give_dolg_arhive_document(first_speaker, second_speaker)
+	dialogs.relocate_item_section(second_speaker, "dolg_arhive_documents", "out")
+end
+-- Флешка ученных с ростка
+function actor_have_research(first_speaker, second_speaker)
+	return first_speaker:object("bar_ecolog_flash")~=nil
+end
+function actor_not_have_research(first_speaker, second_speaker)
+	return not first_speaker:object("bar_ecolog_flash")~=nil
+end
+
+-- ********************************************************
+--			Лидер Долга
+-- ********************************************************
+--Свобода РГ-6
+function have_rg6(first_speaker, second_speaker)
+	return first_speaker:object("wpn_rg-6")~=nil
+end
+
+function dont_have_rg6(first_speaker, second_speaker)
+	return first_speaker:object("wpn_rg-6")==nil or not has_alife_info("mil_svoboda_rg6_gain")
+end
+
+--Фамильное ружье охотника
+function have_hunters_toz(first_speaker, second_speaker)
+	return first_speaker:object("wpn_toz34_m1")~=nil
+end
+function give_hunters_toz(first_speaker, second_speaker)
+	dialogs.relocate_item_section(second_speaker, "wpn_toz34_m1", "out")
+end
+function have_hunter_reward(first_speaker, second_speaker)
+	dialogs.relocate_money(second_speaker, 4000, "in")
+end
