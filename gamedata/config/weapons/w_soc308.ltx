@@ -1,0 +1,214 @@
+;---------==================================---------
+; —Œ -95
+;---------==================================---------
+
+[wpn_soc308]:weapon_immunities
+GroupControlSection			= spawn_group
+discovery_dependency		= 
+$spawn				= "weapons\uniq\wpn_soc308"
+$npc				= on
+$prefetch			= 8
+scheduled			= off
+cform				= skeleton
+class				= WP_LR300
+min_radius			= 20
+max_radius			= 200
+description					= enc_weapons_wpn-soc308
+
+ef_main_weapon_type		= 2
+ef_weapon_type				= 6
+
+holder_range_modifier		= 1.0
+holder_fov_modifier		= 0.7
+
+cost					= 18000	
+weapon_class			= assault_rifle	
+ammo_limit				= 210
+ammo_elapsed			= 10
+ammo_mag_size			= 10
+fire_modes			= 1
+
+ammo_class				= ammo_7.62x51_fmj,  ammo_7.62x51_ap
+
+launch_speed			= 0
+hand_dependence			= 1	
+single_handed			= 0
+slot				    = 2	
+animation_slot			= 2	
+
+inv_name			= wpn-soc308
+inv_name_short		= wpn-soc308
+inv_weight			= 4.1
+icon_group          = 3
+inv_grid_width      = 6
+inv_grid_height     = 2
+inv_grid_x          = 7
+inv_grid_y          = 4
+kill_msg_x					= 0
+kill_msg_y					= 28
+kill_msg_width			= 84
+kill_msg_height			= 28
+
+fire_dispersion_base			= 0.16
+control_inertion_factor			= 1.4f
+
+cam_relax_speed         		= 5.5
+cam_dispersion          		= 0.8
+cam_dispersion_inc				= 0.6
+cam_dispertion_frac				= 0.9
+cam_max_angle					= 15.0
+cam_max_angle_horz				= 7.0
+cam_step_angle_horz				= 1.0
+
+fire_dispersion_condition_factor= 2.5
+misfire_probability 			= 0.003 
+misfire_condition_k				= 0.05
+condition_shot_dec				= 0.00035
+
+fire_point			= 0,0.228,0.581
+fire_point2			= 0,0.17,0.465	
+flame_particles			= weapons\generic_weapon05
+smoke_particles			= weapons\generic_shoot_00
+grenade_flame_particles		= weapons\generic_weapon01
+shell_point			= 0,0.241,0.148
+shell_particles	 			= 
+
+PDM_disp_base				= 1.25
+PDM_disp_vel_factor			= 2.5
+PDM_disp_accel_factor		= 3.0
+PDM_crouch					= 1.1
+PDM_crouch_no_acc			= 1.0
+
+hit_power           			= 0.9
+hit_impulse		 				= 1
+hit_type 						= fire_wound
+fire_distance           		= 170
+bullet_speed		 			= 720
+rpm                     		= 180
+use_aim_bullet					= false
+time_to_aim						= 1.0
+
+hud				= wpn_soc308_hud
+normal                  		= 0, 1, 0
+position                		= -0.026,-0.172,0.015
+orientation             		= 0, 0, 0
+
+strap_position         			= 0.01,-0.21,0.45
+strap_orientation      			= 05,-183, -99
+strap_bone0						= bip01_spine2
+strap_bone1						= bip01_spine1
+visual				= weapons\soc308\wpn_soc308_pso.ogf
+
+light_color			= 0.6,0.5,0.3
+light_range			= 5	
+light_var_color			= 0.05
+light_var_range			= 0.5
+light_time			= 0.2
+ph_mass				= 5
+
+;addons
+scope_status					= 2
+silencer_status					= 0
+grenade_launcher_status			= 0
+scope_mode 						= 3
+zoom_enabled					= true	
+scope_name 						= wpn_addon_1pso, wpn_addon_1p78, wpn_addon_cobra
+scope_x			        = 72
+scope_y					= 8
+
+scope_zoom_factor           = 90
+
+silencer_name  					= wpn_addon_sil_762_sr2
+silencer_x 						= 303
+silencer_y 						= 16
+zoom_enabled					= true
+scope_zoom_factor	    		= 75
+
+snd_draw					= weapons\rifle_draw
+snd_holster					= weapons\rifle_holster
+snd_empty					= weapons\rifle_empty
+snd_reload					= weapons\ak_74x\ak74_reload
+snd_shoot					= weapons\ak_74x\soc_shoot
+snd_silncer_shot				= weapons\svd\svd_silent
+snd_razgruzka					= weapons\razgruzka\ammo_5
+
+silencer_smoke_particles	= weapons\generic_shoot_00
+silencer_light_color		= 0.6,0.5,0.3
+silencer_light_range		= 0.01
+silencer_light_var_color	= 0.05
+silencer_light_var_range	= 0.5
+silencer_light_time		= 0.2
+
+[wpn_soc308_hud]
+allow_inertion				= true
+shell_point			= 0.005000,0.020000,-0.455000
+shell_dir					= 0.0, 1.0, 0.0
+
+fire_point			= 0.001000,-0.016970,-0.110502
+fire_point2			= 0.212000,-0.380999,0.623997
+fire_bone               	= wpn_body
+
+
+orientation      	        	= 1.7, 1.5, 0
+position			        	= 0.040000,-0.05,-0.0250
+
+
+visual                  		= weapons\soc308\wpn_soc308_pso_hud.ogf
+
+grenade_bone            	= wpn_grenade
+
+anim_idle					= idle
+anim_idle_aim				= idle_aim
+anim_reload					= reload
+anim_draw					= draw
+anim_holster				= holster
+anim_shoot					= shoot
+anim_idle_sprint			= idle_sprint
+
+zoom_offset			= -0.138680,0.065600,-0.1500000
+zoom_rotate_x		= 0.032350
+zoom_rotate_y		= 0.029900
+
+
+zoom_rotate_time				= 0.27
+rotate_time						= 0.27
+
+;;;;;;;;;;;;;;;a‰‰ÓÌ˚;;;;;;;;;;;;;;;;;;;
+[wpn_soc308_cobra]:wpn_soc308
+visual                  		= weapons\soc308\wpn_soc308_cobra.ogf
+hud                     		= wpn_soc308_cobra_hud
+scope_attached         		= 0
+
+
+[wpn_soc308_cobra_hud]: wpn_soc308_hud
+visual                  		= weapons\soc308\wpn_soc308_cobra_hud.ogf
+
+zoom_offset			= -0.118800,0.029720,-0.150000
+zoom_rotate_x		= 0.051300
+zoom_rotate_y		= 0.002450
+
+[wpn_soc308_1p78]:wpn_soc308
+visual                  		= weapons\soc308\wpn_soc308_1p78.ogf
+hud                     		= wpn_soc308_1p78_hud
+scope_attached         		= 0
+
+
+[wpn_soc308_1p78_hud]: wpn_soc308_hud
+visual                  		= weapons\soc308\wpn_soc308_1p78_hud.ogf
+
+zoom_offset            = -0.137500,0.030120,1.380000
+zoom_rotate_x        = 0.030700
+zoom_rotate_y        = 0.028850
+
+
+[wpn_soc308_1pso]:wpn_soc308
+visual                  		= weapons\soc308\wpn_soc308_pso.ogf
+hud                     		= wpn_soc308_1pso_hud
+scope_attached         		= 0
+
+[wpn_soc308_1pso_hud]: wpn_soc308_hud
+visual                  		= weapons\soc308\wpn_soc308_pso_hud.ogf
+
+zoom_offset			= -0.124000,0.038720,2.472870
+zoom_rotate_x		= 0.033700
+zoom_rotate_y		= 0.025250

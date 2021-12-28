@@ -1,0 +1,99 @@
+
+                                    <!--Кордон-->
+
+    <article id="x18_botan_book" name="tutorial_x18_botan_book" article_type="journal" group="news/Found_PDA">
+        <text>x18_botan_book_text</text>
+    </article>
+    
+    <article id="tutorial_moving_anomaly" name="Dead novice's flash" article_type="journal" group="news/Found_PDA">
+        <text>tutorial_moving_anomaly_text</text>
+    </article>
+    
+    <article id="esc_provodnik_pda" name="doctor_meet" article_type="journal" group="news/Found_PDA">
+        <text>doctor_meet_text</text>
+    </article> 
+    
+	<article id="enc_klava_feik_found" name="klava_text" article_type="journal" group="news/Found_PDA">
+	<texture x="0" y="550" width="100" height="50">ui\ui_icon_equipment_1</texture>
+        <text>enc_klava_feik_found_text</text>
+    </article>
+	
+	<article id="defend_novice" name="esc_defend_lager" article_type="task" group="esc_defend_lager">
+        <text>defend_lager_text</text>
+    </article>
+	
+    <article id="esc_fox_help" name="esc_help_wounded_from_raid" article_type="journal" group="enc_task">
+        <text>help_to_fox</text>
+    </article>
+	
+	<article id="esc_blokpost_case" name="esc_blockpost_case_to_trader" article_type="task" group="esc_blockpost_case_to_trader">
+		<text>blokpost_case_text</text>
+	</article>	
+
+                                    <!--Агропром-->
+									
+	<article id="storyline_gunslinger_flash_info" name="Gunslinger Flash" article_type="task" group="agr_find_ghost/0">
+		<texture x="0" y="0" width="350" height="250">ui\ui_icon_photo</texture>
+		<text>storyline_gunslinger_flash_new_info</text>
+	</article>
+									
+	<article id="agr_rats_n_soldiers" name="agr_rats_n_soldiers" article_type="task" group="agroprom_get_military_documents">
+		<texture x="400" y="250" width="200" height="150">ui\ui_icon_photo</texture>
+		<text>agr_rats_n_soldiers_text</text>
+	</article>
+	
+	<article id="agr_nii_security_plan" name="agr_nii_security_plan_name" article_type="journal" group="news/st_operation_agroprom">
+		<texture x="400" y="600" width="300" height="300">ui\ui_icon_photo</texture>
+		<text>agr_nii_security_plan</text>
+	</article>
+
+                                     <!--Бар-->
+									 
+	<article id="descr_bar_radar_deactivate" name="radar deactivate" article_type="task" group="bar_radar_deactivate/0">
+        <text>descr_bar_radar_deactivate</text>
+    </article>						 
+
+                                     <!--Х-18-->
+
+<article article_type="journal" group="news/Found_PDA" id="dar_password_info1" name="LabX18 first key">
+    <text>pass_to_1st_door</text>
+</article>
+
+<article article_type="journal" group="news/Found_PDA" id="dar_password_info2" name="LabX18 second key">
+    <text>pass_to_2nd_door</text>
+</article>
+
+<article article_type="task" group="dar_codedoor_1/0" id="dar_password_info11" name="LabX18 first key">
+    <text>pass_to_1st_door</text>
+</article>
+
+<article article_type="task" group="dar_codedoor_2/0" id="dar_password_info22" name="LabX18 second key">
+    <text>pass_to_2nd_door</text>
+</article>
+
+<article article_type="journal" group="news/LabX18_information" id="dar_document1" name="dar_document1">
+    <text>documents_1</text>
+</article>
+
+<article article_type="journal" group="news/LabX18_information" id="dar_document2" name="dar_document2">
+    <text>documents_2</text>
+</article>
+
+<article article_type="journal" group="news/LabX18_information" id="dar_document3" name="dar_document3">
+    <text>documents_3</text>
+</article>
+
+<article article_type="journal" group="news/LabX18_information" id="dar_document4" name="dar_document4">
+    <text>documents_4</text>
+</article>
+
+<article article_type="journal" group="news/LabX18_information" id="dar_document5" name="dar_document5">
+    <text>documents_5</text>
+</article>
+
+                                                       <!--Янтарь-->
+
+<article id="yan_vasilyev_info" name="yan_vasilyev_pda" group="news/Found_PDA" article_type="journal">
+        <text>storyline_vasilyev_info</text>
+</article>
+                          

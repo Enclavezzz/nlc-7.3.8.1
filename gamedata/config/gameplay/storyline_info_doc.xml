@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="windows-1251" ?>
+<article id="tex_mikhalych_item" name="Приборы для Михалыча" article_type="journal" group="enc_task">
+	<text>tex_mikhalych_item</text>
+</article>
+<article id="tex_lim_trader_bauble" name="Артефакт для Михалыча" article_type="journal" group="enc_task">
+	<text>tex_lim_trader_bauble</text>
+</article>
+<article id="tex_sidor_outfit" name="Костюм от Сидоровича" article_type="journal" group="enc_task">
+	<text>tex_sidor_outfit</text>
+</article>
+<article id="tex_barmen_outfit" name="Костюм от Бармена" article_type="journal" group="enc_task">
+	<text>tex_barmen_outfit</text>
+</article>
+<article id="tex_sherstuk_outfit" name="Костюм от Шерстюка" article_type="journal" group="enc_task">
+	<text>tex_sherstuk_outfit</text>
+</article>
+<article id="tex_marsh_baze_ecolog_1" name="Работа для учёного с Болот" article_type="journal" group="enc_task">
+	<texture x="600" y="0" width="50" height="100">ui\ui_icon_equipment</texture>
+	<text>tex_marsh_baze_ecolog_1</text>
+</article>
+<article id="tex_marsh_baze_ecolog_2" name="Работа для учёного с Болот" article_type="journal" group="enc_task">
+	<texture x="600" y="550" width="50" height="50">ui\ui_icon_equipment</texture>
+	<text>tex_marsh_baze_ecolog_2</text>
+</article>
+<article id="tex_marsh_baze_ecolog_3" name="Работа для учёного с Болот" article_type="journal" group="enc_task">
+	<texture x="600" y="400" width="50" height="50">ui\ui_icon_equipment</texture>
+	<text>tex_marsh_baze_ecolog_3</text>
+</article>
+<article id="tex_marsh_baze_ecolog_4" name="Работа для учёного с Болот" article_type="journal" group="enc_task">
+	<texture x="600" y="450" width="50" height="50">ui\ui_icon_equipment</texture>
+	<text>tex_marsh_baze_ecolog_4</text>
+</article>
+<article id="tex_ecolog_artefact1_start" name="Артефакты для Сахарова" article_type="journal" group="enc_task">
+	<texture x="0" y="400" width="50" height="50">ui\ui_icon_equipment</texture>	
+	<text>tex_ecolog_artefact1_start</text>
+</article>
+<article id="tex_ecolog_artefact2_start" name="Артефакты для Сахарова" article_type="journal" group="enc_task">
+	<texture x="0" y="250" width="50" height="50">ui\ui_icon_equipment</texture>	
+	<text>tex_ecolog_artefact2_start</text>
+</article>
+<article id="tex_ecolog_artefact3_start" name="Артефакты для Сахарова" article_type="journal" group="enc_task">
+	<texture x="0" y="600" width="50" height="50">ui\ui_icon_equipment</texture>	
+	<text>tex_ecolog_artefact3_start</text>
+</article>
+<article id="tex_ecolog_artefact4_start" name="Артефакты для Сахарова" article_type="journal" group="enc_task">
+	<texture x="0" y="800" width="50" height="50">ui\ui_icon_equipment</texture>	
+	<text>tex_ecolog_artefact4_start</text>
+</article>
+<article id="tex_ecolog_artefact5_start" name="Артефакты для Сахарова" article_type="journal" group="enc_task">
+	<texture x="50" y="100" width="50" height="50">ui\ui_icon_equipment</texture>	
+	<text>tex_ecolog_artefact5_start</text>
+</article>
+<article id="tex_barmen_scafandr" name="Найти друга Бармена" article_type="journal" group="enc_task">	
+	<text>tex_barmen_scafandr</text>
+</article>
+<article id="tex_sidor_scafandr" name="Прояcнить слухи" article_type="journal" group="enc_task">	
+	<text>tex_sidor_scafandr</text>
+</article>
+<article id="tex_sidor_scafandr_dlg" name="Выпивка и закуска" article_type="journal" group="enc_task">	
+	<text>tex_sidor_scafandr_dlg</text>
+</article>
+<article id="tex_saharov_controler" name="Контролёр на Янтаре" article_type="journal" group="enc_task">
+	<texture x="750" y="0" width="200" height="150">ui\ui_icon_photo</texture>	
+	<text>tex_saharov_controler</text>
+</article>
+<article id="tex_volk_gonec" name="Гонец Волка" article_type="journal" group="enc_task">
+	<text>tex_volk_gonec</text>
+</article>
+<article id="tex_ivan_toz" name="Оплата за ружьё" article_type="journal" group="enc_task">
+	<ltx>wpn_hunters_toz_new</ltx>
+	<text>tex_ivan_toz</text>
+</article>
+<article id="tex_marsh_crash_vertolet" name="Чёрный ящик с Болот" article_type="journal" group="enc_task">
+	<ltx>agr_black_box</ltx>	
+	<text>tex_marsh_crash_vertolet</text>
+</article>
+<article id="tex_dar_crash_vertolet" name="Чёрный ящик из Тёмной долины" article_type="journal" group="enc_task">
+	<ltx>agr_black_box</ltx>	
+	<text>tex_dar_crash_vertolet</text>
+</article>
+<article id="tex_gen_crash_vertolet" name="Чёрный ящик из зоны Тесла" article_type="journal" group="enc_task">
+	<ltx>agr_black_box</ltx>
+	<text>tex_gen_crash_vertolet</text>
+</article>
+<article id="tex_dead_crash_vertolet" name="Чёрный ящик из райцентра" article_type="journal" group="enc_task">
+	<ltx>agr_black_box</ltx>	
+	<text>tex_dead_crash_vertolet</text>
+</article>
+<article id="tex_saharov_scientist_rf" name="Следы учёных" article_type="journal" group="enc_task">
+	<text>tex_saharov_scientist_rf</text>
+</article>
+<article id="tex_semenov_green_art" name="Артефакт для Семёнова" article_type="journal" group="enc_task">
+	<text>tex_semenov_green_art</text>
+</article>
+<article id="tex_marsh_baze_guard_ohota" name="Охота на изломов" article_type="journal" group="enc_task">
+	<text>tex_marsh_baze_guard_ohota</text>
+</article>
+<article id="tex_agroprom_prikaz" name="Водка за приказ" article_type="journal" group="enc_task">
+	<text>tex_agroprom_prikaz</text>
+</article>																											  
+<article id="tex_barmen_freeman" name="Поиски сталкера" article_type="journal" group="enc_task">
+	<text>tex_barmen_freeman</text>
+</article>																											  
+<article id="tex_dar_greens_yan_way" name="Кожаный плащ для Игната" article_type="journal" group="enc_task">
+	<texture x="350" y="500" width="100" height="150">ui\ui_icon_equipment_1</texture>
+	<text>tex_dar_greens_yan_way</text>
+</article>																																
+<article id="tex_marsh_cook_ammo" name="Патроны для Сильвестра" article_type="journal" group="enc_task">
+	<texture x="800" y="700" width="150" height="100">ui\ui_icon_equipment</texture>
+	<text>tex_marsh_cook_ammo</text>
+</article>
+<article id="tex_petrenko_ammo" name="Поиски дезертира" article_type="journal" group="enc_task">
+	<text>tex_petrenko_ammo</text>
+</article>																															
+<article id="tex_green_dan_passage" name="Кожи для Дэна" article_type="journal" group="enc_task">
+	<text>tex_green_dan_passage</text>
+</article>																											
+<article id="tex_shurup_instrument" name="Инструменты для Шурупа" article_type="journal" group="enc_task">
+	<texture x="700" y="600" width="100" height="100">ui\ui_icon_equipment</texture>
+	<text>tex_shurup_instrument</text>
+</article>																															  
+<article id="tex_private_blockpost_outfit" name="Водка за гравикостюмы" article_type="journal" group="enc_task">
+	<texture x="0" y="850" width="100" height="150">ui\ui_icon_equipment_3</texture>
+	<text>tex_private_blockpost_outfit</text>
+</article>
+<article id="tex_private_blockpost_recipt" name="Водка за рецепт" article_type="journal" group="enc_task">
+	<text>tex_private_blockpost_recipt</text>
+</article>
+<article id="tex_barmen_upir" name="Узнать о напарнике" article_type="journal" group="enc_task">
+	<text>tex_barmen_upir</text>
+</article>																															   
+<article id="tex_lisiy_umnik" name="Поговорить с Умником" article_type="journal" group="enc_task">
+	<text>tex_lisiy_umnik</text>
+</article>																													
+<article id="tex_pahom_petrov_box" name="Посылка для Петрова" article_type="journal" group="enc_task">
+	<text>tex_pahom_petrov_box</text>
+</article>																													   
+<article id="tex_mil_trader_aver" name="Найти базу наёмников" article_type="journal" group="enc_task">
+	<texture x="900" y="450" width="100" height="100">ui\ui_icon_equipment</texture>
+	<text>tex_mil_trader_aver</text>
+</article>																														

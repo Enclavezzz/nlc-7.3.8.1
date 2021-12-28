@@ -1,0 +1,236 @@
+;¿ -103
+[wpn_ak104]:wpn_ak74m
+GroupControlSection					= spawn_group
+discovery_dependency				= 
+$spawn              				= "weapons\uniq\wpn_ak103"
+$npc								= on				
+$prefetch 							= 8
+scheduled							= off
+cform               				= skeleton
+class               				= WP_AK74
+min_radius          				= 0
+max_radius          				= 120
+		
+ef_main_weapon_type					= 2
+ef_weapon_type						= 6
+		
+holder_range_modifier				= 1.0
+holder_fov_modifier					= 0.7
+		
+cost								= 45000
+weapon_class						= assault_rifle	
+			
+ammo_limit							= 210
+ammo_elapsed						= 30
+			
+ammo_mag_size						= 30
+fire_modes							= 1, -1
+f_mode								= 2
+		
+flame_particles						= weapons\generic_weapon03
+smoke_particles						= weapons\generic_shoot_00
+grenade_flame_particles				= weapons\rpg_shoot_02
+		
+ammo_class			        		= ammo_7.62x39_fmj, ammo_7.62x39_ap
+grenade_class						= ammo_vog-25, ammo_vog-25p 
+launch_speed						= 0
+		
+hand_dependence						= 1
+single_handed						= 0
+			
+slot 								= 2
+animation_slot						= 2
+		
+inv_name							= wpn_ak103
+inv_name_short						= wpn_ak103
+description				    		= enc_weapons_wpn_ak103
+dialog_description		    		= desc_dialog_wpn_ak103
+
+default_to_ruck						= false
+		
+inv_weight							= 3.6
+icon_group                  		= 3		
+inv_grid_width     					= 6
+inv_grid_height    					= 2
+inv_grid_x         					= 0
+inv_grid_y         					= 9
+		
+kill_msg_x							= 0
+kill_msg_y							= 28
+kill_msg_width						= 84
+kill_msg_height						= 28
+		
+fire_dispersion_base	    		= 0.25
+control_inertion_factor				= 1.3f
+		
+cam_relax_speed         	= 7.0	
+cam_dispersion          	= 0.2	
+cam_dispersion_inc			= 0.15  
+cam_dispertion_frac			= 0.55
+cam_max_angle				= 10.0	
+cam_max_angle_horz			= 10.0	
+cam_step_angle_horz			= 0.75
+
+fire_dispersion_condition_factor 	= 1.5
+
+misfire_probability 				= 0.0015
+misfire_condition_k					= 0.50
+		
+condition_shot_dec 					= 0.0001
+		
+PDM_disp_base 						= 2.0
+PDM_disp_vel_factor 				= 3.0
+PDM_disp_accel_factor 				= 5.0
+PDM_crouch							= 1.9
+PDM_crouch_no_acc					= 0.7
+		
+hit_power                			= 1.25
+hit_impulse			        		= 1
+hit_type 							= fire_wound
+		
+fire_distance            			= 180
+bullet_speed						= 715		
+rpm                      			= 600
+
+use_aim_bullet						= false
+time_to_aim							= 1.0
+		
+hud									= wpn_ak104_hud
+		
+visual                  	= weapons\ak100\wpn_ak103_elcan.ogf
+		
+light_color							= 0.6,0.5,0.3
+light_range							= 5
+light_var_color						= 0.05						
+light_var_range						= 0.5
+light_time 							= 0.2						
+		
+ph_mass								= 5
+		
+scope_status						= 2		
+silencer_status						= 2					
+grenade_launcher_status				= 2
+		
+zoom_enabled						= true
+scope_zoom_factor	    			= 90
+		
+scope_mode 							= 3
+scope_name 							= wpn_addon_eotech, wpn_addon_acog, wpn_addon_mt
+ironsight_zoom_factor       		= 80
+scope_zoom_factor           		= 50
+silencer_name						= wpn_addon_sil_762_ar
+grenade_launcher_name 				= wpn_addon_grenade_launcher
+
+scope_x                     = 83		; offset in inventory icon
+scope_y                     = -12
+silencer_x                  = 254		; offset in inventory icon
+silencer_y                  = 7
+grenade_launcher_x          = 148		; offset in inventory icon
+grenade_launcher_y          = 20
+
+snd_silncer_shot					= weapons\ak100\ak103_shot_sil
+snd_shoot							= weapons\ak100\ak103_shoot
+snd_reload							= weapons\ak_74x\ak74_reload
+snd_razgruzka						= weapons\razgruzka\ammo_5
+
+[wpn_ak104_hud]:wpn_ak74m_hud
+visual                  	= weapons\ak100\wpn_ak103_elcan_hud.ogf
+
+anim_idle							= idle
+anim_idle_aim						= idle_aim
+anim_reload							= reload
+anim_draw							= draw
+anim_holster						= holster
+anim_shoot							= shoot
+anim_idle_sprint					= idle_sprint
+
+anim_idle_gl						= idle_w_gl
+anim_idle_gl_aim					= idle_w_gl_aim
+anim_reload_gl						= reload_w_gl
+anim_draw_gl						= draw_w_gl
+anim_holster_gl						= holster_w_gl
+anim_shoot_gl						= shoot_w_gl
+anim_idle_sprint_gl				    = idle_w_gl_sprint
+
+anim_idle_g							= idle_grenade
+anim_idle_g_aim						= idle_grenade
+anim_reload_g						= reload_grenade
+anim_shoot_g						= shoot_grenade
+anim_switch_grenade_on				= switch_on
+anim_switch_grenade_off				= switch_off
+anim_draw_g							= draw_grenade
+anim_holster_g						= holster_grenade
+anim_idle_sprint_g				    = idle_w_gl_sprint		
+		
+zoom_offset			= -0.137780,0.065500,-0.179000
+zoom_rotate_x		= 0.030750
+zoom_rotate_y		= 0.030100
+
+grenade_normal_zoom_offset			= -0.137480,0.064600,-0.179000
+grenade_normal_zoom_rotate_x		= 0.030750
+grenade_normal_zoom_rotate_y		= 0.029400
+
+zoom_rotate_time					= 0.3
+rotate_time							= 0.3
+
+;----------??????------------------------------
+
+[wpn_ak104_eotech]:wpn_ak104
+visual				= weapons\ak100\wpn_ak103_eotech.ogf
+grenade_launcher_status		= 2
+scope_attached         		= 0
+hud = wpn_ak104_eotech_hud
+
+[wpn_ak104_eotech_hud]:wpn_ak104_hud
+visual				= weapons\ak100\wpn_ak103_eotech_hud.ogf
+
+zoom_offset			= -0.136700,-0.008000,-0.179000
+zoom_rotate_x		= -0.008900
+zoom_rotate_y		= 0.025900
+
+grenade_normal_zoom_offset			= -0.136650,-0.006130,-0.179000
+grenade_normal_zoom_rotate_x		= -0.006350
+grenade_normal_zoom_rotate_y		=  0.028200
+
+zoom_rotate_time 		= 0.34
+rotate_time 			= 0.34
+
+[wpn_ak104_acog]:wpn_ak104
+visual                  	= weapons\ak100\wpn_ak103_elcan.ogf
+grenade_launcher_status		= 2
+scope_attached         		= 0
+hud = wpn_ak104_acog_hud
+
+[wpn_ak104_acog_hud]:wpn_ak104_hud
+visual                  	= weapons\ak100\wpn_ak103_elcan_hud.ogf
+
+zoom_offset			= -0.138700,0.014500,1.002
+zoom_rotate_x		= 0.027050
+zoom_rotate_y		= 0.030550
+
+grenade_normal_zoom_offset			= -0.138150,0.014870,1.002
+grenade_normal_zoom_rotate_x		= 0.027050
+grenade_normal_zoom_rotate_y		= 0.030250
+
+zoom_rotate_time 		= 0.34
+rotate_time 			= 0.34
+
+[wpn_ak104_mt]:wpn_ak104
+visual                  	= weapons\ak100\wpn_ak103_mt.ogf
+grenade_launcher_status		= 2
+scope_attached         		= 0
+hud = wpn_ak104_mt_hud
+
+[wpn_ak104_mt_hud]:wpn_ak104_hud
+visual                  	= weapons\ak100\wpn_ak103_mt_hud.ogf
+
+zoom_offset			= -0.136200,0.019100,2.4
+zoom_rotate_x		= 0.025750
+zoom_rotate_y		= 0.027250
+
+grenade_normal_zoom_offset			= -0.136200,0.019100,2.4
+grenade_normal_zoom_rotate_x		= 0.025650
+grenade_normal_zoom_rotate_y		= 0.027350
+
+zoom_rotate_time 		= 0.34
+rotate_time 			= 0.34

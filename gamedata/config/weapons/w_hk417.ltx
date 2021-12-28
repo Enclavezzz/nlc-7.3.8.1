@@ -1,0 +1,403 @@
+;;;;;;;;;;;;;;;;;;;Штурмовая винтовка ХК417;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;--------------------------------------------------------------------------------------
+[wpn_m110]: weapon_immunities
+GroupControlSection	= spawn_group
+discovery_dependency = 
+$spawn                  = "weapons\m110"		; option for Level Editor
+$npc			 		= on				; option for Level Editor
+$prefetch 		 		= 8
+scheduled               = off              	; option for ALife Simulator
+cform                   = skeleton
+class					= WP_AK74
+
+min_radius              = 20
+max_radius              = 200
+description				= enc_weapons1_wpn-m110
+dialog_description		= desc_dialog_wpn_m110
+ef_main_weapon_type		= 3
+ef_weapon_type			= 8
+
+;--- scope weapons -----------------------------------------------------------------
+holder_range_modifier	= 2.15               ; во сколько раз увеличивается eye_range 
+holder_fov_modifier		= 0.3              ; во сколько раз увеличивается eye_fov
+;-----------------------------------------------------------------------------------
+
+cost					= 85000
+weapon_class			= assault_rifle
+
+ammo_limit				= 60
+ammo_current			= 30
+ammo_elapsed		 	= 30
+
+ammo_mag_size			= 20
+fire_modes				= -1,1
+f_mode					= 2
+
+ammo_class				= ammo_7.62x51_fmj,  ammo_7.62x51_ap
+grenade_class			= ammo_m209
+launch_speed			 = 0
+
+
+;базовая дисперсия
+fire_dispersion_base		= 0.17	
+control_inertion_factor		= 1.35f
+disp_rate 			= 1.85
+	
+;отдача
+cam_relax_speed         = 5.0
+cam_dispersion          = 0.5	
+cam_dispersion_inc		= 0.3	
+cam_dispertion_frac		= 1.0	
+cam_max_angle			= 20.0	
+cam_max_angle_horz		= 15.0	
+cam_step_angle_horz		= 1.5	
+
+fire_dispersion_condition_factor = 3	
+misfire_probability 		= 0.01 
+misfire_condition_k			= 0.05
+condition_shot_dec 			= 0.0003 
+;-----------------------------------------------------------------------------------
+
+hand_dependence 		= 1
+single_handed			= 0
+
+slot 					= 2		
+animation_slot			= 8		
+
+
+inv_name				= wpn-m110
+inv_name_short			= wpn-m110
+inv_weight				= 4.15
+
+icon_group              = 3
+inv_grid_width     = 7
+inv_grid_height    = 2
+inv_grid_x         = 6
+inv_grid_y         = 8
+
+kill_msg_x			= 0
+kill_msg_y			= 0
+kill_msg_width		= 98
+kill_msg_height		= 23
+
+direction               = 0, 0, 1
+
+fire_point				=  0,0.231,0.679
+
+flame_particles		    = weapons\generic_weapon06
+smoke_particles		   	= weapons\generic_shoot_00
+grenade_flame_particles		= weapons\generic_weapon01
+
+rpm_empty_click 		= 200
+
+shell_point		 		= 0.0, 0.129, 0.192	
+shell_dir		 		= 0.0, 0.0, 0.4
+shell_particles			= 
+
+PDM_disp_base				= 1.25
+PDM_disp_vel_factor			= 2.5
+PDM_disp_accel_factor		= 3.0
+PDM_crouch					= 1.1
+PDM_crouch_no_acc			= 1.0
+
+; ttc
+hit_power          		 	= 1.1
+hit_impulse		 	    	= 60
+hit_type 			      	= fire_wound
+hit_rate					= 4.0
+fire_distance      			= 200
+bullet_speed		 	  	= 650	
+rpm                 		= 600
+
+; end ttc
+
+use_aim_bullet				= false
+
+hud                     = wpn_m110_hud
+normal                  = 0, 1, 0
+position					= -0.026,-0.172,0
+orientation					= 0, 0, 0
+
+;--STRAP PARAMETERS-----------------------------------------------------------------
+;под мишкой
+strap_position         		= -0.15,-0.15,0.45			; position (offset) and orientation of the weapon when it is strapped
+strap_orientation      		= -25,-189,65				; (3rd person view in degrees)
+;strap_position         		= -0.26,-0.11,0.15			; position (offset) and orientation of the weapon when it is strapped
+;strap_orientation      		= -15,-9,110				; (3rd person view in degrees)
+strap_bone0					= bip01_spine2
+strap_bone1					= bip01_spine1
+
+startup_ammo            = 10
+visual                  = weapons\hk417\wpn_hk417_eotech.ogf
+
+light_color		 		= 0.6,0.5,0.3
+light_range		 		= 4.0
+light_var_color		 	= 0.05
+light_var_range		 	= 0.5
+light_time 		 		= 0.2
+
+ph_mass			 		= 7
+
+;addons
+scope_status				= 2		
+silencer_status				= 2					
+grenade_launcher_status		= 2
+scope_mode 					= 3
+scope_name 					= wpn_addon_eotech, wpn_addon_acog, wpn_addon_mt
+grenade_launcher_name 		= wpn_addon_grenade_launcher_m203
+silencer_name  				= wpn_addon_sil_762_sr2
+
+scope_x                     = 173		; offset in inventory icon
+scope_y                     = -5
+silencer_x                  = 300		; offset in inventory icon
+silencer_y                  = 17
+grenade_launcher_x          = 200		; offset in inventory icon
+grenade_launcher_y          = 29
+
+
+zoom_enabled			= true
+scope_zoom_factor	    	= 90
+
+
+;звуки
+snd_draw					= weapons\ak_74x\rifle_draw
+snd_holster					= weapons\ak_74x\rifle_holster
+snd_shoot					= weapons\sr25\sr25_shot
+snd_empty					= weapons\rifle_empty, 0.5
+snd_reload					= weapons\hk417\hk417_reload
+snd_silncer_shot			= weapons\scar\scar_shot_sil
+snd_shoot_grenade			= weapons\m203\m203_grenshoot
+snd_reload_grenade			= weapons\hk417\hk417_grenload
+snd_switch					= weapons\groza\groza_switch, 1.0, 0.5
+snd_razgruzka				= weapons\razgruzka\ammo_5
+
+silencer_flame_particles	= weapons\generic_weapon00
+silencer_smoke_particles 	= weapons\generic_shoot_00
+
+silencer_light_color		= 0.6,0.5,0.3
+silencer_light_range		= 0.01
+silencer_light_var_color	= 0.05
+silencer_light_var_range	= 0.5
+silencer_light_time 		= 0.2
+
+[wpn_m110_hud]
+allow_inertion				= true
+
+;similar to corresponding params in weapon section but for 1st person view
+
+shell_point					= 0.0, 0.0, -0.35
+shell_dir			     	= 0.0, 0.0, 0.0
+
+fire_point			= 0.001000,-0.016970,-0.030502
+fire_point2			= 0.011000,-0.205000,0.195000
+fire_bone               	= wpn_body
+
+grenade_bone            	= wpn_grenade
+
+position			= 0.020000,0.000000,-0.100000
+orientation      	= 1.5, 0.0, 0.0
+visual                  	= weapons\hk417\wpn_hk417_eotech_hud.ogf
+
+anim_idle					= idle
+anim_idle_aim				= idle_aim
+anim_reload					= reload
+anim_draw					= draw
+anim_holster				= holster
+anim_shoot					= shoot
+anim_idle_sprint			= idle_sprint
+
+anim_idle_g					= idle_g
+anim_idle_g_aim				= idle_g_aim
+anim_reload_g				= reload_g
+anim_shoot_g				= shoot_g
+anim_switch_grenade_on		= switch_on
+anim_switch_grenade_off		= switch_off
+anim_draw_g					= draw_g
+anim_holster_g				= holster_g
+anim_idle_sprint_g			= idle_w_gl_sprint
+
+anim_idle_gl				= idle_w_gl
+anim_idle_gl_aim			= idle_w_gl_aim
+anim_reload_gl				= reload_w_gl
+anim_draw_gl				= draw_w_gl
+anim_holster_gl				= holster_w_gl
+anim_shoot_gl				= shoot_w_gl
+anim_idle_sprint_gl			= idle_w_gl_sprint
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+zoom_offset			= -0.112650,0.026020,-0.230000
+zoom_rotate_x		= -0.002000
+zoom_rotate_y		= 0.026400
+
+grenade_normal_zoom_offset			= -0.112650,0.030120,-0.230000
+grenade_normal_zoom_rotate_x		= 0.005200
+grenade_normal_zoom_rotate_y		= 0.026400
+
+grenade_zoom_offset			= -0.114800,-0.217800,-0.125000
+grenade_zoom_rotate_x		= -0.206100
+grenade_zoom_rotate_y		= 0.026300
+
+zoom_hide_crosshair	= true						;to hide crosshair in zoom 
+
+zoom_rotate_time		= 0.32
+rotate_time			= 0.32
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[wpn_m110_eotech]:wpn_m110
+visual                  	= weapons\hk417\wpn_hk417_eotech.ogf
+grenade_launcher_status		= 2
+scope_attached         		= 0
+hud = wpn_m110_eotech_hud
+
+[wpn_m110_eotech_hud]:wpn_m110_hud
+visual                  	= weapons\hk417\wpn_hk417_eotech_hud.ogf
+zoom_offset			= -0.114150,0.005620,-0.230000
+zoom_rotate_x		= 0.005200
+zoom_rotate_y		= 0.028400
+
+grenade_normal_zoom_offset			= -0.114150,0.005620,-0.230000
+grenade_normal_zoom_rotate_x		= 0.005200
+grenade_normal_zoom_rotate_y		= 0.028400
+
+[wpn_m110_acog]:wpn_m110
+visual                  	= weapons\hk417\wpn_hk417_elcan.ogf
+grenade_launcher_status		= 2
+scope_attached         		= 0
+hud = wpn_m110_acog_hud
+
+[wpn_m110_acog_hud]:wpn_m110_hud
+visual                  	= weapons\hk417\wpn_hk417_elcan_hud.ogf
+zoom_offset			= -0.112550,0.000420,0.950000
+zoom_rotate_x		= 0.000500
+zoom_rotate_y		= 0.025400
+
+grenade_normal_zoom_offset			= -0.112550,0.000420,0.950000
+grenade_normal_zoom_rotate_x		= 0.000500
+grenade_normal_zoom_rotate_y		= 0.025400
+
+zoom_rotate_time		= 0.34
+rotate_time			= 0.34
+
+[wpn_m110_mt]:wpn_m110
+visual                  	= weapons\hk417\wpn_hk417_mt.ogf
+grenade_launcher_status		= 2
+scope_attached         		= 0
+hud = wpn_m110_mt_hud
+
+
+[wpn_m110_mt_hud]:wpn_m110_hud
+visual                  	= weapons\hk417\wpn_hk417_mt_hud.ogf
+
+zoom_offset			= -0.111050,0.006020,2.150000
+zoom_rotate_x		= 0.002000
+zoom_rotate_y		= 0.023500
+
+grenade_normal_zoom_offset			= -0.111050,0.006020,2.150000
+grenade_normal_zoom_rotate_x		= 0.002000
+grenade_normal_zoom_rotate_y		= 0.023500
+
+zoom_rotate_time		= 0.34
+rotate_time			= 0.34
+
+;;;;;;;;;;;;;;;;;;;;;;; Винтовка МР-308 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[wpn_mr308]:wpn_m110
+class					= WP_LR300
+description				= enc_weapons1_wpn-mr308
+dialog_description		= desc_dialog_mr308
+
+cost					= 41000
+
+ammo_mag_size				= 10
+fire_modes					= 1
+
+fire_dispersion_base		= 0.05	
+control_inertion_factor		= 1.5f
+
+misfire_probability 		= 0.005 
+misfire_condition_k			= 0.05
+condition_shot_dec 			= 0.00015
+
+inv_name				= wpn-mr308
+inv_name_short			= wpn-mr308
+inv_weight				= 5.0
+inv_grid_width     = 7
+inv_grid_height    = 2
+inv_grid_x         = 6
+inv_grid_y         = 10
+
+hit_power          		 	= 1
+fire_distance      			= 250
+bullet_speed		 	  	= 700
+rpm                 		= 250
+visual                  	= weapons\mr308\wpn_mr308.ogf
+hud 						= wpn_mr308_hud
+
+;addons
+scope_status				= 2		
+silencer_status				= 2					
+grenade_launcher_status		= 0
+
+scope_x                     = 170		; offset in inventory icon
+scope_y                     = -5
+silencer_x                  = 300		; offset in inventory icon
+silencer_y                  = 18
+
+[wpn_mr308_hud]:wpn_m110_hud
+
+fire_point			= 0.001000,-0.016970,0.05
+visual                  	= weapons\mr308\wpn_mr308_hud.ogf
+
+zoom_offset			= -0.112650,0.002620,-0.230000
+zoom_rotate_x		= -0.001300
+zoom_rotate_y		= 0.026400
+
+zoom_rotate_time		= 0.33
+rotate_time			= 0.33
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+[wpn_mr308_eotech]:wpn_mr308
+visual                  	= weapons\mr308\wpn_mr308_eotech.ogf
+
+scope_attached         		= 0
+hud = wpn_mr308_eotech_hud
+
+[wpn_mr308_eotech_hud]:wpn_mr308_hud
+visual                  	= weapons\mr308\wpn_mr308_eotech_hud.ogf
+
+zoom_offset			= -0.114150,0.005620,-0.230000
+zoom_rotate_x		= 0.011300
+zoom_rotate_y		= 0.028100
+
+[wpn_mr308_acog]:wpn_mr308
+visual                  	= weapons\mr308\wpn_mr308_elcan.ogf
+
+scope_attached         		= 0
+hud = wpn_mr308_acog_hud
+
+[wpn_mr308_acog_hud]:wpn_mr308_hud
+visual                  	= weapons\mr308\wpn_mr308_elcan_hud.ogf
+zoom_offset			= -0.112550,0.000420,0.950000
+zoom_rotate_x		= 0.000500
+zoom_rotate_y		= 0.025400
+
+zoom_rotate_time		= 0.35
+rotate_time			= 0.35
+
+[wpn_mr308_mt]:wpn_mr308
+visual                  	= weapons\mr308\wpn_mr308_mt.ogf
+
+scope_attached         		= 0
+hud = wpn_mr308_mt_hud
+
+
+[wpn_mr308_mt_hud]:wpn_mr308_hud
+visual                  	= weapons\mr308\wpn_mr308_mt_hud.ogf
+
+zoom_offset			= -0.111050,0.006020,2.150000
+zoom_rotate_x		= 0.002000
+zoom_rotate_y		= 0.023500
+
+zoom_rotate_time		= 0.35
+rotate_time			= 0.35

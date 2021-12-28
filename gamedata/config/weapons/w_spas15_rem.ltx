@@ -1,0 +1,193 @@
+;------------------------------- СПАС-15 Авто---------------
+[wpn_spas15_m1]:weapon_immunities
+GroupControlSection			= spawn_group
+discovery_dependency		= 
+$spawn              		= "weapons\spas12"
+$npc						= on				
+$prefetch 					= 8
+scheduled					= off
+cform               		= skeleton
+class               		= WP_LR300
+
+min_radius          		= 0
+max_radius          		= 50
+
+	
+ef_main_weapon_type			= 1
+ef_weapon_type				= 6
+
+holder_range_modifier		= 1.0
+holder_fov_modifier			= 0.85 
+
+cost						= 18000
+weapon_class				= shotgun
+	
+ammo_limit					= 50
+ammo_elapsed				= 8
+	
+ammo_mag_size				= 6
+fire_modes					= 1
+
+ammo_class					= ammo_12x70_buck,ammo_12x76_dart,ammo_12x76_zhekan
+
+hand_dependence				= 2
+single_handed				= 0
+
+slot 						= 2
+animation_slot				= 2							
+
+inv_name	        		= wpn-spas15_m1
+inv_name_short				= wpn-spas15_m1	
+description					= enc_weapons1_wpn-spas15_m1
+inv_weight					= 3.9
+icon_group                  = 3
+inv_grid_width     = 6
+inv_grid_height    = 2
+inv_grid_x         = 6
+inv_grid_y         = 14
+
+
+
+kill_msg_x					= 72
+kill_msg_y					= 82
+kill_msg_width				= 56
+kill_msg_height				= 23
+
+fire_dispersion_base		= 0.42
+control_inertion_factor		= 1.3f
+
+cam_relax_speed         	= 7.0	
+cam_dispersion          	= 2.5	
+cam_dispersion_inc			= 0.5  
+cam_dispertion_frac			= 1.0
+cam_max_angle				= 10.0	
+cam_max_angle_horz			= 30.0	
+cam_step_angle_horz			= 1.25
+
+fire_dispersion_condition_factor = 2.5	
+misfire_probability 		= 0.01
+misfire_condition_k			= 0.05
+condition_shot_dec 			= 0.0006
+
+fire_point             		=  0,0.216,0.71
+
+flame_particles				= weapons\generic_weapon05
+smoke_particles		   		= amik\weapons\data\smoke_particles\smokeshoot_1
+grenade_flame_particles		= weapons\generic_weapon01
+	
+shell_point		 			= 0,0.216,0.174
+
+PDM_disp_base				= 1.25
+PDM_disp_vel_factor			= 2.5
+PDM_disp_accel_factor		= 3.0
+PDM_crouch					= 1.1
+PDM_crouch_no_acc			= 1.0
+
+hit_power        			= 1.15
+hit_impulse      			= 120
+hit_type 					= fire_wound
+
+fire_distance            	= 50
+bullet_speed				= 280
+rpm                      	= 180
+
+use_aim_bullet				= false
+time_to_aim					= 1.0	
+
+hud                      	= wpn_spas15_m1_hud
+
+position         	        = -0.026,-0.166,-0.015
+orientation      	        = 0,0,0	
+
+strap_position         		= 0.02,-0.24,0.40
+strap_orientation      		= -01,-183, -109
+strap_bone0					= bip01_spine2
+strap_bone1					= bip01_spine1
+
+visual                  	= weapons\spas15\wpn_spas15.ogf
+
+
+light_color					= 0.6,0.5,0.3
+light_range					= 5
+light_var_color				= 0.05						
+light_var_range				= 0.5
+light_time 					= 0.2						
+
+ph_mass						= 5
+
+scope_status				= 2
+silencer_status				= 0
+grenade_launcher_status		= 0
+
+;addons
+scope_name 			= wpn_addon_eotech
+scope_mode = 3
+ironsight_zoom_factor       = 90
+scope_zoom_factor           = 50
+zoom_enabled				= true
+scope_x                     = 93		; offset in inventory icon
+scope_y                     = -10
+silencer_x                  = 0		; offset in inventory icon
+silencer_y                  = 0
+grenade_launcher_x          = 0		; offset in inventory icon
+grenade_launcher_y          = 0
+
+
+snd_draw					= weapons\ak_74x\rifle_draw
+snd_holster					= weapons\ak_74x\rifle_holster
+snd_shoot					= weapons\spas15\spas15_shoot_auto
+snd_empty					= weapons\rifle_empty, 0.7
+snd_reload                 	= weapons\spas15\spas15_reload_auto
+snd_razgruzka				= weapons\razgruzka\ammo_1
+
+silencer_smoke_particles 	= weapons\generic_shoot_00
+
+silencer_light_color		= 0.6,0.5,0.3
+silencer_light_range		= 0.01
+silencer_light_var_color	= 0.05
+silencer_light_var_range	= 0.5
+silencer_light_time 		= 0.2
+ 
+[wpn_spas15_m1_hud]
+shell_point     	   	 	= 0,0,-0.6
+shell_dir			     	= 0.0, 0.0, 0.0
+fire_point			= 0.001000,-0.05,0.5
+fire_bone               	= wpn_body
+
+position			= 0.020000,-0.010000,0.000000
+orientation			= 1.500000,0.000000,0.000000
+
+visual                  	= weapons\spas15\wpn_spas15_hud.ogf
+
+anim_idle                	= idle_auto
+anim_idle_aim            	= idle_aim_auto
+anim_reload              	= reload_auto
+anim_draw                	= draw_auto
+anim_holster             	= holster_auto
+anim_shoot               	= shoot_auto
+anim_idle_sprint         	= idle_sprint_auto
+
+zoom_offset			= -0.122500,0.016050,-0.135000
+zoom_rotate_x		= -0.003000
+zoom_rotate_y		= 0.023350
+
+zoom_rotate_time			= 0.25
+rotate_time					= 0.25
+zoom_hide_crosshair			= true
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+[wpn_spas15_m1_eotech]:wpn_spas15_m1
+scope_attached         		= 0
+hud  						= wpn_spas15_m1_eotech_hud
+visual                  	= weapons\spas15\wpn_spas15.ogf
+
+
+[wpn_spas15_m1_eotech_hud]:wpn_spas15_m1_hud
+visual                  	= weapons\spas15\wpn_spas15_hud.ogf
+
+zoom_offset			= -0.118500,-0.028950,-0.135000
+zoom_rotate_x		= 0.000600
+zoom_rotate_y		= 0.020150
+
+

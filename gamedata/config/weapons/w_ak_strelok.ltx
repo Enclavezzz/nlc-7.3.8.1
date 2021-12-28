@@ -1,0 +1,180 @@
+;АК Стрелка
+[wpn_ak74_m1]:wpn_ak74
+description							= enc_weapons1_wpn-ak_strelok
+
+default_to_ruck						= false
+
+
+ammo_mag_size						= 45
+
+ammo_class							= ammo_5.45x39_fmj,ammo_5.45x39_ap,ammo_ak,ammo_5.45x39_merc
+
+slot 								= 2
+cost								= 20000
+
+fire_modes							= 1, -1
+
+inv_name                    		= wpn-ak_strelok    
+inv_name_short              		= wpn-ak_strelok
+
+inv_weight							= 3.5
+icon_group                  		= 3
+inv_grid_width     = 6
+inv_grid_height    = 2
+inv_grid_x         = 7
+inv_grid_y         = 6
+
+fire_dispersion_base				= 0.3
+
+control_inertion_factor		= 1.4f
+
+	
+cam_relax_speed        	 	= 5.0 	
+cam_dispersion          	= 0.2
+cam_dispersion_inc		= 0.25	
+cam_dispertion_frac		= 0.9
+cam_max_angle			= 15.0	
+cam_max_angle_horz		= 7.5	
+cam_step_angle_horz		= 0.5
+
+fire_dispersion_condition_factor 	= 2.5
+misfire_probability 			    = 0.001
+misfire_condition_k				    = 0.05
+condition_shot_dec 					= 0.0003
+
+
+PDM_disp_base 						= 1.8
+PDM_disp_vel_factor 				= 2.2
+PDM_disp_accel_factor 				= 3.5
+PDM_crouch	 						= 1.45
+PDM_crouch_no_acc 					= 0.65 
+
+hit_power                			= 1
+hit_impulse		 					= 1.0
+fire_distance            			= 130	
+bullet_speed						= 600
+rpm                      			= 600
+
+
+grenade_launcher_status				= 2
+scope_status 						= 2
+silencer_status						= 2
+scope_mode 							= 3
+scope_name 							= wpn_addon_eotech
+silencer_name						= wpn_addon_sil_545_ar
+grenade_launcher_name 				= wpn_addon_grenade_launcher
+scope_x                     = 159		; offset in inventory icon
+scope_y                     = -10
+silencer_x                  = 247		; offset in inventory icon
+silencer_y                  = 8
+grenade_launcher_x          = 146		; offset in inventory icon
+grenade_launcher_y          = 16
+	
+ironsight_zoom_factor       		= 80
+scope_zoom_factor           		= 90
+zoom_enabled					    = true	
+	
+hud									= wpn_ak74_m1_hud
+
+position         	        = -0.026,-0.166,-0.015
+orientation      	        = 0,0,0	
+strap_position         		= 0.02,-0.24,0.40
+strap_orientation      		= -01,-183, -109
+strap_bone0					= bip01_spine2
+strap_bone1					= bip01_spine1
+
+
+visual         		        		= weapons\ak74\wpn_ak74_m1.ogf	
+	
+snd_silncer_shot				= weapons\ak_74x\ak74_shot_suppressed
+snd_shoot						= weapons\ak_74x\ak74_shoot
+snd_reload						= weapons\ak_74x\ak74_reload
+snd_draw						= weapons\ak_74x\rifle_draw
+snd_holster						= weapons\ak_74x\rifle_holster
+snd_empty						= weapons\ak_74x\rifle_empty, 0.7
+snd_shoot_grenade				= weapons\gp25\gp25_grenshoot
+snd_reload_grenade				= weapons\gp25\gp25_grenload, 1.0, 0.8
+snd_switch						= weapons\gp25\gp25_switch, 1.0, 0.5
+snd_razgruzka					= weapons\razgruzka\ammo_5
+	
+
+smoke_particles						= weapons\generic_shoot_00
+flame_particles						= 
+light_disabled						= true
+	
+
+fire_point             		= 0,0.216,0.66
+fire_point2            		= 0,0.1650,0.730
+
+
+
+[wpn_ak74_m1_hud]:wpn_ak74_hud
+
+fire_point						= 0.153000,-0.242000,1.105000
+
+fire_point2              		= 0.037,-0.040,0.085000
+
+visual                  			= weapons\ak74\wpn_ak74_m1_hud.ogf
+
+anim_idle						= normal_idle
+anim_idle_aim					= normal_idle_aim
+anim_reload						= normal_reload
+anim_draw						= normal_draw
+anim_holster					= normal_holster
+anim_shoot						= normal_shoot
+anim_idle_sprint				= normal_idle_sprint
+anim_idle_hidden				= idle_hidden
+	
+anim_idle_gl					= w_gl_idle
+anim_idle_gl_aim				= w_gl_idle_aim
+anim_reload_gl					= w_gl_reload
+anim_draw_gl					= w_gl_draw
+anim_holster_gl					= w_gl_holster
+anim_shoot_gl					= w_gl_shoot
+anim_idle_sprint_gl				= w_gl_idle_sprint
+	
+anim_idle_g						= g_idle
+anim_idle_g_aim					= g_idle_aim
+anim_reload_g					= g_reload
+anim_shoot_g					= g_shoot
+anim_switch_grenade_on			= w_gl_switch_on
+anim_switch_grenade_off			= w_gl_switch_off
+anim_draw_g						= g_draw
+anim_holster_g					= g_holster
+anim_idle_sprint_g				= w_gl_idle_sprint
+	
+zoom_offset			= -0.137980,0.059100,-0.175000
+zoom_rotate_x		= 0.022950
+zoom_rotate_y		= 0.030500
+
+grenade_normal_zoom_offset            = -0.138480,0.058600,-0.175000
+grenade_normal_zoom_rotate_x          = 0.022050
+grenade_normal_zoom_rotate_y          = 0.030300
+
+grenade_zoom_offset				= -0.066940,-0.407000,0.069120
+grenade_zoom_rotate_x			= -0.435500
+grenade_zoom_rotate_y			= 0.027500
+
+zoom_rotate_time					= 0.3
+rotate_time							= 0.3
+
+;------------------------------------------------------------------------------------------
+[wpn_ak74_m1_eotech]:wpn_ak74_m1
+scope_attached         				= 0
+hud									= wpn_ak74_m1_eotech_hud
+
+visual         		        		= weapons\ak74\wpn_ak74_m1.ogf
+
+[wpn_ak74_m1_eotech_hud]:wpn_ak74_m1_hud
+visual                  			= weapons\ak74\wpn_ak74_m1_hud.ogf
+
+zoom_offset			= -0.138480,0.059500,-0.175000
+zoom_rotate_x		= 0.057950
+zoom_rotate_y		= 0.029900
+
+grenade_normal_zoom_offset			= -0.138480,0.034100,-0.175000
+grenade_normal_zoom_rotate_x		= 0.031350
+grenade_normal_zoom_rotate_y		= 0.030400
+
+
+

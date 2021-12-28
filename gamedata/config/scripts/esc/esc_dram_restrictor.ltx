@@ -1,0 +1,10 @@
+[logic]
+active = sr_idle
+
+[sr_idle]
+on_actor_inside = {-esc_dram_gulag_free_info -esc_dram_pass_on !gulag_empty(esc_dram)} nil %+esc_dram_pass_fire%
+on_info = {+esc_dram_gulag_free_info} nil
+on_info2 = {+esc_dram_pass_on -esc_dram_gulag_free_info} sr_idle@pass
+
+[sr_idle@pass]
+on_game_timer = 3600| sr_idle %+esc_dram_pass_off% 
