@@ -9,12 +9,11 @@ function actor_init(npc)
 end
 
 local game_difficulty_by_num = {
-				[0] = "gd_novice",
-				[1] = "gd_stalker",
-				[2] = "gd_veteran",
-				[3] = "gd_master"
-				}
-
+	[ 0 ] = "gd_novice",
+	[ 1 ] = "gd_stalker",
+	[ 2 ] = "gd_veteran",
+	[ 3 ] = "gd_master"
+}
 
 lasthealth  = 0
 lasttime  = 0
@@ -40,24 +39,24 @@ used_items.set_use_gadget(true) -- debug override
 local weapon_hide = false
 local level_name=level.name()
 spec_item = {
-				["razgruzka"]=true,
-				["razgruzka_new"]=true,
-				["podsumok"]=true,
-				["podsumok_mem"]=true,
-				["shadow_inventory"]=true,
-				["shadow_inventory2"]=true,
-				--["rykzack_feik"]=true,
-				["af_dummy_black_tip"]=true,
-				["flask_army_on_belt"]=true,
-				--["arc_art_box_1basic"]=true,
-				--["arc_art_box_basic"]=true,
-				--["arc_art_box_8basic"]=true,
-				["belt_2_art"]=true,
-				["belt_3_art"]=true,
-				["belt_4_art"]=true,
-				["belt_5_art"]=true,
-				["belt_6_art"]=true
-				}
+	[ "razgruzka"          ] =true,
+	[ "razgruzka_new"      ] =true,
+	[ "podsumok"           ] =true,
+	[ "podsumok_mem"       ] =true,
+	[ "shadow_inventory"   ] =true,
+	[ "shadow_inventory2"  ] =true,
+  --["rykzack_feik"        ] =true,
+	[ "af_dummy_black_tip" ] =true,
+	[ "flask_army_on_belt" ] =true,
+  --["arc_art_box_1basic"  ] =true,
+  --["arc_art_box_basic"   ] =true,
+  --["arc_art_box_8basic"  ] =true,
+	[ "belt_2_art"         ] =true,
+	[ "belt_3_art"         ] =true,
+	[ "belt_4_art"         ] =true,
+	[ "belt_5_art"         ] =true,
+	[ "belt_6_art"         ] =true
+}
 
 self_weapon_hide = false
 
@@ -1271,4 +1270,5 @@ function actor_binder:on_use_object(obj)
 	allcore_hide.onItemUse(obj)
 	vergas_lib.used_item(obj)
 	amk_mod.used_item(obj)
+	animations.anim_eat_start(obj)
 end

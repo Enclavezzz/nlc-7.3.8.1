@@ -1,0 +1,113 @@
+--------------------------------------------
+-----------Анимации и отравление------------
+--------------------------------------------
+
+local tbl_med = {
+    [ "bandage"         ] = 1500,
+    [ "medkit"          ] = 3500,
+    [ "medkit_army"     ] = 2500,
+    [ "medkit_scientic" ] = 4500,
+    [ "antirad"         ] = 2000,
+}
+
+local food_anim_time = {
+    [ "bread"           ] = { 9000, 0.70, 0.3 },
+    [ "kolbasa"         ] = { 7500, 0.80, 0.4 },
+    [ "suhpay"          ] = { 3200, 0.00, 0.0 },
+    [ "green_kolbasa"   ] = { 7500, 0.50, 0.4 },
+    [ "conserva"        ] = { 9000, 0.00, 0.0 },
+    [ "vodka"           ] = { 3500, 0.00, 0.0 },
+	[ "dimedrol"        ] = { 2500, 0.00, 0.0 },
+    [ "energy_drink"    ] = { 4000, 0.00, 0.0 }
+}
+
+function anim_use_med( sect )
+    local med_pause = tbl_med[ sect ]
+    if med_pause then
+        schedule.add( "delay_close", "animations.delay_close_inv()", 200 )
+        sak.actor_hide_weapon()
+        level.add_cam_effector( "camera_effects\\item_use.anm", 9773, false, "" )
+        schedule.add( "med_pause_time", "sak.restore_weap()", med_pause )
+    end
+end
+
+function anim_eat_start( obj )
+    m_flag = false
+    level.remove_pp_effector ( 7849 )
+    level.remove_cam_effector( 7850 )
+    f_sect, f_id = obj:section(), obj:id()
+    local f_cond = params.get_condition( obj, 0.99 )
+    local t1, poison_chance = 200, 0
+    if food_anim_time[ f_sect ] then
+        if f_sect == "suhpay" then
+            params.upd_condition( f_id, f_cond - 0.05 )
+        end
+        local f_tbl_cond = food_anim_time[ f_sect ][ 2 ]
+        schedule.add( "delay_close", "animations.delay_close_inv()", 200 )
+        if vergas_masks.get_flag_mask() == true then
+            t1 = 2000
+            vergas_masks.on_off_mask()
+            m_flag = true
+        end
+        schedule.add( "anim_eat", "animations.anim_eat_middle()", t1 )
+        if f_tbl_cond > 0.1 and f_tbl_cond > f_cond then
+            poison_chance = f_tbl_cond - f_cond
+            if lua_random() < poison_chance then
+                timers.start_timer(
+                    "do_poison_gg", lua_random( 15, 25 ), "animations.food_poisoning()"
+                )
+            end
+        end
+    end
+end
+
+function food_poisoning()
+    vergas_art.scheme_1()
+    params.satiety_add( ( -0.3 - lua_random( 0.2, 0.6 ) ) )
+end
+
+function delay_close_inv()
+    if db.actor:has_info( "ui_inventory" ) then sak.close_window() end
+end
+
+function anim_eat_middle()
+    sak.actor_hide_weapon()
+    if f_sect ~= "?" then
+        misc.easy_sound( "scripts\\food\\inv_" .. f_sect )      -- NO_FEEDBACK
+        level.add_cam_effector( "camera_effects\\item_use.anm", 9773, false, "" )
+        if f_sect == "vodka" then
+            if
+                nlc_vars.vodka_psi_block == nil
+                or nlc_vars.vodka_psi_block
+            then
+                nlc_vars.vodka_psi_block = true
+                timers.start_timer(
+                    "psi_block_gg", 0, 0, lua_random( 10, 15 ), "animations.disable_psi_block()"
+                )
+            end
+            sleep_manager.add_sleepiness( 25 )
+        elseif f_sect == "energy_drink" then
+            level.add_pp_effector( "brighten.ppe", 7851, true )
+            sleep_manager.test_for_need_sleep_nrg()
+            schedule.add( "end_br", "animations.end_bright()", 30000 )
+        end
+        local ttime = food_anim_time[ f_sect ][ 1 ]
+        schedule.add( "food_eat_end", "animations.anim_eat_end()", ttime )
+    end
+end
+
+function disable_psi_block()
+    if nlc_vars.vodka_psi_block then nlc_vars.vodka_psi_block = nil end
+end
+
+function anim_eat_end()
+    if m_flag then
+        vergas_masks.on_off_mask()
+    else
+        sak.restore_weap()
+    end
+end
+
+function end_bright()
+    level.remove_pp_effector( 7851 )
+end

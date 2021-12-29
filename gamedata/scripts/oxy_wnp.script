@@ -42,8 +42,12 @@ function on_body_open( npc )
   end
 end
 
+function send_knife_m1_sms()
+	sak.send_tip( "Эх, затупился ножик! Точить пора", "Сообщение", 11, 20,"g_g", "sak", "yellow")
+end
+
 function send_knife_sms()
-	sak.send_tip( "Эх, затупился ножик! Точить пора", "Сообщение", 11, 20,"pribor","pda_news", "green")
+	sak.send_tip( "Эх, затупился ножик! Заменить на новый пора", "Сообщение", 11, 20,"g_g", "sak", "yellow")
 end
 
 function return_due_to_nothin_to_do( obj, who )
@@ -121,7 +125,8 @@ if return_due_to_nothin_to_do( obj, who ) then return end
 		if knife_current_cond > 0.01 then
 		--log2("From on_mob_hit -16")
 		params.upd_condition( current_knife, knife_current_cond )
-		--log2("From on_mob_hit -17. Cur_cond = %s", tostring( knife_current_cond ))		
+		--log2("From on_mob_hit -17. Cur_cond = %s", tostring( knife_current_cond ))	
+     
 		end
 	end
 
@@ -152,13 +157,18 @@ function downgrade_knife_condition_on_mob( obj, amount, local_direction, who, bo
 	--log2("From on_mob_hit -03. WPN = %s", current_knife:name() )
 	local knife_current_cond = current_knife:condition()
 	
+	
+	
 	-- смс, если нож М9 испорчен более чем на 50%
-	if knife_current_cond <= 0.5 and strpos( sc, "wpn_knife_m1" ) then
+	if knife_current_cond <= 0.55 and strpos( sc, "wpn_knife_m1") then
+		local name, delay = timers.check_timer("timer_sms_knife_m1")
+	--	if not name then
+			timers.start_timer( "timer_sms_knife_m1", 30 , "oxy_wnp.send_knife_m1_sms()" )
+		-- end
+		elseif knife_current_cond <= 0.55 and strpos( sc, "wpn_knife") then
 		local name, delay = timers.check_timer("timer_sms_knife")
-		if not name then
+	--	if not name then
 			timers.start_timer( "timer_sms_knife", 30 , "oxy_wnp.send_knife_sms()" )
-		end
-		
 	end
 	--log2("From on_mob_hit -04. Condition = %s", tostring( knife_current_cond ))
 	if knife_current_cond and knife_current_cond  >= 0.2 
@@ -194,12 +204,15 @@ function downgrade_knife_condition_on_ph( obj, who )
 	knife_current_cond = temp_knife_cond - coeff_steel
 	-- смс, если нож М9 испорчен более чем на 50%
 	
-	if knife_current_cond <= 0.5 and strpos( sc, "wpn_knife_m1" ) then
+	if knife_current_cond <= 0.55 and strpos( sc, "wpn_knife_m1" ) then
+		local name, delay = timers.check_timer("timer_sms_knife_m1")
+	--	if not name then
+			timers.start_timer( "timer_sms_knife_m1", 30, "oxy_wnp.send_knife_m1_sms()" )
+		-- end
+		elseif knife_current_cond <= 0.55 and strpos( sc, "wpn_knife") then
 		local name, delay = timers.check_timer("timer_sms_knife")
-		if not name then
+	--	if not name then
 			timers.start_timer( "timer_sms_knife", 30, "oxy_wnp.send_knife_sms()" )
-		end
-		
 	end
 	
 	if knife_current_cond >= 0.1 then
@@ -218,33 +231,35 @@ function on_monster_parts_take( obj, sobj )
 	if not monster then return end
 	--log2("From on_part take-21")
 	
+	 
+	 
 	local spawn = get_string( monster:section(), "Spawn_Inventory_Item_Section" )
 	--log2( "Obj Spawn Section is %s", tostring( spawn ) )
 	if not spawn then return end
 	local sum_coeff = 0
 
 	local knf_det_tbl = {
-	[ "mutant_flesh_eye" ]			= 0.01,
-    [ "mutant_boar_leg" ]			= 0.02,
-    [ "mutant_dog_tail" ]			= 0.015,
-    [ "mutant_psevdodog_tail" ]		= 0.015,
-    [ "mutant_krovosos_jaw" ]		= 0.01,
-    [ "mutant_burer_hand" ]			= 0.02,
-    [ "mutant_zombie_hand" ]		= 0.015,
-    [ "mutant_snork_leg" ]			= 0.03,
-    [ "mutant_face_tushkano" ]		= 0.015,
-    [ "mutant_hand_kontroler" ]		= 0.02,
-    [ "mutant_poltergeist_glas" ]	= 0.01,
-    [ "mutant_psevdogigant_hand" ]	= 0.05,
-    [ "mutant_tail_cat" ]			= 0.015,
-    [ "mutant_chimera_kogot" ]		= 0.05,
-    [ "mutant_flesh_shkura" ]		= 0.025,
-    [ "mutant_e_chimera_kidney" ]	= 0.04, 
+		[ "mutant_flesh_eye"         ] = { 4500, 0.01},
+    	[ "mutant_boar_leg"          ] = { 3600, 0.02},
+    	[ "mutant_dog_tail"          ] = { 2500, 0.015},
+    	[ "mutant_psevdodog_tail"    ] = { 3500, 0.015},
+    	[ "mutant_krovosos_jaw"      ] = { 5000, 0.01},
+    	[ "mutant_burer_hand"        ] = { 6000, 0.02},
+    	[ "mutant_zombie_hand"       ] = { 3200, 0.015},
+    	[ "mutant_snork_leg"         ] = { 4000, 0.03},
+    	[ "mutant_face_tushkano"     ] = { 2700, 0.015},
+    	[ "mutant_hand_kontroler"    ] = { 6000, 0.02},
+    	[ "mutant_poltergeist_glas"  ] = { 5500, 0.01},
+    	[ "mutant_psevdogigant_hand" ] = { 7000, 0.05},
+    	[ "mutant_tail_cat"          ] = { 3200, 0.015},
+    	[ "mutant_chimera_kogot"     ] = { 4000, 0.05},
+    	[ "mutant_flesh_shkura"      ] = { 5500, 0.025},
+    	[ "mutant_e_chimera_kidney"  ] = { 6500, 0.04 }
 	}
 	--local current_knife = db.actor:active_item() -- we have to get object knife here!
 	local current_knife = db.actor:item_in_slot(0)
 	if not current_knife 
-	or not strpos( current_knife:section(), "wpn_knife" ) 
+ 	or not strpos( current_knife:section(), "wpn_knife" ) 
 	then 
 		log2("From on_part take-22")
 		return
@@ -252,15 +267,17 @@ function on_monster_parts_take( obj, sobj )
 	-- прочитаем кондицию ножа
 	--log2("From on_part take-23")
 	local knife_current_cond = current_knife:condition()
-
 	-- смс, если нож М9 испорчен более чем на 50%
-	if knife_current_cond <= 0.5 and strpos( current_knife:section(), "wpn_knife_m1" ) then
+	if knife_current_cond <= 0.55 and strpos( current_knife:section(), "wpn_knife_m1" ) then
+		local name, delay = timers.check_timer("timer_sms_knife_m1")
+	--	if not name then
+			timers.start_timer( "timer_sms_knife_m1", 3, "oxy_wnp.send_knife_m1_sms()" )
+	    -- end
+		  elseif knife_current_cond <= 0.55 and strpos( current_knife:section(), "wpn_knife" ) then
 		local name, delay = timers.check_timer("timer_sms_knife")
-		if not name then
+	--	if not name then
 			timers.start_timer( "timer_sms_knife", 3, "oxy_wnp.send_knife_sms()" )
-		end
-		
-	end
+	      end
 	
 	if knife_current_cond and knife_current_cond  > 0.1  then
 	--log2("From on_part take-24")
@@ -277,7 +294,7 @@ function on_monster_parts_take( obj, sobj )
 				-- с другого мутанта уже будет недоступным
 			end
 			-- а вот нож - всегда, но по-разному, в зависимости от типа ножа
-			sum_coeff = get_steel_coeff( current_knife:section() ) + knf_det_tbl[ obj:section() ]
+			sum_coeff = get_steel_coeff( current_knife:section() ) + knf_det_tbl[ obj:section() ][ 2 ]
 			local tmp_cond
 			-- если нож М9 - то портить кондицию будем с вероятностью 0.3
 			if 	current_knife:section() ==  "wpn_knife_m1" and lua_random( 1,100 ) >= 25  then
@@ -292,6 +309,22 @@ function on_monster_parts_take( obj, sobj )
 				knife_current_cond = tmp_cond
 			end
 			params.upd_condition( current_knife, knife_current_cond )
+	-----------------------------------------------------------------------------------------------------------------------------------------------
+			knf_time_k 				= 1
+			local actor      	  	= db.actor
+    		local time_by_monster 	= knf_det_tbl[ obj:section() ][ 1 ] 
+    		local sc 				= actor:item_in_slot( 0 ):section()
+			local sc_cond 			= actor:item_in_slot( 0 ):condition()
+			if sc and sc == "wpn_knife_m1" then knf_time_k = 0.5 end
+				
+    		level.start_stop_menu( level.main_input_receiver(), true )
+    		sak.actor_hide_weapon()
+    		level.add_cam_effector( "camera_effects\\item_use_slow.anm", 8553, false, "" )
+	
+    		snd = xr_sound.get_safe_sound_object( "zwuk_short\\loot_long_" .. lua_random( 1, 2 ) )
+    		snd:play_at_pos( actor, vector(), 0, sound_object.s2d )	
+    		schedule.add( "loot_monster_finish", "oxy_wnp.stop_loot_already()", knf_time_k * ( 1000 + time_by_monster ) + ( 750 / sc_cond ) )
+	-----------------------------------------------------------------------------------------------------------------------------------------------
 			log2( "Current knife cond is %s, current part name is %s, current part cond id %s",
 			tostring ( knife_current_cond ), tostring ( obj:name() ), tostring ( item_condition )
 			)
@@ -302,34 +335,7 @@ function on_monster_parts_take( obj, sobj )
 	
 end
 
- --[[
-function on_actor_weapon_fire( wpn )
-
-	local sc = db.actor:item_in_slot( 0 ):section()
-	if	sc -- при выстреле был активен нож
-	and 
-		( sc == "wpn_knife_m1"  or sc == "wpn_knife" )
-	then
-	-- определяем расстояние от актора до "цели", которую пыряем ножом
-		log2( "Ударили" )
-		local cur_target = sleep_manager.get_target_obj()
-		log2( "Нашли цель" )
-		if not cur_target then return end
-		log2( "Читаем секцию ножа" )
-		local active_knife_length = get_section_keys_and_values( sc )
-		log2( "Узнали тип ножа и получили занчения ключей из его секции" )
-		local dist_to_cur_target = cur_target:position():distance_to( db.actor:position() )
-		
-		if dist_to_cur_target > active_knife_length["fire_distance"]
-		then
-			log2( "не достали" )
-			return 
-		else
-			-- здесь понижаем кондицию при ударе
-			log2( "Портим нож" )
-		end
-	
-	end
-	
+function stop_loot_already()   
+if snd and snd:playing() then snd:stop() end
+sak.restore_weap()
 end
---]]

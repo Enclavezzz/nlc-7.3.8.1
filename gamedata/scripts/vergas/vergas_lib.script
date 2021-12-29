@@ -309,24 +309,25 @@ local use_rest_portions = {
 
 
 function used_item(obj)
-  local sect=obj:section()
-  local func = verg_use[sect]
-  -- alpet: если восстановить число порций "съедобного" предмета, его не потребуется заново респавнить!
-  local p = use_rest_portions[sect]
-  if obj and p then
-     local eat = obj:get_eatable_item()     
-     if eat then
-       wprintf("[~T]. #DBG(used_item):~C0A %s~C07 portions now =~C0D %d~C07, restoring to~C0D %d~C07", obj:name(), eat.eat_portions_num, p)
-       eat.eat_portions_num = p  
-     end
-  end  
+    local sect=obj:section()
+    local func = verg_use[sect]
+    -- alpet: если восстановить число порций "съедобного" предмета, его не потребуется заново респавнить!
+    local p = use_rest_portions[sect]
+    if obj and p then
+        local eat = obj:get_eatable_item()     
+        if eat then
+            wprintf("[~T]. #DBG(used_item):~C0A %s~C07 portions now =~C0D %d~C07, restoring to~C0D %d~C07", obj:name(), eat.eat_portions_num, p)
+            eat.eat_portions_num = p  
+        end
+    end  
   
-  if func then    
-     wprintf("[~T]. #DBG: used_item activating function~C0F %s~C07 for ~C0D %d~C07 ", DumpVar(func), obj:id()) 
-     func (obj:id()) -- улучшает трассировку стека     
-  --else
-     --vergas_medical_elastic.use_item(obj)
-  end
+    if func then    
+        wprintf("[~T]. #DBG: used_item activating function~C0F %s~C07 for ~C0D %d~C07 ", DumpVar(func), obj:id()) 
+        func (obj:id()) -- улучшает трассировку стека     
+    else
+        --vergas_medical_elastic.use_item(obj)
+        animations.anim_use_med(sect)
+    end
 end
 
 vergas_lib.used_item = used_item

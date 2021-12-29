@@ -312,11 +312,11 @@ end
 function on_off_mask()
 	sak.actor_hide_weapon()
     local timeout = 50
-	
-	--schedule.add("off_eye", "vergas_masks.on_off_mask_eye()", 1500)
 	if mask_on_off == false then
+		schedule.add( "off_eye", "vergas_masks.on_off_mask_eye()", 800 )
 		local mask, armor = mask_definition()
 		if mask ~= "?" then
+			level.add_cam_effector( "camera_effects\\item_use_slow.anm", 9773, false, "" ) -- эффектор камеры
     		tip_breath = tip_brth[string.sub(mask,1,7)]
     		local sound = "device\\masks\\"..tip_breath.."_on"
     		snd_obj = xr_sound.get_safe_sound_object(sound)
@@ -328,14 +328,18 @@ function on_off_mask()
     schedule.add("off_mask", "vergas_masks.on_off_mask_end()", timeout)
     flag_blurs = false
 end
+
 function on_off_mask_eye()
-	level.add_pp_effector("black_q.ppe", 1237, false)
+	level.add_pp_effector("zevok.ppe", 1237, false)
 end
+
 function on_off_mask_end()
    local timeout = 50
 	if mask_on_off then
         -- выключение маски
+		schedule.add( "off_eye", "vergas_masks.on_off_mask_eye()", 800 )
 		mask_on_off = false
+		level.add_cam_effector( "camera_effects\\item_use_slow.anm", 9773, false, "" ) -- эффектор камеры
 		local sound = "device\\masks\\"..tip_breath.."_off"
 		snd_obj = xr_sound.get_safe_sound_object(sound)
 		snd_obj:play_no_feedback(db.actor, sound_object.s2d, 0, vector(), 1)
