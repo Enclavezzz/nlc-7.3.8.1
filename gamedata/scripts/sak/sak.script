@@ -2976,19 +2976,14 @@ function health_handle()
 		fear_sounds()
 		time_sound=time_current + lua_random(t_s_1, t_s_1*2)
 	end
-	local n_healh=npc.health
-	local r_healh=npc.power
-	local p_healh=params.actor_psy_health()
-	local s_healh=params.actor_satiety_health() 
-	local b_healh=params.actor_bleeding()
-	local x_healh=npc.radiation
-	if n_healh < 0.92 then hud_params.set_icon_color(1,argb32((n_healh*1.08),1)) else hud_params.set_icon_color(1,0) end
-	if p_healh < 0.95 then hud_params.set_icon_color(5,argb32(p_healh,4)) else hud_params.set_icon_color(5,0) end
-	if s_healh < 0.5  then hud_params.set_icon_color(4,argb32((s_healh*1.95),1)) else hud_params.set_icon_color(4,0) end
-	if r_healh < 0.8  then hud_params.set_icon_color(2,argb32((r_healh*1.21),2)) else hud_params.set_icon_color(2,0) end
-	if b_healh > 0.05 then hud_params.set_icon_color(3,argb32((1-(b_healh/5)),3)) else hud_params.set_icon_color(3,0) end
-	if x_healh > 0.02 then hud_params.set_icon_color(6,argb32((1-x_healh),5)) else hud_params.set_icon_color(6,0) end
-	flash_icon=not(flash_icon)
+	
+	local n_healh = npc.health
+	local r_healh = npc.power
+	local p_healh = params.actor_psy_health()
+	local s_healh = params.actor_satiety_health() 
+	local b_healh = params.actor_bleeding()
+	local x_healh = npc.radiation
+	
 	if time_delta >= 8538 then
 		time_sub=time_current
 		local s_nd = level.get_snd_volume()
