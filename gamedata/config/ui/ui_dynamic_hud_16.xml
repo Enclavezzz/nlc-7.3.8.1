@@ -1,6 +1,9 @@
+<?xml version="1.0" encoding="windows-1251"?>
+
 ;Vergas текстуры динамического худа 
 	
-;Текстуры фаз дыхания -->
+;Текстуры фаз дыхания 
+
 	<hud_blur1 x="0" y="0" width="1024" height="768" stretch="1">
 		<texture>verg\breath1</texture>
 	</hud_blur1>
@@ -18,6 +21,7 @@
 	</hud_blur5>
 	
 ;Инфо по наполняемости разгрузки
+
 	<hud_info x="0" y="324" width="92" height="248" stretch="1">
 		<texture>ui_razgruzka_info</texture>
 	</hud_info>
@@ -27,3 +31,54 @@
 	</hud_info_fl>
 	
 	<dynamic_hud x="0" y="0" width="1024" height="768" stretch="1"/>
+
+;Для индикатора зарадя аккамулятора
+	
+	<accum_hud_icon x="146" y="688" width="31" height="41" stretch="1">
+		<texture>ui\ui_accum</texture>
+	</accum_hud_icon>	
+
+	<accum_hud_led_10 x="146" y="700" width="31" height="41" stretch="1">
+		<texture>ui\new_led\ui_accum_led_10</texture>
+	</accum_hud_led_10>		
+	
+	<accum_hud_led_9 x="146" y="700" width="31" height="41" stretch="1">
+		<texture>ui\new_led\ui_accum_led_9</texture>
+	</accum_hud_led_9>	
+	
+	<accum_hud_led_8 x="146" y="700" width="31" height="41" stretch="1">
+		<texture>ui\new_led\ui_accum_led_8</texture>
+	</accum_hud_led_8>		
+	
+	<accum_hud_led_7 x="146" y="700" width="31" height="41" stretch="1">
+		<texture>ui\new_led\ui_accum_led_7</texture>
+	</accum_hud_led_7>		
+
+	<accum_hud_led_6 x="146" y="700" width="31" height="41" stretch="1">
+		<texture>ui\new_led\ui_accum_led_6</texture>
+	</accum_hud_led_6>			
+
+	<accum_hud_led_5 x="146" y="700" width="31" height="41" stretch="1">
+		<texture>ui\new_led\ui_accum_led_5</texture>
+	</accum_hud_led_5>	
+
+	<accum_hud_led_4 x="146" y="700" width="31" height="41" stretch="1">
+		<texture>ui\new_led\ui_accum_led_4</texture>
+	</accum_hud_led_4>		
+
+	<accum_hud_led_3 x="146" y="700" width="31" height="41" stretch="1">
+		<texture>ui\new_led\ui_accum_led_3</texture>
+	</accum_hud_led_3>			
+
+	<accum_hud_led_2 x="146" y="700" width="31" height="41" stretch="1">
+		<texture>ui\new_led\ui_accum_led_2</texture>
+	</accum_hud_led_2>		
+
+	<accum_hud_led_1 x="146" y="700" width="31" height="41" stretch="1">
+		<texture>ui\new_led\ui_accum_led_1</texture>
+	</accum_hud_led_1>			
+	
+	<accum_hud_led_0 x="146" y="700" width="31" height="41" stretch="1">
+		<texture>ui\new_led\ui_accum_led_1</texture>
+	</accum_hud_led_0>		
+

@@ -813,38 +813,66 @@ end
 
 local disp_flag = false
 
+local accum_sect = ""
+local accum_cond = ""
 
 function use_info()
-  if disp_flag then end_use_info() end
-  disp_flag = true
-  move_static_weapon(668)
-  get_hud():AddCustomStatic("hud_info",true)
-  wnd_info = get_hud():GetCustomStatic("hud_info"):wnd()          
-  local tbl_info = set_info()
-  windows.del_simple_statics(wnd_info)  
-  windows.simple_static(wnd_info, "wnd_1", { 50+5, 58,20,16 }, tbl_info[1])
-  windows.simple_static(wnd_info, "wnd_2", { 50+5, 81,20,16 }, tbl_info[2])
-  windows.simple_static(wnd_info, "wnd_3", { 50+5,106,20,16 }, tbl_info[3])
-  windows.simple_static(wnd_info, "wnd_4", { 50+5,128,20,16 }, tbl_info[4])
-  windows.simple_static(wnd_info, "wnd_5", { 50+5,153,20,16 }, tbl_info[5])
-  windows.simple_static(wnd_info, "wnd_6", { 50+5,175,20,16 }, tbl_info[6])
-  local delay = vergas_lib.set_pr_from_config("razgruzka","info_delay")
-  local after = delay * 1000
-  wprintf(" hide after~C0D %d~C07 msec ", after)
-  schedule.add ("info_timer","razgruzka.end_use_info()", after)
+    local hud = get_hud()
+    if disp_flag then end_use_info() end
+    disp_flag = true
+    move_static_weapon( 668 )
+    get_hud():AddCustomStatic( "hud_info", true )
+    wnd_info = get_hud():GetCustomStatic( "hud_info" ):wnd()          
+    local tbl_info = set_info()
+    windows.del_simple_statics( wnd_info )  
+    windows.simple_static( wnd_info, "wnd_1", { 55,  58, 20, 16 }, tbl_info[ 1 ] )
+    windows.simple_static( wnd_info, "wnd_2", { 55,  81, 20, 16 }, tbl_info[ 2 ] )
+    windows.simple_static( wnd_info, "wnd_3", { 55, 106, 20, 16 }, tbl_info[ 3 ] )
+    windows.simple_static( wnd_info, "wnd_4", { 55, 128, 20, 16 }, tbl_info[ 4 ] )
+    windows.simple_static( wnd_info, "wnd_5", { 55, 153, 20, 16 }, tbl_info[ 5 ] )
+    windows.simple_static( wnd_info, "wnd_6", { 55, 175, 20, 16 }, tbl_info[ 6 ] )
+
+    local delay = vergas_lib.set_pr_from_config( "razgruzka", "info_delay" )
+    local after = delay * 1000
+    wprintf(" hide after~C0D %d~C07 msec ", after)
+
+    if db.actor:item_in_slot( 11 ) then  
+		local sect = db.actor:item_in_slot( 11 ):section()		
+		if sect == "af_full_akkum" then 
+			accum_sect = "accum_hud_icon"
+		end	
+		hud:AddCustomStatic( accum_sect, true )
+		local cond = math.ceil( db.actor:item_in_slot( 11 ):condition() * 10 )
+		local text = "accum_hud_led_"
+		accum_cond = text .. cond	
+		hud:AddCustomStatic( accum_cond, true )		
+	end	
+
+    schedule.add ("info_timer","razgruzka.end_use_info()", after)
 end
 
 function end_use_info()
-  disp_flag = false
-  move_static_weapon(-800)
 
-  local static = get_hud():GetCustomStatic("hud_info")
-  if static then
-     wnd_info = static:wnd()
-     wprintf(" end_use_info(), removing statics...\n~C0A %s~C07", lua_traceback(' '))
-     windows.del_simple_statics(wnd_info)    
-     get_hud():RemoveCustomStatic("hud_info")
-  end    
+    local static = nil
+    local hud    = get_hud()    
+
+    disp_flag = false
+    move_static_weapon(-800)
+    static = hud:GetCustomStatic( "hud_info" )
+
+    local static = get_hud():GetCustomStatic( "hud_info" )
+    if static then
+        wnd_info = static:wnd()
+        wprintf( " end_use_info(), removing statics...\n~C0A %s~C07", lua_traceback(' ') )
+        windows.del_simple_statics(wnd_info)    
+        get_hud():RemoveCustomStatic( "hud_info" )
+    end
+    
+    static = hud:GetCustomStatic( accum_sect )
+    if static then hud:RemoveCustomStatic( accum_sect ) end	 
+	
+    static = hud:GetCustomStatic( accum_cond )
+    if static then hud:RemoveCustomStatic( accum_cond ) end	
 end
 
 function set_info()
@@ -922,29 +950,10 @@ end
 
 function move_static_weapon(param)
     if xr_build_id > 5500 then
-       ui_params.move_mainwnd_static("static_weapon", nil, param)                       
-       return
-    end     
---[[
-    local expvar = GetProcAddr("xr_3da.exe", "?g_pGameLevel@@3PAVIGame_Level@@A")
-    g_pGameLevel = nil
-    if #expvar <= 9 then -- $ + HEX
-       g_pGameLevel = ReadDMA(expvar, 0, "safe_ptr")
-    end
-    if g_pGameLevel ~= nil then
-       
-    
-       local level = CalcPtr(g_pGameLevel, "$18", "+")
-       local mgr = ReadDMA(level, "$130", "safe_ptr")
-       local ui = ReadDMA(mgr, "$18", "safe_ptr")
-       local wnd = ReadDMA(ui,"$38", "safe_ptr")
-       local rect = CalcPtr(wnd, "$2678", "+") 
-       rect = CalcPtr(rect, 5, "+")
-       if rect ~= nil then
-          WriteDMA (rect,  4, param, "float")  -- top
-       end
-    end
---]]    
+        ui_params.move_mainwnd_static( "static_weapon", nil, param )
+        ui_params.move_mainwnd_static( "artefact_panel", nil, param + 20 )                         
+        return
+    end   
 end
 
 function reset_records (tbl_tmp,section,sum) -- переустанавливает или добавляет количество для заданной секции

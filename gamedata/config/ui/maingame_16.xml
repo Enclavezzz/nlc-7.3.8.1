@@ -1,4 +1,5 @@
-<?xml version='1.0' encoding="UTF-8" ?>
+<?xml version="1.0" encoding="windows-1251"?>
+
 <window x="0" y="0" w="640" h="480" r="227" g="121" b="222" texture="1">
 	<speech_menu x="260" y="550" width="300" height="265" always_show_scroll="0">
 		<text font="letterica16" r="238" g="224" b="198"/>		
@@ -89,7 +90,6 @@
 		<texture>ui_hud_icon_artefact</texture>
 	</artefact_static>
 
-
 	<flashing_icons>
 		<flashing_icon x="165" y="110" width="25" height="25" stretch="1" type="pda" light_anim="ui_slow_blinking_alpha">
 			<texture></texture>
@@ -98,7 +98,9 @@
 
 	<pick_up_item x="437" y="400" width="150" height="100"/>
 
-	<artefact_panel x="130" y="710" width="730" height="50" cell_width="50" cell_height="50" scale="0"/>
-	
+	<artefact_panel x="170" y="-800" width="200" height="41" stretch="1" heading="1" cell_width="31" cell_height="41" scale="0.65"/> <!-- для панели артефактов -->
+
+	<!-- <artefact_panel x="130" y="710" width="730" height="50" cell_width="50" cell_height="50" scale="0"/> -->
+
 	<new_contact_snd>detectors\contact_1</new_contact_snd>	
 </window>
