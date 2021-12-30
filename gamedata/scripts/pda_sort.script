@@ -1,0 +1,28 @@
+function set_pda_condition( id, status_pda )
+       local status = 1
+    if status_pda then
+        status = status_pda
+    else
+        local info = vergas_lib.str_explode( "|", vergas_pda.get_pda_cdata( id ), true )
+        if not info or not info[ 4 ] then return end
+        status = tonumber( string.sub( info[ 4 ], 13, 13 ) ) or 3
+    end
+    if status == 3 then
+        params.upd_condition( id, 0.45 )
+      --  log2( "@---------------------- SET CONDITION FOR BROKEN PDA ----------------------" )
+    elseif status == 2 then
+        params.upd_condition( id, 0.75 )
+      --  log2( "@---------------------- SET CONDITION FOR UNCHARGED PDA ----------------------" )
+    end
+end
+
+function sort_actor_pda_on_load()
+    db.actor:iterate_inventory(
+        function( dummy, item )
+            if item:section() == "device_pda_npc" then
+                set_pda_condition( item:id() )
+            end
+        end,
+        db.actor
+    )
+end

@@ -899,6 +899,7 @@ function charge_pda(pda_id)
 		data.custom_data = info[1].."|"..info[2].."|"..info[3].."|"..info[4].."|"..info[5].."|"..info[6].."|"..info[7]
         wprintf("[~T].~C0F #CODE_OPT:~C07 compare it~C0E \n\t%s~C0F \n\t%s~C07", data.custom_data, table.concat(info, '|'))    
 		pk:set(data)
+		params.upd_condition( pda_id, 1 )
 		good = true
 	elseif status == "1" then	
 		good = true
@@ -1029,23 +1030,3 @@ function set_ratio_mode()
 	
 	return mode
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

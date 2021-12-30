@@ -694,6 +694,7 @@ function late_init_impl()
 	level.set_load_title("#actor_binder:late_init")
 	level.enable_input()
 	allcore_mayatniks.on_late_init()
+	pda_sort.sort_actor_pda_on_load() --test - не забыть отключить
 end
 
 function actor_binder:late_init()

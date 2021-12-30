@@ -9040,6 +9040,7 @@ function spawn_flash()
 				local pda=g_sim:create("device_pda_npc",obj.position,obj.m_level_vertex_id,obj.m_game_vertex_id,obj.id)
 				if pda then
 					vergas_pda.add_tbl_pda(db.actor:id(),pda.id,3)
+					pda_sort.set_pda_condition( obj.id, status_pda )
 				end
 			end
 			if obj.online then
