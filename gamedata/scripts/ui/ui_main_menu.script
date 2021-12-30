@@ -292,7 +292,7 @@ function main_menu:OnKeyboard(dik, keyboard_action)
 	local bind = dik_to_bind(dik)
 	local console = get_console()
 	if keyboard_action==ui_events.WINDOW_KEY_PRESSED then
-	
+
 		if dik == DIK_keys.DIK_ESCAPE then
 			if 
 					level.present() 
@@ -302,11 +302,18 @@ function main_menu:OnKeyboard(dik, keyboard_action)
 				console:execute( "main_menu off" )
 			end
 		end
-		
+
 		if     dik == DIK_keys.DIK_F4 then
 			self:show_position_informer_window()
 		elseif dik == DIK_keys.DIK_F3 then
-			self:ppe_menu_show()
+            if level.present() and db.actor ~= nil and db.actor:alive() then
+                console:execute( "main_menu off" )
+                if not _sdata.GlobalEnable then
+                    _sdata.subscribe()
+                else
+                    _sdata.unsubscribe()
+                end
+            end
 		elseif dik == DIK_keys.DIK_F1 and db.actor:has_info( "cheat" ) then
 			self:OnButton_load_spawn()
 		end
