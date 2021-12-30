@@ -200,7 +200,9 @@ function try_open_inventory()
 		if activ==NONE_SID or activ==NONE_CL_SID then
 			used_items.used_inventory()
 		else
-			ODS("[~T]. #DBG: inventory using disabled - some item in hands")
+			hide_weapon()
+			used_items.used_inventory()
+			--ODS("[~T]. #DBG: inventory using disabled - some item in hands")
 		end
 	else
 		wprintf("[~T]. #DBG: try_open_inventory() self_weapon_hide =~C0A %s~C07, can use gadget =~C0A %s~C07 ",
