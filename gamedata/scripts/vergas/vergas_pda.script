@@ -932,12 +932,13 @@ function set_left_pda()
 	return msg
 end
 
-function set_treasure_in_dialog(shron)
-	if  db.actor:object("klava") then
-		local msg_id = "treasure".."_"..vergas_lib.set_pr_from_config("list_treasure_pda",shron).."_"..ReadIni(db.stor_ltx, "stor", "r_treas_items")
-		vergas_lib.add_record_in_klava(msg_id)
-	end
-	treasure_manager.get_treasure_manager():give_treasure(shron)
+function set_treasure_in_dialog( shron )
+    if db.actor:object( "klava" ) ~= nil then
+        local msg_id = "treasure" .. "_" .. vergas_lib.set_pr_from_config( "list_treasure_pda", shron )
+                    .. "_" .. ReadIni( db.stor_ltx, "stor", "r_treas_items" )
+        vergas_lib.add_record_in_klava( msg_id )
+    end
+    treasure_manager.get_treasure_manager():give_treasure( shron, true )
 end
 
 ------------------------------------------------

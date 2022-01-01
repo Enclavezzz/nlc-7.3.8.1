@@ -437,66 +437,75 @@ function ammo_for_slot(wpn)
   return tmp_inf
 end
 
-function add_record_in_klava(msg_id)
-  local msg_tema = ""
-  local msg_text = ""
-  local message
-  local i
-  local tbl_txt = {}
-  local hvost
-  local perenos
-  
-  local tbl_msg = vergas_lib.str_explode("|",vergas_pda.read_message(msg_id),true)
-  msg_tema = set_data_string()..tbl_msg[1]
-  if string.len(msg_tema) < 40 then
-    msg_tema = msg_tema..string.rep(" ", 40-string.len(msg_tema))
-  elseif string.len(msg_tema) > 40 then
-    msg_tema = string.sub(msg_tema,1,40)
-  end
-  for i = 2,table.getn(tbl_msg) do
-    table.insert(tbl_txt,tbl_msg[i])
-  end
-
-  if table.getn(tbl_txt) < 14 then
-    for i = 1,14-table.getn(tbl_txt) do
-      table.insert(tbl_txt,"")
-    end
-  end
-  for i = 1, table.getn(tbl_txt) do
-    if string.len(tbl_txt[i]) < 45 then
-      if string.sub(tbl_txt[i],1,1) == "[" then
-        tbl_txt[i] = string.sub(tbl_txt[i],2,string.len(tbl_txt[i]))..string.rep(" ", 45-string.len(tbl_txt[i])+1)
-      else
-        tbl_txt[i] = tbl_txt[i]..string.rep(" ", 45-string.len(tbl_txt[i]))
-      end
-    elseif  string.len(tbl_txt[i]) > 45 then
-      if string.sub(tbl_txt[i],1,1) == "[" then
-        hvost = string.sub(tbl_txt[i],47,string.len(tbl_txt[i]))
-        tbl_txt[i] = string.sub(tbl_txt[i],2,46)
-      else
-        hvost = string.sub(tbl_txt[i],46,string.len(tbl_txt[i]))
-        tbl_txt[i] = string.sub(tbl_txt[i],1,45)
-      end
-      if i < 14 then
-        if string.sub(tbl_txt[i+1],1,1) == "[" then
-          tbl_txt = shift_on_one_step(tbl_txt,i+1,table.getn(tbl_txt))
-          tbl_txt[i+1] = hvost
-        else
-          tbl_txt[i+1] = hvost..tbl_txt[i+1]
+function add_record_in_klava( msg_id, custom_msg )
+    local msg_tema, msg_text = "", ""
+    local tbl_txt = {}
+    local message, i, hvost, perenos, tbl_msg
+    if msg_id == "custom" then
+        tbl_msg  = vergas_lib.str_explode(
+                        "|", vergas_pda.read_message( msg_id,custom_msg ), true
+                    )
+        msg_tema = "Инфо по сталкеру"
+        for i = 1, table.getn( tbl_msg ) do
+            table.insert( tbl_txt, tbl_msg[ i ] )
         end
-      end
-    elseif string.len(tbl_txt[i]) == 45 and string.sub(tbl_txt[i],1,1) == "[" then  
-      tbl_txt[i] = string.sub(tbl_txt[i],2,string.len(tbl_txt[i])).." "
+    else
+        tbl_msg  = vergas_lib.str_explode(
+                        "|", vergas_pda.read_message( msg_id ), true
+                    )
+        msg_tema = set_data_string() .. tbl_msg[ 1 ]
+        for i = 2, table.getn( tbl_msg ) do
+            table.insert( tbl_txt, tbl_msg[ i ] )
+        end
     end
-  end
-  
-  for i = 1, 14 do
-    msg_text = msg_text..tbl_txt[i]
-  end
-  message = archiving_records(msg_tema..msg_text)
-  local sms_tbl = vergas_lib.read_messages()
-  table.insert(sms_tbl,message)
-  vergas_lib.save_messages(sms_tbl)
+    if string.len( msg_tema ) < 40 then
+        msg_tema = msg_tema .. string.rep( " ", 40 - string.len( msg_tema ) )
+    elseif string.len( msg_tema ) > 40 then
+        msg_tema = string.sub( msg_tema, 1, 40 )
+    end
+    if table.getn( tbl_txt ) < 14 then
+        for i = 1, 14 - table.getn( tbl_txt ) do
+            table.insert( tbl_txt, "" )
+        end
+    end
+    for i = 1, table.getn( tbl_txt ) do
+        if string.len( tbl_txt[ i ] ) < 45 then
+            if string.sub( tbl_txt[ i ], 1, 1 ) == "[" then
+                tbl_txt[ i ] = string.sub( tbl_txt[ i ], 2, string.len( tbl_txt[ i ] ) )
+                                .. string.rep( " ", 45 - string.len( tbl_txt[ i ] ) + 1 )
+            else
+                tbl_txt[ i ] = tbl_txt[ i ] .. string.rep( " ", 45 - string.len( tbl_txt[ i ] ) )
+            end
+        elseif string.len( tbl_txt[ i ] ) > 45 then
+            if string.sub( tbl_txt[ i ], 1, 1 ) == "[" then
+                hvost = string.sub( tbl_txt[ i ], 47, string.len( tbl_txt[ i ] ) )
+                tbl_txt[ i ] = string.sub( tbl_txt[ i ], 2, 46 )
+            else
+                hvost = string.sub( tbl_txt[ i ], 46, string.len( tbl_txt[ i ] ) )
+                tbl_txt[ i ] = string.sub( tbl_txt[ i ], 1, 45 )
+            end
+            if i < 14 then
+                if string.sub( tbl_txt[ i + 1 ], 1, 1 ) == "[" then
+                    tbl_txt = shift_on_one_step( tbl_txt, i + 1, table.getn( tbl_txt ) )
+                    tbl_txt[ i + 1 ] = hvost
+                else
+                    tbl_txt[ i + 1 ] = hvost .. tbl_txt[ i + 1 ]
+                end
+            end
+        elseif
+            string.len( tbl_txt[ i ] ) == 45
+            and string.sub( tbl_txt[ i ], 1, 1 ) == "["
+        then
+            tbl_txt[ i ] = string.sub( tbl_txt[ i ], 2, string.len( tbl_txt[ i ] ) ) .. " "
+        end
+    end
+    for i = 1, 14 do
+        msg_text = msg_text .. tbl_txt[ i ]
+    end
+    message       = archiving_records( msg_tema .. msg_text )
+    local sms_tbl = vergas_lib.read_messages()
+    table.insert( sms_tbl, message )
+    vergas_lib.save_messages( sms_tbl )
 end
 
 function shift_on_one_step(tbl,on,off)
