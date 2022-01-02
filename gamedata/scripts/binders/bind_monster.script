@@ -286,6 +286,7 @@ function generic_object_binder:update( delta )
         h.type = hit.radiation
         h.power = 0.0005+(0.0002*game_difficulty)+0.008*(sak.dog_psy)
         h.impulse = 0.0
+        h:bone ( "bip_none" )
         h.draftsman = sfobj
         h.direction = sfobj:direction()
         npc:hit( h )
@@ -327,7 +328,7 @@ function generic_object_binder:update( delta )
             h.type = hit.telepatic
             h.power = 0.01+0.01*sak.dog_psy
             h.impulse = 0.0
-            h:bone("bip01_spine")
+            h:bone ( "bip_none" )
             h.draftsman = sfobj
             h.direction = sfobj:direction()
             npc:hit(h)
