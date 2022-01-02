@@ -284,20 +284,20 @@
 
 
 
-	<actor_location hint="st_map_actor">
+	<actor_location hint="">
 		<level_map spot="actor_level_spot"/>
 	</actor_location>
 	
-	<actor_location_p hint="actor">
+	<actor_location_p>
 		<level_map spot="actor_level_spot_p"></level_map>
 	</actor_location_p>
 
-	<actor_level_spot x="0" y="0" width="60" height="60" alignment="c">
-		<texture x="730" y="394" width="60" height="60">ui\ui_common</texture>
+	<actor_level_spot x="0" y="0" width="25" height="25" alignment="c" stretch="1">
+		<texture x="749" y="411" width="25" height="25">ui\ui_common</texture>
 	</actor_level_spot>
 	
-	<actor_level_spot_p x="0" y="0" width="60" height="60" heading="1" alignment="c">
-		<texture x="794" y="394" width="60" height="60">ui\ui_common</texture>
+	<actor_level_spot_p x="0" y="0" width="0" height="0" heading="1" alignment="c" stretch="1">
+		<texture></texture>
 	</actor_level_spot_p>
 
 	
@@ -320,7 +320,7 @@
 	</anomaly_zone_mini_spot>
 
 
-<!--описания меток для разных аномалий--> 
+<!--пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ--> 
 
 	<anomaly_bald_location hint="anomaly_zone">
 		<mini_map  spot="anomaly_bald_mini_spot"/>
@@ -653,7 +653,7 @@
 		<texture x="40" y="40" width="2" height="2">ui\ui_zone_spots</texture>
 	</way_point_mini_spot>
 	
-<!-- временно перенесено из map_spots_garbage.xml, потом удалить совсем -->
+<!-- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ map_spots_garbage.xml, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ -->
 	<gar_spot_dolg_blokpost_location hint="gar_dolg_blokpost" store="1">
 		<level_map spot="crlc_mdl_spot" pointer="quest_pointer"></level_map>
 		<mini_map  spot="crlc_mdl_spot" pointer="quest_pointer"></mini_map>
