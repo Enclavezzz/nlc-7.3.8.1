@@ -283,8 +283,8 @@ local sleeve = {
 [ "soldier_q_outfit" ] = { "014", "css", "014", "tch" },
 [ "cs_light_outfit" ] = { "015", "css", "002", "tch" },
 [ "cs_q_light_q_outfit" ] = { "015", "css", "002", "tch" },
-[ "cs_heavy_outfit" ] = { "015", "css", "002", "tch" },
-[ "cs_q_heavy_q_outfit" ] = { "015", "css", "002", "tch" },
+[ "cs_heavy_outfit" ] = { "015", "css", "022", "tch" },
+[ "cs_q_heavy_q_outfit" ] = { "015", "css", "022", "tch" },
 [ "military_stalker_outfit" ] = { "014", "css", "014", "tch" },
 [ "military_commander_outfit" ] = { "014", "css", "014", "tch" },
 [ "super_scientific_outfit" ] = { "019", "019", "013", "tch" },
@@ -386,8 +386,8 @@ function params.weapon_mag_size_cond(item_in_slot, cond)
        wprintf(" const_deviation not updated, due item %s is not CWeapon ", item_in_slot:name())
        return 
     end
-    -- если выпадение id случайно, повезет не каждому стволу
-    -- получаются коэффициенты от -1 до +1 
+    -- пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ id пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
+    -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ -1 пїЅпїЅ +1 
     local rnd_y = ( id % 256 ) / 256 - 0.5 
     local rnd_p = ( id % 400 ) / 400 - 0.5
     
@@ -487,9 +487,9 @@ function tiredness_add()
   local armor = act:item_in_slot(6)
   local gg_heal  = 15*(math.ceil((db.actor.health - 0.01) * 10))
   
-  local ph_t = nlc_vars.ph_tiredness or 0 -- накопленная физическая усталость, восстанавливается со временем
+  local ph_t = nlc_vars.ph_tiredness or 0 -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   
-  local delay = tiredness_timer:elapsed(true) / 60.0 -- сколько игровых минут между замером    
+  local delay = tiredness_timer:elapsed(true) / 60.0 -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ    
   
   local sleepiness = sleep_manager.get_sleepiness()
   
@@ -503,18 +503,18 @@ function tiredness_add()
   if state.jump   then delta = delta + 0.5 end  
 
   if act.power == act.max_power and ph_t > 5 then
-     ph_t = ph_t * 0.98 -- 2% процентное восстановление при высокой усталости
+     ph_t = ph_t * 0.98 -- 2% пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   end  
                                  
-  local have_power = ( act.power + 0.1 ) / act.max_power  -- краткосрочная перегрузка
+  local have_power = ( act.power + 0.1 ) / act.max_power  -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   local action = "ADD"
   if sleep then 
      action = "RESTOR"
      have_power = 1
-     delta = delta * sleep_manager.restore_coef() -- в защите, с оружием и рюкзаком спать неудобно!
+     delta = delta * sleep_manager.restore_coef() -- пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!
   else   
      delta = delta + (act.max_power - act.power)
-     sleepiness = sleepiness + delay / 6.0       -- раз в 360 игровых секунд добавляется 1 пункт сонливости
+     sleepiness = sleepiness + delay / 6.0       -- пїЅпїЅпїЅ пїЅ 360 пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ 1 пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   end  
   
   if delta < 0 and ph_t < 0 then
@@ -525,7 +525,7 @@ function tiredness_add()
 
   ph_t = ph_t + delta * delay         
   if (delta > 0) and (not sleep) then
-     sleepiness = sleepiness + delta * delay * 0.1 -- физическая нагрузка приближает желание поспать
+     sleepiness = sleepiness + delta * delay * 0.1 -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   end
 
   if sleepiness > 270 then
@@ -605,7 +605,7 @@ function tired_owermass()
       local coef=(carr_weight-carr_norm)
     new_weight_power=ww_power+0.0000005*(coef^2)
   end
-    actor_params.cond_prop("walk_weight_power", ww_power) -- остальное добавит движок через коэффициенты перевеса ]]
+    actor_params.cond_prop("walk_weight_power", ww_power) -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ]]
   -- actor_params.cond_prop("walk_weight_power", new_weight_power)
 end
 
@@ -723,7 +723,7 @@ end
 function belt_param_add(count)
   count = count or 0
   local new_belt_param = count        
-  if count ~= 0 then count = count - 1 end -- потому что одна ячейка уходит на аккумулятор по старой логике
+  if count ~= 0 then count = count - 1 end -- пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
     -- wprintf("[~T]. #DBG: belt_param_add value =~C0D %d~C07", add)
   if count > 0 then
      ui_params.move_inventory_static("accum_static", 371, 478) 
@@ -836,7 +836,7 @@ function params.load_console_cmds()
   
   
   local ps_con_node = function(node) 
-   -- ключ в каждом узле - ссылка на строку LPCSTR
+   -- пїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ LPCSTR
    local key = registry.node_key(node, 'lpcstr') -- ReadPtr(node, 12)
    local val = registry.node_obj(node) -- node:read_ptr(16)
    
@@ -875,7 +875,7 @@ function params.load_console_cmds()
   
   svcb = params.con_commands['save']
   params.con_commands['xsave'] = svcb
-  SetGlobalVar('svcb', svcb:format() ) -- переменная должна пережить перезагрузку обязательно!  
+  SetGlobalVar('svcb', svcb:format() ) -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ!  
   -- params.con_commands['save'] = nil -- protect command from disable
   --wprintf('[~T]. #COMPLETE: load_console_commands')
 end
@@ -1016,7 +1016,7 @@ function params.start_dialog(dlg, hide_indicators)
 
  local IR = level.main_input_receiver() 
  if dlg and (IR == nil) then
-   -- если статус окна не соответствует требуемому
+   -- пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
   if not dlg:IsShown() then
     level.start_stop_menu(dlg, hide_indicators)              
   end       
@@ -1028,7 +1028,7 @@ function params.stop_dialog(dlg)
     return ui.stop_dialog(dlg) -- build 5600+
  end
 
- -- если статус окна не соответствует требуемому
+ -- пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
  if dlg and dlg:IsShown() then
     level.start_stop_menu(dlg, false)              
  end       
@@ -1049,7 +1049,7 @@ function obj_condition(id, newval)
   end
   
   if server_obj(id) then 
-     return 1 -- хрен ведь угадаешь, ага?
+     return 1 -- пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ?
   else
      return -1
   end     
@@ -1125,7 +1125,7 @@ function show()
  end
  if static then
     local parent = static:wnd() 
-    -- windows.del_simple_statics(parent, "params_speed") -- удалять не обязательно  
+    -- windows.del_simple_statics(parent, "params_speed") -- пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ  
     windows.simple_static(parent, "params_speed", { 10, 750, 50, 16 }, speed_info)
  end    
  return speed_info
