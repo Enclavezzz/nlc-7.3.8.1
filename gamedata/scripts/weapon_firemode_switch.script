@@ -1,0 +1,28 @@
+function firemode_switch_try()
+    local active_item = db.actor:active_item()
+    if active_item then
+        if str_in_tab( active_item:section(), {
+			"wpn_aps",
+			"wpn_beretta93",
+			"wpn_mp5",
+			"wpn_bizon",
+			"wpn_pp19",
+			"wpn_ump45",
+			"wpn_ak",
+			"wpn_rpk74",
+			"wpn_abakan",
+			"wpn_val",
+			"wpn_groza",
+			"wpn_vintorez",
+			"wpn_sig550",
+			"wpn_g36",
+			"wpn_m16a4",
+			"wpn_fn2000"
+			})
+        then
+            misc.easy_sound( "weapons\\firemode_switch" )
+            -- чтобы не показывало статик, если он уже на экране??
+            if not razgruzka.disp_flag then bind_stalker.use_info() end
+        end
+    end
+end

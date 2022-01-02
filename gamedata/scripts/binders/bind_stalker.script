@@ -240,6 +240,10 @@ function gan_reload()
 	razgruzka.start_gan_reload()
 end
 
+function firemode_switch() 
+	weapon_firemode_switch.firemode_switch_try() 
+end
+
 function snd_volume_get()     
 	return get_console():get_float("snd_volume_eff") 
 end
@@ -481,6 +485,14 @@ function bind_stalker.init_kcb()
 	_G.try_open_inventory = try_open_inventory
 	hot_key = vergas_lib.set_key("bind speech_menu_0",21,1)
 	SetKbdCallback ("try_open_inventory", hot_key)
+
+	_G.firemode_switch = firemode_switch
+	hot_key = vergas_lib.set_key( "bind wpn_firemode_next", 25, 1 )	
+	SetKbdCallback ( "firemode_switch", hot_key )	
+  
+	_G.firemode_switch = firemode_switch
+	hot_key = vergas_lib.set_key( "bind wpn_firemode_prev", 25, 1 )	
+	SetKbdCallback ( "firemode_switch", hot_key )	
 
 	SetKbdCallback ("snd_on_off",    0xAD)
 	SetKbdCallback ("snd_volume_dn", 0xAE)
