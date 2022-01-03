@@ -24,11 +24,14 @@
 	<image_static x="170" y="100" width="240" height="180" alignment="c" vert_align="c" stretch="1"/>		
 	
     <condition_progress x="227" y="227" width="107" height="8" horz="1" min="0" max="100" pos="100">
-		<min_color r="255" g="0" b="0"/>
-		<max_color r="0" g="255" b="0"/>
+		<background>
+			<texture r="196" g="18" b="18">ui_mg_progress_efficiency_full</texture>
+		</background>
 		<progress>
 			<texture>ui_mg_progress_efficiency_full</texture>
-		</progress>        
+		</progress>
+		<min_color r="41" g="203" b="60"/>
+		<max_color r="41" g="203" b="60"/>
     </condition_progress>
     
     <wpn_params x="0" y="0" width="0" height="4">

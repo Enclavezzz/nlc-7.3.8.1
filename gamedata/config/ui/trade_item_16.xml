@@ -28,12 +28,16 @@
 	</descr_list>
     
     <condition_progress x="398" y="50" width="98" height="8" horz="1" min="0" max="100" pos="100">
-		<min_color r="255" g="0" b="0"/>
-		<max_color r="0" g="255" b="0"/>
+		<background>
+			<texture r="196" g="18" b="18">ui_mg_progress_efficiency_full</texture>
+		</background>
 		<progress>
 			<texture>ui_mg_progress_efficiency_full</texture>
 		</progress>
+		<min_color r="41" g="203" b="60"/>
+		<max_color r="41" g="203" b="60"/>
     </condition_progress>
+
     <wpn_params x="0" y="0" width="0" height="4">
 		<cap_accuracy x="0" y="8" width="0" height="0">
 			<!--<text font="letterica16" r="124" g="119" b="115">ui_inv_accuracy</text>-->
