@@ -9,265 +9,957 @@ local npcs_for_anom 				= {}
 local actual_anoms_for_npc			= {}
 local npc_restrictors_need_update	= {}
 
-
-local anom_suffixes={
-	["l01_escape"				]={_weak=45, _average=35, _strong=20},
-	["l02_garbage"				]={_weak=40, _average=40, _strong=20},
-	["l03_agroprom"				]={_weak=35, _average=35, _strong=30},
-	["l03u_agr_underground"		]={_weak=20, _average=50, _strong=30},
-	["l04_darkvalley"			]={_weak=30, _average=40, _strong=30},
-	["k01_darkscape"			]={_weak=35, _average=35, _strong=30},
-	["l04u_labx18"				]={_weak=20, _average=50, _strong=30},
-	["l05_bar"					]={_weak=35, _average=35, _strong=30},
-	["l06_rostok"				]={_weak=25, _average=50, _strong=25},
-	["l07_military"				]={_weak=20, _average=50, _strong=30},
-	["l08_yantar"				]={_weak=20, _average=50, _strong=30},
-	["l08u_brainlab"			]={_weak=20, _average=50, _strong=30},
-	["l10_radar"				]={_weak=10, _average=50, _strong=40},
-	["limansk"					]={_weak=20, _average=50, _strong=30},
-	["lost_village"				]={_weak=40, _average=50, _strong=10},
-	["marsh"					]={_weak=50, _average=40, _strong=10},
-	["red_forest"				]={_weak=20, _average=50, _strong=30},
-	["warlab"					]={_weak=20, _average=50, _strong=30},
-	["labx10"					]={_weak=20, _average=50, _strong=30},
-	["labx8"					]={_weak=20, _average=50, _strong=30},
-	["generators"				]={_weak=10, _average=40, _strong=50},
-	["aver"						]={_weak=30, _average=50, _strong=20},
-	["hospital"					]={_weak=80, _average=15, _strong=5},
-	["deadcity"					]={_weak=10, _average=50, _strong=40},
-	["av_peshera"				]={_weak=20, _average=50, _strong=30},
-	["l10u_bunker"				]={_weak=20, _average=50, _strong=30},
-	["l11_pripyat"				]={_weak=1, _average=50, _strong=49},
-	["l12_stancia_new"			]={_weak=1, _average=50, _strong=49},
-	["l12_stancia_2_new"		]={_weak=1, _average=50, _strong=49},
-	["l12u_control_monolith"	]={_weak=1, _average=50, _strong=49},
-	["l12u_sarcofag"			]={_weak=1, _average=50, _strong=49}
-	}
+local anom_suffixes = {
+	["l01_escape"			 ] = { _weak = 45, _average = 35, _strong = 20 },
+	["l02_garbage"			 ] = { _weak = 40, _average = 40, _strong = 20 },
+	["l03_agroprom"			 ] = { _weak = 35, _average = 35, _strong = 30 },
+	["l03u_agr_underground"	 ] = { _weak = 20, _average = 50, _strong = 30 },
+	["l04_darkvalley"		 ] = { _weak = 30, _average = 40, _strong = 30 },
+	["k01_darkscape"		 ] = { _weak = 35, _average = 35, _strong = 30 },
+	["l04u_labx18"			 ] = { _weak = 20, _average = 50, _strong = 30 },
+	["l05_bar"				 ] = { _weak = 35, _average = 35, _strong = 30 },
+	["l06_rostok"			 ] = { _weak = 25, _average = 50, _strong = 25 },
+	["l07_military"			 ] = { _weak = 20, _average = 50, _strong = 30 },
+	["l08_yantar"			 ] = { _weak = 20, _average = 50, _strong = 30 },
+	["l08u_brainlab"		 ] = { _weak = 20, _average = 50, _strong = 30 },
+	["l10_radar"			 ] = { _weak = 10, _average = 50, _strong = 40 },
+	["limansk"				 ] = { _weak = 20, _average = 50, _strong = 30 },
+	["lost_village"			 ] = { _weak = 40, _average = 50, _strong = 10 },
+	["marsh"				 ] = { _weak = 50, _average = 40, _strong = 10 },
+	["red_forest"			 ] = { _weak = 20, _average = 50, _strong = 30 },
+	["warlab"				 ] = { _weak = 20, _average = 50, _strong = 30 },
+	["labx10"				 ] = { _weak = 20, _average = 50, _strong = 30 },
+	["labx8"				 ] = { _weak = 20, _average = 50, _strong = 30 },
+	["generators"			 ] = { _weak = 10, _average = 40, _strong = 50 },
+	["aver"					 ] = { _weak = 30, _average = 50, _strong = 20 },
+	["hospital"				 ] = { _weak = 80, _average = 15, _strong =  5 },
+	["deadcity"				 ] = { _weak = 10, _average = 50, _strong = 40 },
+	["av_peshera"			 ] = { _weak = 20, _average = 50, _strong = 30 },
+	["l10u_bunker"			 ] = { _weak = 20, _average = 50, _strong = 30 },
+	["l11_pripyat"			 ] = { _weak = 1,  _average = 50, _strong = 49 },
+	["l12_stancia_new"		 ] = { _weak = 1,  _average = 50, _strong = 49 },
+	["l12_stancia_2_new"	 ] = { _weak = 1,  _average = 50, _strong = 49 },
+	["l12u_control_monolith" ] = { _weak = 1,  _average = 50, _strong = 49 },
+	["l12u_sarcofag"		 ] = { _weak = 1,  _average = 50, _strong = 49 }
+}
 
 local exclusive_chance=5
 
-local anoms_sections={
-	greedy			={"greedy",{shtype=0,radius=3,center={0,0,0}}},
-	zharka_static	={"zharka_static",{shtype=0,radius=1.6,center={0,0,0}}}, 
-	buzz			={"buzz",{shtype=0,radius=2.2,center={0,0,0}}},
-	sakbuzz			={"sakbuzz",{shtype=0,radius=3,center={0,0,0}}},
-	mincer			={"mincer",{shtype=0,radius=3,center={0,0,0}},true},
-	breathe			={"breathe",{shtype=0,radius=3,center={0,0,0}},true},
-	electra			={"witches_galantine",{shtype=0,radius=3,center={0,0,0}},true},
-	mosquito_bald	={"mosquito_bald",{shtype=0,radius=3,center={0,0,0}},true},
-	psi_field		={"psi_field",{shtype=0,radius=3,center={0,0,0}}},
-	teleport_esc	={"teleport_esc",{shtype=0,radius=3,center={0,0,0}}},
-	teleport_gar	={"teleport_gar",{shtype=0,radius=3,center={0,0,0}}},
-	teleport_agr	={"teleport_agr",{shtype=0,radius=3,center={0,0,0}}},
-	teleport_td		={"teleport_td",{shtype=0,radius=3,center={0,0,0}}},
-	teleport_dt		={"teleport_dt",{shtype=0,radius=3,center={0,0,0}}},
-	teleport_yan	={"teleport_yan",{shtype=0,radius=3,center={0,0,0}}},
-	teleport_as		={"teleport_as",{shtype=0,radius=3,center={0,0,0}}},
-	teleport_rad	={"teleport_rad",{shtype=0,radius=3,center={0,0,0}}},
-	teleport_prip	={"teleport_prip",{shtype=0,radius=3,center={0,0,0}}},
-	teleport_gen	={"teleport_gen",{shtype=0,radius=3,center={0,0,0}}},
-	gravi			={"gravi_zone",{shtype=0,radius=3,center={0,0,0}}}
-	} 
-local arts_sections={
-	new			="_new",
-	balb_1		="af_medusa", 
-	balb_2		="af_cristal_flower", 
-	balb_3		="af_night_star_capsule", 
-	gravi_1		="af_vyvert", 
-	gravi_2		="af_gravi", 
-	gravi_3		="af_gold_fish_capsule", 
-	mincer_1	="af_blood", 
-	mincer_2	="af_mincer_meat", 
-	mincer_3	="af_soul_capsule", 
-	electra_1	="af_electra_sparkler", 
-	electra_2	="af_electra_flash", 
-	electra_3	="af_electra_moonlight_capsule", 
-	zharka_1	="af_drops",
-	zharka_2	="af_fireball",
-	zharka_3	="af_cristall_capsule",
-	buzz_1		="af_ameba_slime",
-	buzz_2		="af_ameba_slug",
-	buzz_3		="af_ameba_mica_capsule",
-	rusty_1		="af_rusty_thorn",
-	rusty_2		="af_rusty_kristall",
-	rusty_3		="af_rusty_sea-urchin_capsule",
-	dummy_1		="af_dummy_spring_capsule",
-	dummy_2		="af_dummy_dummy_capsule",
-	dummy_3		="af_dummy_battery_capsule", 
-	dummy_4		="af_dummy_pellicle_capsule",
-	dummy_5		="af_dummy_kolobok_capsule",
-	dummy_6		="af_dummy_glassbeads_capsule"
-	} 
-local teleport_sections={teleport="sak_teleport_"..level.name()}
-level_anoms={
-	marsh				={120,180,1000,{mosquito_bald=27, gravi=25, mincer=20, sakbuzz=17, electra=10, breathe=1}},
-	
-	generators			={150,220,1000,{electra=25, sakbuzz=10, mosquito_bald=14, gravi=10, mincer=10, psi_field=10, buzz=15, greedy=4, breathe=1, teleport_gen=1}},
-	
-	aver				={100,150,1000,{sakbuzz=20, mosquito_bald=19, mincer=18, gravi=14, electra=10, psi_field=10, greedy=8, breathe=1}},
-	
-	limansk				={30,50,1000,{mosquito_bald=20, gravi=20, mincer=20, sakbuzz=15, electra=10, buzz=15}},
-	
-	deadcity			={130,180,1000,{mosquito_bald=27, gravi=18, mincer=18, sakbuzz=10, electra=9, psi_field=5, buzz=10, greedy=3}},
-	
-	red_forest			={150,200,1000,{mosquito_bald=23, gravi=20, mincer=20, sakbuzz=10, electra=9, buzz=15, greedy=3}},
-	
-	lost_village		={20,30,1000,{mosquito_bald=22, gravi=22, mincer=21, sakbuzz=10, buzz=9, electra=10, breathe=6}},
-	
-	l01_escape			={90,120,1000,{mosquito_bald=34, gravi=20, mincer=20, sakbuzz=15, electra=10, teleport_esc=1}},
-	
-	hospital			={10,12,300,{sakbuzz=25, electra=25, buzz=49, breathe=1}},
-	
-	l02_garbage			={150,220,800,{mincer=27, sakbuzz=15, buzz=10, mosquito_bald=18, gravi=17, electra=11, teleport_gar=1, breathe=1}},
-	
-	l03_agroprom		={150,200,800,{sakbuzz=15, mincer=21, gravi=19, mosquito_bald=17, electra=10, buzz=16, teleport_agr=1, breathe=1}},
-	
-	l04_darkvalley		={150,200,1000,{sakbuzz=17, mincer=19, mosquito_bald=15, gravi=14, electra=10, buzz=16, zharka_static=7, teleport_td=1, breathe=1}},
-	
-	k01_darkscape		={200,250,1000,{sakbuzz=17, mincer=19, mosquito_bald=15, gravi=14, electra=11, buzz=16, zharka_static=7, breathe=1}},
-	
-	l05_bar				={15,30,300,{mosquito_bald=25, mincer=25, gravi=25, sakbuzz=10, buzz=5, electra=10}},
-	
-	l06_rostok			={20,30,800,{sakbuzz=10, buzz=15, zharka_static=29, mincer=15, mosquito_bald=10, electra=8, gravi=10, teleport_dt=1, breathe=1, psi_field=1}},
-	
-	l08_yantar			={80,120,400,{sakbuzz=13, buzz=12, mosquito_bald=15, mincer=15, gravi=15, electra=14, zharka_static=11, greedy=2, breathe=1, psi_field=1, teleport_yan=1}},
-	
-	l07_military		={150,200,1000,{sakbuzz=15, buzz=15, mincer=20, mosquito_bald=15, gravi=13, electra=10, zharka_static=6, greedy=3, teleport_as=1, breathe=1, psi_field=1}},
-	
-	l10_radar			={170,220,1000,{sakbuzz=15, mincer=15, mosquito_bald=15, gravi=15, electra=10, zharka_static=8, buzz=15, greedy=2, psi_field=3, teleport_rad=1, breathe=1}},
-	
-	l11_pripyat			={100,180,900,{sakbuzz=15, greedy=10, psi_field=12, buzz=16, breathe=10, electra=10, zharka_static=10, mincer=7, mosquito_bald=9, teleport_prip=1}},
-	
-	l12_stancia_new		={120,180,700,{buzz=20, zharka_static=20, psi_field=25, sakbuzz=15, greedy=20}},
-	
-	l12_stancia_2_new	={200,250,1000,{zharka_static=10, psi_field=60, sakbuzz=5, buzz=5, greedy=20}}
+local anoms_sections = {
+
+	greedy = { 
+		"greedy",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } }
+	},
+
+	zharka_static = { 
+		"zharka_static", 
+		{ shtype = 0, radius = 1.6, center = { 0, 0, 0 } }
+	},
+
+	buzz = { 
+		"buzz",
+		{ shtype = 0, radius = 2.2, center = { 0, 0, 0 } } 
+	},
+
+	sakbuzz	= { 
+		"sakbuzz",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } } 
+	},
+
+	mincer = { 
+		"mincer",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } },
+		true
+	},
+
+	breathe	= {
+		"breathe",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } },
+		true
+	},
+
+	electra	= { 
+		"witches_galantine",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } },
+		true
+	},
+
+	mosquito_bald = { 
+		"mosquito_bald",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } },
+		true
+	},
+
+	psi_field = { 
+		"psi_field",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } } 
+	},
+
+	teleport_esc = { 
+		"teleport_esc",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } } 
+	},
+
+	teleport_gar = { 
+		"teleport_gar",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } }
+	},
+
+	teleport_agr = { 
+		"teleport_agr",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } }
+	},
+
+	teleport_td	= { 
+		"teleport_td",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } }
+	},
+
+	teleport_dt	= { 
+		"teleport_dt",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } }
+	},
+
+	teleport_yan = { 
+		"teleport_yan",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } }
+	},
+
+	teleport_as	= { 
+		"teleport_as",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } }
+	},
+
+	teleport_rad = { 
+		"teleport_rad",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } }
+	},
+
+	teleport_prip = { 
+		"teleport_prip",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } }
+	},
+
+	teleport_gen = { 
+		"teleport_gen",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } }
+	},
+
+	gravi = { 
+		"gravi_zone",
+		{ shtype = 0, radius = 3, center = { 0, 0, 0 } }
+	},
+
+	radioactive = {
+		"radioactive",
+		{ shtype = 0, radius = 5, center = { 0, 0, 0 } } 
 	}
+
+}
+
+local arts_sections={
+	new		  = "_new",
+	balb_1	  = "af_medusa", 
+	balb_2	  = "af_cristal_flower", 
+	balb_3	  = "af_night_star_capsule", 
+	gravi_1	  = "af_vyvert", 
+	gravi_2	  = "af_gravi", 
+	gravi_3	  = "af_gold_fish_capsule", 
+	mincer_1  = "af_blood", 
+	mincer_2  = "af_mincer_meat", 
+	mincer_3  = "af_soul_capsule", 
+	electra_1 = "af_electra_sparkler", 
+	electra_2 = "af_electra_flash", 
+	electra_3 = "af_electra_moonlight_capsule", 
+	zharka_1  = "af_drops",
+	zharka_2  = "af_fireball",
+	zharka_3  = "af_cristall_capsule",
+	buzz_1	  = "af_ameba_slime",
+	buzz_2	  = "af_ameba_slug",
+	buzz_3	  = "af_ameba_mica_capsule",
+	rusty_1	  = "af_rusty_thorn",
+	rusty_2	  = "af_rusty_kristall",
+	rusty_3	  = "af_rusty_sea-urchin_capsule",
+	dummy_1	  = "af_dummy_spring_capsule",
+	dummy_2	  = "af_dummy_dummy_capsule",
+	dummy_3	  = "af_dummy_battery_capsule", 
+	dummy_4	  = "af_dummy_pellicle_capsule",
+	dummy_5	  = "af_dummy_kolobok_capsule",
+	dummy_6	  = "af_dummy_glassbeads_capsule"
+}
+
+local teleport_sections = {
+	teleport = "sak_teleport_" .. level.name() 
+}
+
+level_anoms = {
+
+	marsh = {
+		120, 180, 1000,
+		{
+			mosquito_bald = 20, 
+			gravi         = 20, 
+			mincer        = 20, 
+			sakbuzz       = 20, 
+			electra       = 9, 
+			breathe       = 1,
+			radioactive   = 10
+		}
+	},
+	
+	generators = {
+		150, 220, 1000,
+		{
+			electra       = 25, 
+			sakbuzz       = 10, 
+			mosquito_bald = 10, 
+			gravi         = 10, 
+			mincer        = 10, 
+			psi_field     = 10, 
+			buzz          = 10, 
+			greedy        = 4, 
+			breathe       = 1, 
+			teleport_gen  = 1,
+			radioactive   = 9
+		}
+	},
+	
+	aver = {
+		100, 150, 1000,
+		{
+			sakbuzz       = 15, 
+			mosquito_bald = 15, 
+			mincer        = 15, 
+			gravi         = 15, 
+			electra       = 10, 
+			psi_field     = 10, 
+			greedy        = 10, 
+			breathe       = 1,
+			radioactive   = 9
+		}
+	},
+	
+	limansk	= {
+		30, 50, 1000,
+		{
+			mosquito_bald = 20, 
+			gravi         = 20, 
+			mincer        = 15, 
+			sakbuzz       = 10, 
+			electra       = 10, 
+			buzz          = 10,
+			radioactive   = 15
+		}
+	},
+	
+	deadcity = {
+		130, 180, 1000,
+		{
+			mosquito_bald = 20, 
+			gravi         = 15, 
+			mincer        = 15, 
+			sakbuzz       = 10, 
+			electra       = 10, 
+			psi_field     = 5, 
+			buzz          = 10, 
+			radioactive   = 15
+		}
+	},
+	
+	red_forest = {
+		150, 200, 1000,
+		{
+			mosquito_bald = 15, 
+			gravi         = 15, 
+			mincer        = 15, 
+			sakbuzz       = 10, 
+			electra       = 10, 
+			buzz          = 15, 
+			greedy        = 5,
+			radioactive   = 15
+		}
+	},
+	
+	lost_village = {
+		20, 30, 1000,
+		{
+			mosquito_bald = 20, 
+			gravi         = 20, 
+			mincer        = 20, 
+			sakbuzz       = 10, 
+			buzz          = 10, 
+			electra       = 10, 
+			breathe       = 5,
+			radioactive   = 5
+		}
+	},
+	
+	l01_escape = {
+		90, 120, 1000,
+		{
+			mosquito_bald = 30, 
+			gravi         = 20, 
+			mincer        = 20, 
+			sakbuzz       = 15, 
+			electra       = 14, 
+			teleport_esc  = 1
+		}
+	},
+	
+	hospital = {
+		10, 12, 300,
+		{
+			sakbuzz       = 25, 
+			electra       = 25, 
+			buzz          = 44, 
+			breathe       = 1,
+			radioactive   = 5		
+		}
+	},
+	
+	l02_garbage	= {
+		150, 220, 800,
+		{
+			mincer        = 24,
+			sakbuzz       = 23,
+			mosquito_bald = 16,
+			gravi         = 14,
+			radioactive   = 10,
+			electra       = 10,
+			teleport_gar  = 1,
+			breathe       = 1,
+			greedy        = 1
+		}
+	},
+	
+	l03_agroprom = {
+		150, 200, 800,
+		{
+			sakbuzz       = 21,
+			mincer        = 18,
+			gravi         = 17,
+			mosquito_bald = 16,
+			electra       = 10,
+			radioactive   = 10,
+			buzz          = 5,
+			teleport_agr  = 1,
+			breathe       = 1,
+			greedy        = 1
+		}
+	},
+	
+	l04_darkvalley = {
+		150, 200, 1000,
+		{
+			sakbuzz       = 19,
+			mincer        = 17,
+			mosquito_bald = 13,
+			gravi         = 13,
+			radioactive   = 10,
+			buzz          = 10,
+			electra       = 9,
+			zharka_static = 6,
+			teleport_td   = 1,
+			breathe       = 1,
+			greedy        = 1
+		}
+	},
+	
+	k01_darkscape = {
+		200, 250, 1000,
+		{
+			sakbuzz       = 21,
+			mincer        = 17,
+			mosquito_bald = 14,
+			gravi         = 13,
+			electra       = 10,
+			buzz          = 10,
+			radioactive   = 7,
+			zharka_static = 6,
+			breathe       = 1,
+			greedy        = 1
+		}
+	},
+	
+	l05_bar = {
+		15, 30, 300,
+		{
+			mosquito_bald = 23,
+			mincer        = 23,
+			gravi         = 23,
+			sakbuzz       = 15,
+			electra       = 10,
+			radioactive   = 6
+		}
+	},
+	
+	l06_rostok = {
+		20, 30, 800,
+		{
+			sakbuzz       = 30,
+			zharka_static = 24,
+			mincer        = 10,
+			mosquito_bald = 10,
+			radioactive   = 10,
+			electra       = 8,
+			gravi         = 5,
+			teleport_dt   = 1,
+			breathe       = 1,
+			psi_field     = 1
+		}
+	},
+	
+	l08_yantar = {
+		80, 120, 400,
+		{
+			sakbuzz       = 22,
+			mosquito_bald = 13,
+			mincer        = 13,
+			gravi         = 13,
+			electra       = 13,
+			zharka_static = 11,
+			radioactive   = 10,
+			greedy        = 2,
+			breathe       = 1,
+			psi_field     = 1,
+			teleport_yan  = 1
+		}
+	},
+	
+	l07_military = {
+		150, 200, 1000,
+		{
+			sakbuzz       = 26,
+			mincer        = 17,
+			mosquito_bald = 13,
+			gravi         = 12,
+			electra       = 10,
+			radioactive   = 10,
+			zharka_static = 6,
+			greedy        = 3,
+			teleport_as   = 1,
+			breathe       = 1,
+			psi_field     = 1
+		}
+	},
+	
+	l10_radar = {
+		170, 220, 1000,
+		{
+			sakbuzz       = 26,
+			mincer        = 15,
+			mosquito_bald = 15,
+			gravi         = 14,
+			radioactive   = 10,
+			electra       = 7,
+			zharka_static = 5,
+			buzz          = 4,
+			greedy        = 4,
+			psi_field     = 3,
+			teleport_rad  = 1,
+			breathe       = 1
+		}
+	},
+	
+	l11_pripyat	= {
+		100, 180, 900,
+		{
+			sakbuzz       = 15,
+			greedy        = 10,
+			psi_field     = 12,
+			buzz          = 11,
+			breathe       = 10,
+			electra       = 10,
+			zharka_static = 8,
+			mincer        = 7,
+			mosquito_bald = 6,
+			teleport_prip = 1,
+			radioactive   = 10
+		}
+	},
+	
+	l12_stancia_new	= {
+		120, 180, 700,
+		{
+			buzz          = 20, 
+			zharka_static = 20, 
+			psi_field     = 25, 
+			sakbuzz       = 15, 
+			greedy        = 20
+		}
+	},
+	
+	l12_stancia_2_new = {
+		200, 250, 1000,
+		{
+			zharka_static = 10, 
+			psi_field     = 60, 
+			sakbuzz       = 5, 
+			buzz          = 5, 
+			greedy        = 20
+		}
+	}
+
+}
 	
 level_arts={
-	marsh={1,3,{balb_1=20, gravi_1=20, mincer_1=20, electra_1=20, balb_2=5, gravi_2=5, mincer_2=5, electra_2=5}},
+
+	marsh = {
+		1, 3,
+		{
+			balb_1=20, 
+			gravi_1=20, 
+			mincer_1=20, 
+			electra_1=20, 
+			balb_2=5, 
+			gravi_2=5, 
+			mincer_2=5, 
+			electra_2=5
+		}
+	},
 	
-	lost_village={0,1,{balb_1=18, gravi_1=18, mincer_1=18, electra_1=18, rusty_1=18, balb_2=4, gravi_2=4, mincer_2=4, electra_2=4, rusty_2=4}},
+	lost_village = {
+		0, 1,
+		{
+			balb_1=18, 
+			gravi_1=18, 
+			mincer_1=18, 
+			electra_1=18, 
+			rusty_1=18, 
+			balb_2=4, 
+			gravi_2=4, 
+			mincer_2=4, 
+			electra_2=4, 
+			rusty_2=4
+		}
+	},
 	
-	l01_escape={1,2,{balb_1=25, gravi_1=25, mincer_1=25, electra_1=25}},
+	l01_escape = {
+		1, 2,
+		{
+			balb_1=25, 
+			gravi_1=25, 
+			mincer_1=25, 
+			electra_1=25
+		}
+	},
 	
-	l02_garbage={0,2,{balb_1=23, gravi_1=23, mincer_1=23, electra_1=23, balb_2=2, gravi_2=2, mincer_2=2, electra_2=2}},
+	l02_garbage={
+		0, 2,
+		{
+			balb_1=23, 
+			gravi_1=23, 
+			mincer_1=23, 
+			electra_1=23, 
+			balb_2=2, 
+			gravi_2=2, 
+			mincer_2=2, 
+			electra_2=2
+		}
+	},
 	
-	hospital={0,1,{buzz_1=30, rusty_1=30, electra_1=30, electra_2=3, buzz_2=4, rusty_2=3}},
+	hospital = {
+		0, 1,
+		{
+			buzz_1=30, 
+			rusty_1=30, 
+			electra_1=30, 
+			electra_2=3, 
+			buzz_2=4, 
+			rusty_2=3
+		}
+	},
 	
-	l03_agroprom={1,2,{balb_1=15, gravi_1=15, mincer_1=15, electra_1=15, buzz_1=15, electra_2=5, mincer_2=5, gravi_2=5, balb_2=5, buzz_2=5}},
+	l03_agroprom = {
+		1, 2,
+		{
+			balb_1=15, 
+			gravi_1=15, 
+			mincer_1=15, 
+			electra_1=15, 
+			buzz_1=15, 
+			electra_2=5, 
+			mincer_2=5, 
+			gravi_2=5, 
+			balb_2=5, 
+			buzz_2=5
+		}
+	},
 	
-	l04_darkvalley={0,2,{balb_1=14, gravi_1=14, mincer_1=14, electra_1=14, zharka_1=14, buzz_1=14, balb_2=2, zharka_2=3, electra_2=3, mincer_2=3, gravi_2=2, buzz_2=3}},
+	l04_darkvalley = {
+		0, 2,
+		{
+			balb_1=14, 
+			gravi_1=14, 
+			mincer_1=14, 
+			electra_1=14, 
+			zharka_1=14, 
+			buzz_1=14, 
+			balb_2=2, 
+			zharka_2=3, 
+			electra_2=3, 
+			mincer_2=3, 
+			gravi_2=2, 
+			buzz_2=3
+		}
+	},
 	
-	k01_darkscape={1,3,{balb_1=10, gravi_1=10, mincer_1=10, electra_1=10, zharka_1=10, buzz_1=10, rusty_1=10, balb_2=3, zharka_2=6, electra_2=3, mincer_2=3, gravi_2=3, buzz_2=6, rusty_2=6}},
+	k01_darkscape = {
+		1, 3,
+		{
+			balb_1=10, 
+			gravi_1=10, 
+			mincer_1=10, 
+			electra_1=10, 
+			zharka_1=10, 
+			buzz_1=10, 
+			rusty_1=10, 
+			balb_2=3, 
+			zharka_2=6, 
+			electra_2=3, 
+			mincer_2=3, 
+			gravi_2=3, 
+			buzz_2=6, 
+			rusty_2=6
+		}
+	},
 	
-	l05_bar={0,1,{balb_1=19, gravi_1=19, mincer_1=19, electra_1=19, balb_2=6, gravi_2=6, mincer_2=6, electra_2=6}},
+	l05_bar = {
+		0, 1,
+		{
+			balb_1=19, 
+			gravi_1=19, 
+			mincer_1=19, 
+			electra_1=19, 
+			balb_2=6, 
+			gravi_2=6, 
+			mincer_2=6, 
+			electra_2=6
+		}
+	},
 	
-	l06_rostok={0,2,{buzz_1=10, rusty_1=10, balb_1=10, gravi_1=10, mincer_1=10, electra_1=10, balb_2=6, gravi_2=6, mincer_2=7, electra_2=7, buzz_2=7, rusty_2=7}},
+	l06_rostok = {
+		0, 2,
+		{
+			buzz_1=10, 
+			rusty_1=10, 
+			balb_1=10, 
+			gravi_1=10, 
+			mincer_1=10, 
+			electra_1=10, 
+			balb_2=6, 
+			gravi_2=6, 
+			mincer_2=7, 
+			electra_2=7, 
+			buzz_2=7, 
+			rusty_2=7
+		}
+	},
 	
-	l08_yantar={0,2,{balb_1=5, gravi_1=5, mincer_1=5, electra_1=5, zharka_1=5, buzz_1=5, rusty_1=5, buzz_2=9, electra_2=9, mincer_2=9, gravi_2=9, balb_2=9, zharka_2=10, rusty_2=10}},
+	l08_yantar = {
+		0, 2,
+		{
+			balb_1=5, 
+			gravi_1=5, 
+			mincer_1=5, 
+			electra_1=5, 
+			zharka_1=5, 
+			buzz_1=5, 
+			rusty_1=5, 
+			buzz_2=9, 
+			electra_2=9, 
+			mincer_2=9, 
+			gravi_2=9, 
+			balb_2=9, 
+			zharka_2=10, 
+			rusty_2=10
+		}
+	},
 	
-	aver={1,3,{balb_2=14, gravi_2=14, mincer_2=14, electra_2=14, zharka_2=15, buzz_2=15, rusty_2=14}},
+	aver = {
+		1, 3,
+		{
+			balb_2=14, 
+			gravi_2=14, 
+			mincer_2=14, 
+			electra_2=14, 
+			zharka_2=15, 
+			buzz_2=15, 
+			rusty_2=14
+		}
+	},
 	
-	l07_military={0,2,{balb_1=6, gravi_1=6, mincer_1=6, electra_1=6, zharka_1=6, buzz_1=6, rusty_1=6, buzz_2=8, electra_2=8, mincer_2=8, gravi_2=8, balb_2=8, zharka_2=9, rusty_2=9}},
+	l07_military = {
+		0, 2,
+		{
+			balb_1=6, 
+			gravi_1=6, 
+			mincer_1=6, 
+			electra_1=6, 
+			zharka_1=6, 
+			buzz_1=6, 
+			rusty_1=6, 
+			buzz_2=8, 
+			electra_2=8, 
+			mincer_2=8, 
+			gravi_2=8, 
+			balb_2=8, 
+			zharka_2=9, 
+			rusty_2=9
+		}
+	},
 	
-	generators={1,2,{electra_1=25, electra_2=25, electra_3=20, dummy_1=3, dummy_2=3, dummy_3=3, dummy_4=3, dummy_5=3, dummy_6=3, new=12}},
+	generators = {
+		1, 2,
+		{
+			electra_1=25, 
+			electra_2=25, 
+			electra_3=20, 
+			dummy_1=3, 
+			dummy_2=3, 
+			dummy_3=3, 
+			dummy_4=3, 
+			dummy_5=3, 
+			dummy_6=3, 
+			new=12
+		}
+	},
 	
-	red_forest={0,2,{balb_2=9, gravi_2=9, mincer_2=9, electra_2=9, zharka_2=9, buzz_2=9, rusty_2=9, zharka_3=6, electra_3=5, mincer_3=5, gravi_3=5, balb_3=5, buzz_3=5, rusty_3=6}},
+	red_forest = {
+		0, 2,
+		{
+			balb_2=9, 
+			gravi_2=9, 
+			mincer_2=9, 
+			electra_2=9, 
+			zharka_2=9, 
+			buzz_2=9, 
+			rusty_2=9, 
+			zharka_3=6, 
+			electra_3=5, 
+			mincer_3=5, 
+			gravi_3=5, 
+			balb_3=5, 
+			buzz_3=5, 
+			rusty_3=6
+		}
+	},
 	
-	limansk={0,2,{balb_2=9, gravi_2=9, mincer_2=9, electra_2=9, zharka_2=9, buzz_2=9, rusty_2=10, zharka_3=5, electra_3=5, mincer_3=6, gravi_3=5, balb_3=5, buzz_3=5, rusty_3=5}},
+	limansk = {
+		0, 2,
+		{
+			balb_2=9, 
+			gravi_2=9, 
+			mincer_2=9, 
+			electra_2=9, 
+			zharka_2=9, 
+			buzz_2=9, 
+			rusty_2=10, 
+			zharka_3=5, 
+			electra_3=5, 
+			mincer_3=6, 
+			gravi_3=5, 
+			balb_3=5, 
+			buzz_3=5, 
+			rusty_3=5
+		}
+	},
 	
-	deadcity={0,3,{balb_2=7, gravi_2=8, mincer_2=8, electra_2=7, zharka_2=7, buzz_2=7, rusty_2=8, zharka_3=5, electra_3=5, mincer_3=5, gravi_3=6, balb_3=5, buzz_3=5, rusty_3=5, dummy_1=2, dummy_2=2, dummy_3=2, dummy_4=2, dummy_5=2, dummy_6=2}},
+	deadcity = {
+		0, 3,
+		{
+			balb_2=7, 
+			gravi_2=8, 
+			mincer_2=8, 
+			electra_2=7, 
+			zharka_2=7, 
+			buzz_2=7, 
+			rusty_2=8, 
+			zharka_3=5, 
+			electra_3=5, 
+			mincer_3=5, 
+			gravi_3=6, 
+			balb_3=5, 
+			buzz_3=5, 
+			rusty_3=5, 
+			dummy_1=2, 
+			dummy_2=2, 
+			dummy_3=2, 
+			dummy_4=2, 
+			dummy_5=2, 
+			dummy_6=2
+		}
+	},
 	
-	l10_radar={1,3,{balb_2=9, gravi_2=9, mincer_2=9, electra_2=9, zharka_2=9, buzz_2=9, rusty_2=10, zharka_3=3, electra_3=3, mincer_3=3, gravi_3=3, balb_3=4, buzz_3=4, rusty_3=4, dummy_1=2, dummy_2=2, dummy_3=2, dummy_4=2, dummy_5=2, dummy_6=2}},
+	l10_radar = {
+		1, 3,
+		{
+			balb_2=9, 
+			gravi_2=9, 
+			mincer_2=9, 
+			electra_2=9, 
+			zharka_2=9, 
+			buzz_2=9, 
+			rusty_2=10, 
+			zharka_3=3, 
+			electra_3=3, 
+			mincer_3=3, 
+			gravi_3=3, 
+			balb_3=4, 
+			buzz_3=4, 
+			rusty_3=4, 
+			dummy_1=2, 
+			dummy_2=2, 
+			dummy_3=2, 
+			dummy_4=2, 
+			dummy_5=2, 
+			dummy_6=2
+		}
+	},
 	
-	l11_pripyat={1,2,{zharka_3=10, electra_3=10, mincer_3=10, gravi_3=10, balb_3=10, buzz_3=10, rusty_3=10, new=12, dummy_1=3, dummy_2=3, dummy_3=3, dummy_4=3, dummy_5=3, dummy_6=3}},
+	l11_pripyat = {
+		1, 2,
+		{
+			zharka_3=10, 
+			electra_3=10, 
+			mincer_3=10, 
+			gravi_3=10, 
+			balb_3=10, 
+			buzz_3=10, 
+			rusty_3=10, 
+			new=12, 
+			dummy_1=3, 
+			dummy_2=3, 
+			dummy_3=3, 
+			dummy_4=3, 
+			dummy_5=3, 
+			dummy_6=3
+		}
+	},
 	
-	l12_stancia_new={3,5,{new=12, zharka_3=10, electra_3=10, mincer_3=10, gravi_3=10, balb_3=10, buzz_3=10, rusty_3=10, dummy_1=3, dummy_2=3, dummy_3=3, dummy_4=3, dummy_5=3, dummy_6=3}},
+	l12_stancia_new = {
+		3, 5,
+		{
+			new=12, 
+			zharka_3=10, 
+			electra_3=10, 
+			mincer_3=10, 
+			gravi_3=10, 
+			balb_3=10, 
+			buzz_3=10, 
+			rusty_3=10, 
+			dummy_1=3, 
+			dummy_2=3, 
+			dummy_3=3, 
+			dummy_4=3, 
+			dummy_5=3, 
+			dummy_6=3
+		}
+	},
 	
-	--l12_stancia_2_new={3,5,{new=12, zharka_3=10, electra_3=10, mincer_3=10, gravi_3=10, balb_3=10, buzz_3=10, rusty_3=10, dummy_1=3, dummy_2=3, dummy_3=3, dummy_4=3, dummy_5=3, dummy_6=3}}
+	--[[
+	l12_stancia_2_new = {
+		3, 5,
+		{
+			new=12, 
+			zharka_3=10, 
+			electra_3=10, 
+			mincer_3=10, 
+			gravi_3=10, 
+			balb_3=10, 
+			buzz_3=10, 
+			rusty_3=10, 
+			dummy_1=3, 
+			dummy_2=3, 
+			dummy_3=3, 
+			dummy_4=3, 
+			dummy_5=3, 
+			dummy_6=3
+		}
 	}
+	--]]
+}
 
 local on_anoms_per_level={}
 local anti_spawn_zones={}
-local initialized=false
+local initialized = false
 
 function init()
 	db.anoms_list = anoms_list -- make copy
-	local lname=level.name()
-	local sini=ini_file("scripts\\amk\\anoms\\anoms.ltx")
-	if xr_build_id < 6200 then
-		fatal_error(" incompatible xr_build_id "..tostring(xr_build_id))
-	end                                                                  
+	local lname = level.name()
+	local sini  = ini_file("scripts\\amk\\anoms\\anoms.ltx")
+	if xr_build_id < 6200 then fatal_error ( " incompatible xr_build_id ".. tostring ( xr_build_id ) ) end                                                                  
   
-	if sini:section_exist(lname) then
-		wprintf("[~T]. #DBG: loading anomalies for level~C0A %s~C07", lname)  
-		local ini  = sini:object() -- 
-		local sc   =  ini[lname]
-		local result, id, value=nil, nil, nil
-		local count = sini:line_count(lname)
+	if sini:section_exist ( lname ) then
+		wprintf ( "[~T]. #DBG: loading anomalies for level~C0A %s~C07", lname )  
+		local ini   = sini:object() -- 
+		local sc    = ini [ lname ]
+		local result, id, value = nil, nil, nil
+		local count = sini:line_count ( lname )
 		for index = 0, count - 1 do     
-			result, id, value = sc:r_line(index)      
-			if result and amk.trim(id)~="" then        
-				local s = SplitStr(id, ",")
-				local v = vector():set(tonumber(s[1]),tonumber(s[2]),tonumber(s[3]))
-				table.insert (anti_spawn_zones,{v, tonumber(s[4])})
+			result, id, value = sc:r_line ( index )      
+			if result and amk.trim ( id ) ~= "" then        
+				local s = SplitStr( id, "," )
+				local v = vector():set( tonumber ( s [ 1 ] ), tonumber ( s [ 2 ] ), tonumber ( s [ 3 ] ) )
+				table.insert ( anti_spawn_zones, { v, tonumber ( s [ 4 ] ) } )
 			end -- if id 
 		end  -- for
-		wprintf("[~T]. #DBG: parsed~C0D %d~C07 lines", count)
+		wprintf ( "[~T]. #DBG: parsed~C0D %d~C07 lines", count )
 	end
+
 	sini:release() 
-  
 	collect_info()
 	initialized = true 
 end
 
-function get_all_anoms(filter)
-	return registry.sc_objects("zone_*", true, filter or 15)
-end
+function get_all_anoms ( filter ) return registry.sc_objects ( "zone_*", true, filter or 15 ) end
 
-function test_around(pos, radius)
-	local ids = misc.find_around(pos, "physic_destroyable_object", radius)
-	local cnt = #ids
-	local result=false
+function test_around ( pos, radius )
+	local ids    = misc.find_around ( pos, "physic_destroyable_object", radius )
+	local cnt    = #ids
+	local result = false
 	if cnt > 0 then
-		for i=1,cnt do
-			local obj = g_sim:object(ids [i])
-			if (obj ~=nil) then
-				local pk = get_netpk(obj,1)
+		for i = 1, cnt do
+			local obj = g_sim:object ( ids [ i ] )
+			if ( obj ~= nil ) then
+				local pk = get_netpk ( obj, 1 )
 				local data = pk:get()
 				local v = data.visual_name
-				if strpos(v, "box_wood") ~=nil then result=true end
+				if strpos( v, "box_wood" ) ~= nil then result = true end
 			end
 		end
 		return result
 	end
 	return false
- end
+end
 
-
-function check_is_anom(sobj)
-	if sobj==nil then return false end
-	local ci=sobj:clsid()
+function check_is_anom( sobj )
+	if sobj == nil then return false end
+	local ci = sobj:clsid()
 	--ODS("[~T/~B]. #DBG: anoms countes="..tostring(sobj:name()).."   cl: "..ci)
-	if (ci >=CLID_ZONE_BURNING_FUZZ and ci <=CLID_ZONE_AMEBA) then return true
-	else return false end
+	if 
+		( ci >= CLID_ZONE_BURNING_FUZZ and ci <= CLID_ZONE_AMEBA ) or strposx ( sobj:name(), "amk_zone_radioactive_" )
+	then 
+		return true
+	else 
+		return false
+	end
 end
 
 function update_anoms_cache() -- сравнительно медленная функция, сканирует все аномалии в игре
 	anoms_cache = {}
-	wprintf("[~T/~B]. #PERF: update_anoms_cache() #1")
-	local ids = get_all_anoms(15)
-	local objl = registry.convert_ids(ids, server_obj)
-	wprintf("[~T/~B]. #PERF: update_anoms_cache() #2, count =~C0D %d~C07", #ids)
-	for id, sobj in pairs(objl) do 
-		if check_is_anom(sobj) then
-			anoms_cache [id] = sobj
-		end  
+	wprintf ( "[~T/~B]. #PERF: update_anoms_cache() #1" )
+	local ids = get_all_anoms( 15 )
+	local objl = registry.convert_ids( ids, server_obj )
+	wprintf ( "[~T/~B]. #PERF: update_anoms_cache() #2, count =~C0D %d~C07", #ids )
+	for id, sobj in pairs ( objl ) do 
+		if check_is_anom( sobj ) then anoms_cache [ id ] = sobj end  
 	end
-	wprintf("[~T/~B]. #PERF: update_anoms_cache() #3")
+	wprintf ( "[~T/~B]. #PERF: update_anoms_cache() #3" )
 end
 
-function foreach_anom(func, parms, in_level, no_excl)        
+function foreach_anom( func, parms, in_level, no_excl )        
    
 	if anoms_cache_actual ~= bind_stalker.binder_ticks then       
 		update_anoms_cache()                                     
@@ -275,61 +967,65 @@ function foreach_anom(func, parms, in_level, no_excl)
 	end        
   
 	local lname = level.name()
-	local gv_range = const.game_vertices[lname]
+	local gv_range = const.game_vertices[ lname ]
   
-	for id, sobj in pairs(anoms_cache) do
+	for id, sobj in pairs( anoms_cache ) do
 		local gv = sobj.m_game_vertex_id -- проверка по геймвертексам быстрее   
-		if in_level and ( gv < gv_range[1] or gv > gv_range[2] ) then
+		if in_level and ( gv < gv_range [ 1 ] or gv > gv_range [ 2 ] ) then
 		else
 			local map = sobj.level_name
-			if no_excl or not check_exclusion(sobj, map) then func(sobj, parms, map) end
+			if no_excl or not check_exclusion ( sobj, map ) then func ( sobj, parms, map ) end
 		end    
 	end   -- for
 end
 
 
 function collect_info()
-	local parms={lname=level.name(), st_cntr={on=0, off=0}}
-	local here=0
-	on_anoms_per_level={}              
+	local parms = {
+		lname = level.name(),
+		st_cntr = { on  = 0, off = 0 }
+	}
+	local here          = 0
+	on_anoms_per_level  = {}              
 	local late_disabled = 0
   
-	local func = function(sobj, parms, map)
-		local status=get_anomaly_status(sobj)
+	local func = function( sobj, parms, map )
+		local status = get_anomaly_status( sobj )
 		-- amk.add_spot_on_map(sobj.id,'red_location',sobj:name().." "..status)
-		if status=="" or status=="del" then
+		if status == "" or status == "del" then
 			-- wprintf("[~T]. #DBG: removing anomaly~C0F %s~C07 due status =~C0E '%s'~C07", sobj:name(), status)
-			if not anom_disabled[sobj.id] then
-				set_online_anomaly_status(sobj.id, "del")
+			if not anom_disabled [ sobj.id ] then
+				set_online_anomaly_status( sobj.id, "del" )
 				late_disabled = late_disabled + 1
 			end
-			misc.release_obj(sobj)
+			misc.release_obj ( sobj )
 		end
-		if (map == parms.lname) and ((status=="on") or (status=="off")) then
-			if parms.st_cntr[status]==nil then
-				parms.st_cntr[status]=1
+		if ( map == parms.lname ) and ( ( status == "on" ) or ( status == "off" ) ) then
+			if parms.st_cntr [ status ] == nil then
+				parms.st_cntr [ status ] = 1
 			else
-				parms.st_cntr[status]=parms.st_cntr[status] + 1
+				parms.st_cntr [ status ] = parms.st_cntr [ status ] + 1
 			end
-			here=here + 1
+			here = here + 1
 		end
 	end
-	foreach_anom(func, parms)
-	local on_anoms=parms.st_cntr.on
-	local off_anoms=parms.st_cntr.off
+
+	foreach_anom ( func, parms )
+	local on_anoms  = parms.st_cntr.on
+	local off_anoms = parms.st_cntr.off
 	-- wprintf("[~T/~U/~B].~C0B #PERF(amk_anoms.collect_info):~C07 on=%d, off=%d, here=%d, map=%s ", on_anoms, off_anoms, here, parms.lname)
   
-	if on_anoms<5 and off_anoms<5 then
-		generate_anoms("on")
-		generate_anoms("off")
-	elseif on_anoms>5 and off_anoms<5 then
-		generate_anoms("off")
-	elseif on_anoms<5 and off_anoms>5 then
-		generate_anoms("on")
+	if     on_anoms < 5 and off_anoms < 5 then
+		generate_anoms ( "on"  )
+		generate_anoms ( "off" )
+	elseif on_anoms > 5 and off_anoms < 5 then
+		generate_anoms ( "off" )
+	elseif on_anoms < 5 and off_anoms > 5 then
+		generate_anoms ( "on"  )
 	end
 
 	if late_disabled > 0 then
-		schedule.add("syn_mon", "amk_anoms.sync_mon()", 2000) -- sync#1
+		schedule.add( "syn_mon", "amk_anoms.sync_mon()", 2000 ) -- sync#1
 	end
 end
 
@@ -733,11 +1429,23 @@ function after_blow_on()
 	--ODS("[~T/~B]. #DBG: 64K enum 3, ok.")
 end
 
-function check_exclusion(obj,map)
+function check_exclusion( obj, map )
 	local n = obj:name()
-	if strposx(n,"amk_") then return false end
-	if const.underground(map) then return true end
-	return str_in_tab(n, { "_zone_zharka_static", "tutorial", "sak_zone_", "esc_zone_witches", "esc_zone_buzz", "_mincer", "sak_mil_zone_" } )
+	if strposx( n, "amk_" )     then return false end
+	if const.underground( map ) then return true  end
+	return str_in_tab (
+		n, 
+		{ 
+			"_zone_zharka_static", 
+			"tutorial", 
+			"sak_zone_", 
+			"esc_zone_witches", 
+			"esc_zone_buzz", 
+			"_mincer", 
+			"sak_mil_zone_",
+			"zone_radioactive_" 
+		} 
+	)
 end
 
 
@@ -928,7 +1636,6 @@ end
 
 function anom_binder:net_destroy() 
 	remove_anomaly(self.object:id()) 
-  
   	-- added for OGSE  Anomaly Evader ----
 	self.sm:call( "on_anomaly_net_destroy", self.object, self )  
 	-------------------------------------
