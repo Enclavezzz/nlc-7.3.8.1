@@ -48,7 +48,7 @@ stand_drag_0		=	   1,	    0.2,     1,	    0.25,    0.7,    0.7,     1.0,     0.7
 ; IMMUNITIES
 ;===========================================================================
 [cat_immunities]
-burn_immunity 					= 0.3
+burn_immunity 					= 0.0
 strike_immunity 				= 0.05
 shock_immunity 					= 0.2
 wound_immunity 					= 0.6
@@ -56,7 +56,7 @@ radiation_immunity 				= 0.0
 telepatic_immunity 				= 0.0
 chemical_burn_immunity 			= 0.2
 explosion_immunity 				= 0.3
-fire_wound_immunity  			= 0.4
+fire_wound_immunity  			= 0.3
 
 
 [m_cat_e]:monster_base
@@ -67,8 +67,8 @@ $npc			    = on
 Scheduled		    = on
 Human		     	= off
 Health				= 400
-MinSpeed		    = 1.0
-MaxSpeed		    = 5.5
+MinSpeed		    = 1.5
+MaxSpeed		    = 7.0
 going_speed         = 1.0r
 search_speed        = .3r
 visual				= monsters\cat\cat
@@ -125,17 +125,17 @@ SoundThreshold			= 0.02
 eye_fov					= 110
 eye_range				= 50
 
-min_view_distance   	= 0.7
-max_view_distance	 	= 1.0
+min_view_distance   	= 1.2
+max_view_distance	 	= 1.8
 visibility_threshold	= 100.0
-always_visible_distance = 0.4
+always_visible_distance = 5 ;0.4
 time_quant				= 0.001
 decrease_value			= 0.01
 velocity_factor		    = 0.5
-luminocity_factor		= 0.5
+luminocity_factor		= 0.1;0.5
 transparency_threshold	= 0.25
 
-max_hear_dist		 	= 60
+max_hear_dist		 	= 100
 
 
 
@@ -258,14 +258,14 @@ DamagedThreshold		= 0.2
 
 material				= creatures\medium
 
-min_view_distance   		= 0.8
-max_view_distance	 		= 1.0
+min_view_distance   		= 1.2
+max_view_distance	 		= 1.8
 visibility_threshold	 	= 100.0
-always_visible_distance 	= 0.3
+always_visible_distance 	= 5
 time_quant					= 0.001
 decrease_value				= 0.01
 velocity_factor		     	= 0.5
-luminocity_factor			= 1.5
+luminocity_factor			= 0.1
 transparency_threshold		= 0.25
 
 

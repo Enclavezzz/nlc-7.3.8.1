@@ -1,25 +1,32 @@
 ; -------------- конфигурация баланса "Облегченный режим"
 [artefacts]
-time_damage_coef=0.125 ; коэффициент разрушения артефактов (к хиту)   
+time_damage_coef = 0.15 ; коэффициент разрушения артефактов (к хиту) 
+
 [config]
-name=light
+name = light
+
 [devices]
-accum_discharge=0.055  ; разряд % в игровую минуту, на каждый артефакт + ПНВ
+accum_discharge = 0.055  ; разряд % в игровую минуту, на каждый артефакт + ПНВ
+
 [health]
-restore_w_sleep=1.5    ; по отношению к скорости во время бодрствования
-restore_speed=0.000001 ; главный коэффициент самоисцеления (величина регулярного прироста)
+restore_w_sleep = 1.5    ; по отношению к скорости во время бодрствования
+restore_speed = 0.000001 ; главный коэффициент самоисцеления (величина регулярного прироста)
+
 [satiety]
-lost_velocity=0.000004  ; в зоне сытости должно хватать едва-ли на сутки выживания, никак не на неделю
+lost_velocity = 0.000004  ; в зоне сытости должно хватать едва-ли на сутки выживания, никак не на неделю
+
 [matches]
-hit_power=0.1 
+hit_power = 0.25
+
 [monsters]
-tushkano_dist_attack=1.0
-dog_dist_panic=9
-dog_dist_attack=7
-cat_attack_prob=0.1
-starv_dist_attack=20
-boar_radiation_dist=2.5
-psevdodog_divert_prob=0.4
+tushkano_dist_attack = 1.25
+dog_dist_panic = 10
+dog_dist_attack = 8
+cat_attack_prob = 0.1
+starv_dist_attack = 35
+boar_radiation_dist = 2.5
+psevdodog_divert_prob = 0.5
+
 [respawn]
 idle_coef_min=2
 idle_coef_max=2

@@ -5,7 +5,7 @@
 ;---
 stand_attack_0 =	  	0.45,		0.80,		    200,       0.0, 1.0, 0.0,		 -1.0, 1.0, -1.0, 1.0,							  2.5
 stand_attack_1 =	  	0.45,		0.35,		    70,       0.0, 1.0, 0.0,		 -1.0, 1.0, -1.0, 1.0,							  2.5
-jump_attack_1  = 		0.45,		0.75,			100,       0.0, 1.0, 0.0,		 -1.0, 1.0, -1.0, 1.0,							  2.5
+jump_attack_1  = 		0.3,		1.35,			180,       0.0, 1.0, 0.0,		 -1.6, 1.6, -1.6, 1.6,							  2.5
 stand_run_attack_0 =	0.75,		0.40,			80,       0.0, 1.0, 1.0,		 -0.6, 0.6, -0.6, 0.6,							  2.5
 
 [m_chimera_attack_effector]
@@ -62,7 +62,7 @@ Scheduled		     = on
 Human		     	 = off
 Health			     = 1500
 MinSpeed		     = 1.0
-MaxSpeed		     = 1.5
+MaxSpeed		     = 3.5
 going_speed          = 0.7r
 search_speed         = 1.5 r
 visual				 = monsters\chimera\chimera
@@ -82,7 +82,7 @@ class                = SM_CHIMS					; AI class
 script_binding  	= bind_monster.bind
 
 satiety_threshold		= 0.5
-jump_max_height = 3.0
+jump_max_height         = 9.0
 
 
 critical_wound_threshold		= -1
@@ -132,15 +132,15 @@ max_hear_dist		 = 90
 
 
 ; speed factors			linear | angular_real | angular_path | min |  max
-Velocity_Stand			= 0,		1.4,			1.4,		1,		1
-Velocity_RunFwdNormal	= 8,		2.5,			2.5,		0.2,	1	
-Velocity_RunFwdDamaged	= 4.5,  	4.0,			4.0,		0.2,	1
-Velocity_WalkFwdDamaged	= 1.8,		2.0,			2.0,		0.5,	2.0	
-Velocity_WalkFwdNormal	= 2.5,		1.2,			1.2,		0.02,	3.0
-Velocity_Drag			= 1.0,		3.0,			3.0,		1,		1
-Velocity_Steal			= 1.2,		2.0,			2.0,		1,		1
+Velocity_Stand			= 0,		3.5,			1.5,		1,		1
+Velocity_RunFwdNormal	= 11.5,		3.5,			2.0,		0.2,	1	
+Velocity_RunFwdDamaged	= 9.0,  	3.5,			2.0,		0.2,	1
+Velocity_WalkFwdDamaged	= 4.8,		3.0,			2.0,		0.5,	2.0	
+Velocity_WalkFwdNormal	= 5.3,		3.2,			1.2,		0.02,	3.0
+Velocity_Drag			= 2.0,		3.0,			3.0,		1,		1
+Velocity_Steal			= 2.0,		3.0,			2.0,		1,		1
 Velocity_Walk_Upper		= 0.5,		1.2,			1.2,		0.02,	2.0
-Velocity_JumpGround		= 12.0,		0.01,			0.01,		0.4,	1
+Velocity_JumpGround		= 16.0,		3.5,			2.0,		0.4,	1
 Velocity_RunAttack		= 10,		0.01,			0.01,		0.2,	1	
 Velocity_Run_Attack		= 10,		0.01,			0.01,		0.2,	1
 
@@ -150,7 +150,7 @@ Accel_Calm				= 4.0
 Accel_Aggressive		= 12.0
 
 ;attack parameters
-MinAttackDist		= 2.8;1.2	;0.5
+MinAttackDist		= 1.8;1.2	;0.5
 MaxAttackDist		= 4.8;2.7	;3.8
 
 as_min_dist				= 0.9
@@ -192,7 +192,7 @@ satiety_health_v     = 0.0001	;0.03
 satiety_critical     = -1.0		;0.25
 radiation_health_v   = 0.01	;0.006
 morale_v			 = 0.01
-health_hit_part      = 0.4 ;0.45
+health_hit_part      = 0.3 ;0.45
 power_hit_part       = 0.7  ;0.9
 psy_health_v		 = 0.1
 
@@ -263,13 +263,13 @@ transparency_threshold		= 0.25
 
 ; jump parameters
 jump_delay					= 2500;3000
-jump_factor					= 1.5
-jump_ground_trace_range		= 1.0
+jump_factor					= 2.0
+jump_ground_trace_range		= 1.5
 jump_hit_trace_range		= 2.0
 jump_build_line_distance	= 20.0
-jump_min_distance			= 5.0
+jump_min_distance			= 0.1
 jump_max_distance			= 22.0
-jump_max_angle				= 0.5
+jump_max_angle				= 0.55
 
 DamagedThreshold		= 0.3
 
@@ -328,8 +328,8 @@ wound_immunity = 0.1
 radiation_immunity = 0.0
 telepatic_immunity = 0.0
 chemical_burn_immunity = 0.1
-explosion_immunity = 0.3
-fire_wound_immunity  = 0.3
+explosion_immunity = 0.35
+fire_wound_immunity  = 0.35
 
 [chimera_strong]:m_chimera_e
 $spawn               = "monsters\chimera"   ; option for Level Editor
@@ -351,8 +351,8 @@ wound_immunity = 0.1
 radiation_immunity = 0.0
 telepatic_immunity = 0.0
 chemical_burn_immunity = 0.1
-explosion_immunity = 0.25
-fire_wound_immunity  = 0.25
+explosion_immunity = 0.3
+fire_wound_immunity  = 0.3
 
 ;---------------------------------------amk electro------------------
 [electro_chimera]:chimera_strong
