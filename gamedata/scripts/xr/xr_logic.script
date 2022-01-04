@@ -82,52 +82,51 @@ function configure_schemes(npc, ini, ini_filename, stype, section_logic, gulag_n
 	enable_generic_schemes(actual_ini, npc, stype, section_logic)
 
 	-- Инициализация торговли
-	if stype==modules.stype_stalker or npc:clsid()==CLID_TRADER then
-		local npc_group = npc:character_community()
-		local trade_ini
-		if npc:story_id()<10000 then
-			trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_kv.ltx")
-		else
-			if xr_wounded.is_wounded(npc) then
-				trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_wnd.ltx")
-			else
-				if npc_group=="military" then
-					trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_mil.ltx")
-				elseif npc_group=="green" then
-					trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_grn.ltx")
-				elseif npc_group=="freedom" then
-					trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_frd.ltx")
-				elseif npc_group=="bandit" then
-					trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_bnd.ltx")
-				elseif npc_group=="dolg" then
-					trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_dlg.ltx")
-				elseif npc_group=="ecolog" then
-					trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_ecl.ltx")
-				else
-					local lname = level.name()
-					local lok_trade = tostring(lokas[lname])
-					local gg_rank = tostring(rangs[ranks.get_obj_rank_name(db.actor)])
-					local npc_rank = tostring(rangs[ranks.get_obj_rank_name(npc)])
-					trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_"..lok_trade..npc_rank..gg_rank..".ltx")
-				end
-			end
-		end
-		trade_manager.trade_init(npc, trade_ini)
-	end
 
-	st.active_section = nil
-	st.active_scheme = nil
-	if gulag_name then
-		st.gulag_name = gulag_name
-	else
-		st.gulag_name = ""
-	end
-	st.stype = stype
-	st.ini = actual_ini
-	st.ini_filename = actual_ini_filename
-	st.section_logic = section_logic
+    if stype==modules.stype_stalker or npc:clsid()==CLID_TRADER then
+  
+    local difficult=level.get_game_difficulty()
+    local npc_group = npc:character_community()
+    local trade_ini
+    local rank = npc:rank()
+  
+        if	  
+		    npc_group == "green" then
+            trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_grn.ltx")
+        elseif 
+		    npc_group == "freedom" then
+            trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_frd.ltx")
+        elseif 
+		    npc_group == "bandit" then
+            trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_bnd.ltx")
+        elseif 
+		    npc_group == "dolg" then
+            trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_dlg.ltx")
+	    elseif 
+			npc_group == "stalker" and rank > 700 then 
+			trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_stl_masters.ltx")
+	    elseif 
+			npc_group == "ecolog" then
+			trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_wnd.ltx")			 
+	    else		 
+            trade_ini = utils.cfg_get_string(actual_ini, section_logic, "trade", npc, false, "", "misc\\trade_logic\\trade_generic_stl.ltx")	  
+        end			 
+            trade_manager.trade_init(npc, trade_ini)
+    end
 
-	return st.ini
+  st.active_section = nil
+  st.active_scheme = nil
+  if gulag_name then
+    st.gulag_name = gulag_name
+  else
+    st.gulag_name = ""
+  end
+  st.stype = stype
+  st.ini = actual_ini
+  st.ini_filename = actual_ini_filename
+  st.section_logic = section_logic
+
+  return st.ini
 end
 
 -- Вызывается биндером с целью определить первую активную схему
