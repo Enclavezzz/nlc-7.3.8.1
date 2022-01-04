@@ -103,7 +103,7 @@
 <string id="st_mp_no_current_voting"><text>ЗАГРУЗИТЬ</text></string>
 <string id="st_mp_ready"><text>готов</text></string>
 <string id="st_mp_voting_succeed"><text>В ГЛАВНОЕ МЕНЮ</text></string>
-<string id="st_mp_voting_failed"><text>[OPEN] NLC 3.8.1</text></string>
+<string id="st_mp_voting_failed"><text>NLC 7.3.8.1 + addone [alpha version]</text></string>
 <string id="st_change_level_disabled"><text>Переход заблокирован, требуется цифровая подпись профиля. Загрузите player.dat на странице http://darkstalker.ru/sign_profile.php для подписывания.</text></string>
 <string id="a_level_1"><text>Первый уровень</text></string>
 <string id="a_level_2"><text>Второй уровень</text></string>

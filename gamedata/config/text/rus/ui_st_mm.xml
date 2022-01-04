@@ -66,7 +66,7 @@
 <string id="ui_mm_light_distance"><text>Дальность освещения</text></string>
 <string id="ui_mm_load"><text>Загрузить</text></string>
 <string id="ui_mm_load_game"><text>Загрузить игру</text></string>
-<string id="ui_mm_master"><text>Мастер</text></string>
+<string id="ui_mm_master"><text>Очнуться...</text></string>
 <string id="ui_mm_master_volume"><text>Громкость</text></string>
 <string id="ui_mm_mouse_sense"><text>Чувствительность мыши</text></string>
 <string id="ui_mm_multiplayer"><text>-</text></string>
