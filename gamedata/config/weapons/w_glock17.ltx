@@ -10,7 +10,7 @@ cform             		    = skeleton
 class                    	= WP_WALTH
 min_radius               	= 0
 max_radius               	= 40
-description					= enc_weapons1_wpn-glock
+description					= enc_weapons1_wpn-walther
 
 default_to_ruck				= false
 
@@ -27,7 +27,7 @@ ammo_elapsed		 		= 16
 
 f_mode						= 1
 
-ammo_mag_size		 		= 17
+ammo_mag_size		 		= 16
 ammo_class		 			= ammo_9x19_fmj , ammo_9x19_pbp
 
 hand_dependence		 		= 1
@@ -36,35 +36,37 @@ single_handed				= 1
 slot 			 			= 1,2,4
 animation_slot				= 1
 
-inv_name					= wpn-glock17
-inv_name_short				= wpn-glock17
-inv_weight					= 0.62
-icon_group                  = 2
-inv_grid_width     			= 2
-inv_grid_height    			= 2
-inv_grid_x         			= 4
-inv_grid_y         			= 17
+inv_name					= wpn-walther
+inv_name_short				= wpn-walther
+inv_weight					= 0.63
+
+icon_group                  		= 3
+inv_grid_width     = 2
+inv_grid_height    = 2
+inv_grid_x         = 13
+inv_grid_y         = 10
 
 kill_msg_x					= 168
 kill_msg_y					= 178
 kill_msg_width				= 27
 kill_msg_height				= 23
 
-fire_dispersion_base		= 0.26
-control_inertion_factor		= 1.1f
+fire_dispersion_base		= 0.22 
+disp_rate 					= 1.85
 
-cam_relax_speed				= 6
-cam_dispersion          	= 0.30
+
+cam_relax_speed         	= 5.0
+cam_dispersion          	= 1.5
 cam_dispersion_inc			= 0.0
-cam_dispertion_frac			= 1.0
-cam_max_angle				= 30
-cam_max_angle_horz			= 10
-cam_step_angle_horz			= 0.12
+cam_dispertion_frac			= 1.0	;cam_dispersion*cam_dispertion_frac +- cam_dispersion*(1-cam_dispertion_frac)
+cam_max_angle				= 20.0
+cam_max_angle_horz			= 10.0
+cam_step_angle_horz			= 0.7
 
-fire_dispersion_condition_factor = 1.5
-misfire_probability 		= 0.001
-misfire_condition_k			= 0.50
-condition_shot_dec 			= 0.00025
+fire_dispersion_condition_factor = 3
+misfire_probability 		= 0.005
+misfire_condition_k			= 0.05
+condition_shot_dec 			= 0.0002 
 
 direction           	    = 0, 0, 1
 fire_point               	= 0.0, 0.136, 0.133
@@ -89,7 +91,7 @@ hit_type					= fire_wound
 
 fire_distance          		= 45
 bullet_speed		 		= 375	
-rpm                   		= 295
+rpm                   		= 300
 
 use_aim_bullet				= false
 time_to_aim					= 1.0	
@@ -99,7 +101,7 @@ normal                   	= 0, 1, 0
 position                 	= -0.021, -0.095, 0.0
 orientation              	= 0, 0, 0
 
-visual                   	= weaponsv\glock\wpn_glock17
+visual                   	= weapons\walter_99\wpn_p99.ogf
 
 light_color		 			= 0.6,0.5,0.3
 light_range		 			= 3.0
@@ -110,20 +112,27 @@ light_time 		 			= 0.2
 ph_mass			 			= 1
 
 scope_status				= 0
-silencer_status				= 0
+silencer_status				= 2
 grenade_launcher_status		= 0
 
 zoom_enabled				= true
 scope_zoom_factor	    	= 80
 
+silencer_name  				= wpn_addon_sil_9_p
+silencer_x 					= 55
+silencer_y 					= 17	
+
+
 snd_draw					= weapons\pistol_draw
 snd_holster					= weapons\pistol_holster
-snd_shoot					= weapons\glock\glock_shoot
-snd_shoot1					= weapons\glock\glock_shoot1
-snd_empty					= weapons\pm\pm_empty
-snd_reload					= weapons\glock\glock_reload
-snd_close					= weapons\pistol_holster
-snd_silncer_shot			= weapons\glock\glock_shoot
+snd_shoot					= weapons\walther\walther_shoot
+snd_shoot1					= weapons\walther\walther_shoot1 
+snd_shoot2					= weapons\walther\walther_shoot2 
+snd_shoot3					= weapons\walther\walther_shoot3       
+snd_empty					= weapons\walther\walther_empty
+snd_reload					= weapons\gsh18\gsh18_reload
+snd_close					= weapons\walther\walther_close
+snd_silncer_shot			= weapons\walther\walther_shot_sil
 snd_razgruzka				= weapons\razgruzka\ammo_2
 
 silencer_name  				= wpn_addon_sil_9_p
@@ -139,12 +148,12 @@ silencer_light_var_range	= 0.5
 silencer_light_time 		= 0.2
 
 [wpn_glock_hud]
-shell_point					= -0.340000,-0.020000,0.070000
-fire_point					= -0.000000,-0.005000,-0.353000
+shell_point			= -0.340000,-0.020000,0.070000
+fire_point			= -0.000000,-0.005000,-0.353000
 fire_bone                	= wpn_body
-position					= -0.030000,0.000000,-0.014500
-orientation					= 0.000000,0.000000,0.000000
-visual                   	= weaponsv\glock\wpn_glock17_hud.ogf
+position			= -0.030000,0.000000,-0.014500
+orientation			= 0.000000,0.000000,0.000000
+visual                   	= weapons\walter_99\wpn_p99_hud.ogf
 
 anim_holster				= holster
 anim_idle					= idle
@@ -159,11 +168,7 @@ anim_close					= holster_empty
 anim_idle_aim				= idle_aim
 anim_idle_sprint			= idle_sprint
 
-zoom_offset					= -0.120400,0.055100,0.165500
-zoom_rotate_x				= 0.000700
-zoom_rotate_y				= -0.000300
-
+zoom_offset			= -0.119100,0.043200,0.165500
+zoom_rotate_x		= -0.001400
+zoom_rotate_y		= -0.001100
 zoom_hide_crosshair			= true
-
-zoom_rotate_time			= 0.22
-rotate_time					= 0.22
