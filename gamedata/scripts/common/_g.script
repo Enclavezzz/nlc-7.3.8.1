@@ -2137,3 +2137,7 @@ end  -- end FOR DO
   end -- end FOR DO
   
 end -- end proc change_all_af_effects
+
+function get_inv_name( item )
+	return ( game.translate_string( vergas_lib.set_pr_from_config_str( item, "inv_name" ) ) )
+end

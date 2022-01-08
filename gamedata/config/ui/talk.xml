@@ -180,100 +180,156 @@
 		</msg_icon>
 	</iconed_item_5>
 	
-	<ico_item_1_1 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
+	<ico_item_1_1 x="0" y="0" width="600" height="0" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="10" y="60" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
+		<content_text x="20" y="51" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
 		</content_text>
-		<msg_icon x="10" y="0" width="50" height="50" align="r" complex_mode="1">
+		<msg_icon x="60" y="0" width="41" height="41" complex_mode="1" heading="1" stretch="1">
 		</msg_icon>
 	</ico_item_1_1>
-	<ico_item_1_2 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
+	
+	<ico_item_1_2 x="0" y="0" width="600" height="0" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="10" y="110" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
+		<content_text x="20" y="92" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
 		</content_text>
-		<msg_icon x="10" y="0" width="50" height="100" align="r" complex_mode="1">
+		<msg_icon x="60" y="0" width="41" height="82" complex_mode="1" heading="1" stretch="1">
 		</msg_icon>
 	</ico_item_1_2>
-	<ico_item_2_1 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
+	
+	<ico_item_1_3 x="0" y="0" width="600" height="0" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="10" y="60" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
+		<content_text x="20" y="133" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
 		</content_text>
-		<msg_icon x="10" y="0" width="100" height="50" align="r" complex_mode="1">
+		<msg_icon x="60" y="0" width="41" height="123" complex_mode="1" heading="1" stretch="1">
+		</msg_icon>
+	</ico_item_1_3>
+	
+	<ico_item_2_1 x="0" y="0" width="600" height="0" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="20" y="51" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
+		</content_text>
+		<msg_icon x="40" y="0" width="82" height="41" complex_mode="1" heading="1" stretch="1">
 		</msg_icon>
 	</ico_item_2_1>
-	<ico_item_2_2 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
+	
+	<ico_item_2_2 x="0" y="0" width="600" height="0" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="10" y="110" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
+		<content_text x="20" y="92" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
 		</content_text>
-		<msg_icon x="10" y="0" width="100" height="100" align="r" complex_mode="1">
+		<msg_icon x="40" y="0" width="82" height="82" complex_mode="1" heading="1" stretch="1">
 		</msg_icon>
 	</ico_item_2_2>
-	<ico_item_2_3 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
+	
+	<ico_item_2_3 x="0" y="0" width="600" height="0" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="10" y="160" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
+		<content_text x="20" y="133" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
 		</content_text>
-		<msg_icon x="10" y="0" width="100" height="150" align="r" complex_mode="1">
+		<msg_icon x="40" y="0" width="82" height="123" complex_mode="1" heading="1" stretch="1">
 		</msg_icon>
 	</ico_item_2_3>
-	<ico_item_3_1 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
+	
+	<ico_item_2_4 x="0" y="0" width="600" height="0" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="10" y="60" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
+		<content_text x="20" y="174" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
 		</content_text>
-		<msg_icon x="10" y="0" width="150" height="50" align="r" complex_mode="1">
+		<msg_icon x="40" y="0" width="82" height="164" complex_mode="1" heading="1" stretch="1">
+		</msg_icon>
+	</ico_item_2_4>
+	
+	<ico_item_3_1 x="0" y="0" width="600" height="0" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="20" y="51" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
+		</content_text>
+		<msg_icon x="20" y="0" width="123" height="41" complex_mode="1" heading="1" stretch="1">
 		</msg_icon>
 	</ico_item_3_1>
-	<ico_item_3_2 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
+	
+	<ico_item_3_2 x="0" y="0" width="600" height="0" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="10" y="110" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
+		<content_text x="20" y="92" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
 		</content_text>
-		<msg_icon x="10" y="0" width="150" height="100" align="r" complex_mode="1">
+		<msg_icon x="20" y="0" width="123" height="82" complex_mode="1" heading="1" stretch="1">
 		</msg_icon>
 	</ico_item_3_2>
-	<ico_item_4_1 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
+	
+	<ico_item_3_3 x="0" y="0" width="600" height="0" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="10" y="60" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
+		<content_text x="20" y="133" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
 		</content_text>
-		<msg_icon x="10" y="0" width="200" height="50" align="r" complex_mode="1">
+		<msg_icon x="20" y="0" width="123" height="123" complex_mode="1" heading="1" stretch="1">
+		</msg_icon>
+	</ico_item_3_3>
+	
+	<ico_item_4_1 x="0" y="0" width="600" height="0" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="20" y="51" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
+		</content_text>
+		<msg_icon x="20" y="0" width="164" height="41" complex_mode="1" heading="1" stretch="1">
 		</msg_icon>
 	</ico_item_4_1>
-	<ico_item_4_2 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
+	
+	<ico_item_4_2 x="0" y="0" width="600" height="0" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="10" y="110" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
+		<content_text x="20" y="92" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
 		</content_text>
-		<msg_icon x="10" y="0" width="200" height="100" align="r" complex_mode="1">
+		<msg_icon x="20" y="0" width="164" height="82" complex_mode="1" heading="1" stretch="1">
 		</msg_icon>
 	</ico_item_4_2>
-	<ico_item_5_2 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
+	
+	<ico_item_5_1 x="0" y="0" width="600" height="0" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="10" y="110" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
+		<content_text x="20" y="51" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
 		</content_text>
-		<msg_icon x="10" y="0" width="250" height="100" align="r" complex_mode="1">
+		<msg_icon x="20" y="0" width="205" height="41" complex_mode="1" heading="1" stretch="1">
 		</msg_icon>
-	</ico_item_5_2>	
-	<ico_item_6_2 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
+	</ico_item_5_1>
+	
+	<ico_item_5_2 x="0" y="0" width="600" height="0" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="10" y="110" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
+		<content_text x="20" y="92" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
 		</content_text>
-		<msg_icon x="10" y="0" width="300" height="100" align="r" complex_mode="1">
+		<msg_icon x="20" y="0" width="205" height="82" complex_mode="1" heading="1" stretch="1">
+		</msg_icon>
+	</ico_item_5_2>
+	
+	<ico_item_6_1 x="0" y="0" width="600" height="0" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="20" y="51" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
+		</content_text>
+		<msg_icon x="20" y="0" width="246" height="41" complex_mode="1" heading="1" stretch="1">
+		</msg_icon>
+	</ico_item_6_1>
+	
+	<ico_item_6_2 x="0" y="0" width="600" height="0" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="20" y="92" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
+		</content_text>
+		<msg_icon x="20" y="0" width="346" height="82" complex_mode="1" heading="1" stretch="1">
 		</msg_icon>
 	</ico_item_6_2>
-	<ico_item_7_2 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
+	
+	<ico_item_7_2 x="0" y="0" width="600" height="0" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="10" y="110" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
+		<content_text x="20" y="92" width="510" height="0" complex_mode="1">
+			<text font="letterica18" r="216" g="186" b="140"/>
 		</content_text>
-		<msg_icon x="10" y="0" width="350" height="100" align="r" complex_mode="1">
+		<msg_icon x="20" y="0" width="287" height="82" complex_mode="1" heading="1" stretch="1">
 		</msg_icon>
 	</ico_item_7_2>
 	
@@ -360,14 +416,6 @@
 		<msg_icon x="52" y="0" width="140" height="70" align="r" complex_mode="1">
 		</msg_icon>
 	</ico_item_spawn_4_2>
-	<ico_item_spawn_5_2 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
-		<name_caption x="0" y="0" width="0" height="0"/>
-		<content_text x="250" y="0" width="510" height="0" complex_mode="1">
-			<text font="letterica18" r="255" g="255" b="255"/>
-		</content_text>
-		<msg_icon x="35" y="0" width="175" height="70" align="r" complex_mode="1">
-		</msg_icon>
-	</ico_item_spawn_5_2>
 	<ico_item_spawn_6_2 x="0" y="0" width="600" height="0" min_height="100" bottom_footer="5">
 		<name_caption x="0" y="0" width="0" height="0"/>
 		<content_text x="250" y="0" width="510" height="0" complex_mode="1">
@@ -393,4 +441,103 @@
 		</msg_icon>
 	</name_actor_dialog>
 	
+	<ico_item_show_1_1 x="0" y="0" width="600" height="0" min_height="30" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="95" y="3" width="510" height="0" complex_mode="1">
+			<text font="letterica16" r="255" g="255" b="255"/>
+		</content_text>
+		<msg_icon x="40" y="0" width="35" height="28" align="r" complex_mode="1">
+		</msg_icon>
+	</ico_item_show_1_1>
+	
+	<ico_item_show_1_2 x="0" y="0" width="600" height="0" min_height="50" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="95" y="10" width="510" height="0" complex_mode="1">
+			<text font="letterica16" r="255" g="255" b="255"/>
+		</content_text>
+		<msg_icon x="40" y="-5" width="30" height="45" align="r" complex_mode="1">
+		</msg_icon>
+	</ico_item_show_1_2>
+	
+	<ico_item_show_2_1 x="0" y="0" width="600" height="0" min_height="50" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="95" y="10" width="510" height="0" complex_mode="1">
+			<text font="letterica16" r="255" g="255" b="255"/>
+		</content_text>
+		<msg_icon x="20" y="0" width="70" height="35" align="r" complex_mode="1">
+		</msg_icon>
+	</ico_item_show_2_1>
+	
+	<ico_item_show_2_2 x="0" y="0" width="600" height="0" min_height="50" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="95" y="10" width="510" height="0" complex_mode="1">
+			<text font="letterica16" r="255" g="255" b="255"/>
+		</content_text>
+		<msg_icon x="20" y="0" width="70" height="70" align="r" complex_mode="1">
+		</msg_icon>
+	</ico_item_show_2_2>
+	
+	<ico_item_show_2_3 x="0" y="0" width="600" height="0" min_height="50" bottom_footer="5">
+		<name_caption x="250" y="0" width="0" height="0"/>
+		<content_text x="80" y="10" width="510" height="0" complex_mode="1">
+			<text font="letterica16" r="255" g="255" b="255"/>
+		</content_text>
+		<msg_icon x="87" y="0" width="70" height="105" align="r" complex_mode="1">
+		</msg_icon>
+	</ico_item_show_2_3>
+	
+	<ico_item_show_3_1 x="0" y="0" width="600" height="0" min_height="50" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="115" y="15" width="510" height="0" complex_mode="1">
+			<text font="letterica16" r="255" g="255" b="255"/>
+		</content_text>
+		<msg_icon x="20" y="0" width="105" height="35" align="r" complex_mode="1">
+		</msg_icon>
+	</ico_item_show_3_1>
+	
+	<ico_item_show_3_2 x="0" y="0" width="600" height="0" min_height="50" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="130" y="35" width="510" height="0" complex_mode="1">
+			<text font="letterica16" r="255" g="255" b="255"/>
+		</content_text>
+		<msg_icon x="20" y="0" width="105" height="70" align="r" complex_mode="1">
+		</msg_icon>
+	</ico_item_show_3_2>
+	
+	<ico_item_show_4_1 x="0" y="0" width="600" height="0" min_height="50" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="175" y="0" width="510" height="0" complex_mode="1">
+			<text font="letterica16" r="255" g="255" b="255"/>
+		</content_text>
+		<msg_icon x="52" y="0" width="140" height="35" align="r" complex_mode="1">
+		</msg_icon>
+	</ico_item_show_4_1>
+	
+	<ico_item_show_4_2 x="0" y="0" width="600" height="0" min_height="50" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="175" y="0" width="510" height="0" complex_mode="1">
+			<text font="letterica16" r="255" g="255" b="255"/>
+		</content_text>
+		<msg_icon x="52" y="0" width="140" height="70" align="r" complex_mode="1">
+		</msg_icon>
+	</ico_item_show_4_2>
+	
+	<ico_item_show_6_2 x="0" y="0" width="600" height="0" min_height="50" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="250" y="0" width="510" height="0" complex_mode="1">
+			<text font="letterica16" r="255" g="255" b="255"/>
+		</content_text>
+		<msg_icon x="17" y="0" width="210" height="70" align="r" complex_mode="1">
+		</msg_icon>
+	</ico_item_show_6_2>
+	
+	<ico_item_show_7_2 x="0" y="0" width="600" height="0" min_height="50" bottom_footer="5">
+		<name_caption x="0" y="0" width="0" height="0"/>
+		<content_text x="250" y="0" width="510" height="0" complex_mode="1">
+			<text font="letterica16" r="255" g="255" b="255"/>
+		</content_text>
+		<msg_icon x="0" y="0" width="245" height="70" align="r" complex_mode="1">
+		</msg_icon>
+	</ico_item_show_7_2>	
+		
 </window>

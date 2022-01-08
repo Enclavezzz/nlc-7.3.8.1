@@ -6266,8 +6266,23 @@ end
 function psevdowounded_help()
 	send_tip("Помогите кто-нибудь, бандюки напали! Я на Свалке, у развалин, за долговским блокпостом...","Добавлена метка на сигнал 'SOS'",0,20,"stalker","sak","red")
 end
-function get_inv_name(section)
-  return system_ini():r_string(section,"inv_name")
+-----------------------------------------------------------------------------
+function get_ui_icon_equipment_name( item )
+	local icon_group = vergas_lib.set_pr_from_config( item, "icon_group" )	
+   if icon_group > 0 then
+	   return string.format( "ui\\ui_icon_equipment_%d", icon_group )
+   end
+   return "ui\\ui_icon_equipment"
+end
+
+function get_talk_item_icon( item )
+   local icon_group = sak.get_ui_icon_equipment_name( item )
+   local x  = vergas_lib.set_pr_from_config( item, "inv_grid_x"      ) * 50
+   local y  = vergas_lib.set_pr_from_config( item, "inv_grid_y"      ) * 50
+   local dx = vergas_lib.set_pr_from_config( item, "inv_grid_width"  ) * 50
+   local dy = vergas_lib.set_pr_from_config( item, "inv_grid_height" ) * 50	
+   local iconed_item = "ico_item_" .. dx / 50 .. "_" .. dy / 50	
+   return icon_group, x, y, dx, dy, iconed_item	
 end
 
 function relocate_item(actor, type, item, amount, is_ammo_count)
@@ -6279,22 +6294,29 @@ function relocate_item(actor, type, item, amount, is_ammo_count)
 		amount = amount * vergas_lib.get_box_size(item) 
 	end
   
-	local icon = "ui_iconsTotal_found_thing"
-	local msg  = "%c[255,1,255,1]"..game.translate_string("general_in_item")
-	if type=="out" then    
-		icon = "ui_iconsTotal_lost_thing"         
-		msg  = "%c[255,255,1,1]"..game.translate_string("general_out_item")
-	end  
-	local task_texture, task_rect=get_texture_info(icon)    
-    
-	local news_text = msg.."\\n".."%c[default]"..game.translate_string(get_inv_name(item)).." - "..amount.." шт."
-	if actor:is_talking() then
-		actor:give_talk_message(news_text, task_texture, task_rect,"iconed_answer_item")
-		else
-		actor:give_game_news(news_text, task_texture, task_rect, 0, 3000)
-	end
+	local item_name = get_inv_name( item ) 	
+	local icon_group, x, y, dx, dy, iconed_item = sak.get_talk_item_icon( item )
+	local tab = "\\n"
 
+	if actor:is_talking() then tab = " " end
+
+	local colour, whom, texture
+
+	if type == "in"  then colour = "%c[ 255, 105, 239, 146 ]" whom = "general_in_item" 	texture = "ui_iconsTotal_found_thing" end
+	if type == "out" then colour = "%c[ 255, 255, 085, 085 ]" whom = "general_out_item" texture = "ui_iconsTotal_lost_thing"  end
+	
+	local news_text = colour .. game.translate_string( whom ) .. tab .. "%c[default]" .. item_name .. " - " .. amount .. " шт."	
+	local task_texture, task_rect = get_texture_info( texture )
+    
+	if 
+		actor:is_talking() 
+	then 	
+		actor:give_talk_message( news_text, icon_group, Frect():set( x, y, dx, dy ), iconed_item )	
+	else
+		actor:give_game_news( news_text, task_texture, task_rect, 0, 2000 )		
+	end	
 end
+-----------------------------------------------------------------------------
 
 function send_treasure( name )
     local level_name = {}
