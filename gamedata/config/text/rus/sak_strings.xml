@@ -295,7 +295,7 @@
 <string id="artmod_862_dialog_0"><text>Был я в переходе под железкой, чуть кони не двинул.</text></string>
 <string id="artmod_862_dialog_1"><text>Да? Я знаю, что там нужна смекалка. Нахрапом переть - можно и поджариться. А что с нашим делом?</text></string>
 <string id="artmod_862_dialog_2"><text>Нашёл я документ, этот?</text></string>
-<string id="artmod_862_dialog_3"><text>Да-да, он самый. Держи автомат, старенький правда, зато почти не заедает. Ещё пистолетик возьми, с глушителем. Иногда лучше по тихому... какого монстра завалить. А то, на предсмертный визг, вся округа сбежиться.\nЕсли патроны нужны будут, с майором Кузнецовым поговори, когда он в хорошем настроении, может помочь.\nДа, кстати, тут Сидорович для тебя дело нашёл. Забеги к нему. Говорит, срочно.</text></string>
+<string id="artmod_862_dialog_3"><text>Да-да, он самый. Держи автомат, старенький правда, зато почти не заедает.\nЕсли патроны нужны будут, с майором Кузнецовым поговори, когда он в хорошем настроении, может помочь.\nДа, кстати, тут Сидорович для тебя дело нашёл. Забеги к нему. Говорит, срочно.</text></string>
 
 <string id="artmod_863_dialog_0"><text>Волк, извини... Но...</text></string>
 <string id="artmod_863_dialog_1"><text>Что? Ну, говори, что кота за хобот тянешь?</text></string>
@@ -845,7 +845,7 @@
 <string id="artmod_642_dialog_52"><text>Забирай свой артефакт и медицины чуток.</text></string>
 <string id="tex_yan_kruglov_art"><text>\nПомощник Сахарова хочет подзаработать. Передать уникальный артефакт Сидоровичу и вернуться обратно с оплатой</text></string>
 
-<!-------------------- квест Сахарова на поиск документов в Х-18 -->
+<!-- квест Сахарова на поиск документов в Х-18 -->
 <string id="artmod_621_dialog_0"><text>У вас дело какое-то есть?</text></string>
 <string id="artmod_621_dialog_1"><text>Да-да... Как я понимаю, вам удалось побывать в одной из лабораторий, в которой занимались довольно любопытными исследованиями касающихся подпространственной транспортировкой?\nЭ-э-э...\nШифр лаборатории "Х-18".\nНе могли бы вы попробовать поискать там документы, которые могли бы представлять для нашего направления интерес? Судя по отрывочным сведениям, которые нам приносят сталкеры, не вывезено довольно много документов. Мы могли бы весьма щедро наградить того, кто сумеет их найти. Только нам нужны все документы из этой лаборатории, тогда наша награда будет максимальной...</text></string>
 <string id="artmod_621_dialog_21"><text>Хм. Попробую, но ничего не обещаю...</text></string>
@@ -1259,7 +1259,7 @@
 <string id="artmod_12_made_dialog_22"><text>Нет, пока нету. Я сейчас, мигом...</text></string>
 <string id="artmod_12_made_dialog_3"><text>Вот и "Грави" - с пылу, с жару...</text></string>
 
-<!---------------------------Шустрый----cristall_flower_new-------------------->
+<!-- Шустрый cristall_flower_new -->
 <string id="artmod_13_make_dialog_0"><text>Шустрый, так "Каменный цветок" сваришь?</text></string>
 <string id="artmod_13_make_dialog_11"><text>"Каменный цветок"?.. Сварю, конечно. Ингредиенты принёс?</text></string>
 <string id="artmod_13_make_dialog_12"><text>Куда тебе столько артов? Я больше в "Карусель" не полезу. Прошлый раз чудом успел выскочить, хватит.</text></string>
@@ -1276,7 +1276,7 @@
 <string id="artmod_13_made_dialog_4"><text>Как обещал. Ты мне помог - я тебе. Забирай.</text></string>
 <string id="artmod_13_made_dialog_5"><text>На севере, смотри, будь аккуратней - жизнь, она у нас, браток, одна всего!</text></string>
 
-<!---------------------------Кузнецов----rusty_kristall-------------------->
+<!-- Кузнецов rusty_kristall -->
 <string id="artmod_14_make_dialog_0"> 
 	<text>Петруха, я рецепт "Кристальной колючки" знаю, может сварим?</text></string>
 <string id="artmod_14_make_dialog_11"><text>Можно попробовать, а ингредиенты какие? Всё у тебя есть?</text></string>
@@ -1294,7 +1294,7 @@
 <string id="artmod_14_made_dialog_22"><text>Подожди, я артефактик найду - принесу.</text></string>
 <string id="artmod_14_made_dialog_3"><text>Вот это дело! Вот и "Колючка кристальная".</text></string>
 
-<!---------------------------Документ в тоннеле----electra_flash-------------------->
+<!-- Документ в тоннеле electra_flash -->
 <string id="artmod_15_make_dialog_0"><text>Волк, я "Вспышку" по рецепту не могу сварить, помоги.</text></string>
 <string id="artmod_15_make_dialog_11"><text>Не получается? Давай попробуем... У тебя все части рецепта есть?</text></string>
 <string id="artmod_15_make_dialog_12"><text>Я что? Электровеник? Ещё с другим рецептом не разобрался...</text></string>
@@ -1311,7 +1311,7 @@
 <string id="artmod_15_made_dialog_22"><text>Я принесу, подожди.</text></string>
 <string id="artmod_15_made_dialog_3"><text>Так, сойдёт... Держи свою "Вспышку".</text></string>
 
-<!---------------------------Лис----af_fireball-------------------->
+<!-- Лис af_fireball -->
 <string id="artmod_16_make_dialog_0"> 
 	<text>Помоги по твоему рецепту "Огненный шар" получить.</text></string>
 <string id="artmod_16_make_dialog_11"><text>Плоховато мне... Ну ладно, попробую. Там нужны голова тушкана, копыто кабана, "Колючка", "Кровь камня".</text></string>
@@ -1329,7 +1329,7 @@
 <string id="artmod_16_made_dialog_22"><text>Подержи у себя пока, я тебе артефактик принесу - тогда и заберу.</text></string>
 <string id="artmod_16_made_dialog_3"><text>А, ну ладно... Бери этот "Шар".</text></string>
 
-<!---------------------------Юрик----af_electra_sparkler-------------------->
+<!-- Юрик af_electra_sparkler -->
 <string id="artmod_21_make_dialog_0"> 
 	<text>Юрик, я тебе помог - теперь твоя очередь. "Бенгальский огонь" свари.</text></string>
 <string id="artmod_21_make_dialog_11"><text>По моему рецепту? А "Каплю", голову тушкана, копыто кабана и пёсий хвост ты раздобыл?</text></string>
@@ -1347,7 +1347,7 @@
 <string id="artmod_21_made_dialog_22"><text>Нету у меня для тебя ничего.</text></string>
 <string id="artmod_21_made_dialog_3"><text>Уважаю... Вот тебе "Бенгальский огонь".</text></string>
 
-<!---------------------------Бес----af_ameba_slime-------------------->
+<!-- Бес af_ameba_slime -->
 <string id="artmod_22_make_dialog_0"> 
 	<text>Бес, помоги мне "Колючку" приготовить.</text></string>
 <string id="artmod_22_make_dialog_11"><text>Легко! Давай "Медузу", копыто кабана, руку зомби и хвост собачий...</text></string>
@@ -1365,7 +1365,7 @@
 <string id="artmod_22_made_dialog_22"><text>Я артефакт принесу.</text></string>
 <string id="artmod_22_made_dialog_3"><text>Вот тебе твоя "Колючка".</text></string>
 
-<!---------------------------ПДА на свалке----af_drops-------------------->
+<!-- ПДА на свалке af_drops -->
 <string id="artmod_23_make_dialog_0"> 
 	<text>Серый, помоги сделать "Каплю", знаю я рецептик.</text></string>
 <string id="artmod_23_make_dialog_11"><text>Интересно, а что там нужно? У тебя всё есть?</text></string>
@@ -1383,7 +1383,7 @@
 <string id="artmod_23_made_dialog_22"><text>Извини, нету у меня пока артефакта лишнего.</text></string>
 <string id="artmod_23_made_dialog_3"><text>Вот и хорошо, вот твоя "Капелька".</text></string>
 
-<!---------------------------Дело на агропроме----af_rusty_thorn-------------------->
+<!-- Дело на агропроме af_rusty_thorn -->
 <string id="artmod_24_make_dialog_0"> 
 	<text>Рыжий, друг. Ты же опытный сталкер? Помоги "Колючку" сварить.</text></string>
 <string id="artmod_24_make_dialog_11"><text>Имеешь рецепт? Ладно, помогу. Давай все ингредиенты...</text></string>
@@ -1401,7 +1401,7 @@
 <string id="artmod_24_made_dialog_22"><text>Подгоню, скоро...</text></string>
 <string id="artmod_24_made_dialog_3"><text>Благодарствую. Бери "Колючку"...</text></string>
 
-<!---------------------------Крот----af_ameba_slime-------------------->
+<!-- Кротa f_ameba_slime -->
 <string id="artmod_25_make_dialog_0"> 
 	<text>Друг. Помоги мне "Слизь" сварить.</text></string>
 <string id="artmod_25_make_dialog_11"><text>Не получается? У меня тоже не сразу получилось. Давай все ингредиенты...</text></string>
@@ -1419,7 +1419,7 @@
 <string id="artmod_25_made_dialog_22"><text>Извини, нету пока.</text></string>
 <string id="artmod_25_made_dialog_3"><text>Ну извини. Забирай "Слизь".</text></string>
 
-<!---------------------------Серега Лохматый----af_cristal_flower-------------------->
+<!-- Серега Лохматый af_cristal_flower -->
 <string id="artmod_26_make_dialog_0"> 
 	<text>Мне попался рецепт на варку "Каменного цветка", может, сварим?</text></string>
 <string id="artmod_26_make_dialog_11"><text>"Каменный цветок"? Что нужно?</text></string>
@@ -1437,7 +1437,7 @@
 <string id="artmod_26_made_dialog_22"><text>Нет, пока нету...</text></string>
 <string id="artmod_26_made_dialog_3"><text>Спасибо. А вот и твой заказной "Цветок каменный"...</text></string>
 
-<!---------------------------Прапор----new_artmod_ameba_slug_mosquito_bald-------------------->
+<!-- Прапор new_artmod_ameba_slug_mosquito_bald -->
 <!--<string id="tex_prapor_courier"><text>Прапор просит отнести Сидору - артефакт, Пахому - копыта кабана и Игнату - собачьи хвосты. В награду обещал помочь сварить артефакт "Каменный цветок", весь в "зелени"</text></string>-->
 
 <string id="artmod_31_make_dialog_0"><text>Помоги сварить "Слизняка" по твоему рецепту, только чтобы весь в "зелени" был.</text></string>
@@ -1472,7 +1472,7 @@
 <string id="artmod_31_made_dialog_3"><text>У меня сейчас со здоровьем неважно, оклемаюсь чуток, может потом... Забирай.</text></string>
 <string id="artmod_31_made_dialog_4"><text>Потом, так потом.</text></string>
 
-<!---------------------------Прапор----new_af_electra_flash-------------------->
+<!-- Прапор new_af_electra_flash -->
 <string id="artmod_32_make_dialog_0"> 
 	<text>А что насчёт "Вспышки"? Сможешь выварить, чтобы в "зелени" была?.</text></string>
 <string id="artmod_32_make_dialog_11"><text>Ты, безрукий, точно всё записал? Ну-ка, что там у тебя?</text></string>
@@ -1490,7 +1490,7 @@
 <string id="artmod_32_made_dialog_22"><text>Я артефакт ещё не принёс...</text></string>
 <string id="artmod_32_made_dialog_3"><text>Спасибо. Бери давай "Вспышку"...</text></string>
 
-<!---------------------------Дело на кордоне блок пост----af_rusty_kristall-------------------->
+<!-- Дело на кордоне блок пост af_rusty_kristall -->
 <string id="artmod_33_make_dialog_0"><text>Слушай, Толик. Помоги мне артефакт сварить.</text></string>
 <string id="artmod_33_make_dialog_11"><text>А-а-а! Это "Ломоть мяса"? Ладно, помогу. Давай все ингредиенты...</text></string>
 <string id="artmod_33_make_dialog_12"><text>Подожди ты! Я же ещё тот, который ты просил, не сварил.</text></string>
@@ -1510,7 +1510,8 @@
 
 <!--Отсюда моё-->
 
-<!---------------------------ПДА Волкодава----af_fireball-------------------->
+<!-- ПДА Волкодава af_fireball -->
+
 <string id="artmod_34_make_dialog_0"> 
 	<text>Ты "Огненный шар" можешь сварить?</text></string>
 <string id="artmod_34_make_dialog_11"><text>А ты сам не в состоянии? Давай сварю, не за просто так, конечно.</text></string>
@@ -1528,7 +1529,8 @@
 <string id="artmod_34_made_dialog_22"><text>Пока не нашёл.</text></string>
 <string id="artmod_34_made_dialog_3"><text>Держи свой шарик.</text></string>
 
-<!---------------------------Петренко---af_gravi-------------------->
+<!-- Петренко af_gravi -->
+
 <string id="artmod_35_make_dialog_0"><text>Я знаю, ты варить умеешь. В смысле артефакт нужно сварить, "Грави".</text></string>
 <string id="artmod_35_make_dialog_11"><text>Я за свою жизнь столько каши сварил, что тебе не съесть. И "Грави" могу сварить.</text></string>
 <string id="artmod_35_make_dialog_12"><text>Как-нибудь попозже! Не до того мне сейчас.</text></string>
@@ -1545,7 +1547,8 @@
 <string id="artmod_35_made_dialog_22"><text>Пока нету, но будет.</text></string>
 <string id="artmod_35_made_dialog_3"><text>Вот он гравик твой. Заходи ещё, если что.</text></string>
 
-<!---------------------------ПДА на Радаре---af_ameba_mica-------------------->
+<!-- ПДА на Радаре af_ameba_mica -->
+
 <string id="artmod_36_make_dialog_0"> 
 	<text>Слушай, ты ведь варкой артефактов занимался... Свари мне "Слюду".</text></string>
 <string id="artmod_36_make_dialog_11"><text>Давай попробую, в принципе, не сложно...</text></string>
@@ -1563,7 +1566,8 @@
 <string id="artmod_36_made_dialog_22"><text>Артефакт? Так бы сразу и сказал, пойду поищу.</text></string>
 <string id="artmod_36_made_dialog_3"><text>Вот и отлично. Ты мне - я тебе. Держи.</text></string>
 
-<!---------------------------Шинкарь---af_cristall-------------------->
+<!-- Шинкарь af_cristall -->
+
 <string id="artmod_41_make_dialog_0"> 
 	<text>Шинкарь, у тебя время свободное есть? Сварил бы мне "Кристалл", очень нужен.</text></string>
 <string id="artmod_41_make_dialog_11"><text>А ты такой занятой, что самому не сварить? Ладно уж, сварю, раз тебе некогда.</text></string>
@@ -1581,7 +1585,8 @@
 <string id="artmod_41_made_dialog_22"><text>Ничего не принёс. Не нашёл пока.</text></string>
 <string id="artmod_41_made_dialog_3"><text>Вот и "Кристалл". Красавец! Прямо как алмаз.</text></string>
 
-<!---------------------------Пуля Бесу патроны---af_night_star-------------------->
+<!-- Пуля Бесу патроны af_night_star -->
+
 <string id="artmod_42_make_dialog_0"> 
 	<text>Как бы мне "Ночную звезду" сварить? Рецепт есть, а руки не слушаются, не получается.</text></string>
 <string id="artmod_42_make_dialog_11"><text>Как говорят: "Та же мучка, да не те ручки". Давай, что нужно для "Звезды", испеку я тебе твой пирожок.</text></string>
@@ -1599,7 +1604,8 @@
 <string id="artmod_42_made_dialog_22"><text>Э... забыл. Ты подожди, я быстро сбегаю и принесу.</text></string>
 <string id="artmod_42_made_dialog_3"><text>Вот твоя звёздочка. Учись, пока я жив.</text></string>
 
-<!---------------------------Шинкарь за патроны---af_electra_moonlight-------------------->
+<!-- Шинкарь за патроны af_electra_moonlight -->
+
 <string id="artmod_43_make_dialog_0"> 
 	<text>Как у тебя сейчас со временем? Возьмёшься артефакт сварить?</text></string>
 <string id="artmod_43_make_dialog_11"><text>Ты как всегда весь в заботах, присесть некогда. Давай уж, сварю, что с тобой сделаешь.</text></string>
@@ -1617,7 +1623,8 @@
 <string id="artmod_43_made_dialog_22"><text>А предоставить-то пока и нечего. Надо ещё поискать.</text></string>
 <string id="artmod_43_made_dialog_3"><text>Молодец. Вот тебе твой "Лунный свет". Заходи ещё, если времени нет самому варить.</text></string>
 
-<!---------------------------Книга Павлика---af_cristall-------------------->
+<!-- Книга Павлика af_cristall -->
+
 <string id="artmod_44_make_dialog_0"> 
 	<text>Нужно мне "Кристалл" сварить. Поможешь?</text></string>
 <string id="artmod_44_make_dialog_11"><text>Нужно ему... Ну, давай сварю, раз нужно, не бесплатно, разумеется.</text></string>
@@ -1635,7 +1642,8 @@
 <string id="artmod_44_made_dialog_22"><text>Я помню, не переживай. Скоро принесу.</text></string>
 <string id="artmod_44_made_dialog_3"><text>Конечно, можно было бы и больше за варку "Кристалла" взять... Ну да ладно, в следующий раз больше с тебя возьму.</text></string>
 
-<!---------------------------Шинкарь за план---af_night_star-------------------->
+<!-- Шинкарь за план af_night_star -->
+
 <string id="artmod_45_make_dialog_0"> 
 	<text>Свари мне "Ночную звезду", а то ну совсем времени нет. Дел по горло.</text></string>
 <string id="artmod_45_make_dialog_11"><text>Наш Фигаро то здесь, то там. И на варку времени нет. Давай сварю, а ты приготовь артефакт какой-нибудь взамен.</text></string>
@@ -1653,7 +1661,8 @@
 <string id="artmod_45_made_dialog_22"><text>А что надо было принести? Ах ты... забыл! Подожди чуток.</text></string>
 <string id="artmod_45_made_dialog_3"><text>Забирай "Звезду", Фигаро... Можешь дальше по делам бегать туда-сюда.</text></string>
 
-<!---------------------------Любер за ПДА---af_soul-------------------->
+<!-- Любер за ПДА af_soul -->
+
 <string id="artmod_46_make_dialog_0"> 
 	<text>Ты ведь знаешь, как варить "Душу"? Сваргань мне... надо позарез.</text></string>
 <string id="artmod_46_make_dialog_11"><text>Это можно, повозиться, конечно, придётся, но возьмусь.</text></string>
@@ -1671,7 +1680,8 @@
 <string id="artmod_46_made_dialog_22"><text>Эх, я же тебе артефакт взамен обещал. Пойду поищу.</text></string>
 <string id="artmod_46_made_dialog_3"><text>Продаю "Душу" за деньги. Шутка. Держи.</text></string>
 
-<!---------------------------Иванцов за РГ-6---af_rusty_sea-urchin-------------------->
+<!-- Иванцов за РГ-6 af_rusty_sea-urchin -->
+
 <string id="artmod_51_make_dialog_0"> 
 	<text>Что-то я никак не разберусь, как "Морского ежа" сделать. Помоги.</text></string>
 <string id="artmod_51_make_dialog_11"><text>Да чего там разбираться - берёшь и делаешь. Делов-то, рецепт же есть! Ну, давай сделаю тебе, раз сам не можешь.</text></string>
@@ -1689,7 +1699,8 @@
 <string id="artmod_51_made_dialog_22"><text>У меня пока нет ничего. Найду, принесу.</text></string>
 <string id="artmod_51_made_dialog_3"><text>Не густо за ежа-то... Ну да ладно уж, ещё ведь обратишься.</text></string>
 
-<!---------------------------Ивар за ремящик---af_soul-------------------->
+<!-- Ивар за ремящик af_soul -->
+
 <string id="artmod_52_make_dialog_0"> 
 	<text>Ивар, помоги мне с "Душой". Самому никак.</text></string>
 <string id="artmod_52_make_dialog_11"><text>Чего? А, ты про артефакт. Я уж было хотел тебя к Диодору отправить. Давай всё, что нужно, помогу.</text></string>
@@ -1707,7 +1718,8 @@
 <string id="artmod_52_made_dialog_22"><text>Пока ничего не принёс, но ты подожди, я скоро.</text></string>
 <string id="artmod_52_made_dialog_3"><text>Держи свеженькую "Душу", чиста как у младенца.</text></string>
 
-<!---------------------------Информатор---af_ameba_mica-------------------->
+<!-- Информатор af_ameba_mica -->
+
 <string id="artmod_53_make_dialog_0"> 
 	<text>Интересную ты информацию предлагаешь. А можно тебя попросить сварить артефакт - "Слюду", например?</text></string>
 <string id="artmod_53_make_dialog_11"><text>"Слюду"? Вообще-то, я этим редко занимаюсь. Ну... давай за другой артефакт тебе сварю.</text></string>
@@ -1725,7 +1737,8 @@
 <string id="artmod_53_made_dialog_22"><text>А наоборот никак? Ладно, сейчас принесу что-нибудь.</text></string>
 <string id="artmod_53_made_dialog_3"><text>Держи "Слюду". Свободен.</text></string>
 
-<!---------------------------Круглов за приборчик---af_gold_fish-------------------->
+<!-- Круглов за приборчик af_gold_fish -->
+
 <string id="artmod_54_make_dialog_0"> 
 	<text>Я насчёт того рецептика... Не поможешь по нему "Золотую рыбку" сделать?</text></string>
 <string id="artmod_54_make_dialog_11"><text>Я думал, ты уже сам разобрался, что к чему. Давай уж, сделаю.</text></string>
@@ -1743,7 +1756,8 @@
 <string id="artmod_54_made_dialog_22"><text>Нет, не принёс, вылетело из головы. Погоди, я скоро.</text></string>
 <string id="artmod_54_made_dialog_3"><text>Хороший обмен. Вот тебе "Золотая рыбка", пользуйся.</text></string>
 
-<!---------------------------Петренко за вспышку---af_electra_moonlight-------------------->
+<!-- Петренко за вспышку af_electra_moonlight -->
+
 <string id="artmod_55_make_dialog_0"> 
 	<text>Здравия желаю. Помощь требуется в варке "Лунного света". Поможешь?</text></string>
 <string id="artmod_55_make_dialog_11"><text>Дожили. Рядовой просит старшего по званию что-то сварить. Ладно, не переживай, боец, сварю...</text></string>
@@ -1761,7 +1775,8 @@
 <string id="artmod_55_made_dialog_22"><text>Не принёс, думал, потом занесу. Ну, раз надо сейчас, то я мигом.</text></string>
 <string id="artmod_55_made_dialog_3"><text>Держи, боец, "Лунный свет". И что вы без меня делать будете...</text></string>
 
-<!---------------------------Ивар за рыбку---af_gold_fish-------------------->
+<!-- Ивар за рыбку af_gold_fish -->
+
 <string id="artmod_56_make_dialog_0"> 
 	<text>Ивар, нравится мне, как ты варишь артефакты разные. Свари для меня "Золотую рыбку".</text></string>
 <string id="artmod_56_make_dialog_11"><text>Варю я на совесть. Моя варка - гарантия качества. Могу и тебе сварить.</text></string>
@@ -1779,7 +1794,8 @@
 <string id="artmod_56_made_dialog_22"><text>Эх... Нету с собой. Принесу скоро.</text></string>
 <string id="artmod_56_made_dialog_3"><text>Знатная вышла рыбёшка, как для себя варил. Забирай.</text></string>
 
-<!---------------------------Информатор---af_dummy_dummy-------------------->
+<!-- Информатор af_dummy_dummy -->
+
 <string id="artmod_61_make_dialog_0"> 
 	<text>Я к тебе по делу. Мне не информация нужна, а помощь. Свари для меня "Пустышку".</text></string>
 <string id="artmod_61_make_dialog_11"><text>Да не мой это профиль... Ну давай уж, не за просто так, сам понимаешь.</text></string>
@@ -1797,7 +1813,8 @@
 <string id="artmod_61_made_dialog_22"><text>Скоро будет тебе оплата. Погоди немного.</text></string>
 <string id="artmod_61_made_dialog_3"><text>Мог бы и получше что-нибудь принести... Ладно, бери свою "Пустышку".</text></string>
 
-<!---------------------------Сахаров за книги---af_dummy_pellicle-------------------->
+<!-- Сахаров за книги af_dummy_pellicle -->
+
 <string id="artmod_62_make_dialog_0"> 
 	<text>Профессор, помогите мне "Плёнку" изготовить. У меня всё, что нужно есть.</text></string>
 <string id="artmod_62_make_dialog_11"><text>Всё есть? Так в чём затруднение, готовится не сложно. Давайте ваши ингредиенты, я вам сделаю.</text></string>
@@ -1815,7 +1832,8 @@
 <string id="artmod_62_made_dialog_22"><text>Ой, хорошо, что напомнили... Мне и самому неудобно. Сейчас принесу.</text></string>
 <string id="artmod_62_made_dialog_3"><text>Приятно иметь с вами дело. Получите "Плёнку".</text></string>
 
-<!---------------------------Ивар за сейф---af_dummy_glassbeads-------------------->
+<!-- Ивар за сейф af_dummy_glassbeads -->
+
 <string id="artmod_63_make_dialog_0"> 
 	<text>Ивар, нравится мне твой продукт варки, свари мне "Мамины бусы".</text></string>
 <string id="artmod_63_make_dialog_11"><text>Ты мне льстишь. Давай уж, сварю, неси всё, что нужно.</text></string>
@@ -1833,7 +1851,8 @@
 <string id="artmod_63_made_dialog_22"><text>Уже бегу, скоро будет.</text></string>
 <string id="artmod_63_made_dialog_3"><text>А вот и "Мамины бусы". Красота! Почти ювелирная работа.</text></string>
 
-<!---------------------------Круглов за артефакт---af_dummy_kolobok-------------------->
+<!-- Круглов за артефакт af_dummy_kolobok -->
+
 <string id="artmod_64_make_dialog_0"> 
 	<text>На заказ варишь? "Колобок" нужен, свари мне.</text></string>
 <string id="artmod_64_make_dialog_11"><text>На заказ только определённым людям. Ну тебе-то, само-собой, сварю.</text></string>
@@ -1851,7 +1870,8 @@
 <string id="artmod_64_made_dialog_22"><text>Нет, не при мне, ты подожди, я скоро...</text></string>
 <string id="artmod_64_made_dialog_3"><text>Вот и "Колобок". Вуаля!</text></string>
 
-<!--------------------------Петренко за костюм от Сахарова---af_dummy_spring-------------------->
+<!-- Петренко за костюм от Сахарова af_dummy_spring -->
+
 <string id="artmod_66_make_dialog_0"> 
 	<text>Нужна мне "Пружина", и рецепт знаю, а сделать не могу. Помоги.</text></string>
 <string id="artmod_66_make_dialog_11"><text>Что б ты делал без меня? Давай уж запчасти к твоей пружине.</text></string>
@@ -1870,6 +1890,7 @@
 <string id="artmod_66_made_dialog_3"><text>Забирай "Пружину", пользуйся.</text></string>
 
 <!-- Волк на АС про Петруху -->
+
 <string id="volk_petruha_start_0"><text>Здорово, Волк, на Склады перебрался? А молодняк твой с кем?</text></string>
 <string id="volk_petruha_start_1"><text>Молодняк без присмотра не останется, не переживай. Есть кому меня заменить. \nМеченный, ты по Зоне бегаешь туда-сюда, Петруху не встречал?</text></string>
 <string id="volk_petruha_start_2"><text>Петруху? Вы же вроде в больших приятелях были.</text></string>
@@ -1878,7 +1899,8 @@
 <string id="volk_petruha_start_5"><text>Конкретнее? Если занесёт тебя на Забытый хутор, поинтересуйся, не объявлялся ли там этот голубь. Встретишь его самого - о нашем разговоре и моём интересе к его персоне упоминать не стоит. Теперь достаточно конкретно?</text></string>
 <string id="volk_petruha_start_6"><text>Вполне. Посмотрю, как буду на хуторе. Но, сам понимаешь, ничего не обещаю.</text></string>
 
-<!------Волк продолжение по тайнику на ЗХ------------>
+<!-- Волк продолжение по тайнику на ЗХ -->
+
 <string id="volk_simbion_start_0"><text>По делу я. Видел Петруху на Забытом хуторе.</text></string>
 <string id="volk_simbion_start_1"><text>Видел?! Ну и как он там?</text></string>
 <string id="volk_simbion_start_2"><text>Да сидит со сталкерами какими-то, водочку попивает, на судьбу жалуется.</text></string>
@@ -1939,6 +1961,7 @@
 <string id="volk_simbion_final_13"><text>Как обещал, даю наводку на один интересный ящичек, в Рыжем лесу он. Раз лежит тебе дорога на север, то в тех краях точно будешь, мимо не пройдёшь. Пиши координаты...</text></string>
 <string id="volk_simbion_final_14"><text>Лады. Пойду я, счастливо.</text></string> 
 <!-- диалоги с Кругловым -->
+
 <string id="ecolog_apparat_start_0"><text>Всё анекдоты травите?</text></string>
 <string id="ecolog_apparat_start_1"><text>Меченный, слушай, а как у тебя со свободным временем? Не мог бы ты помочь нам с решением одной проблемы? При наличии времени и желания, разумеется.</text></string>
 <string id="ecolog_apparat_start_2"><text>Проблемы? Я ведь не учёный, какой от меня науке толк? Или в подопытные зовёте? Так я ещё жить хочу!</text></string>
@@ -1957,6 +1980,7 @@
 <string id="ecolog_apparat_start_15"><text>Дело совсем пустяковое, ну, для тебя пустяковое. Оплата хорошая, подходи, не затягивай.</text></string>
 <string id="ecolog_apparat_start_16"><text>Я подумаю, пока другие дела навалились. Может, позже.</text></string>
 <!-- Болота -->
+
 <string id="ecolog_apparat_bolota_0"><text>Я по поводу карточек, с регистраторов на Болотах. Предложение ещё в силе?</text></string>
 <string id="ecolog_apparat_bolota_1"><text>Надумал?</text></string>
 <string id="ecolog_apparat_bolota_21"><text>Я просто интересуюсь, не готов я пока, для научных подвигов.</text></string>
@@ -1972,6 +1996,7 @@
 <string id="ecolog_apparat_bolota_done_5"><text>Насчёт других регистраторов чуть позже подходи. Минут через десять. Нужно данные сверить.</text></string>
 <string id="ecolog_apparat_bolota_done_6"><text>Пока к Сахарову загляну.</text></string>
 <!-- Туманнная чаща -->
+
 <string id="ecolog_apparat_aver_0"><text>Круглов, что там с данными, прояснилось?</text></string>
 <string id="ecolog_apparat_aver_1"><text>Ага. Необходимо доставить карты с накопленными данными из комплексов в так называемой "Туманной чаще". По последним сведениям, там ещё работают три установки. Берёшься? Награда та же - рецепт и медицина.</text></string>
 <string id="ecolog_apparat_aver_21"><text>Туманная чаща, говоришь... Не самое приятное место, как мне говорили. Согласен, вот ПДА - обозначай район поисков.</text></string>
@@ -1987,6 +2012,7 @@
 <string id="ecolog_apparat_aver_done_5"><text>Есть ещё одно место, в Рыжем лесу работает пара регистраторов. Возьмёшься?</text></string>
 <string id="ecolog_apparat_aver_done_6"><text>Я подумаю.</text></string>
 <!-- Рыжий лес -->
+
 <string id="ecolog_apparat_rf_0"><text>Продолжим наши научные подвиги? Я насчёт карт с регистраторов.</text></string>
 <string id="ecolog_apparat_rf_1"><text>Меченный, ты в ближайшее время в зону 65 не собираешься прогуляться? "Рыжий лес", если по-вашему.</text></string>
 <string id="ecolog_apparat_rf_21"><text>Рыжий лес? Как мне рассказывали бывалые сталкеры, Рыжий лес не парк культуры и отдыха, чтоб туда "погулять" сходить. Тут рецептом и парой аптечек не отделаешься. Там вся фауна Зоны в одном месте собралась. Рты разинули, так и ждут кого сожрать. Наш уговор, конечно в силе, но и ты пойми, оттуда можно вообще не вернуться. А тебе, как обычно, надо срочно и быстро?</text></string>

@@ -798,7 +798,7 @@
 	</phrase>
 </phrase_list>
 </dialog>
-	<!---5 записка--->
+	<!--5 записка-->
 <dialog id="artmod_15_make_dialog">
 <precondition>sak_artmods.have_info_artmod_15</precondition>
 <precondition>dialogs.is_not_wounded</precondition>
@@ -4535,7 +4535,7 @@
 </phrase_list>
 </dialog>
 
-<!---------------------- квест Сахарова на поиск документов в Х-18 -->
+<!-- квест Сахарова на поиск документов в Х-18 -->
 <dialog id="artmod_621_dialog">
 	<has_info>time_morning</has_info> <!-- hour>=6 and hour<11 -->
 	<has_info>info_way103a</has_info>
@@ -4565,7 +4565,7 @@
 	</phrase_list>
 </dialog>
 
-<!---------------------- квест Сахарова на поиск документов в Х-18 -->
+<!-- квест Сахарова на поиск документов в Х-18 -->
 <dialog id="artmod_622_dialog">
 	<dont_has_info>yan_scientist_books_done</dont_has_info>
 	<has_info>yan_scientist_books_start</has_info>
@@ -5679,8 +5679,7 @@
 		<phrase id="3">
 			<text>artmod_862_dialog_3</text>
 			<action>sak_dialog.take_sescape_lager_volk_ak</action>
-			<action>sak_dialog.add_ammo_5_45_fmj2</action>
-			<action>sak_dialog.add_pb_volk</action>		
+			<action>sak.create_items(db.actor,"ammo_5.45x39_fmj",2)</action>	
 		</phrase>
 	</phrase_list>
 </dialog>

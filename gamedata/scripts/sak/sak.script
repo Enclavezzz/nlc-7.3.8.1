@@ -1724,7 +1724,6 @@ function check_used_item(obj)
 	local lvl=level.name()
 	local act=db.actor
 	t_v(obj,false)
-	-- wprintf(" check_used_item~C0A %s~C07 ", sect) 
   
 	local rand=(amk_vars.x18_iq_check or 2)
 	if strpos(sect, "ammo_") then return end
@@ -1739,7 +1738,7 @@ function check_used_item(obj)
 	elseif sect=="ammo_5.45x39_merc" or sect=="ammo_5.56x45_merc" then misc.release_obj(obj)
 	elseif sect=="resiept_activ_anom" then info="info_artmod_activ_anom"
 	elseif sect=="drunk_dolg_letter" then info="info_amk_recipt_tears_electra" info_amk_received()
-	elseif sect=="sak_document2" then send_tip("Похоже, эту бумажку Волк искал","Вернуться к Волку",5,15,"g_g","sak","yellow")	
+	elseif sect=="sak_document2" then send_tip( "Похоже, это то что нужно Волку. Думаю можно возвращаться.", "Документы и диск.", 5, 15, "g_g", "sak", "yellow" )	
 	elseif sect=="klava_feik" then info="klava_feik_found"
 	elseif sect=="sak_document3" and not act:has_info("info_amk_recipt_souls_drops") then info="info_amk_recipt_souls_drops" info_amk_received()
 	elseif sect=="sak_document4" and not act:has_info("info_amk_recipt_giant_small_brother") then info="info_amk_recipt_giant_small_brother" info_amk_received()  
