@@ -1,27 +1,41 @@
 function add_first_spawn()
-	local ts1={position={x=8.97,y=20.41,z=157.24},gv=95,lv=286255} -- Ð¶ÐµÐ»ÐµÐ·ÐºÐ°
-	local ts2={position={x=13.66,y=20.36,z=157.33},gv=94,lv=290857} -- Ð¶ÐµÐ»ÐµÐ·ÐºÐ°
-	local ts3={position={x=17.82,y=20.30,z=157.25},gv=94,lv=295485} -- Ð¶ÐµÐ»ÐµÐ·ÐºÐ°
-	local ts6={position={x=52.933674,y=0.119193,z=32.361916},gv=1240,lv=29236}
-	local ts7={position={x=36.842201,y=4.009082,z=146.218796},gv=1412,lv=67530}
-	local ts8={position={x=32.948345,y=4.009004,z=146.217117},gv=1412,lv=67411}
-	local ts10={position={x=116.996399,y=20.131187,z=160.005692},gv=240,lv=419813}
-	local ts11={position={x=-147.209732,y=0.314984,z=-298.227020},gv=3239,lv=6039}
-	local shape={shtype=0,radius=5.0,center={0,0.5,0}}
-	amk_anoms.spawn_anomaly("amk_zone_sakbuzz_strong", ts1.position, ts1.gv, ts1.lv, shape, "static")
-	amk_anoms.spawn_anomaly("amk_zone_sakbuzz_strong", ts2.position, ts2.gv, ts2.lv, shape, "static")
-	amk_anoms.spawn_anomaly("amk_zone_sakbuzz_strong", ts3.position, ts3.gv, ts3.lv, shape, "static")
-	amk_anoms.spawn_anomaly("amk_zone_mincer_strong", ts6.position, ts6.gv, ts6.lv, shape, "static")
-	amk_anoms.spawn_anomaly("amk_zone_mincer_strong", ts7.position, ts7.gv, ts7.lv, shape, "static")
-	amk_anoms.spawn_anomaly("amk_zone_sakbuzz_strong", ts8.position, ts8.gv, ts8.lv, shape, "static")
-	amk_anoms.spawn_anomaly("amk_zone_sakbuzz_strong", ts10.position, ts10.gv, ts10.lv, shape, "static")
-	amk_anoms.spawn_anomaly("amk_zone_mincer_strong", ts11.position, ts11.gv, ts11.lv, shape, "static")
+	local electra_strong = "zone_witches_galantine_strong"
+	local sakbuzz_strong = "amk_zone_sakbuzz_strong"
+	local mincer_strong  = "amk_zone_mincer_strong"
+	local tsa = {
+		{ sakbuzz_strong, 8.97,    20.41,   157.24,		95,	  286255 },
+		{ sakbuzz_strong, 13.66,   20.36,   157.33,		94,	  290857 },
+		{ sakbuzz_strong, 17.82,   20.30,   157.25,		94,	  295485 },
+		{ sakbuzz_strong, 32.94,   	4.00,   146.21,		1412,  67411 },
+		{ sakbuzz_strong, 116.99,  20.13,   160.00,		240,  419813 },
+		{ mincer_strong,  52.93,   	0.11,    32.36,		1240,  29236 },
+		{ mincer_strong,  36.84,   	4.00,   146.21,		1412,  67530 },
+		{ mincer_strong,  -147.20, 	0.31,  -298.22,		3239, 	6039 },
+		{ electra_strong, -156.73, 	5.60, 	155.28, 	1369,  26481 },	-- ÄÒ Òðóáû
+		{ electra_strong, -161.87, 	5.60, 	155.28, 	1369,  26481 },	-- ÄÒ Òðóáû
+		{ electra_strong, -167.47, 	5.60, 	155.28, 	1369,  26481 },	-- ÄÒ Òðóáû
+		{ electra_strong, -197.79, 	4.99, 	135.71, 	1369,  26481 },	-- ÄÒ Âûøêà
+		{ electra_strong, -200.34, 	6.06, 	118.62, 	1369,  26478 },	-- ÄÒ Âûøêà
+		{ electra_strong, -240.13, 	3.47, 	96.11,  	1371,  19541 }	-- ÄÒ Âûøêà
+    }
+	local shape = { shtype = 0, radius = 5.0, center = { 0, 0.5, 0 } }
+
+    for i = 1, #tsa do
+        amk_anoms.spawn_anomaly( tsa[ i ][ 1 ],
+            sak.v3f( tsa[ i ][ 2 ], tsa[  i ][ 3 ], tsa[ i ][ 4 ] ),
+            tsa[ i ][ 5 ], tsa[ i ][ 6 ], shape, "static"
+        )
+    end	
+
+	this.start_randoms()
 	doc.zone_mine()	
 end
+
 function trade_many_remove()
   	local sum = db.actor:money()
 	if sum > 0 then db.actor:give_money(-sum) nlc_vars.trade_me_re = sum end
 end
+
 function trade_many_add()
 	if nlc_vars.trade_me_re == nil then return end
 	local sum = db.actor:money()
@@ -29,6 +43,7 @@ function trade_many_add()
   	sum = nlc_vars.trade_me_re or 1
 	if sum > 0 then db.actor:give_money(sum) nlc_vars.trade_me_re = nil end
 end
+
 function blowout_dialog()
     if 
 		db.blowout_active == true 
@@ -37,4 +52,13 @@ function blowout_dialog()
 	else
 		return true 
 	end
+end
+
+function start_randoms()
+    for _, v in ipairs({ 
+		"sak_dialog.give_random_recipes",
+		"treasure_manager.rnd"
+    }) do
+		dsh.get_next_random( v )	
+    end
 end
