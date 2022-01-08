@@ -172,10 +172,9 @@ function relocate_item_section(who_transfer, section, type)
            end                       
                                         
 		end
-		news_manager.relocate_item(db.actor, type, section)
+		sak.relocate_item( db.actor, type, section )
         return true
 	end
-   
    return false
 end
 
