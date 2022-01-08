@@ -60,19 +60,24 @@ function main_menu:InitControls()
 	
 	self.shniaga = xml:InitMMShniaga("shniaga_wnd",self);
 	self.message_box = CUIMessageBoxEx()
-	self:Register(self.message_box, "msg_box")  
-	local sak_title   = game.translate_string("st_mp_voting_failed")
-	local sak_version  = ""
-	if xr_build_id then sak_version = tostring(xr_build_id) end
-	local mod_ver   = xml:InitStatic("mod_version",self)
-	local p_name = ""
+	self:Register(self.message_box, "msg_box")
+
+    local engine_version = ""
+    local mod_ver = xml:InitStatic( "mod_version", self )
+    local eng_ver = xml:InitStatic( "static_version", self )
+    local p_name = ""
+
 	if l_name ~= "" then
 		p_name = l_name
 	else
 		p_name = s_fixes.get_profile_name()
 		l_name = p_name
 	end
-	mod_ver:SetText  (sak_title .. " (build " .. sak_version .. ")" .. " profile@" .. p_name)
+
+    if xr_build_id then engine_version = tostring( xr_build_id ) end
+
+    mod_ver:SetText( sak_ver.sak_version .. " (" .. sak_ver.update ..")".. " profile@" .. p_name)
+    eng_ver:SetText( "engine build: " .. engine_version )
 end
 
 function main_menu:Show(f)
@@ -305,7 +310,7 @@ function main_menu:OnKeyboard(dik, keyboard_action)
 
 		if     dik == DIK_keys.DIK_F4 then
 			self:show_position_informer_window()
-		elseif dik == DIK_keys.DIK_F3 then
+		elseif dik == DIK_keys.DIK_F5 then
             if level.present() and db.actor ~= nil and db.actor:alive() then
                 console:execute( "main_menu off" )
                 if not _sdata.GlobalEnable then
