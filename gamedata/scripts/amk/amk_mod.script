@@ -1,65 +1,87 @@
 --[[
-
 File:  amk_mod .script
 copyright © AMK TEAM 2007-2008
 --]]
 
-local nrg,med,cnt,gv,lv,w
-in_hide=false
-local sound_obj_right,sound_obj_left,snd_volume,snd_obj_eq
-sync_done=false
+local nrg, med, cnt, gv, lv, w
+in_hide = false
+local sound_obj_right, sound_obj_left, snd_volume, snd_obj_eq
+sync_done = false
 local dynlasthour
-zombied={}
+zombied = {}
 last_wconf = ""
-pda_npc_logic=""
+pda_npc_logic = ""
 local bt
 local sMapNow,idMapNow
 
-local weather_types={
-				marsh=0,
-				aver=2,
-				generators=4,
-				hospital=0,
-				limansk=4,
-				lost_village=0,
-				red_forest=0,
-				av_peshera=1,
-				labx8=1,
-				labx10=1,
-				warlab=1,
-				l01_escape=0,
-				l02_garbage=0,
-				l03_agroprom=0,
-				l03u_agr_underground=1,
-				l04_darkvalley=0,
-				k01_darkscape=0,
-				l04u_labx18=1,
-				l05_bar=0,
-				l06_rostok=0,
-				l07_military=0,
-				l08_yantar=2,
-				l08u_brainlab=1,
-				l10_radar=5,
-				l10u_bunker=1,
-				deadcity=4,
-				l11_pripyat=4,
-				l12_stancia_new=4,
-				l12_stancia_2_new=4,
-				l12u_control_monolith=1,
-				l12u_sarcofag=1
-				}
+local weather_types = {
+	marsh 					= 0,
+	aver 					= 2,
+	generators 				= 4,
+	hospital 				= 0,
+	limansk 				= 4,
+	lost_village 			= 0,
+	red_forest 				= 0,
+	av_peshera 				= 1,
+	labx8 					= 1,
+	labx10 					= 1,
+	warlab 					= 1,
+	l01_escape 				= 0,
+	l02_garbage 			= 0,
+	l03_agroprom 			= 0,
+	l03u_agr_underground 	= 1,
+	l04_darkvalley 			= 0,
+	k01_darkscape 			= 0,
+	l04u_labx18 			= 1,
+	l05_bar 				= 0,
+	l06_rostok 				= 0,
+	l07_military 			= 0,
+	l08_yantar 				= 2,
+	l08u_brainlab 			= 1,
+	l10_radar 				= 5,
+	l10u_bunker 			= 1,
+	deadcity 				= 4,
+	l11_pripyat 			= 4,
+	l12_stancia_new 		= 4,
+	l12_stancia_2_new 		= 4,
+	l12u_control_monolith 	= 1,
+	l12u_sarcofag 			= 1
+}
 
 local points={
-				{position={x=-9.036,y=-17.235,z=-169.403},gv=108,lv=267524},
-				{position={x=129.534,y=4.857,z=97.978},gv=157,lv=434414},
-				{position={x=-8.369,y=6.877,z=129.023},gv=95,lv=268561},
-				{position={x=-3.2842042446136,y=-17.627033996582,z=-154.93109130859},gv=108,lv=272952},
-				{position={x=167.59065246582,y=5.3164655685425,z=93.90438079834},gv=155,lv=470751},
-				{position={x=-25.290637969971,y=1.9589133024216,z=99.127182006836},gv=86,lv=252031}
-				}
+	{ 
+		position = { x = -9.036, y = -17.235, z = -169.403}, 
+		gv = 108, 
+		lv = 267524 
+	},
+	{ 
+		position = { x = 129.534, y = 4.857, z = 97.978 }, 
+		gv = 157, 
+		lv = 434414 
+	},
+	{ 
+		position = { x = -8.369,  y = 6.877, z = 129.023 }, 
+		gv = 95,  
+		lv = 268561 
+	},
+	{ 
+		position = { x = -3.2842042446136, y = -17.627033996582, z = -154.93109130859 }, 
+		gv = 108, 
+		lv = 272952 
+	},
+	{ 
+		position = { x = 167.59065246582,  y = 5.3164655685425, z = 93.90438079834 }, 
+		gv = 155, 
+		lv = 470751 
+	},
+	{ 
+		position = { x = -25.290637969971, y = 1.9589133024216, z = 99.127182006836 }, 
+		gv = 86,  
+		lv = 252031 
+	}
+}
 
 function dbg_set_w_fx(wconf, flag)
-	--wprintf("[~T]. #DBG: set_weather_fx ~C0A %s~C07", wconf)
 	level.set_weather_fx(wconf, flag)
 end
 
@@ -67,7 +89,6 @@ function dbg_set_w(wconf, flag)
 	if wconf==last_wconf then
 		return
 	end
-	--wprintf("[~T]. #DBG: set_weather ~C0A %s~C07, last =~C0A %s~C07", wconf or 'nil', last_wconf or 'nil')
 	last_wconf = wconf  
 	level.set_weather(wconf, flag)
 end
@@ -83,6 +104,7 @@ function spawn_star(actor,npc,p1,p2)
 	pk:set(data)
 	nlc_vars.kontainer = obj.id
 end
+
 function on_game_start()
 	dbg_set_w("indoor",true)
 end
@@ -1317,28 +1339,28 @@ end
 
 dynweathers = {
 	clear = {
-			clear = 70,
-			pasmurno = 15,
-			rain = 10,
-			groza = 5
+		clear    = 35,
+		pasmurno = 45,
+		rain     = 15,
+		groza    = 5
 	},
 	pasmurno = {  
-			clear = 50,
-			rain = 20,
-			groza = 5,
-			pasmurno = 25  
+		clear    = 30,
+		rain     = 30,
+		groza    = 10,
+		pasmurno = 30  
 	},
 	rain = {
-			clear = 35,
-			groza = 10,
-			pasmurno = 15,
-			rain = 40
+		clear    = 10,
+		groza    = 10,
+		pasmurno = 40,
+		rain     = 40
 	},
 	groza = {
-			clear = 35,
-			rain = 20,
-			pasmurno = 15,
-			groza = 30  
+		clear    = 5,
+		rain     = 20,
+		pasmurno = 15,
+		groza    = 60  
 	}
 }
 
