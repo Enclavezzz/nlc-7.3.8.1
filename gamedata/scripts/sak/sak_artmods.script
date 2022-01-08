@@ -46,7 +46,7 @@ artmod_resiepts={
 	artmod_81={"mutant_krovosos_jaw","af_blood","af_mincer_meat","af_soul","info_artmod_baloon_sakbuzz","af_baloon","artmod_baloon_sakbuzz_text"},
 	artmod_84={"af_medusa_dyn1d","af_drops_dyn5d","af_blood_dyn5d","af_rusty_thorn_dyn1d","info_amk_recipt_simbion","af_dummy_simbion","amk_recipt_simbion_text"},	
 	artmod_85={"energy_drink","kolbasa","vodka","af_medusa","info_energy_drink_new","energy_drink_new","energy_drink_new_text"}
-	}
+}
 	
 amk_resiepts={
 	{"af_dummy_simbion", "info_amk_recipt_souls_drops", "af_spirit_1"},
@@ -83,7 +83,7 @@ amk_resiepts={
 	{"af_babka_1", "info_amk_recipt_pra_grandmother_glassbeards", "af_babka_2"},
 	{"af_babka_2", "info_amk_recipt_burer_grandmother_glassbeards", "af_babka_3"},
 	{"af_babka_3", "info_amk_recipt_burer_pra_grandmother_glassbeards", "af_babka_4"}
-	}
+}
 	
 artCollections={
 	{"af_vyvert_dyn2d","af_vyvert_dyn3d","af_vyvert_dyn4d","","5"},
@@ -99,7 +99,22 @@ artCollections={
 	{"af_rusty_thorn_dyn1d","af_rusty_kristall_dyn1d","af_rusty_sea-urchin_dyn1d","art_collection_fake07f"},
 	{"af_soul_dyn1d","af_soul_dyn2d","af_soul_dyn3d","art_collection_fake09f"},
 	{"af_dummy_green_vyvert","af_dummy_green_medusa","af_dummy_green_blood","","","sak.gg_go_down()"}
-	}
+}
+
+unique_resiepts = {
+	{ "actor_jump_info", 				"Прыгалка"					},							
+	{ "info_artmod_glassbeads_ice", 	"Электробусы"				},
+	{ "info_artmod_baloon_sakbuzz", 	"Баллончик"					},
+	{ "info_artmod_sul_buzz", 			"Дирижабль"					},
+	{ "info_artmod_activ_anom",			"Снежок"					},
+	{ "info_dummy_dummy_new", 			"Аккумулятор"				},
+	{ "info_red_battery", 				"Рубиновая батарейка"		},
+	{ "info_red_spring", 				"Рубиновая пустышка"		},
+	{ "info_red_pellicle", 				"Рубиновая плёнка"			},
+	{ "info_green_blood", 				"Изумрудная Кровь камня" 	},
+	{ "info_green_medusa", 				"Изумрудная Медуза" 		},
+	{ "info_green_vyvert", 				"Изумрудный Выверт" 		}
+}
 
 function artCollections_close()
 	local at=artCollections

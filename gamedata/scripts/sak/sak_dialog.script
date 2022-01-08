@@ -11674,3 +11674,245 @@ function add_trade_bonus()
 		sak.create_items(db.actor,item,count2)
 	end
 end
+
+--Еще один скрипт проверки кондиции
+
+-- образец вызова, взято у Дениса:
+-- sak_dialog.have_with_cond( "wpn_mp5_m1", 1, 0.95, true )    	    - у ГГ есть заряженный мп5 в хорошем состоянии
+-- sak_dialog.have_with_cond( "wpn_mp5_m1", 1, 0.95, true, true ) 	- удалит у ГГ такой мп5
+
+local have_with_cond_tbl = {}
+
+function have_with_cond( sect, need_amount, condition, flag_loaded, flag_to_release )
+    local have_tbl, num = {}, 0
+    local amnt  = tonumber( need_amount )
+    local items = get_shadow_inv():get_content( true )
+    for i, rec in items:ipairs() do
+        if sak_inventory.dyn_art_base( rec.sect ) == sect then
+			local dif = amk_vars.g_diff or tonumber( level.get_game_difficulty() )
+			if dif == 0 then condition = condition / 2 end			
+            if rec.obj:condition() >= tonumber( condition ) then				
+                if flag_loaded then
+                    local def_mag = system_ini():r_float( rec.sect, "ammo_mag_size" ) or 1
+                    if rec.obj:get_ammo_in_magazine() == def_mag then
+                        if num < amnt then
+                            table.insert( have_tbl, rec.id )
+                            num = num + 1
+                        end
+                    end
+                else
+                    if num < amnt then
+                        table.insert( have_tbl, rec.id )
+                        num = num + 1
+                    end     
+                end
+            end
+        end
+    end
+    if #have_tbl >= amnt then
+        have_with_cond_tbl = have_tbl
+        if not flag_to_release then return true
+        else
+            for _, v in ipairs( have_tbl ) do
+                local obj1 = g_sim:object( v )
+                if obj1 then g_sim:release( obj1, true ) end
+            end
+            sak.relocate_item( "out", sect, #have_tbl )
+            have_with_cond_tbl = {}
+        end
+    end
+    return false
+end
+
+-- вызывать только с have_with_cond в прекондишене
+function relocate_with_cond( first_speaker, second_speaker )
+    if #have_with_cond_tbl > 0 then
+        local obj
+        for _, v in ipairs( have_with_cond_tbl ) do
+            obj = client_obj( v )
+            if obj:section() == "wpn_rpk74" then
+                misc.spawn_to( "ammo_5.45x39_merc", second_speaker )
+                misc.spawn_to( "ammo_5.45x39_merc", second_speaker )
+                obj:unload_magazine()
+            end
+            dialogs.relocate_item( second_speaker, obj, "out" )
+        end
+        sak.relocate_item( "out", obj:section(), #have_with_cond_tbl )
+        have_with_cond_tbl = {}
+    end
+end
+
+--выдача рандомных рецептов
+
+first_level = {
+    "info_artmod_rusty_kristall_gravi_zone",            
+    "info_artmod_drops_mincer",						   
+    "info_artmod_ameba_slime_zharka",				   
+    "info_artmod_rusty_thorn_buzz",					   
+    "info_artmod_vyvert_buzz",						  
+    "info_artmod_medusa_galant",					   
+    "info_artmod_electra_sparkler_mosquito_bald"       
+}
+
+second_level = {
+    "info_artmod_cristall_flower_mincer",
+    "info_artmod_cristall_flower_galant",
+    "info_artmod_ameba_slug_ice",
+    "info_artmod_ameba_slug_mosquito_bald",
+    "info_artmod_blood_ice",
+    "info_artmod_mincer_meat_mosquito_bald",
+    "info_artmod_fireball_buzz",
+    "info_artmod_fireball_galant",
+    "info_artmod_rusty_kristall_buzz",
+    "info_artmod_rusty_kristall_mincer",
+    "info_artmod_gravi_zharka",
+    "info_artmod_gravi_gravi_zone",
+	"info_artmod_electra_flash_zharka",
+	"info_artmod_electra_flash_gravi_zone"
+}
+
+third_level = {
+    "info_artmod_night_star_gravi_zone",
+    "info_artmod_night_star_zharka",
+    "info_artmod_soul_gravi_zone",
+    "info_artmod_electra_moonlight_galant",
+    "info_artmod_electra_moonlight_mincer",
+    "info_artmod_electra_moonlight_zharka",
+    "info_artmod_ameba_slug_mincer",
+    "info_artmod_ameba_mica_galant",
+    "info_artmod_rusty_sea-urchin_ice",
+    "info_artmod_rusty_sea-urchin_mosquito_bald",
+    "info_artmod_night_star_buzz",
+    "info_artmod_gold_fish_galant",
+    "info_artmod_cristall_buzz",
+    "info_artmod_cristall_mosquito_bald"
+}
+
+dummys = {
+    "info_artmod_dummy_pellicle_gravi_zone",
+    "info_artmod_dummy_glassbeads_mincer",
+    "info_artmod_dummy_battery_zharka",
+    "info_artmod_dummy_spring_galant",
+	"info_artmod_dummy_dummy_mosquito_bald",
+	"info_artmod_fuzz_kolobok_buzz"
+}
+
+first_mod_lvl = {
+	"info_amk_recipt_shkura",
+	"info_amk_recipt_grandmother_glassbeards",
+	"info_amk_recipt_dummy_fire",
+	"info_amk_recipt_souls_drops",
+	"info_amk_recipt_dikoobraz",
+	"info_amk_recipt_steel_kolobok",
+	"info_amk_recipt_tears_electra",
+}
+
+second_mod_lvl = {
+	"info_amk_recipt_cheshya",
+	"info_amk_recipt_pra_grandmother_glassbeards",
+	"info_amk_recipt_dummy_bright",
+	"info_amk_recipt_souls_fire",
+	"info_amk_recipt_electra_dikoobraz",
+	"info_amk_recipt_titan_kolobok",
+	"info_amk_recipt_tears_fire",
+}
+
+third_mod_lvl = {
+	"info_amk_recipt_pancir",
+	"info_amk_recipt_burer_grandmother_glassbeards",
+	"info_amk_recipt_dummy_moon",
+	"info_amk_recipt_souls_cristal",
+	"info_amk_recipt_sopl_dikoobraz",
+	"info_amk_recipt_almaz_kolobok",
+	"info_amk_recipt_tears_chimaera"
+}
+
+fourth_mod_lvl = {
+	"info_amk_recipt_controller_skalp",
+	"info_amk_recipt_burer_pra_grandmother_glassbeards",
+	"info_amk_recipt_dummy_puding",
+	"info_amk_recipt_souls_bengal",
+	"info_amk_recipt_stone_dikoobraz",
+	"info_amk_recipt_giant_small_brother",
+	"info_amk_recipt_tears_gigant"
+}
+
+function sms_recipt_found( info )
+    local rec_name, colour = "", ""
+    for k, v in pairs( sak_artmods.artmod_resiepts ) do
+        for i = 1, #v do
+            if v[ i ] == info then
+                rec_name = game.translate_string( sak_artmods.artmod_resiepts[ k ][ 7 ] )
+				colour = "%c[ 255, 238, 153, 26 ]"
+            end
+        end
+    end
+    for k, v in pairs( sak_artmods.amk_resiepts ) do
+        for i = 1, #v do
+            if v[ i ] == info then
+                rec_name = game.translate_string( sak_artmods.amk_resiepts[ k ][ 3 ] )
+				colour = "%c[ 255, 20, 120, 215 ]"			
+            end
+        end
+    end
+    for k, v in pairs( sak_artmods.unique_resiepts ) do
+        for i = 1, #v do
+            if v[ i ] == info then
+				db.actor:give_info_portion( info )	   			
+                rec_name = game.translate_string( sak_artmods.unique_resiepts[ k ][ 2 ] )
+				colour = "%c[ 255, 245, 85, 105 ]"					
+            end
+        end
+    end	
+	if db.actor:is_talking() then 
+		local news_text = "%c[ 255, 160, 160, 160 ]" .. game.translate_string( "Получен рецепт преобразования артефакта: " ) .. colour .. "«" .. rec_name .. "»"	
+		db.actor:give_talk_message( news_text, "ui\\ui_icon_equipment", Frect():set( 500, 750, 100, 50 ), "ico_item_2_1" )
+	end
+end
+
+function give_random_recipes( table_recipes )
+	local flag_need_init = false	
+	if 
+		   ( nlc_vars.rnd_table_recipes == nil ) 
+		or ( nlc_vars.rnd_table_recipes_values == nil )
+		or ( nlc_vars.rnd_table_recipes_position == nil )
+		or ( #nlc_vars.rnd_table_recipes ~= #table_recipes ) 
+	then
+		flag_need_init = true		
+	else
+		for i = 1, #table_recipes do
+			if nlc_vars.rnd_table_recipes[ i ] ~= table_recipes[ i ] then
+				flag_need_init = true		
+			end
+		end
+	end
+	if flag_need_init then
+		nlc_vars.rnd_table_recipes_values = {}
+		for i = 1, #table_recipes do
+			nlc_vars.rnd_table_recipes_values[ i ] = i
+		end
+		for i = 1, #table_recipes do		
+			local temp = dsh.get_next_random( "sak_dialog.give_random_recipes", 1, #table_recipes )
+			nlc_vars.rnd_table_recipes_values[ i ], nlc_vars.rnd_table_recipes_values[ temp ] = nlc_vars.rnd_table_recipes_values[ temp ], nlc_vars.rnd_table_recipes_values[ i ]
+		end
+
+		nlc_vars.rnd_table_recipes_position = 1
+
+		nlc_vars.give_random_recipe___table_recipes = {}
+		for i = 1, #table_recipes do
+			nlc_vars.give_random_recipe___table_recipes[ i ] = table_recipes[ i ]
+		end
+	end
+
+	while ( nlc_vars.rnd_table_recipes_position <= #table_recipes )
+	      and ( db.actor:has_info( table_recipes[ nlc_vars.rnd_table_recipes_values[ nlc_vars.rnd_table_recipes_position ] ] ) ) do
+		nlc_vars.rnd_table_recipes_position = nlc_vars.rnd_table_recipes_position + 1
+	end
+
+	if nlc_vars.rnd_table_recipes_position <= #table_recipes then
+		local info = table_recipes[ nlc_vars.rnd_table_recipes_values[ nlc_vars.rnd_table_recipes_position ] ]
+		db.actor:give_info_portion( info )
+		this.sms_recipt_found( info )	
+		nlc_vars.rnd_table_recipes_position = nlc_vars.rnd_table_recipes_position + 1
+	end
+end
