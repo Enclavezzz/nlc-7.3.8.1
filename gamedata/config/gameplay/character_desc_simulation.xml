@@ -468,7 +468,7 @@
 		<visual>actors\novice\green_stalker_3</visual>
 		<supplies>
 			[spawn] \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -1695,7 +1695,7 @@
 		<visual>actors\exo\act_merc_exo_2</visual>
 		<supplies>
 			[spawn] \n
-		    wpn_bm16_full \n
+		    wpn_toz34 \n
 		    ammo_12x76_dart = 2 \n
 			wpn_walther \n
 			ammo_9x19_fmj = 2 \n
@@ -1876,7 +1876,7 @@
 			[spawn] \n
 			wpn_ak47 = 1 \n
 			ammo_7.62x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_pmm = 2 \n
 			device_torch \n
 #include "gameplay\character_items.xml" \n
@@ -1966,7 +1966,7 @@
 			[spawn] \n
 			wpn_ak74 \n
 			ammo_5.45x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_pmm = 2 \n
 #include "gameplay\character_items.xml" \n
 #include "gameplay\character_food.xml"
@@ -2201,7 +2201,7 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 			wpn_bm16 \n
 			ammo_12x70_buck = 2 \n
@@ -2228,7 +2228,7 @@
 		<crouch_type>-1</crouch_type>
 		<supplies>
 			[spawn] \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 		    wpn_ak74_old \n
 		    ammo_5.45x39_ap = 2 \n
@@ -2257,7 +2257,7 @@
 			[spawn] \n
 		    wpn_ak74u_old \n
 		    ammo_5.45x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 		</supplies>
 		
@@ -2284,7 +2284,7 @@
 			[spawn] \n
 		    wpn_ak74_old \n
 		    ammo_5.45x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 		</supplies>
 		
@@ -2311,7 +2311,7 @@
 			[spawn] \n
 			wpn_ak74_old \n
 			ammo_5.45x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 		</supplies>
 		
@@ -2338,7 +2338,7 @@
 			[spawn] \n
 			wpn_ak74u_old \n
 			ammo_5.45x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 		</supplies>
 		
@@ -2365,7 +2365,7 @@
 			[spawn] \n
 			wpn_ak74u_old \n
 			ammo_5.45x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 		</supplies>
 		
@@ -2393,7 +2393,7 @@
 			[spawn] \n
 			wpn_ak74_old \n
 			ammo_5.45x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 		</supplies>
 		
@@ -2420,7 +2420,7 @@
 			[spawn] \n
 			wpn_ak74_old \n
 			ammo_5.45x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 		</supplies>
 		
@@ -2447,7 +2447,7 @@
 			[spawn] \n
 			wpn_ak74_old = 1 \n
 			ammo_5.45x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 			device_torch \n
 		</supplies>
@@ -2475,7 +2475,7 @@
 			[spawn] \n
 		    wpn_ak74_old \n
 		    ammo_5.45x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 			device_torch \n
 		</supplies>
@@ -2503,7 +2503,7 @@
 			[spawn] \n
 		    wpn_ak74_old \n
 		    ammo_5.45x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 			device_torch \n
 		</supplies>
@@ -2531,7 +2531,7 @@
 			[spawn] \n
 			wpn_ak47_old \n
 		    ammo_7.62x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 		</supplies>
 		
@@ -2558,7 +2558,7 @@
 			[spawn] \n
 			wpn_bm16 \n
 			ammo_12x76_dart = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 		</supplies>
 		
@@ -2586,7 +2586,7 @@
 			[spawn] \n
 			wpn_ak47_old \n
 		    ammo_7.62x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 		</supplies>
 		
@@ -2614,7 +2614,7 @@
 			[spawn] \n
 			wpn_ak74_old \n
 			ammo_5.45x39_ap = 2 \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 		</supplies>
 		
@@ -3249,7 +3249,7 @@
 		<visual>actors\med_tremor</visual>
 		<supplies>
 			[spawn] \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 			ammo_5.45x39_merc = 2 \n
 #include "gameplay\character_items.xml" \n

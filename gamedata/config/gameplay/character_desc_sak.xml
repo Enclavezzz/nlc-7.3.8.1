@@ -1148,7 +1148,7 @@
 		<visual>actors\2018\rogovec</visual>		
 		<supplies>
 			[spawn] \n
-			wpn_fort \n
+			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 			wpn_ak74m \n
 			ammo_5.45x39_ap = 2 \n
@@ -2031,7 +2031,7 @@
 
 	<supplies>
 	  [spawn] \n
-	  wpn_bm16_full \n
+	  wpn_toz34 \n
 	  ammo_12x76_dart = 2 \n    
 	  wpn_pm \n
 	  ammo_9x18_fmj = 2 \n
@@ -2066,7 +2066,7 @@
 
 	<supplies>
 	  [spawn] \n
-	 	wpn_bm16_full \n
+	 	wpn_toz34 \n
 	    ammo_12x76_dart = 2 \n 
 		wpn_pm \n
 		ammo_9x18_fmj = 2 \n
@@ -2277,7 +2277,7 @@
 
 	<supplies>
 		[spawn] \n
-		wpn_bm16_full \n
+		wpn_toz34 \n
 		ammo_12x76_dart = 2 \n
 #include "gameplay\character_food.xml" \n
 #include "gameplay\character_items.xml" \n
@@ -2381,7 +2381,7 @@
 			[spawn] \n
 			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
-			wpn_bm16_full \n
+			wpn_toz34 \n
 			ammo_12x76_dart = 2 \n
 			device_torch \n
 #include "gameplay\character_items.xml" \n
@@ -2442,7 +2442,7 @@
 			[spawn] \n
 			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
-			wpn_bm16_full \n
+			wpn_toz34 \n
 			ammo_12x76_dart = 2 \n
 			device_torch \n		
 #include "gameplay\character_items.xml" \n
@@ -2505,7 +2505,7 @@
 			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
 			device_torch \n
-			wpn_bm16_full \n
+			wpn_toz34 \n
 			ammo_12x76_dart = 2 \n
 			ammo_12x70_buck = 2\n	
 #include "gameplay\character_items.xml"	\n
@@ -2569,7 +2569,7 @@
 			[spawn] \n
 			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
-			wpn_bm16_full \n
+			wpn_toz34 \n
 			ammo_12x76_dart = 2 \n
 			device_torch \n
 #include "gameplay\character_items.xml" \n
@@ -2603,7 +2603,7 @@
 				[spawn] \n
 				wpn_pm \n
 				ammo_9x18_pmm = 2 \n
-				wpn_bm16_full \n
+				wpn_toz34 \n
 				ammo_12x70_buck = 1\n
 				device_torch \n
 #include "gameplay\character_drugs.xml"
@@ -2764,7 +2764,7 @@
 			[spawn] \n
 			wpn_pm \n
 			ammo_9x18_fmj = 2 \n
-			wpn_bm16_full \n
+			wpn_toz34 \n
 			ammo_12x70_buck = 1\n
 			device_torch \n
 #include "gameplay\character_drugs.xml"
@@ -4455,7 +4455,7 @@
 				
 		<supplies>
 			[spawn] \n
-			wpn_bm16_full \n	
+			wpn_toz34 \n	
 			ammo_12x70_buck = 2\n
 #include "gameplay\character_food.xml"
 		</supplies>		
@@ -4769,7 +4769,7 @@
 		<visual>actors\killer\stalker_ki_head_1</visual>
 		<supplies>
 			[spawn] \n
-			wpn_bm16_full = 1 \n
+			wpn_toz34 = 1 \n
 			ammo_12x76_zhekan = 2 \n
 			wpn_walther \n
 			ammo_9x19_fmj = 2 \n
@@ -6042,7 +6042,7 @@
 		[spawn] \n
 		wpn_g36 = 1 \n
 		ammo_5.56x45_ap = 2 \n
-		wpn_fort \n
+		wpn_pm \n
 		ammo_9x18_pmm = 2 \n
 		device_torch \n
 #include "gameplay\character_items.xml" \n
