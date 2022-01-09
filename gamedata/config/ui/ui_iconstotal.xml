@@ -141,4 +141,6 @@
 
 	<texture id="amk_ui_flame_quest" x="249" y="846" width="83" height="47"/>
 
+    <texture id="ui_icons_found_treasure" x="498" y="235" width="83" height="47"/>
+
 </ui_texture>
