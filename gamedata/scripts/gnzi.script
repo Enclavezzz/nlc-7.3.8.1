@@ -57,7 +57,11 @@ end
 function start_randoms()
     for _, v in ipairs({ 
 		"sak_dialog.give_random_recipes",
-		"treasure_manager.rnd"
+		"treasure_manager.rnd",
+		"generic_rnd",
+		"sak_dialog.rec_art_info",
+		"sak_dialog.rnd_item",
+		"sak_dialog.rnd_item_amount"
     }) do
 		dsh.get_next_random( v )	
     end

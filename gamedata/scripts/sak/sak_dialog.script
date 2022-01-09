@@ -11642,13 +11642,14 @@ function take_karabin(id)
 	data.condition = 0.80
 	pk:set(data)
 end										
---†ила за ‚итЯзь
+--Жила Витязь
 function give_12green_kolbasa()
 	sak_inventory.release_actor_items("green_kolbasa",12)
 end
 function green_kolbasa_12have()
 	return sak.have_items_count("green_kolbasa",12)
 end
+--Сильвестр Сайга
 function silvester_give_saiga(first_speaker, second_speaker)
 	local obj = misc.spawn_to ("wpn_saiga12c", db.actor)
 	if obj then
@@ -11674,7 +11675,7 @@ function add_trade_bonus()
 		sak.create_items(db.actor,item,count2)
 	end
 end
-
+---------------------------------------------------------------------------
 --Еще один скрипт проверки кондиции
 
 -- образец вызова, взято у Дениса:
@@ -11741,7 +11742,9 @@ function relocate_with_cond( first_speaker, second_speaker )
         have_with_cond_tbl = {}
     end
 end
+---------------------------------------------------------------------------
 
+---------------------------------------------------------------------------
 --выдача рандомных рецептов
 
 first_level = {
@@ -11915,4 +11918,220 @@ function give_random_recipes( table_recipes )
 		this.sms_recipt_found( info )	
 		nlc_vars.rnd_table_recipes_position = nlc_vars.rnd_table_recipes_position + 1
 	end
+end
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+--Выдача рандомных артефактов 
+
+tbl_arts = {
+    [ "lvl1" ] = {          -- 1 УРОВЕНЬ --
+        "af_medusa", "af_vyvert", "af_blood", "af_electra_sparkler",
+        "af_drops", "af_ameba_slime", "af_rusty_thorn"
+    },
+    [ "lvl2" ] = {          -- 2 УРОВЕНЬ --
+        "af_cristal_flower", "af_gravi", "af_mincer_meat", "af_electra_flash",
+        "af_fireball", "af_ameba_slug", "af_rusty_kristall"
+    },
+    [ "lvl3" ] = {          -- 3 УРОВЕНЬ --
+        "af_cristall", "af_electra_moonlight", "af_night_star", "af_gold_fish",
+        "af_rusty_sea_urchin", "af_soul", "af_ameba_mica"
+    },
+    [ "lvl4" ] = {          -- ПУСТЫШКИ --
+        "af_dummy_spring", "af_dummy_dummy", "af_dummy_battery",
+        "af_dummy_pellicle", "af_dummy_glassbeads", "af_dummy_kolobok"
+    },
+    [ "lvl5" ] = {          -- КАПСУЛЫ 3ур --
+        "af_night_star_capsule", "af_gold_fish_capsule", "af_cristall_capsule", "af_soul_capsule",
+        "af_electra_moonlight_capsule", "af_rusty_sea_urchin_capsule", "af_ameba_mica_capsule"
+    },
+    [ "lvl6" ] = {         -- КАПСУЛЫ ПУСТЫШКИ --
+        "af_dummy_spring_capsule", "af_dummy_dummy_capsule", "af_dummy_battery_capsule",
+        "af_dummy_pellicle_capsule", "af_dummy_kolobok_capsule", "af_dummy_glassbeads_capsule"
+	},
+    [ "lvl7" ] = {          -- МОДИФИКАТЫ --
+        "af_armor_1", "af_babka_1", "af_cry_1", "af_dik_1", "af_dummy_simbion",
+        "af_kol_1", "af_pudd_1", "af_spirit_1", "af_dummy_buliz"
+    },
+    [ "lvl8" ] = {          -- МЕЗОМОДИФИКАТЫ --
+        "af_armor_2", "af_babka_2", "af_cry_2", "af_dik_2",
+        "af_kol_2", "af_pudd_2", "af_spirit_2"
+    },
+    [ "lvl9" ] = {          -- ГИПЕРМОДИФИКАТЫ --
+        "af_armor_3", "af_babka_3", "af_cry_3", "af_dik_3",
+        "af_kol_3", "af_pudd_3", "af_spirit_3"
+    },
+    [ "lvl10" ] = {          -- АБСОЛЮТЫ --
+        "af_armor_4", "af_babka_4", "af_cry_4", "af_dik_4",
+        "af_kol_4", "af_pudd_4", "af_spirit_4"
+    },
+    [ "lvl11" ] = {         -- УНИКИ --
+        "af_dummy_green_medusa", "af_dummy_green_vyvert", "af_dummy_green_blood",
+        "af_red_dummy_spring", "af_red_dummy_battery", "af_red_dummy_pellicle",
+		"af_electra_moonlight_new", "af_electra_flash_new", "af_dummy_sparkler",
+        "af_medus_new",
+        "af_crist_new",
+        "af_flower_new",
+        "af_star_new",
+        "af_glass_new",
+        "af_dummy_fire",
+		"af_battery",
+		"af_ice",
+        "af_sul_new"
+    }			
+}
+
+function add_rnd_art_to_actor( lvl, dyn )
+    local sect = ""
+    local test_lvl = tonumber( lvl )
+    if dyn ~= nil then
+        sect = rnd_rec_art_info( tbl_arts, test_lvl, dyn )
+    else
+        sect = rnd_rec_art_info( tbl_arts, test_lvl )
+    end
+    sak.create_items( db.actor, sect, 1 )
+    return sect
+end
+
+function rnd_rec_art_info( tbl, lvl, dyn )
+    local tbl1 = tbl[ ( "lvl" .. tostring( lvl ) ) ]
+    local info = tbl1[ dsh.get_next_random( "sak_dialog.rec_art_info", 1, #tbl1 ) ] or ""
+    if strposx( info, "af_" ) then
+        if lvl <= 3 or lvl == 5 then
+            if dyn == nil then
+                info = info .. "_dyn" .. tostring( dsh.get_next_random( "sak_dialog.rec_art_info", 1, 4 ) ) .. "d"  -- без зелени
+            else
+                info = info .. "_dyn" .. dyn .. "d"
+            end
+        end
+    end
+    return info
+end
+
+function add_random_art_cond( lvl, dyn, rand1, rand2 )
+	local sect = sak_dialog.rnd_rec_art_info( sak_dialog.tbl_arts, lvl, dyn )
+	local rand = dsh.get_next_random( "add_random_art_cond",  rand1, rand2 ) / 100
+	this.add_bad_item( sect, rand )
+end
+
+function add_bad_item( sect, cond )
+    local obj = misc.spawn_to( sect, db.actor )
+    misc.process_spawn()
+    if obj then
+        params.upd_condition( obj.id, cond )
+        sak.relocate_item( db.actor, "in", sect, 1 )
+    end
+end
+
+function add_random_unknown_art()
+	local item = mike.table_arts_unknown[ dsh.get_next_random( "table_random", 1, #mike.table_arts_unknown ) ][ dsh.get_next_random( "table_position", 1, 3 ) ]	
+	local sobj = misc.spawn_to( item, db.actor )
+	misc.process_spawn()
+	if sobj then
+		local ini  = system_ini()	
+		local inv_weight = sak_dialog.read_if_exist( ini, item, "inv_weight", nil )		
+		local condition = inv_weight / dsh.get_next_random( "generic_rnd", 7, 12 )
+		if condition < 0.45 then condition = 0.45 end		
+		local obj = level.object_by_id( sobj.id )	
+		if obj then	
+			params.upd_condition( obj:id(), condition )
+		end	
+		sak.relocate_item( db.actor, "in", item, 1 )				
+	end	
+end
+---------------------------------------------------------------------------
+
+---------------------------------------------------------------------------
+-- Рандомные предметы 
+
+tbl_rnd_items = {
+	[ "lvl1" ] = {
+		{ "ammo_9x18_fmj", 				2, 3  },
+		{ "ammo_9x19_fmj", 				1, 2  },
+		{ "ammo_12x70_buck", 			1, 3  },
+		{ "ammo_5.45x39_fmj", 			1, 2  },
+		{ "grenade_rgd5", 				1, 2  },
+		{ "bandage", 					5, 10 },
+		{ "medkit", 					1, 2  },
+		{ "antirad", 					1, 2  },
+		{ "kolbasa", 					1, 3  },
+		{ "conserva", 					1, 2  },
+		{ "vodka", 						1, 2  },
+		{ "matches",					3, 5  },
+		{ "energy_drink", 				2, 4  }
+	},
+	[ "lvl2" ] = {
+		{ "ammo_9x18_pmm", 				2, 4  },
+		{ "ammo_9x19_pbp", 				2, 3  },	
+		{ "ammo_12x70_buck", 			2, 3  },
+		{ "ammo_12x76_dart", 			1, 2  },		
+		{ "ammo_5.45x39_fmj", 			2, 4  },
+		{ "ammo_5.56x45_ss190",			2, 4  },
+		{ "ammo_7.62x39_fmj", 			2, 3  },	
+		{ "grenade_rgd5", 				2, 3  },
+		{ "medkit", 					2, 3  },	
+		{ "medkit_army", 				1, 2  },	
+		{ "antirad", 					2, 3  },	
+		{ "conserva", 					1, 3  },	
+		{ "vodka", 						2, 3  },	
+		{ "suhpay", 					1, 2  }
+	},
+	[ "lvl3" ] = {
+		{ "repair_item_weapon_feik", 	1, 2  },
+		{ "repair_item_outfit_feik", 	1, 2  },
+		{ "grenade_f1", 				1, 2  },
+		{ "ammo_vog-25", 				1, 2  },		
+		{ "ammo_12x76_zhekan", 			1, 2  },
+		{ "ammo_12x76_dart", 			1, 3  },
+		{ "ammo_7.62x54_7h14", 			1, 2  },
+		{ "ammo_7.62x51_fmj",			1, 2  },
+		{ "ammo_5.45x39_ap",    		2, 3  },
+        { "ammo_5.56x45_ap",    		2, 4  },
+		{ "ammo_9x39_pab9", 			2, 3  },	
+		{ "medkit_army", 				2, 3  },
+		{ "medkit_scientic", 			1, 3  },
+		{ "antirad", 					3, 5  },
+		{ "vodka", 						2, 4  },
+		{ "suhpay", 					2, 3  }	
+	},	
+	[ "lvl4" ] = {	
+		{ "medkit", 					3, 4  },	
+		{ "medkit_army", 				2, 3  },	
+		{ "medkit_scientic", 			1, 2  },
+		{ "antirad", 					2, 3  },
+		{ "dimedrol",					1, 2  }
+	},	
+}
+
+function rnd_item( tbl )
+    if #tbl < 1 then return end
+	local t_len  = #tbl   
+	local rand = dsh.get_next_random( "kotovod.rnd_item", t_len )
+	t_len = t_len == 1 and #tbl - 1 or t_len - 1	
+	local sect = tbl[ rand ][ 1 ]	
+	local amnt  = dsh.get_next_random( "kotovod.rnd_item_amount", tbl[ rand ][ 2 ], tbl[ rand ][ 3 ] )	
+	return sect, amnt, rand	
+end	
+
+function add_random_item( lvl, amount ) 
+	local level = "lvl" .. tostring( lvl )
+	if amount == nil then amount = 2 end
+	local dif = amk_vars.g_diff or tonumber( level.get_game_difficulty() )
+	if dif == 0 then amount = amount + 1 end
+	for a = 1, amount do 
+		local section, count, random = rnd_item( tbl_rnd_items[ level ] )
+		sak.create_items( db.actor, section, count )		
+		table.remove( tbl_rnd_items[ level ], random )		
+	end	
+end
+---------------------------------------------------------------------------
+
+--Волк награда за АТП
+function transfer_wolf_reward()
+	add_rnd_art_to_actor( 1, 2 ) 
+		if has_alife_info( "add_pm_volk_have" ) then
+		sak.create_items( db.actor, "wpn_pm", 1)
+		sak.create_items( db.actor, "ammo_9x18_fmj", 1)
+	end
+	xr_statistic.add_pts( "quests", "wolf_document", 1, 1.5 )
 end
