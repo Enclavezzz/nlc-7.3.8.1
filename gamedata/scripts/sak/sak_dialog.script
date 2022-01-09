@@ -12106,10 +12106,10 @@ tbl_rnd_items = {
 function rnd_item( tbl )
     if #tbl < 1 then return end
 	local t_len  = #tbl   
-	local rand = dsh.get_next_random( "kotovod.rnd_item", t_len )
+	local rand = dsh.get_next_random( "sak_dialog.rnd_item", t_len )
 	t_len = t_len == 1 and #tbl - 1 or t_len - 1	
 	local sect = tbl[ rand ][ 1 ]	
-	local amnt  = dsh.get_next_random( "kotovod.rnd_item_amount", tbl[ rand ][ 2 ], tbl[ rand ][ 3 ] )	
+	local amnt  = dsh.get_next_random( "sak_dialog.rnd_item_amount", tbl[ rand ][ 2 ], tbl[ rand ][ 3 ] )	
 	return sect, amnt, rand	
 end	
 
