@@ -1,16 +1,20 @@
 [trader]
-
 buy_condition = artem_generic_buy
 sell_condition = artem_generic_sell
 buy_supplies = artem_start_sell
 
-[artem_generic_buy]
+;продаёт
+[artem_start_sell]
+bandage				= 20,	0.7
+wpn_ak74u           = 1,    1
 
-af_dummy_black_tip
-af_full_akkum
-flask_army
-kolbasa_green
-timer
+bread				= 20,	0.8
+kolbasa				= 20,	0.8
+conserva			= 10,	0.8
+energy_drink		= 10,	0.7
+
+;покупает
+[artem_generic_buy]
 amk_metka  = 0.1  0.1
 
 af_medusa		= 0.3,  0.5
@@ -246,331 +250,337 @@ belt_4_art				= 0.1, 0.4
 belt_5_art				= 0.1, 0.4
 belt_6_art				= 0.1, 0.4
 
-wpn_binoc		= 0.1, 0.2
-wpn_knife		= 0.1, 0.2
-wpn_knife_m1		= 0.1, 0.2
-wpn_pm		= 0.1, 0.2
-wpn_pb		= 0.1, 0.2
-wpn_fort		= 0.1, 0.2
-wpn_fort_m1		= 0.1, 0.2
-wpn_glock		= 0.1, 0.2
-wpn_beretta		= 0.1, 0.2
-wpn_colt1911		= 0.1, 0.2
-wpn_desert_eagle		= 0.1, 0.2
-wpn_eagle_m1		= 0.1, 0.2
-wpn_walther		= 0.1, 0.2
-wpn_gungauss		= 0.1, 0.2
-wpn_sig220		= 0.1, 0.2
-wpn_usp		= 0.1, 0.2
-wpn_beretta93		= 0.1, 0.2
-wpn_aps		= 0.1, 0.2
-wpn_ak74u		= 0.1, 0.2
-wpn_ak74u_old		= 0.1, 0.2
-wpn_ak74		= 0.1, 0.2
-wpn_ak74_old		= 0.1, 0.2
-wpn_ak47		= 0.1, 0.2
-wpn_ak47_old		= 0.1, 0.2
-wpn_aks47		= 0.1, 0.2
-wpn_akm		= 0.1, 0.2
-wpn_ak74pbn		= 0.1, 0.2
-wpn_ak74pbn_1pso		= 0.1, 0.2
-wpn_ak74pbn_cobra		= 0.1, 0.2
-wpn_ak74pbn_1p78		= 0.1, 0.2
-wpn_ak74m		= 0.1, 0.2
-wpn_ak74m_1pso		= 0.1, 0.2
-wpn_ak74m_cobra		= 0.1, 0.2
-wpn_ak74m_1p78		= 0.1, 0.2
-wpn_ak104		= 0.1, 0.2
-wpn_ak104_eotech		= 0.1, 0.2
-wpn_ak104_acog		= 0.1, 0.2
-wpn_ak104_mt		= 0.1, 0.2
-wpn_aek971		= 0.1, 0.2
-wpn_aek971_cobra		= 0.1, 0.2
-wpn_aek971_1p78		= 0.1, 0.2
-wpn_aek971_1pso		= 0.1, 0.2
-wpn_ak107		= 0.1, 0.2
-wpn_ak107_cobra		= 0.1, 0.2
-wpn_ak107_1p78		= 0.1, 0.2
-wpn_ak107_1pso		= 0.1, 0.2
-wpn_ak108		= 0.1, 0.2
-wpn_ak108_cobra		= 0.1, 0.2
-wpn_ak108_1p78		= 0.1, 0.2
-wpn_ak108_1pso		= 0.1, 0.2
-wpn_saiga12c_m2		= 0.1, 0.2
-wpn_saiga12c_m2_1pso		= 0.1, 0.2
-wpn_saiga12c_m2_1p78		= 0.1, 0.2
-wpn_saiga12c_m2_cobra		= 0.1, 0.2
-wpn_rpk74		= 0.1, 0.2
-wpn_rpk74_1p78		= 0.1, 0.2
-wpn_rpk74_cobra		= 0.1, 0.2
-wpn_rpk74_1pso		= 0.1, 0.2
-wpn_abakan		= 0.1, 0.2
-wpn_abakan_1pso		= 0.1, 0.2
-wpn_abakan_cobra		= 0.1, 0.2
-wpn_abakan_1p78		= 0.1, 0.2
-wpn_saiga12c		= 0.1, 0.2
-wpn_saiga12c_1p78		= 0.1, 0.2
-wpn_saiga12c_1pso		= 0.1, 0.2
-wpn_saiga12c_cobra		= 0.1, 0.2
-wpn_saiga12c_m1		= 0.1, 0.2
-wpn_saiga12c_m1_acog		= 0.1, 0.2
-wpn_saiga12c_m1_eotech		= 0.1, 0.2
-wpn_saiga12c_m1_mt		= 0.1, 0.2
-wpn_vintorez		= 0.1, 0.2
-wpn_vintorez_1pso		= 0.1, 0.2
-wpn_vintorez_cobra		= 0.1, 0.2
-wpn_vintorez_1p78		= 0.1, 0.2
-wpn_vintorez_m1		= 0.1, 0.2
-wpn_vintorez_m1_1pso		= 0.1, 0.2
-wpn_vintorez_m1_cobra		= 0.1, 0.2
-wpn_vintorez_m1_1p78		= 0.1, 0.2
-wpn_val		= 0.1, 0.2
-wpn_val_1pso		= 0.1, 0.2
-wpn_val_cobra		= 0.1, 0.2
-wpn_val_1p78		= 0.1, 0.2
-wpn_ak74_m1		= 0.1, 0.2
-wpn_ak74_m2		= 0.1, 0.2
-wpn_ak74_m1_acog		= 0.1, 0.2
-wpn_ak74_m2_acog		= 0.1, 0.2
-wpn_ak74_m1_eotech		= 0.1, 0.2
-wpn_ak74_m2_eotech		= 0.1, 0.2
-wpn_ak74_m1_mt		= 0.1, 0.2
-wpn_ak74_m2_mt		= 0.1, 0.2
-wpn_ak74_m3		= 0.1, 0.2
-wpn_ak74_m3_acog		= 0.1, 0.2
-wpn_ak74_m3_eotech		= 0.1, 0.2
-wpn_ak74_m3_mt		= 0.1, 0.2
-wpn_groza		= 0.1, 0.2
-wpn_groza_po		= 0.1, 0.2
-wpn_bizon		= 0.1, 0.2
-wpn_bizon_cobra		= 0.1, 0.2
-wpn_bizon_1p78		= 0.1, 0.2
-wpn_bizon_1pso		= 0.1, 0.2
-wpn_pp19		= 0.1, 0.2
-wpn_pp19_acog		= 0.1, 0.2
-wpn_pp19_eotech		= 0.1, 0.2
-wpn_ump45		= 0.1, 0.2
-wpn_ump45_acog		= 0.1, 0.2
-wpn_ump45_eotech		= 0.1, 0.2
-wpn_ump45_mt		= 0.1, 0.2
-wpn_lr300		= 0.1, 0.2
-wpn_lr300_eotech		= 0.1, 0.2
-wpn_lr300_acog		= 0.1, 0.2
-wpn_lr300_m1		= 0.1, 0.2
-wpn_lr300_m1_eotech		= 0.1, 0.2
-wpn_lr300_m1_acog		= 0.1, 0.2
-wpn_mp5		= 0.1, 0.2
-wpn_mp5_m1		= 0.1, 0.2
-wpn_sig550		= 0.1, 0.2
-wpn_sig550_acog		= 0.1, 0.2
-wpn_sig550_eotech		= 0.1, 0.2
-wpn_sig550_mt		= 0.1, 0.2
-wpn_g36		= 0.1, 0.2
-wpn_g36_g36l		= 0.1, 0.2
-wpn_g36c		= 0.1, 0.2
-wpn_g36c_eotech		= 0.1, 0.2
-wpn_g36c_acog		= 0.1, 0.2
-wpn_g36c_mt		= 0.1, 0.2
-wpn_m16a4		= 0.1, 0.2
-wpn_m16a4_acog		= 0.1, 0.2
-wpn_m16a4_eotech		= 0.1, 0.2
-wpn_m16a4_mt		= 0.1, 0.2
-wpn_fn2000		= 0.1, 0.2
-wpn_fn2000_eotech		= 0.1, 0.2
-wpn_fn2000_acog		= 0.1, 0.2
-wpn_fn2000_mt		= 0.1, 0.2
-wpn_gm94		= 0.1, 0.2
-wpn_soc308		= 0.1, 0.2
-wpn_soc308_1pso		= 0.1, 0.2
-wpn_soc308_1p78		= 0.1, 0.2
-wpn_soc308_cobra		= 0.1, 0.2
-wpn_rg6		= 0.1, 0.2
-wpn_rpg7		= 0.1, 0.2
-wpn_pkm		= 0.1, 0.2
-wpn_svd		= 0.1, 0.2
-wpn_svd_cobra		= 0.1, 0.2
-wpn_svd_1pso		= 0.1, 0.2
-wpn_svd_1p78		= 0.1, 0.2
-wpn_svu		= 0.1, 0.2
-wpn_svu_cobra		= 0.1, 0.2
-wpn_svu_1p78		= 0.1, 0.2
-wpn_svu_1pso		= 0.1, 0.2
-wpn_awm		= 0.1, 0.2
-wpn_awm_eotech		= 0.1, 0.2
-wpn_awm_acog		= 0.1, 0.2
-wpn_awm_mt		= 0.1, 0.2
-wpn_sv98		= 0.1, 0.2
-wpn_sv98_eotech		= 0.1, 0.2
-wpn_sv98_acog		= 0.1, 0.2
-wpn_sv98_mt		= 0.1, 0.2
-wpn_m110		= 0.1, 0.2
-wpn_m110_eotech		= 0.1, 0.2
-wpn_m110_acog		= 0.1, 0.2
-wpn_m110_mt		= 0.1, 0.2
-wpn_mr308_eotech		= 0.1, 0.2
-wpn_mr308_acog		= 0.1, 0.2
-wpn_mr308_mt		= 0.1, 0.2
-wpn_mr308		= 0.1, 0.2
-wpn_mosin		= 0.1, 0.2
-wpn_mosin_pe		= 0.1, 0.2
-wpn_toz34		= 0.1, 0.2
-wpn_toz34_m1		= 0.1, 0.2
-wpn_hunters_toz_new		= 0.1, 0.2
-wpn_bm16		= 0.1, 0.2
-wpn_bm16_full		= 0.1, 0.2
-wpn_spas12		= 0.1, 0.2
-wpn_spas12_m1		= 0.1, 0.2
-wpn_spas15		= 0.1, 0.2
-wpn_spas15_eotech		= 0.1, 0.2
-wpn_spas15_m1		= 0.1, 0.2
-wpn_spas15_m1_eotech		= 0.1, 0.2
-wpn_wincheaster1300		= 0.1, 0.2
-wpn_winchester_m1		= 0.1, 0.2
-wpn_mp153		= 0.1, 0.2
-wpn_mp153_m1		= 0.1, 0.2
-wpn_gauss		= 0.1, 0.2
-wpn_gauss_auto		= 0.1, 0.2
-wpn_flame		= 0.1, 0.2
-wpn_addon_grenade_launcher		= 0.1, 0.2
-wpn_addon_grenade_launcher_m203		= 0.1, 0.2
-wpn_addon_sil_9_p		= 0.1, 0.2
-wpn_addon_sil_545_ar		= 0.1, 0.2
-wpn_addon_sil_556_ar		= 0.1, 0.2
-wpn_addon_sil_762_ar		= 0.1, 0.2
-wpn_addon_sil_762_sr1		= 0.1, 0.2
-wpn_addon_sil_762_sr2		= 0.1, 0.2
-wpn_addon_sil_mosin		= 0.1, 0.2
-wpn_addon_1pso		= 0.1, 0.2
-wpn_addon_1p78		= 0.1, 0.2
-wpn_addon_cobra		= 0.1, 0.2
-wpn_addon_mt		= 0.1, 0.2
-wpn_addon_acog		= 0.1, 0.2
-wpn_addon_eotech		= 0.1, 0.2
-wpn_addon_pe		= 0.1, 0.2
-wpn_addon_po		= 0.1, 0.2
-wpn_addon_g36l		= 0.1, 0.2
+wpn_binoc		
+wpn_knife		
+wpn_knife_m1		
+wpn_pm		
+wpn_pb		
+wpn_fort		
+wpn_fort_m1		
+wpn_glock		
+wpn_beretta		
+wpn_colt1911		
+wpn_desert_eagle		
+wpn_eagle_m1		
+wpn_walther		
+wpn_gungauss		
+wpn_sig220		
+wpn_usp		
+wpn_beretta93		
+wpn_aps		
+wpn_ak74u		
+wpn_ak74u_old		
+wpn_ak74		
+wpn_ak74_old		
+wpn_ak47		
+wpn_ak47_old		
+wpn_aks47		
+wpn_akm		
+wpn_ak74pbn		
+wpn_ak74pbn_1pso		
+wpn_ak74pbn_cobra		
+wpn_ak74pbn_1p78		
+wpn_ak74m		
+wpn_ak74m_1pso		
+wpn_ak74m_cobra		
+wpn_ak74m_1p78		
+wpn_ak104		
+wpn_ak104_eotech		
+wpn_ak104_acog		
+wpn_ak104_mt		
+wpn_aek971		
+wpn_aek971_cobra		
+wpn_aek971_1p78		
+wpn_aek971_1pso		
+wpn_ak107		
+wpn_ak107_cobra		
+wpn_ak107_1p78		
+wpn_ak107_1pso		
+wpn_ak108		
+wpn_ak108_cobra		
+wpn_ak108_1p78		
+wpn_ak108_1pso		
+wpn_saiga12c_m2		
+wpn_saiga12c_m2_1pso		
+wpn_saiga12c_m2_1p78		
+wpn_saiga12c_m2_cobra		
+wpn_rpk74		
+wpn_rpk74_1p78		
+wpn_rpk74_cobra		
+wpn_rpk74_1pso		
+wpn_abakan		
+wpn_abakan_1pso		
+wpn_abakan_cobra		
+wpn_abakan_1p78		
+wpn_saiga12c		
+wpn_saiga12c_1p78		
+wpn_saiga12c_1pso		
+wpn_saiga12c_cobra		
+wpn_saiga12c_m1		
+wpn_saiga12c_m1_acog		
+wpn_saiga12c_m1_eotech		
+wpn_saiga12c_m1_mt		
+wpn_vintorez		
+wpn_vintorez_1pso		
+wpn_vintorez_cobra		
+wpn_vintorez_1p78		
+wpn_vintorez_m1		
+wpn_vintorez_m1_1pso		
+wpn_vintorez_m1_cobra		
+wpn_vintorez_m1_1p78		
+wpn_val		
+wpn_val_1pso		
+wpn_val_cobra		
+wpn_val_1p78		
+wpn_ak74_m1		
+wpn_ak74_m2		
+wpn_ak74_m1_acog		
+wpn_ak74_m2_acog		
+wpn_ak74_m1_eotech		
+wpn_ak74_m2_eotech		
+wpn_ak74_m1_mt		
+wpn_ak74_m2_mt		
+wpn_ak74_m3		
+wpn_ak74_m3_acog		
+wpn_ak74_m3_eotech		
+wpn_ak74_m3_mt		
+wpn_groza		
+wpn_groza_po		
+wpn_bizon		
+wpn_bizon_cobra		
+wpn_bizon_1p78		
+wpn_bizon_1pso		
+wpn_pp19		
+wpn_pp19_acog		
+wpn_pp19_eotech		
+wpn_ump45		
+wpn_ump45_acog		
+wpn_ump45_eotech		
+wpn_ump45_mt		
+wpn_lr300		
+wpn_lr300_eotech		
+wpn_lr300_acog		
+wpn_lr300_m1		
+wpn_lr300_m1_eotech		
+wpn_lr300_m1_acog		
+wpn_mp5		
+wpn_mp5_m1		
+wpn_sig550		
+wpn_sig550_acog		
+wpn_sig550_eotech		
+wpn_sig550_mt		
+wpn_g36		
+wpn_g36_g36l		
+wpn_g36c		
+wpn_g36c_eotech		
+wpn_g36c_acog		
+wpn_g36c_mt		
+wpn_m16a4		
+wpn_m16a4_acog		
+wpn_m16a4_eotech		
+wpn_m16a4_mt		
+wpn_fn2000		
+wpn_fn2000_eotech		
+wpn_fn2000_acog		
+wpn_fn2000_mt		
+wpn_gm94		
+wpn_soc308		
+wpn_soc308_1pso		
+wpn_soc308_1p78		
+wpn_soc308_cobra		
+wpn_rg6		
+wpn_rpg7		
+wpn_pkm		
+wpn_svd		
+wpn_svd_cobra		
+wpn_svd_1pso		
+wpn_svd_1p78		
+wpn_svu		
+wpn_svu_cobra		
+wpn_svu_1p78		
+wpn_svu_1pso		
+wpn_awm		
+wpn_awm_eotech		
+wpn_awm_acog		
+wpn_awm_mt		
+wpn_sv98		
+wpn_sv98_eotech		
+wpn_sv98_acog		
+wpn_sv98_mt		
+wpn_m110		
+wpn_m110_eotech		
+wpn_m110_acog		
+wpn_m110_mt		
+wpn_mr308_eotech		
+wpn_mr308_acog		
+wpn_mr308_mt		
+wpn_mr308		
+wpn_mosin		
+wpn_mosin_pe		
+wpn_toz34		
+wpn_toz34_m1		
+wpn_hunters_toz_new		
+wpn_bm16		
+wpn_bm16_full		
+wpn_spas12		
+wpn_spas12_m1		
+wpn_spas15		
+wpn_spas15_eotech		
+wpn_spas15_m1		
+wpn_spas15_m1_eotech		
+wpn_wincheaster1300		
+wpn_winchester_m1		
+wpn_mp153		
+wpn_mp153_m1		
+wpn_gauss		
+wpn_gauss_auto		
+wpn_flame		
+wpn_addon_grenade_launcher		
+wpn_addon_grenade_launcher_m203		
+wpn_addon_sil_9_p		
+wpn_addon_sil_545_ar		
+wpn_addon_sil_556_ar		
+wpn_addon_sil_762_ar		
+wpn_addon_sil_762_sr1		
+wpn_addon_sil_762_sr2		
+wpn_addon_sil_mosin		
+wpn_addon_1pso		
+wpn_addon_1p78		
+wpn_addon_cobra		
+wpn_addon_mt		
+wpn_addon_acog		
+wpn_addon_eotech		
+wpn_addon_pe		
+wpn_addon_po		
+wpn_addon_g36l		
 
-novice_outfit                                  = 0.1,  0.1
-bandit_outfit                                  = 0.1,  0.1
-killer_outfit                                  = 0.1,  0.1
-ecolog_outfit                                  = 0.1,  0.1
-broken_exoskeleton                             = 0.1,  0.1
-stalker_outfit                                 = 0.1,  0.1
-svoboda_light_outfit                           = 0.1,  0.1
-freedom_scientific_outfit                      = 0.1,  0.1
-stalker_guard_outfit                           = 0.1,  0.1
-merc_scientific_outfit                         = 0.1,  0.1
-monolit_scientific_outfit                      = 0.1,  0.1	
-monolit_outfit                                 = 0.1,  0.1
-svoboda_heavy_outfit                           = 0.1,  0.1
-dolg_outfit                                    = 0.1,  0.1
-scientific_outfit                              = 0.1,  0.1
-dolg_scientific_outfit                         = 0.1,  0.1
-protection_outfit                              = 0.1,  0.1
-bandit_master_outfit                           = 0.1,  0.1
-specops_outfit                                 = 0.1,  0.1
-military_outfit                                = 0.1,  0.1
-exo_outfit                                     = 0.1,  0.1
-militaryspec_outfit                            = 0.1,  0.1
-svoboda_exoskeleton                            = 0.1,  0.1
-killer_blue_exoskeleton                        = 0.1,  0.1
-dolg_black_exoskeleton                         = 0.1,  0.1
-monolit_exoskeleton                            = 0.1,  0.1
-outfit_soldier_m1                              = 0.1,  0.2
-neytral_exo_antigas_outfit                     = 0.1,  0.2
-bandit_veteran_outfit                          = 0.1,  0.2
-neytral_novice_outfit_m1                       = 0.1,  0.2
-neytral_novice_gaz_outfit_m1                   = 0.1,  0.2
-neytral_gaz_outfit_m1                          = 0.1,  0.2
-neytral_gaz_outfit_m2                          = 0.1,  0.2
-neytral_exo_gaz_outfit_m1                      = 0.1,  0.2
-bandit_gaz_outfit_m1                           = 0.1,  0.2
-bandit_veteran_outfit_m1                       = 0.1,  0.2
-svoboda_gaz_outfit_m1                          = 0.1,  0.2
-svoboda_heavy_gaz_outfit_m1                    = 0.1,  0.2
-svoboda_yellow_exo_outfit_m1                   = 0.1,  0.2
-dolg_gaz_outfit_m1                             = 0.1,  0.2
-killer_gaz_outfit_m1                           = 0.1,  0.2
-monolit_gaz_outfit_m1                          = 0.1,  0.2
-outfit_novice_m1                               = 0.2,  0.2
-outfit_bandit_m1                               = 0.2,  0.2
-outfit_dolg_m1                                 = 0.2,  0.2
-outfit_killer_m1                               = 0.2,  0.2
-outfit_specnaz_m1                              = 0.2,  0.2
-outfit_stalker_m1                              = 0.2,  0.2
-outfit_stalker_m2                              = 0.2,  0.2
-outfit_svoboda_m1                              = 0.2,  0.2
-outfit_exo_m1                                  = 0.2,  0.2
-bandit_master_outfit_m1                        = 0.2,  0.2
-exo_bandit_outfit                              = 0.1,  0.2
-soldier_outfit                                 = 0.1,  0.2    
-cs_light_outfit                                = 0.2,  0.2
-cs_heavy_outfit                                = 0.2,  0.2
-stalker_outfit_m3                              = 0.2,  0.2
-exo_outfit_m1                                  = 0.2,  0.2
-ecolog_outfit_m1                               = 0.2,  0.2
+novice_outfit                                  
+bandit_outfit                                  
+killer_outfit                                  
+ecolog_outfit                                  
+broken_exoskeleton                             
+stalker_outfit                                 
+svoboda_light_outfit                           
+freedom_scientific_outfit                      
+stalker_guard_outfit                           
+merc_scientific_outfit                         
+monolit_scientific_outfit                      	
+monolit_outfit                                 
+svoboda_heavy_outfit                           
+dolg_outfit                                    
+scientific_outfit                              
+dolg_scientific_outfit                         
+protection_outfit                              
+bandit_master_outfit                           
+specops_outfit                                 
+military_outfit                                
+exo_outfit                                     
+militaryspec_outfit                            
+svoboda_exoskeleton                            
+killer_blue_exoskeleton                        
+dolg_black_exoskeleton                         
+monolit_exoskeleton                            
+outfit_soldier_m1                              
+neytral_exo_antigas_outfit                     
+bandit_veteran_outfit                          
+neytral_novice_outfit_m1                       
+neytral_novice_gaz_outfit_m1                   
+neytral_gaz_outfit_m1                          
+neytral_gaz_outfit_m2                          
+neytral_exo_gaz_outfit_m1                      
+bandit_gaz_outfit_m1                           
+bandit_veteran_outfit_m1                       
+svoboda_gaz_outfit_m1                          
+svoboda_heavy_gaz_outfit_m1                    
+svoboda_yellow_exo_outfit_m1                   
+dolg_gaz_outfit_m1                             
+killer_gaz_outfit_m1                           
+monolit_gaz_outfit_m1                          
+outfit_novice_m1                               
+outfit_bandit_m1                               
+outfit_dolg_m1                                 
+outfit_killer_m1                               
+outfit_specnaz_m1                              
+outfit_stalker_m1                              
+outfit_stalker_m2                              
+outfit_svoboda_m1                              
+outfit_exo_m1                                  
+bandit_master_outfit_m1                        
+exo_bandit_outfit                              
+soldier_outfit                                     
+cs_light_outfit                                
+cs_heavy_outfit                                
+stalker_outfit_m3                              
+exo_outfit_m1                                  
+ecolog_outfit_m1                               
 
-novice_q_outfit                                = 0.1,  0.1    
-stalker_q_outfit                               = 0.1,  0.1    
-scientific_q_outfit                            = 0.1,  0.1    
-exo_q_outfit                                   = 0.1,  0.1
-bandit_q_outfit                                = 0.1,  0.1
-bandit_q_veteran_q_outfit                      = 0.1,  0.2
-bandit_q_master_q_outfit                       = 0.1,  0.1
-exo_q_bandit_q_outfit                          = 0.1,  0.1
-killer_q_outfit                                = 0.1,  0.1
-merc_q_scientific_q_outfit                     = 0.1,  0.1
-killer_q_blue_q_exoskeleton                    = 0.1,  0.1
-monolit_q_outfit                               = 0.1,  0.1
-monolit_q_scientific_q_outfit                  = 0.1,  0.1
-monolit_q_exoskeleton                          = 0.1,  0.1
-specops_q_outfit                               = 0.1,  0.1
-military_q_outfit                              = 0.1,  0.1
-militaryspec_q_outfit                          = 0.1,  0.1
-stalker_q_guard_q_outfit                       = 0.1,  0.1
-svoboda_q_light_q_outfit                       = 0.1,  0.1
-svoboda_q_heavy_q_outfit                       = 0.1,  0.1
-freedom_q_scientific_q_outfit                  = 0.1,  0.1
-svoboda_q_exoskeleton                          = 0.1,  0.1
-dolg_q_outfit                                  = 0.1,  0.1
-dolg_q_scientific_q_outfit                     = 0.1,  0.1
-dolg_q_black_q_exoskeleton                     = 0.1,  0.1
-ecolog_q_outfit                                = 0.1,  0.1 
-protection_q_outfit                            = 0.1,  0.1
-broken_q_exoskeleton                           = 0.1,  0.1
-soldier_q_outfit                               = 0.1,  0.1
-cs_q_light_q_outfit                            = 0.1,  0.1
-cs_q_heavy_q_outfit                            = 0.1,  0.1
+novice_q_outfit                                    
+stalker_q_outfit                                   
+scientific_q_outfit                                
+exo_q_outfit                                   
+bandit_q_outfit                                
+bandit_q_veteran_q_outfit                      
+bandit_q_master_q_outfit                       
+exo_q_bandit_q_outfit                          
+killer_q_outfit                                
+merc_q_scientific_q_outfit                     
+killer_q_blue_q_exoskeleton                    
+monolit_q_outfit                               
+monolit_q_scientific_q_outfit                  
+monolit_q_exoskeleton                          
+specops_q_outfit                               
+military_q_outfit                              
+militaryspec_q_outfit                          
+stalker_q_guard_q_outfit                       
+svoboda_q_light_q_outfit                       
+svoboda_q_heavy_q_outfit                       
+freedom_q_scientific_q_outfit                  
+svoboda_q_exoskeleton                          
+dolg_q_outfit                                  
+dolg_q_scientific_q_outfit                     
+dolg_q_black_q_exoskeleton                     
+ecolog_q_outfit                                 
+protection_q_outfit                            
+broken_q_exoskeleton                           
+soldier_q_outfit                               
+cs_q_light_q_outfit                            
+cs_q_heavy_q_outfit                            
 
-outfit_q_novice_q_m1                           = 0.2,  0.2
-outfit_q_bandit_q_m1                           = 0.2,  0.2
-bandit_q_gaz_q_outfit_q_m1                     = 0.1,  0.2
-neytral_q_novice_q_outfit_q_m1                 = 0.1,  0.2
-neytral_q_novice_q_gaz_q_outfit_q_m1           = 0.1,  0.2
-neytral_q_gaz_q_outfit_q_m1                    = 0.1,  0.2
-neytral_q_gaz_q_outfit_q_m2                    = 0.1,  0.2
-outfit_q_stalker_q_m1                          = 0.2,  0.2
-outfit_q_stalker_q_m2                          = 0.2,  0.2
-stalker_q_outfit_q_m3                          = 0.1,  0.2
-exo_q_outfit_q_m1                              = 0.1,  0.2
-outfit_q_exo_q_m1                              = 0.2,  0.2
-neytral_q_exo_q_antigas_q_outfit               = 0.1,  0.2
-bandit_q_veteran_q_outfit_q_gas                = 0.1,  0.2
-bandit_q_veteran_q_outfit_q_m1                 = 0.1,  0.2
-bandit_q_master_q_outfit_q_gas                 = 0.1,  0.2
-bandit_q_master_q_outfit_q_m1                  = 0.2,  0.2
-killer_q_gaz_q_outfit_q_m1                     = 0.1,  0.2
-outfit_q_killer_q_m1                           = 0.2,  0.2
-monolit_q_gaz_q_outfit_q_m1                    = 0.1,  0.2
-outfit_q_specnaz_q_m1                          = 0.2,  0.2
-outfit_q_svoboda_q_m1                          = 0.2,  0.2
-svoboda_q_gaz_q_outfit_q_m1                    = 0.1,  0.2
-svoboda_q_heavy_q_gaz_q_outfit_q_m1            = 0.1,  0.2
-svoboda_q_yellow_q_exo_q_outfit_q_m1           = 0.1,  0.2
-outfit_q_dolg_q_m1                             = 0.1,  0.2
-dolg_q_gaz_q_outfit_q_m1                       = 0.1,  0.2
-ecolog_q_outfit_q_m1                           = 0.1,  0.2
-outfit_q_soldier_q_m1                          = 0.2,  0.2
+outfit_q_novice_q_m1                           
+outfit_q_bandit_q_m1                           
+bandit_q_gaz_q_outfit_q_m1                     
+neytral_q_novice_q_outfit_q_m1                 
+neytral_q_novice_q_gaz_q_outfit_q_m1           
+neytral_q_gaz_q_outfit_q_m1                    
+neytral_q_gaz_q_outfit_q_m2                    
+outfit_q_stalker_q_m1                          
+outfit_q_stalker_q_m2                          
+stalker_q_outfit_q_m3                          
+exo_q_outfit_q_m1                              
+outfit_q_exo_q_m1                              
+neytral_q_exo_q_antigas_q_outfit               
+bandit_q_veteran_q_outfit_q_gas                
+bandit_q_veteran_q_outfit_q_m1                 
+bandit_q_master_q_outfit_q_gas                 
+bandit_q_master_q_outfit_q_m1                  
+killer_q_gaz_q_outfit_q_m1                     
+outfit_q_killer_q_m1                           
+monolit_q_gaz_q_outfit_q_m1                    
+outfit_q_specnaz_q_m1                          
+outfit_q_svoboda_q_m1                          
+svoboda_q_gaz_q_outfit_q_m1                    
+svoboda_q_heavy_q_gaz_q_outfit_q_m1            
+svoboda_q_yellow_q_exo_q_outfit_q_m1           
+outfit_q_dolg_q_m1                             
+dolg_q_gaz_q_outfit_q_m1                       
+ecolog_q_outfit_q_m1                           
+outfit_q_soldier_q_m1                          
+
+af_dummy_black_tip
+af_full_akkum
+flask_army
+kolbasa_green
+timer
 	
 bandage
 medkit
@@ -887,30 +897,6 @@ soldier_letter_7
 solt_bag
 strelok_pda
 stukach_book
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 treasure_seif
 uncoder
 und_pda
@@ -932,17 +918,12 @@ yad2
 yan_pda
 zapiska_muller
 zub_flash
-
 wpn_gungauss
 wpn_ak_strelok
 alko_banka
 noghost_letter
-
 conserva_tm
 x16_flash
-
-
-
 ammo_gauss
 ammo_super_gauss
 ammo_gauss_oboima
@@ -950,7 +931,6 @@ bun_document
 self_made_decoder
 marsh_pribor
 item_kamaz_accum
-
 af_mayatnik_stadion_new_capsule
 af_mayatnik_tesla_new_capsule
 af_mayatnik_tuman_new_capsule
@@ -958,39 +938,32 @@ af_mayatnik_chaes_new_capsule
 af_mayatnik_radar_new_capsule
 af_mayatnik_les_new_capsule
 sak_document4
-
 sak_document3
-
 mar_ecolog_theory
 suhpay
-
-
 zapiska_volk
-
 svoboda_letter
-
 strelok_sheets
-
 strelok_book2
-
 strelok_book1
 amk_zapiska_sak
-
-
 super_scientific_outfit
 super_g_scientific_g_outfit
 
-[artem_start_sell]
-
-bandage				= 20,	0.7
-wpn_ak74u           = 1,    1
-
-bread				= 20,	0.8
-kolbasa				= 20,	0.8
-conserva			= 10,	0.8
-energy_drink		= 10,	0.7
-
+;цены
 [artem_generic_sell]
+
+bandage					= 10, 10
+medkit					= 10, 10
+medkit_army				= 10, 10
+medkit_scientic			= 10, 10
+antirad					= 10, 10
+
+bread					= 5, 5
+kolbasa					= 5, 5
+conserva				= 5, 5
+energy_drink			= 5, 5
+vodka					= 5, 5
 
 mutant_flesh_eye
 mutant_boar_leg	
@@ -1008,19 +981,6 @@ mutant_tail_cat
 mutant_chimera_kogot
 			
 ammo_9x19_pbp	
-bandage					= 10, 10
-medkit					= 10, 10
-medkit_army				= 10, 10
-medkit_scientic			= 10, 10
-antirad					= 10, 10
-
-
-bread					= 5, 5
-kolbasa					= 5, 5
-conserva				= 5, 5
-energy_drink			= 5, 5
-vodka					= 5, 5
-
 ammo_9x18_fmj	
 ammo_9x18_pmm
 ammo_9x19_pbp

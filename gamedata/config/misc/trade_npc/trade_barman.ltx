@@ -1,21 +1,84 @@
+[trader]
+buy_condition = barman_generic_buy
+sell_condition = {+yan_labx16_switcher_primary_off} barman_after_brain_sell, {+bar_darklab_document_done} barman_after_darkvalley_sell, barman_start_sell
+buy_supplies = {+yan_labx16_switcher_primary_off} supplies_after_brain, {+bar_darklab_document_done} supplies_after_darkvalley, supplies_start
+
+;начальный ассортимент
+[supplies_start]
+matches					= 6, 0.5
+amk_metka				= 1, 1 
+arc_art_box_basic		= 1, 1
+sleeping_bag			= 1, 1
+af_full_akkum			= 4, 0.5
+batt_torch				= 6, 0.5
+belt_3_art				= 1, 0.8
+ammo_9x18_fmj			= 5, 0.5
+ammo_9x19_fmj			= 5, 0.3
+stalker_outfit	        = 1, 0.4
+bandage					= 30, 0.7
+bread					= 10, 1
+kolbasa					= 10, 1
+conserva				= 10, 1
+energy_drink			= 5, 1
+flask_army_trade		= 2, 1
+wpn_knife               = 1, 1
+vodka                   = 3, 1
+
+;после долины
+[supplies_after_darkvalley]
+matches					= 6, 0.6
+amk_metka				= 1, 1 
+arc_art_box_basic		= 1, 1
+sleeping_bag			= 1, 1
+belt_3_art				= 1, 0.6
+belt_4_art				= 1, 0.3
+ammo_9x18_fmj			= 7, 0.5
+ammo_9x19_fmj			= 5, 0.4
+af_full_akkum			= 4, 0.5
+batt_torch				= 6, 0.5
+stalker_outfit	        = 1, 0.7
+neytral_gaz_outfit_m1	= 1, 0.4
+neytral_gaz_outfit_m2   = 1, 0.2
+bandage					= 30, 0.7
+bread					= 10, 1
+kolbasa					= 10, 1
+conserva				= 10, 1
+energy_drink			= 5, 1
+flask_army_trade		= 2, 1
+wpn_knife               = 1, 1
+vodka                   = 4, 1
+
+;после х16
+[supplies_after_brain]
+matches					= 6, 0.7
+sleeping_bag			= 1, 1
+amk_metka				= 1, 1 
+arc_art_box_basic		= 1, 1
+af_full_akkum			= 1.5, 3
+belt_3_art				= 1, 0.6
+belt_4_art				= 1, 0.4
+belt_5_art				= 1, 0.1
+batt_torch				= 6, 0.5
+ammo_9x18_fmj			= 10, 0.6
+ammo_9x19_fmj			= 10, 0.4
+stalker_outfit			= 1, 1
+neytral_gaz_outfit_m1	= 1, 0.7
+neytral_gaz_outfit_m2   = 1, 0.4
+bandage					= 30, 0.7
+bread					= 10, 1
+kolbasa					= 10, 1
+conserva				= 10, 1
+energy_drink			= 5, 1
+flask_army_trade		= 2, 1
+wpn_knife               = 1, 1
+vodka                   = 5, 1
+
+;цены
 [barman_start_sell]
 
 sleeping_bag			= 1, 1
-rucksack
-gorelka		
-manometr
-batt_torch	
-trubka		
-flamethrower_bad
-amk_kanistra
-amk_ballon		
-repair_boxoutfit	
-bearer_cheque
-2bearer_cheque	
 amk_metka				= 2, 2  
 arc_art_box_basic		= 3, 3
-arc_art_box_1basic	
-arc_art_box_8basic	
 matches					= 2, 2
 batt_torch				= 3, 4
 wpn_binoc				= 6, 10
@@ -24,11 +87,52 @@ belt_3_art				= 1, 1.4
 belt_4_art				= 2.5, 3
 belt_5_art				= 2, 2.4
 flask_army				= 6, 6
-flask_army_trade				= 6, 6
-
+flask_army_trade		= 6, 6
 ammo_9x18_fmj			= 4, 6
 ammo_9x19_fmj			= 4, 6
 
+bread					= 5, 5
+kolbasa					= 5, 5
+conserva				= 5, 5
+vodka		            = 10, 10
+energy_drink			= 5, 5
+bandage					= 5, 5
+detector_advances		= 4, 4
+
+novice_q_outfit                  = 3,	 10
+stalker_q_outfit                 = 2,	 2
+scientific_q_outfit              = 3,	 10
+exo_q_outfit                     = 3,	 10
+neytral_q_exo_q_antigas_q_outfit = 3,	 10
+bandit_q_outfit                  = 3,	 10
+bandit_q_veteran_q_outfit        = 3,	 10
+bandit_q_veteran_q_outfit_q_gas  = 3,	 10
+bandit_q_master_q_outfit         = 3,	 10
+bandit_q_master_q_outfit_q_gas   = 3,	 10
+exo_q_bandit_q_outfit            = 3,	 10
+killer_q_outfit                  = 3,	 10
+merc_q_scientific_q_outfit       = 3,	 10
+killer_q_blue_q_exoskeleton      = 3,	 10
+monolit_q_outfit                 = 3,	 10
+monolit_q_scientific_q_outfit    = 3,	 10
+monolit_q_exoskeleton            = 3,	 10
+specops_q_outfit                 = 3,	 10
+military_q_outfit                = 3,	 10
+militaryspec_q_outfit            = 3,	 10
+stalker_q_guard_q_outfit         = 3,	 10
+svoboda_q_light_q_outfit         = 3,	 10
+svoboda_q_heavy_q_outfit         = 3,	 10
+freedom_q_scientific_q_outfit    = 3,	 10
+svoboda_q_exoskeleton            = 3,	 10
+dolg_q_outfit                    = 3,	 10
+dolg_q_scientific_q_outfit       = 3,	 10
+dolg_q_black_q_exoskeleton       = 3,	 10
+ecolog_q_outfit                  = 3,	 10
+protection_q_outfit              = 3,	 10
+broken_q_exoskeleton             = 3,	 10
+soldier_q_outfit                 = 3,	 10
+cs_q_light_q_outfit              = 3,	 10
+cs_q_heavy_q_outfit              = 3,	 10
 wpn_binoc   = 3,	 10 
 wpn_knife   = 5,	 5 
 wpn_knife_m1   = 3,	 10 
@@ -232,7 +336,6 @@ wpn_addon_eotech   = 3,	 10
 wpn_addon_pe   = 3,	 10 
 wpn_addon_po   = 3,	 10 
 wpn_addon_g36l   = 3,	 10 
-
 novice_outfit               = 3,	 10
 stalker_outfit              = 2,	 2 
 scientific_outfit           = 3,	 10
@@ -267,11 +370,25 @@ broken_exoskeleton          = 3,	 10
 soldier_outfit              = 3,	 10
 cs_light_outfit             = 3,	 10
 cs_heavy_outfit             = 3,	 10
+neytral_gaz_outfit_m1         = 4,	 4
+neytral_q_gaz_q_outfit_q_m1           = 4,	 4
 
+arc_art_box_1basic	
+arc_art_box_8basic	
+rucksack
+gorelka		
+manometr
+batt_torch	
+trubka		
+flamethrower_bad
+amk_kanistra
+amk_ballon		
+repair_boxoutfit	
+bearer_cheque
+2bearer_cheque	
 outfit_novice_m1 
 neytral_novice_outfit_m1
 neytral_novice_gaz_outfit_m1 
-neytral_gaz_outfit_m1         = 4,	 4
 neytral_gaz_outfit_m2  
 outfit_stalker_m1
 outfit_stalker_m2
@@ -293,47 +410,10 @@ outfit_dolg_m1
 dolg_gaz_outfit_m1
 ecolog_outfit_m1 
 monolit_gaz_outfit_m1
-outfit_soldier_m1
-       
-novice_q_outfit                  = 3,	 10
-stalker_q_outfit                 = 2,	 2
-scientific_q_outfit              = 3,	 10
-exo_q_outfit                     = 3,	 10
-neytral_q_exo_q_antigas_q_outfit = 3,	 10
-bandit_q_outfit                  = 3,	 10
-bandit_q_veteran_q_outfit        = 3,	 10
-bandit_q_veteran_q_outfit_q_gas  = 3,	 10
-bandit_q_master_q_outfit         = 3,	 10
-bandit_q_master_q_outfit_q_gas   = 3,	 10
-exo_q_bandit_q_outfit            = 3,	 10
-killer_q_outfit                  = 3,	 10
-merc_q_scientific_q_outfit       = 3,	 10
-killer_q_blue_q_exoskeleton      = 3,	 10
-monolit_q_outfit                 = 3,	 10
-monolit_q_scientific_q_outfit    = 3,	 10
-monolit_q_exoskeleton            = 3,	 10
-specops_q_outfit                 = 3,	 10
-military_q_outfit                = 3,	 10
-militaryspec_q_outfit            = 3,	 10
-stalker_q_guard_q_outfit         = 3,	 10
-svoboda_q_light_q_outfit         = 3,	 10
-svoboda_q_heavy_q_outfit         = 3,	 10
-freedom_q_scientific_q_outfit    = 3,	 10
-svoboda_q_exoskeleton            = 3,	 10
-dolg_q_outfit                    = 3,	 10
-dolg_q_scientific_q_outfit       = 3,	 10
-dolg_q_black_q_exoskeleton       = 3,	 10
-ecolog_q_outfit                  = 3,	 10
-protection_q_outfit              = 3,	 10
-broken_q_exoskeleton             = 3,	 10
-soldier_q_outfit                 = 3,	 10
-cs_q_light_q_outfit              = 3,	 10
-cs_q_heavy_q_outfit              = 3,	 10
-
+outfit_soldier_m1  
 outfit_q_novice_q_m1 
 neytral_q_novice_q_outfit_q_m1
 neytral_q_novice_q_gaz_q_outfit_q_m1 
-neytral_q_gaz_q_outfit_q_m1           = 4,	 4
 neytral_q_gaz_q_outfit_q_m2  
 outfit_q_stalker_q_m1
 outfit_q_stalker_q_m2
@@ -356,22 +436,10 @@ dolg_q_gaz_q_outfit_q_m1
 ecolog_q_outfit_q_m1 
 monolit_q_gaz_q_outfit_q_m1
 outfit_q_soldier_q_m1       
-
-detector_advances		= 4, 4
-
 grenade_rgd5
 grenade_f1
-
-bandage					= 5, 5
 medkit		
 antirad		
-
-bread					= 5, 5
-kolbasa					= 5, 5
-conserva				= 5, 5
-vodka		            = 10, 10
-energy_drink			= 5, 5
-
 af_medusa
 af_cristal_flower
 af_night_star
@@ -400,7 +468,6 @@ af_dummy_dummy
 af_dummy_spring
 af_dummy_kolobok
 af_dummy_sparkler
-
 af_ameba_mica_dyn0d
 af_ameba_mica_dyn1d
 af_ameba_mica_dyn2d
@@ -741,46 +808,23 @@ af_mayatnik_chaes_new_capsule
 af_mayatnik_radar_new_capsule
 af_mayatnik_les_new_capsule
 sak_document4
-
 sak_document3
-
 mar_ecolog_theory
 suhpay
-
-
 zapiska_volk
-
 svoboda_letter
-
 strelok_sheets
-
 strelok_book2
-
 strelok_book1
 amk_zapiska_sak
-
-
 super_scientific_outfit
 super_g_scientific_g_outfit
 
 [barman_after_darkvalley_sell]
 matches					= 1.2, 1.6
 sleeping_bag			= 0.8, 1
-rucksack
-gorelka		
-manometr
-batt_torch	
-trubka		
-flamethrower_bad
-amk_kanistra
-amk_ballon		
-repair_boxoutfit
-bearer_cheque
-2bearer_cheque
 amk_metka				= 5, 10  
 arc_art_box_basic		= 2, 2
-arc_art_box_1basic	
-arc_art_box_8basic
 wpn_binoc				= 6, 8
 af_full_akkum			= 1.5, 2.5
 batt_torch				= 2, 3
@@ -789,10 +833,15 @@ belt_4_art				= 3, 3.5
 belt_5_art				= 2.4, 3
 flask_army				= 6, 6
 flask_army_trade				= 6, 6
-
 ammo_9x18_fmj		= 4, 6
 ammo_9x18_pmm		= 4, 6
 ammo_9x19_fmj		= 4, 6
+bread					= 5, 5
+kolbasa					= 4, 4
+conserva				= 4, 4
+vodka		            = 9, 9
+energy_drink			= 5, 5
+bandage					= 5, 5
  
 wpn_binoc   = 3,	 10 
 wpn_knife   = 4,	 4 
@@ -997,15 +1046,8 @@ wpn_addon_eotech   = 3,	 10
 wpn_addon_pe   = 3,	 10 
 wpn_addon_po   = 3,	 10 
 wpn_addon_g36l   = 3,	 10 
-
-detector_advances	= 3, 3
-wpn_addon_1pso			
+detector_advances	= 3, 3	
 wpn_addon_silencer			= 2, 2			
-wpn_addon_grenade_launcher
-
-grenade_rgd5	
-grenade_f1		
-
 novice_outfit               = 3,	 10
 stalker_outfit              = 2,	 2 
 scientific_outfit           = 3,	 10
@@ -1040,34 +1082,7 @@ broken_exoskeleton          = 3,	 10
 soldier_outfit              = 3,	 10
 cs_light_outfit             = 3,	 10
 cs_heavy_outfit             = 3,	 10
-
-outfit_novice_m1 
-neytral_novice_outfit_m1
-neytral_novice_gaz_outfit_m1 
 neytral_gaz_outfit_m1         = 3,	 3 
-neytral_gaz_outfit_m2  
-outfit_stalker_m1
-outfit_stalker_m2
-stalker_outfit_m3  
-exo_outfit_m1
-outfit_exo_m1
-outfit_bandit_m1
-bandit_gaz_outfit_m1 
-bandit_veteran_outfit_m1
-bandit_master_outfit_m1
-killer_gaz_outfit_m1
-outfit_killer_m1
-outfit_specnaz_m1
-outfit_svoboda_m1
-svoboda_gaz_outfit_m1
-svoboda_heavy_gaz_outfit_m1
-svoboda_yellow_exo_outfit_m1
-outfit_dolg_m1
-dolg_gaz_outfit_m1
-ecolog_outfit_m1 
-monolit_gaz_outfit_m1
-outfit_soldier_m1
-
 novice_q_outfit                  = 3,	 10
 stalker_q_outfit                 = 2,	 2
 scientific_q_outfit              = 3,	 10
@@ -1102,11 +1117,40 @@ broken_q_exoskeleton             = 3,	 10
 soldier_q_outfit                 = 3,	 10
 cs_q_light_q_outfit              = 3,	 10
 cs_q_heavy_q_outfit              = 3,	 10
+neytral_q_gaz_q_outfit_q_m1           = 3,	 3
 
+outfit_novice_m1 
+neytral_novice_outfit_m1
+neytral_novice_gaz_outfit_m1 
+neytral_gaz_outfit_m2  
+outfit_stalker_m1
+outfit_stalker_m2
+stalker_outfit_m3  
+exo_outfit_m1
+outfit_exo_m1
+outfit_bandit_m1
+bandit_gaz_outfit_m1 
+bandit_veteran_outfit_m1
+bandit_master_outfit_m1
+killer_gaz_outfit_m1
+outfit_killer_m1
+outfit_specnaz_m1
+outfit_svoboda_m1
+svoboda_gaz_outfit_m1
+svoboda_heavy_gaz_outfit_m1
+svoboda_yellow_exo_outfit_m1
+outfit_dolg_m1
+dolg_gaz_outfit_m1
+ecolog_outfit_m1 
+monolit_gaz_outfit_m1
+outfit_soldier_m1
+wpn_addon_1pso	
+wpn_addon_grenade_launcher
+grenade_rgd5	
+grenade_f1	
 outfit_q_novice_q_m1 
 neytral_q_novice_q_outfit_q_m1
 neytral_q_novice_q_gaz_q_outfit_q_m1 
-neytral_q_gaz_q_outfit_q_m1           = 3,	 3
 neytral_q_gaz_q_outfit_q_m2  
 outfit_q_stalker_q_m1
 outfit_q_stalker_q_m2
@@ -1129,17 +1173,21 @@ dolg_q_gaz_q_outfit_q_m1
 ecolog_q_outfit_q_m1 
 monolit_q_gaz_q_outfit_q_m1
 outfit_q_soldier_q_m1       
-
-bandage					= 5, 5
 medkit		
 antirad		
-
-bread					= 5, 5
-kolbasa					= 4, 4
-conserva				= 4, 4
-vodka		            = 9, 9
-energy_drink			= 5, 5
-
+arc_art_box_1basic	
+arc_art_box_8basic
+rucksack
+gorelka		
+manometr
+batt_torch	
+trubka		
+flamethrower_bad
+amk_kanistra
+amk_ballon		
+repair_boxoutfit
+bearer_cheque
+2bearer_cheque
 af_medusa
 af_cristal_flower
 af_night_star
@@ -1466,44 +1514,24 @@ af_mayatnik_chaes_new_capsule
 af_mayatnik_radar_new_capsule
 af_mayatnik_les_new_capsule
 sak_document4
-
 sak_document3
-
 mar_ecolog_theory
 suhpay
-
-
 zapiska_volk
-
 svoboda_letter
-
 strelok_sheets
-
 strelok_book2
-
 strelok_book1
 amk_zapiska_sak
-
-
 super_scientific_outfit
 super_g_scientific_g_outfit
 
 [barman_after_brain_sell]
 matches					= 1.2, 1.4
 sleeping_bag			= 0.7, 0.8
-rucksack
-gorelka	
-manometr
-batt_torch
-trubka	
-flamethrower_bad
-amk_kanistra
-amk_ballon
-repair_boxoutfit
+
 amk_metka			= 5, 8  
-arc_art_box_basic		= 1.5, 1.5
-arc_art_box_1basic	
-arc_art_box_8basic	
+arc_art_box_basic		= 1.5, 1.5	
 wpn_binoc				= 5, 7
 af_full_akkum			= 1.5, 2
 batt_torch				= 2, 2.5
@@ -1517,6 +1545,15 @@ ammo_9x18_fmj			= 4, 5
 ammo_9x18_pmm			= 4, 5
 ammo_9x19_fmj			= 4, 5
 ammo_9x19_pbp			= 4, 5
+
+bread					= 5, 5
+kolbasa					= 5, 5
+conserva				= 4, 4
+vodka		            = 8, 8
+energy_drink			= 5, 5
+bandage					= 5, 5
+detector_advances		= 2, 2
+wpn_addon_silencer		= 2, 2	
  
 wpn_binoc   = 3,	 10 
 wpn_knife   = 3,	 3 
@@ -1756,34 +1793,7 @@ broken_exoskeleton          = 3,	 10
 soldier_outfit              = 3,	 10
 cs_light_outfit             = 3,	 10
 cs_heavy_outfit             = 3,	 10
-
-outfit_novice_m1 
-neytral_novice_outfit_m1
-neytral_novice_gaz_outfit_m1 
-neytral_gaz_outfit_m1         = 2,	 2 
-neytral_gaz_outfit_m2  
-outfit_stalker_m1
-outfit_stalker_m2
-stalker_outfit_m3  
-exo_outfit_m1
-outfit_exo_m1
-outfit_bandit_m1
-bandit_gaz_outfit_m1 
-bandit_veteran_outfit_m1
-bandit_master_outfit_m1
-killer_gaz_outfit_m1
-outfit_killer_m1
-outfit_specnaz_m1
-outfit_svoboda_m1
-svoboda_gaz_outfit_m1
-svoboda_heavy_gaz_outfit_m1
-svoboda_yellow_exo_outfit_m1
-outfit_dolg_m1
-dolg_gaz_outfit_m1
-ecolog_outfit_m1 
-monolit_gaz_outfit_m1
-outfit_soldier_m1
-       
+neytral_gaz_outfit_m1         = 2,	 2       
 novice_q_outfit                  = 3,	 10
 stalker_q_outfit                 = 2,	 2
 scientific_q_outfit              = 3,	 10
@@ -1818,11 +1828,11 @@ broken_q_exoskeleton             = 3,	 10
 soldier_q_outfit                 = 3,	 10
 cs_q_light_q_outfit              = 3,	 10
 cs_q_heavy_q_outfit              = 3,	 10
+neytral_q_gaz_q_outfit_q_m1           = 2,	 2
 
 outfit_q_novice_q_m1 
 neytral_q_novice_q_outfit_q_m1
 neytral_q_novice_q_gaz_q_outfit_q_m1 
-neytral_q_gaz_q_outfit_q_m1           = 2,	 2
 neytral_q_gaz_q_outfit_q_m2  
 outfit_q_stalker_q_m1
 outfit_q_stalker_q_m2
@@ -1844,28 +1854,49 @@ outfit_q_dolg_q_m1
 dolg_q_gaz_q_outfit_q_m1
 ecolog_q_outfit_q_m1 
 monolit_q_gaz_q_outfit_q_m1
-outfit_q_soldier_q_m1       
-
-detector_advances		= 2, 2
-
+outfit_q_soldier_q_m1 
+arc_art_box_1basic	
+arc_art_box_8basic
+rucksack
+gorelka	
+manometr
+batt_torch
+trubka	
+flamethrower_bad
+amk_kanistra
+amk_ballon
+repair_boxoutfit
+outfit_novice_m1 
+neytral_novice_outfit_m1
+neytral_novice_gaz_outfit_m1 
+neytral_gaz_outfit_m2  
+outfit_stalker_m1
+outfit_stalker_m2
+stalker_outfit_m3  
+exo_outfit_m1
+outfit_exo_m1
+outfit_bandit_m1
+bandit_gaz_outfit_m1 
+bandit_veteran_outfit_m1
+bandit_master_outfit_m1
+killer_gaz_outfit_m1
+outfit_killer_m1
+outfit_specnaz_m1
+outfit_svoboda_m1
+svoboda_gaz_outfit_m1
+svoboda_heavy_gaz_outfit_m1
+svoboda_yellow_exo_outfit_m1
+outfit_dolg_m1
+dolg_gaz_outfit_m1
+ecolog_outfit_m1 
+monolit_gaz_outfit_m1
+outfit_soldier_m1    
 wpn_addon_1pso			
-wpn_addon_silencer		= 2, 2		
 wpn_addon_grenade_launcher	
-
 grenade_rgd5	
 grenade_f1		
-
-
-bandage					= 5, 5
 medkit		
 antirad		
-
-bread					= 5, 5
-kolbasa					= 5, 5
-conserva				= 4, 4
-vodka		            = 8, 8
-energy_drink			= 5, 5
-
 af_medusa
 af_cristal_flower
 af_night_star
@@ -2212,6 +2243,940 @@ strelok_book2
 strelok_book1
 amk_zapiska_sak
 
+
+super_scientific_outfit
+super_g_scientific_g_outfit
+
+[barman_generic_buy]
+
+arc_art_box_basic		                = 0.2,  0.3
+arc_art_box_1basic		                = 0.2,  0.3
+arc_art_box_8basic		                = 0.2,  0.3
+device_pda_npc
+belt_2_art				                = 0.2,  0.5
+belt_3_art				                = 0.2,  0.5
+belt_4_art				                = 0.2,  0.5
+belt_5_art				                = 0.2,  0.5
+belt_6_art				                = 0.2,  0.5
+
+af_medusa			                    = 1,	1.2
+af_cristal_flower		                = 1,	1.2
+af_night_star			                = 1,	1.2
+af_vyvert			                    = 1,	1.2
+af_gravi			                    = 1,	1.2
+af_gold_fish			                = 1,	1.2
+af_blood			                    = 1,	1.2
+af_mincer_meat			                = 1,	1.2
+af_soul				                    = 1,	1.2
+af_electra_sparkler		                = 1,	1.2
+af_electra_flash		                = 1,	1.2
+af_electra_moonlight	                = 1,	1.2
+af_rusty_thorn			                = 1,	1.2
+af_rusty_kristall		                = 1,	1.2
+af_rusty_sea-urchin		                = 1,	1.2
+af_ameba_slime			                = 1,	1.2
+af_ameba_slug			                = 1,	1.2
+af_ameba_mica			                = 1,	1.2
+af_drops			                    = 1,	1.2
+af_fireball			                    = 1,	1.2
+af_cristall			                    = 1,	1.2
+af_dummy_glassbeads		                = 1,	1.2
+af_dummy_pellicle		                = 1,	1.2
+af_dummy_battery		                = 1,	1.2
+af_dummy_dummy			                = 1,	1.2
+af_dummy_spring			                = 1,	1.2
+af_dummy_kolobok			            = 1,	 1.2
+af_dummy_sparkler                       = 1,    1.2
+af_dummy_fire                           = 0.5,  0.6
+
+af_ameba_mica_dyn0d                     = 1,	1.2
+af_ameba_mica_dyn1d                     = 1,	1.2
+af_ameba_mica_dyn2d                     = 1,	1.2
+af_ameba_mica_dyn3d                     = 1,	1.2
+af_ameba_mica_dyn4d                     = 1,	1.2
+af_ameba_mica_dyn5d                     = 1,	1.2
+af_ameba_slime_dyn0d                    = 1,	1.2
+af_ameba_slime_dyn1d                    = 1,	1.2
+af_ameba_slime_dyn2d                    = 1,	1.2
+af_ameba_slime_dyn3d                    = 1,	1.2
+af_ameba_slime_dyn4d                    = 1,	1.2
+af_ameba_slime_dyn5d                    = 1,	1.2
+af_ameba_slug_dyn0d                     = 1,	1.2
+af_ameba_slug_dyn1d                     = 1,	1.2
+af_ameba_slug_dyn2d                     = 1,	1.2
+af_ameba_slug_dyn3d                     = 1,	1.2
+af_ameba_slug_dyn4d                     = 1,	1.2
+af_ameba_slug_dyn5d                     = 1,	1.2
+af_blood_dyn0d                          = 1,	1.2
+af_blood_dyn1d                          = 1,	1.2
+af_blood_dyn2d                          = 1,	1.2
+af_blood_dyn3d                          = 1,	1.2
+af_blood_dyn4d                          = 1,	1.2
+af_blood_dyn5d                          = 1,	1.2
+af_cristall_dyn0d                       = 1,	1.2
+af_cristall_dyn1d                       = 1,	1.2
+af_cristall_dyn2d                       = 1,	1.2
+af_cristall_dyn3d                       = 1,	1.2
+af_cristall_dyn4d                       = 1,	1.2
+af_cristall_dyn5d                       = 1,	1.2
+af_cristal_flower_dyn0d                 = 1,	1.2
+af_cristal_flower_dyn1d                 = 1,	1.2
+af_cristal_flower_dyn2d                 = 1,	1.2
+af_cristal_flower_dyn3d                 = 1,	1.2
+af_cristal_flower_dyn4d                 = 1,	1.2
+af_cristal_flower_dyn5d                 = 1,	1.2
+af_drops_dyn0d                          = 1,	1.2
+af_drops_dyn1d                          = 1,	1.2
+af_drops_dyn2d                          = 1,	1.2
+af_drops_dyn3d                          = 1,	1.2
+af_drops_dyn4d                          = 1,	1.2
+af_drops_dyn5d                          = 1,	1.2
+af_electra_flash_dyn0d                  = 1,	1.2
+af_electra_flash_dyn1d                  = 1,	1.2
+af_electra_flash_dyn2d                  = 1,	1.2
+af_electra_flash_dyn3d                  = 1,	1.2
+af_electra_flash_dyn4d                  = 1,	1.2
+af_electra_flash_dyn5d                  = 1,	1.2
+af_electra_moonlight_dyn0d              = 1,	1.2
+af_electra_moonlight_dyn1d              = 1,	1.2
+af_electra_moonlight_dyn2d              = 1,	1.2
+af_electra_moonlight_dyn3d              = 1,	1.2
+af_electra_moonlight_dyn4d              = 1,	1.2
+af_electra_moonlight_dyn5d              = 1,	1.2
+af_electra_sparkler_dyn0d               = 1,	1.2
+af_electra_sparkler_dyn1d               = 1,	1.2
+af_electra_sparkler_dyn2d               = 1,	1.2
+af_electra_sparkler_dyn3d               = 1,	1.2
+af_electra_sparkler_dyn4d               = 1,	1.2
+af_electra_sparkler_dyn5d               = 1,	1.2
+af_fireball_dyn0d                       = 1,	1.2
+af_fireball_dyn1d                       = 1,	1.2
+af_fireball_dyn2d                       = 1,	1.2
+af_fireball_dyn3d                       = 1,	1.2
+af_fireball_dyn4d                       = 1,	1.2
+af_fireball_dyn5d                       = 1,	1.2
+af_gold_fish_dyn0d                      = 1,	1.2
+af_gold_fish_dyn1d                      = 1,	1.2
+af_gold_fish_dyn2d                      = 1,	1.2
+af_gold_fish_dyn3d                      = 1,	1.2
+af_gold_fish_dyn4d                      = 1,	1.2
+af_gold_fish_dyn5d                      = 1,	1.2
+af_gravi_dyn0d                          = 1,	1.2
+af_gravi_dyn1d                          = 1,	1.2
+af_gravi_dyn2d                          = 1,	1.2
+af_gravi_dyn3d                          = 1,	1.2
+af_gravi_dyn4d                          = 1,	1.2
+af_gravi_dyn5d                          = 1,	1.2
+af_medusa_dyn0d                         = 1,	1.2
+af_medusa_dyn1d                         = 1,	1.2
+af_medusa_dyn2d                         = 1,	1.2
+af_medusa_dyn3d                         = 1,	1.2
+af_medusa_dyn4d                         = 1,	1.2
+af_medusa_dyn5d                         = 1,	1.2
+af_mincer_meat_dyn0d                    = 1,	1.2
+af_mincer_meat_dyn1d                    = 1,	1.2
+af_mincer_meat_dyn2d                    = 1,	1.2
+af_mincer_meat_dyn3d                    = 1,	1.2
+af_mincer_meat_dyn4d                    = 1,	1.2
+af_mincer_meat_dyn5d                    = 1,	1.2
+af_night_star_dyn0d                     = 1,	1.2
+af_night_star_dyn1d                     = 1,	1.2
+af_night_star_dyn2d                     = 1,	1.2
+af_night_star_dyn3d                     = 1,	1.2
+af_night_star_dyn4d                     = 1,	1.2
+af_night_star_dyn5d                     = 1,	1.2
+af_rusty_kristall_dyn0d                 = 1,	1.2
+af_rusty_kristall_dyn1d                 = 1,	1.2
+af_rusty_kristall_dyn2d                 = 1,	1.2
+af_rusty_kristall_dyn3d                 = 1,	1.2
+af_rusty_kristall_dyn4d                 = 1,	1.2
+af_rusty_kristall_dyn5d                 = 1,	1.2
+af_rusty_sea-urchin_dyn0d               = 1,	1.2
+af_rusty_sea-urchin_dyn1d               = 1,	1.2
+af_rusty_sea-urchin_dyn2d               = 1,	1.2
+af_rusty_sea-urchin_dyn3d               = 1,	1.2
+af_rusty_sea-urchin_dyn4d               = 1,	1.2
+af_rusty_sea-urchin_dyn5d               = 1,	1.2
+af_rusty_thorn_dyn0d                    = 1,	1.2
+af_rusty_thorn_dyn1d                    = 1,	1.2
+af_rusty_thorn_dyn2d                    = 1,	1.2
+af_rusty_thorn_dyn3d                    = 1,	1.2
+af_rusty_thorn_dyn4d                    = 1,	1.2
+af_rusty_thorn_dyn5d                    = 1,	1.2
+af_soul_dyn0d                           = 1,	1.2
+af_soul_dyn1d                           = 1,	1.2
+af_soul_dyn2d                           = 1,	1.2
+af_soul_dyn3d                           = 1,	1.2
+af_soul_dyn4d                           = 1,	1.2
+af_soul_dyn5d                           = 1,	1.2
+af_vyvert_dyn0d                         = 1,	1.2
+af_vyvert_dyn1d                         = 1,	1.2
+af_vyvert_dyn2d                         = 1,	1.2
+af_vyvert_dyn3d                         = 1,	1.2
+af_vyvert_dyn4d                         = 1,	1.2
+af_vyvert_dyn5d                         = 1,	1.2
+
+af_dummy_buliz				            = 1,	1.2
+af_spirit_1				                = 1,	1.2
+af_spirit_2				                = 1,	1.2
+af_spirit_3				                = 1,	1.2
+af_spirit_4				                = 1,	1.2
+af_cry_1				                = 1,	1.2
+af_cry_2				                = 1,	1.2
+af_cry_3				                = 1,	1.2
+af_cry_4				                = 1,	1.2
+af_babka_1				                = 1,	1.2
+af_babka_2				                = 1,	1.2
+af_babka_3				                = 1,	1.2
+af_babka_4				                = 1,	1.2
+af_pudd_1				                = 1,	1.2
+af_pudd_2				                = 1,	1.2
+af_pudd_3				                = 1,	1.2
+af_pudd_4				                = 1,	1.2
+af_dik_1				                = 1,	1.2
+af_dik_2				                = 1,	1.2
+af_dik_3				                = 1,	1.2
+af_dik_4				                = 1,	1.2
+af_kol_1				                = 1,	1.2
+af_kol_2				                = 1,	1.2
+af_kol_3				                = 1,	1.2
+af_kol_4				                = 1,	1.2
+af_armor_1				                = 1,	1.2
+af_armor_2				                = 1,	1.2
+af_armor_3				                = 1,	1.2
+af_armor_4				                = 1,	1.2
+af_sul_new				                = 1,	1.2
+af_sul_new_dyn1d				                = 1,	1.2
+af_sul_new_dyn2d				                = 1,	1.2
+af_sul_new_dyn3d				                = 1,	1.2
+af_sul_new_dyn4d				                = 1,	1.2
+af_sul_new_dyn5d				                = 1,	1.2
+af_sul_new_dyn6d				                = 1,	1.2
+af_dummy_simbion				        = 1,	1.2
+af_red_dummy_battery			        = 1,	1.2
+af_red_dummy_spring			            = 1,	1.2
+af_red_dummy_pellicle			        = 1,	1.2
+af_dummy_green_medusa			        = 1,	1.2
+af_dummy_green_vyvert			        = 1,	1.2
+af_dummy_green_blood			        = 1,	1.2
+
+ammo_9x18_fmj			                = 0.5,	0.6
+ammo_9x18_pmm			                = 0.5,	0.6
+ammo_9x19_pbp			                = 0.5,	0.6
+ammo_9x19_fmj			                = 0.5,	0.6
+ammo_11.43x23_hydro		                = 0.5,	0.6
+ammo_11.43x23_fmj		                = 0.5,	0.6
+ammo_12x70_buck			                = 0.5,	0.6
+ammo_12x76_dart			                = 0.5,	0.6
+ammo_12x76_zhekan		                = 0.5,	0.6
+ammo_5.45x39_ap			                = 0.5,	0.6
+ammo_5.45x39_fmj		                = 0.5,	0.6
+ammo_9x39_sp5			                = 0.5,	0.6
+ammo_9x39_ap			                = 0.5,	0.6
+ammo_9x39_pab9			                = 0.5,	0.6
+ammo_5.56x45_ss190		                = 0.5,	0.6
+ammo_5.56x45_ap			                = 0.5,	0.6
+ammo_7.62x54_7h14		                = 0.5,	0.6
+ammo_7.62x54_7h1		                = 0.5,	0.6
+ammo_7.62x54_ap			                = 0.5,	0.6
+ammo_7.62x51_fmj                        = 0.5,  0.6
+ammo_7.62x51_ap                         = 0.5,  0.6
+ammo_8.6x70                         = 0.5,  0.6
+ammo_8.6x70_ap                         = 0.5,  0.6
+ammo_og-7b			                    = 0.5,	0.6
+ammo_vog-25p			                = 0.5,	0.6
+ammo_vog-25			                    = 0.5,	0.6
+grenade_f1			                    = 0.5,	0.6
+grenade_rgd5			                = 0.5,	0.6
+ammo_m209			                    = 0.5,	0.6
+grenade_gd-05			                = 0.5,  0.6
+ammo_7.62x39_fmj		                = 0.5,	0.6
+ammo_7.62x39_ap			                = 0.5,	0.6
+ 
+wpn_binoc   = 0.1,	0.3 
+wpn_knife   = 0.1,	0.3 
+wpn_knife_m1   = 0.1,	0.3 
+wpn_pm   = 0.1,	0.3 
+wpn_pb   = 0.1,	0.3 
+wpn_fort   = 0.1,	0.3 
+wpn_fort_m1   = 0.1,	0.3 
+wpn_glock   = 0.1,	0.3 
+wpn_beretta   = 0.1,	0.3 
+wpn_colt1911   = 0.1,	0.3 
+wpn_desert_eagle   = 0.1,	0.3 
+wpn_eagle_m1   = 0.1,	0.3 
+wpn_walther   = 0.1,	0.3 
+wpn_gungauss   = 0.1,	0.3 
+wpn_sig220   = 0.1,	0.3 
+wpn_usp   = 0.1,	0.3 
+wpn_beretta93   = 0.1,	0.3 
+wpn_aps   = 0.1,	0.3 
+wpn_ak74u   = 0.1,	0.3 
+wpn_ak74u_old   = 0.1,	0.3 
+wpn_ak74   = 0.1,	0.3 
+wpn_ak74_old   = 0.1,	0.3 
+wpn_ak47   = 0.1,	0.3 
+wpn_ak47_old   = 0.1,	0.3 
+wpn_aks47   = 0.1,	0.3 
+wpn_akm   = 0.1,	0.3 
+wpn_ak74pbn   = 0.1,	0.3 
+wpn_ak74pbn_1pso   = 0.1,	0.3 
+wpn_ak74pbn_cobra   = 0.1,	0.3 
+wpn_ak74pbn_1p78   = 0.1,	0.3 
+wpn_ak74m   = 0.1,	0.3 
+wpn_ak74m_1pso   = 0.1,	0.3 
+wpn_ak74m_cobra   = 0.1,	0.3 
+wpn_ak74m_1p78   = 0.1,	0.3 
+wpn_ak104   = 0.1,	0.3 
+wpn_ak104_eotech   = 0.1,	0.3 
+wpn_ak104_acog   = 0.1,	0.3 
+wpn_ak104_mt   = 0.1,	0.3 
+wpn_aek971   = 0.1,	0.3 
+wpn_aek971_cobra   = 0.1,	0.3 
+wpn_aek971_1p78   = 0.1,	0.3 
+wpn_aek971_1pso   = 0.1,	0.3 
+wpn_ak107   = 0.1,	0.3 
+wpn_ak107_cobra   = 0.1,	0.3 
+wpn_ak107_1p78   = 0.1,	0.3 
+wpn_ak107_1pso   = 0.1,	0.3 
+wpn_ak108   = 0.1,	0.3 
+wpn_ak108_cobra   = 0.1,	0.3 
+wpn_ak108_1p78   = 0.1,	0.3 
+wpn_ak108_1pso   = 0.1,	0.3 
+wpn_saiga12c_m2   = 0.1,	0.3 
+wpn_saiga12c_m2_1pso   = 0.1,	0.3 
+wpn_saiga12c_m2_1p78   = 0.1,	0.3 
+wpn_saiga12c_m2_cobra   = 0.1,	0.3 
+wpn_rpk74   = 0.1,	0.3 
+wpn_rpk74_1p78   = 0.1,	0.3 
+wpn_rpk74_cobra   = 0.1,	0.3 
+wpn_rpk74_1pso   = 0.1,	0.3 
+wpn_abakan   = 0.1,	0.3 
+wpn_abakan_1pso   = 0.1,	0.3 
+wpn_abakan_cobra   = 0.1,	0.3 
+wpn_abakan_1p78   = 0.1,	0.3 
+wpn_saiga12c   = 0.1,	0.3 
+wpn_saiga12c_1p78   = 0.1,	0.3 
+wpn_saiga12c_1pso   = 0.1,	0.3 
+wpn_saiga12c_cobra   = 0.1,	0.3 
+wpn_saiga12c_m1   = 0.1,	0.3 
+wpn_saiga12c_m1_acog   = 0.1,	0.3 
+wpn_saiga12c_m1_eotech   = 0.1,	0.3 
+wpn_saiga12c_m1_mt   = 0.1,	0.3 
+wpn_vintorez   = 0.1,	0.3 
+wpn_vintorez_1pso   = 0.1,	0.3 
+wpn_vintorez_cobra   = 0.1,	0.3 
+wpn_vintorez_1p78   = 0.1,	0.3 
+wpn_vintorez_m1   = 0.1,	0.3 
+wpn_vintorez_m1_1pso   = 0.1,	0.3 
+wpn_vintorez_m1_cobra   = 0.1,	0.3 
+wpn_vintorez_m1_1p78   = 0.1,	0.3 
+wpn_val   = 0.1,	0.3 
+wpn_val_1pso   = 0.1,	0.3 
+wpn_val_cobra   = 0.1,	0.3 
+wpn_val_1p78   = 0.1,	0.3 
+wpn_ak74_m1   = 0.1,	0.3 
+wpn_ak74_m2   = 0.1,	0.3 
+wpn_ak74_m1_acog   = 0.1,	0.3 
+wpn_ak74_m2_acog   = 0.1,	0.3 
+wpn_ak74_m1_eotech   = 0.1,	0.3 
+wpn_ak74_m2_eotech   = 0.1,	0.3 
+wpn_ak74_m1_mt   = 0.1,	0.3 
+wpn_ak74_m2_mt   = 0.1,	0.3 
+wpn_ak74_m3   = 0.1,	0.3 
+wpn_ak74_m3_acog   = 0.1,	0.3 
+wpn_ak74_m3_eotech   = 0.1,	0.3 
+wpn_ak74_m3_mt   = 0.1,	0.3 
+wpn_groza   = 0.1,	0.3 
+wpn_groza_po   = 0.1,	0.3 
+wpn_bizon   = 0.1,	0.3 
+wpn_bizon_cobra   = 0.1,	0.3 
+wpn_bizon_1p78   = 0.1,	0.3 
+wpn_bizon_1pso   = 0.1,	0.3 
+wpn_pp19   = 0.1,	0.3 
+wpn_pp19_acog   = 0.1,	0.3 
+wpn_pp19_eotech   = 0.1,	0.3 
+wpn_ump45   = 0.1,	0.3 
+wpn_ump45_acog   = 0.1,	0.3 
+wpn_ump45_eotech   = 0.1,	0.3 
+wpn_ump45_mt   = 0.1,	0.3 
+wpn_lr300   = 0.1,	0.3 
+wpn_lr300_eotech   = 0.1,	0.3 
+wpn_lr300_acog   = 0.1,	0.3 
+wpn_lr300_m1   = 0.1,	0.3 
+wpn_lr300_m1_eotech   = 0.1,	0.3 
+wpn_lr300_m1_acog   = 0.1,	0.3 
+wpn_mp5   = 0.1,	0.3 
+wpn_mp5_m1   = 0.1,	0.3 
+wpn_sig550   = 0.1,	0.3 
+wpn_sig550_acog   = 0.1,	0.3 
+wpn_sig550_eotech   = 0.1,	0.3 
+wpn_sig550_mt   = 0.1,	0.3 
+wpn_g36   = 0.1,	0.3 
+wpn_g36_g36l   = 0.1,	0.3 
+wpn_g36c   = 0.1,	0.3 
+wpn_g36c_eotech   = 0.1,	0.3 
+wpn_g36c_acog   = 0.1,	0.3 
+wpn_g36c_mt   = 0.1,	0.3 
+wpn_m16a4   = 0.1,	0.3 
+wpn_m16a4_acog   = 0.1,	0.3 
+wpn_m16a4_eotech   = 0.1,	0.3 
+wpn_m16a4_mt   = 0.1,	0.3 
+wpn_fn2000   = 0.1,	0.3 
+wpn_fn2000_eotech   = 0.1,	0.3 
+wpn_fn2000_acog   = 0.1,	0.3 
+wpn_fn2000_mt   = 0.1,	0.3 
+wpn_gm94   = 0.1,	0.3 
+wpn_soc308   = 0.1,	0.3 
+wpn_soc308_1pso   = 0.1,	0.3 
+wpn_soc308_1p78   = 0.1,	0.3 
+wpn_soc308_cobra   = 0.1,	0.3 
+wpn_rg6   = 0.1,	0.3 
+wpn_rpg7   = 0.1,	0.3 
+wpn_pkm   = 0.1,	0.3 
+wpn_svd   = 0.1,	0.3 
+wpn_svd_cobra   = 0.1,	0.3 
+wpn_svd_1pso   = 0.1,	0.3 
+wpn_svd_1p78   = 0.1,	0.3 
+wpn_svu   = 0.1,	0.3 
+wpn_svu_cobra   = 0.1,	0.3 
+wpn_svu_1p78   = 0.1,	0.3 
+wpn_svu_1pso   = 0.1,	0.3 
+wpn_awm   = 0.1,	0.3 
+wpn_awm_eotech   = 0.1,	0.3 
+wpn_awm_acog   = 0.1,	0.3 
+wpn_awm_mt   = 0.1,	0.3 
+wpn_sv98   = 0.1,	0.3 
+wpn_sv98_eotech   = 0.1,	0.3 
+wpn_sv98_acog   = 0.1,	0.3 
+wpn_sv98_mt   = 0.1,	0.3 
+wpn_m110   = 0.1,	0.3 
+wpn_m110_eotech   = 0.1,	0.3 
+wpn_m110_acog   = 0.1,	0.3 
+wpn_m110_mt   = 0.1,	0.3 
+wpn_mr308_eotech   = 0.1,	0.3 
+wpn_mr308_acog   = 0.1,	0.3 
+wpn_mr308_mt   = 0.1,	0.3 
+wpn_mr308   = 0.1,	0.3 
+wpn_mosin   = 0.1,	0.3 
+wpn_mosin_pe   = 0.1,	0.3 
+wpn_toz34   = 0.1,	0.3 
+wpn_toz34_m1   = 0.1,	0.3 
+wpn_hunters_toz_new   = 0.1,	0.3 
+wpn_bm16   = 0.1,	0.3 
+wpn_bm16_full   = 0.1,	0.3 
+wpn_spas12   = 0.1,	0.3 
+wpn_spas12_m1   = 0.1,	0.3 
+wpn_spas15   = 0.1,	0.3 
+wpn_spas15_eotech   = 0.1,	0.3 
+wpn_spas15_m1   = 0.1,	0.3 
+wpn_spas15_m1_eotech   = 0.1,	0.3 
+wpn_wincheaster1300   = 0.1,	0.3 
+wpn_winchester_m1   = 0.1,	0.3 
+wpn_mp153   = 0.1,	0.3 
+wpn_mp153_m1   = 0.1,	0.3 
+wpn_gauss   = 0.1,	0.3 
+wpn_gauss_auto   = 0.1,	0.3 
+wpn_flame   = 0.1,	0.3 
+wpn_addon_grenade_launcher   = 0.1,	0.3 
+wpn_addon_grenade_launcher_m203   = 0.1,	0.3 
+wpn_addon_sil_9_p   = 0.1,	0.3 
+wpn_addon_sil_545_ar   = 0.1,	0.3 
+wpn_addon_sil_556_ar   = 0.1,	0.3 
+wpn_addon_sil_762_ar   = 0.1,	0.3 
+wpn_addon_sil_762_sr1   = 0.1,	0.3 
+wpn_addon_sil_762_sr2   = 0.1,	0.3 
+wpn_addon_sil_mosin   = 0.1,	0.3 
+wpn_addon_1pso   = 0.1,	0.3 
+wpn_addon_1p78   = 0.1,	0.3 
+wpn_addon_cobra   = 0.1,	0.3 
+wpn_addon_mt   = 0.1,	0.3 
+wpn_addon_acog   = 0.1,	0.3 
+wpn_addon_eotech   = 0.1,	0.3 
+wpn_addon_pe   = 0.1,	0.3 
+wpn_addon_po   = 0.1,	0.3 
+wpn_addon_g36l   = 0.1,	0.3 
+
+novice_outfit			                = 0.1,	0.1
+bandit_outfit			                = 0.1,	0.2
+killer_outfit			                = 0.1,	0.1
+ecolog_outfit			                = 0.1,	0.1
+broken_exoskeleton		                = 0.1,	0.1
+stalker_outfit			                = 0.1,	0.1
+svoboda_light_outfit		            = 0.1,	0.1
+freedom_scientific_outfit	            = 0.1,	0.1
+stalker_guard_outfit		            = 0.1,	0.1
+merc_scientific_outfit		            = 0.1,	0.1
+monolit_scientific_outfit	            = 0.1,	0.1	
+monolit_outfit			                = 0.1,	0.1
+svoboda_heavy_outfit		            = 0.1,	0.1
+dolg_outfit			                    = 0.1,	0.1
+scientific_outfit		                = 0.1,	0.1
+dolg_scientific_outfit		            = 0.1,	0.1
+protection_outfit		                = 0.1,	0.1
+bandit_master_outfit		            = 0.1,	0.1
+specops_outfit			                = 0.1,	0.1
+military_outfit			                = 0.1,	0.1
+exo_outfit			                    = 0.1,	0.1
+militaryspec_outfit		                = 0.1,	0.1
+svoboda_exoskeleton		                = 0.1,	0.1
+killer_blue_exoskeleton		            = 0.1,	0.1
+dolg_black_exoskeleton		            = 0.1,	0.1
+monolit_exoskeleton		                = 0.1,	0.1
+exo_bandit_outfit                       = 0.1,  0.1
+soldier_outfit                          = 0.1,	0.1
+cs_light_outfit                         = 0.1,	0.1
+cs_heavy_outfit                         = 0.1,	0.1
+
+stalker_outfit_m3                       = 0.2,  0.2
+exo_outfit_m1                           = 0.2,  0.2
+ecolog_outfit_m1                        = 0.2,  0.2
+outfit_soldier_m1			            = 0.1,	0.2
+neytral_exo_antigas_outfit		        = 0.1,	0.2
+bandit_veteran_outfit			        = 0.1,	0.2
+neytral_novice_outfit_m1		        = 0.1,	0.2
+neytral_novice_gaz_outfit_m1            = 0.1,	0.2
+neytral_gaz_outfit_m1			        = 0.1,	0.2
+neytral_gaz_outfit_m2			        = 0.1,	0.2
+neytral_exo_gaz_outfit_m1		        = 0.1,	0.2
+bandit_gaz_outfit_m1			        = 0.1,	0.2
+bandit_veteran_outfit_m1		        = 0.1,	0.2
+svoboda_gaz_outfit_m1			        = 0.1,	0.2
+svoboda_heavy_gaz_outfit_m1		        = 0.1,	0.2
+svoboda_yellow_exo_outfit_m1	        = 0.1,	0.2
+dolg_gaz_outfit_m1			            = 0.1,	0.2
+killer_gaz_outfit_m1			        = 0.1,	0.2
+monolit_gaz_outfit_m1			        = 0.1,	0.2
+outfit_novice_m1			            = 0.2,	0.2
+outfit_bandit_m1			            = 0.2,	0.2
+outfit_dolg_m1				            = 0.2,	0.2
+outfit_killer_m1			            = 0.2,	0.2
+outfit_specnaz_m1			            = 0.2,	0.2
+outfit_stalker_m1			            = 0.2,	0.2
+outfit_stalker_m2			            = 0.2,	0.2
+outfit_svoboda_m1			            = 0.2,	0.2
+outfit_exo_m1				            = 0.2,	0.2
+bandit_master_outfit_m1			        = 0.2,  0.2
+
+novice_q_outfit                         = 0.1,	0.1
+outfit_q_novice_q_m1                    = 0.2,	0.2
+neytral_q_novice_q_outfit_q_m1          = 0.1,	0.2
+neytral_q_novice_q_gaz_q_outfit_q_m1    = 0.1,	0.2
+stalker_q_outfit                        = 0.1,	0.1
+neytral_q_gaz_q_outfit_q_m1             = 0.1,	0.2
+neytral_q_gaz_q_outfit_q_m2             = 0.1,	0.2
+outfit_q_stalker_q_m1                   = 0.2,	0.2  
+outfit_q_stalker_q_m2                   = 0.2,	0.2
+stalker_q_outfit_q_m3                   = 0.1,	0.2
+scientific_q_outfit                     = 0.1,	0.1
+exo_q_outfit                            = 0.1,	0.1
+exo_q_outfit_q_m1                       = 0.1,	0.2
+outfit_q_exo_q_m1                       = 0.1,	0.2
+neytral_q_exo_q_antigas_q_outfit        = 0.1,	0.2
+bandit_q_outfit                         = 0.1,	0.2
+outfit_q_bandit_q_m1                    = 0.2,	0.2
+bandit_q_gaz_q_outfit_q_m1              = 0.2,	0.2
+bandit_q_veteran_q_outfit               = 0.1,	0.1
+bandit_q_veteran_q_outfit_q_gas         = 0.1,	0.2
+bandit_q_veteran_q_outfit_q_m1          = 0.1,	0.2
+bandit_q_master_q_outfit                = 0.1,	0.1
+bandit_q_master_q_outfit_q_gas          = 0.1,	0.2
+bandit_q_master_q_outfit_q_m1           = 0.1,	0.2
+exo_q_bandit_q_outfit                   = 0.1,	0.2
+killer_q_outfit                         = 0.1,	0.1
+killer_q_gaz_q_outfit_q_m1              = 0.1,	0.2
+outfit_q_killer_q_m1                    = 0.2,	0.2
+merc_q_scientific_q_outfit              = 0.1,	0.1
+killer_q_blue_q_exoskeleton             = 0.1,	0.1
+monolit_q_outfit                        = 0.1,	0.1
+monolit_q_gaz_q_outfit_q_m1             = 0.1,	0.2
+monolit_q_scientific_q_outfit           = 0.1,	0.1
+monolit_q_exoskeleton                   = 0.1,	0.1 
+specops_q_outfit                        = 0.1,	0.1
+outfit_q_specnaz_q_m1                   = 0.2,	0.2
+military_q_outfit                       = 0.1,	0.1
+militaryspec_q_outfit                   = 0.1,	0.1
+stalker_q_guard_q_outfit                = 0.1,	0.1 
+svoboda_q_light_q_outfit                = 0.1,	0.1
+outfit_q_svoboda_q_m1                   = 0.2,	0.2
+svoboda_q_gaz_q_outfit_q_m1             = 0.1,	0.2
+svoboda_q_heavy_q_outfit                = 0.1,	0.2
+svoboda_q_heavy_q_gaz_q_outfit_q_m1     = 0.1,	0.2
+freedom_q_scientific_q_outfit           = 0.1,	0.2
+svoboda_q_yellow_q_exo_q_outfit_q_m1    = 0.1,	0.2
+svoboda_q_exoskeleton                   = 0.1,	0.1
+dolg_q_outfit                           = 0.1,	0.1
+outfit_q_dolg_q_m1                      = 0.1,	0.2
+dolg_q_gaz_q_outfit_q_m1                = 0.1,	0.2
+dolg_q_scientific_q_outfit              = 0.1,	0.1
+dolg_q_black_q_exoskeleton              = 0.1,	0.1
+ecolog_q_outfit                         = 0.1,	0.1 
+ecolog_q_outfit_q_m1                    = 0.1,	0.2
+protection_q_outfit                     = 0.1,	0.1
+broken_q_exoskeleton                    = 0.1,	0.1
+outfit_q_soldier_q_m1                   = 0.1,	0.2 
+soldier_q_outfit                        = 0.1,	0.1
+cs_q_light_q_outfit                     = 0.1,	0.1
+cs_q_heavy_q_outfit                     = 0.1,  0.1
+
+bandage				                    = 0.3,	0.5
+medkit				                    = 0.3,	0.5
+medkit_scientic			                = 0.3,	0.5
+medkit_army			                    = 0.3,	0.5
+antirad				                    = 0.3,	0.5
+
+mutant_flesh_eye		                             
+mutant_boar_leg			                
+mutant_dog_tail			                
+mutant_psevdodog_tail 		            
+mutant_krovosos_jaw		               
+mutant_burer_hand		                
+mutant_zombie_hand		                
+mutant_snork_leg		            
+mutant_face_tushkano		         
+mutant_hand_kontroler		       		= 0.3,  0.4
+mutant_poltergeist_glas		            = 0.3,  0.4
+mutant_psevdogigant_hand	         	= 0.3,  0.4
+mutant_tail_cat			              
+mutant_chimera_kogot            
+mutant_e_chimera_kidney                 = 0.3,  0.4  
+mutant_flesh_shkura                            
+flesh_leather                             
+
+bread				                    = 0.3,	0.5
+kolbasa				                    = 0.3,	0.5
+conserva			                    = 0.3,	0.5
+vodka				                    = 0.3,	0.5
+energy_drink			                = 0.3,	0.5
+
+device_torch
+detector_simple                         = 0.5,  0.5
+detector_advances                       = 0.5,  0.5
+detector_elite                          = 0.5,  0.5
+detector_elite_sak                      = 0.5,  0.5
+detector_sakbuzz_simple                 = 0.5,  0.5
+detector_sakbuzz_elite                  = 0.5,  0.5
+detector_sakbuzz_sak                    = 0.5,  0.5
+device_pda			                    = 1,	0.5
+hand_radio
+guitar_a			                    = 0.3,	0.1
+harmonica_a			                    = 0.3,	0.1
+
+notebook_of_artist
+war_ecolog_pda
+borov_kurjer_pda
+yantar_docs
+rad_docs
+gen_docs
+arts_notebook
+zapiska_volk2
+posilka_petrik
+x18_document
+rad_cart
+
+aver_cart
+
+marsh_cart
+
+red_cart
+
+memory_module
+
+item_battery_02
+
+item_battery_03
+boryan_kul
+grenade_light
+
+
+
+
+banka_full
+banka
+af_full_akkum
+matches	
+sleeping_bag
+rucksack
+gorelka	
+manometr
+batt_torch
+trubka	
+flamethrower_bad
+amk_kanistra
+amk_ballon
+amk_metka
+repair_boxoutfit
+af_dummy_black_tip
+playboy1
+playboy2
+playboy3
+playboy4
+playboy5
+playboy6
+playboy7
+playboy8
+playboy9
+playboy10
+playboy11
+gunslinger_flash
+esc_wounded_flash
+quest_case_02
+dar_document1
+dar_document2
+dar_document3
+dar_document4
+dar_document5
+kruglov_flash
+lab_x16_documents
+good_psy_helmet
+bad_psy_helmet
+decoder	
+dynamite
+quest_case_01
+bar_ecolog_flash
+
+bar_lucky_pda
+dollars1			 
+dollars3			 
+dollars5			 
+dollars10			 
+dollars25			 
+dollars50			 
+volkodav_pda			 
+val_key_to_underground		 
+crazy_flash			 
+mil_svoboda_leader_pda		 
+dar_pass_flash			 
+dar_pass_document		 
+		 
+cit_doctors_key			 
+flame_parts			 
+chuchelo_tushkano_normal	 
+chuchelo_dog_weak		 
+chuchelo_dog_normal		 
+chuchelo_dog_strong		 
+chuchelo_cat_weak		 
+chuchelo_cat_normal		 
+chuchelo_cat_strong		 
+chuchelo_pseudodog_normal	 
+chuchelo_pseudodog_weak		 
+chuchelo_pseudodog_strong	 
+chuchelo_boar_normal		 
+chuchelo_boar_weak		 
+chuchelo_boar_strong		 
+chuchelo_flesh_normal		 
+chuchelo_flesh_weak		 
+chuchelo_flesh_strong		 
+chuchelo_burer_normal		 
+chuchelo_burer_weak		 
+chuchelo_burer_strong		 
+chuchelo_m_controller_normal	 
+chuchelo_m_controller_normal_fat 
+chuchelo_m_controller_old	 
+chuchelo_m_controller_old_fat	 
+chuchelo_controller_tubeman	 
+chuchelo_bloodsucker_normal	 
+chuchelo_bloodsucker_weak	 
+chuchelo_bloodsucker_strong	 
+chuchelo_chimera_normal		 
+chuchelo_chimera_weak		 
+chuchelo_chimera_strong		 
+zapiska_muller			 
+kruglov_letter			 
+letter_for_borov		 
+kanistra			 
+instrument_box			 
+detector_1			 
+detector_2			 
+detector_3			 
+fmradio				 
+kartina04			 
+ventilator_01			 
+klyk_pribor_1c			 
+item_psi_helmet_01		 
+item_psi_helmet_02		 
+harmonica_b			 
+medkit_r			 
+new_prizrak_document1		 
+sak_1box			 
+plan_document			 
+fraer_pda			 
+note-book			 
+new_book			 
+diplomat			 
+art_box				 
+art_box0			 
+computer			 
+inventory_sakbox_01		 
+inventory_sakbox_02		 
+inventory_sakbox_03		 
+inventory_sakbox_04		 
+inventory_sakbox_05		 
+weapon_box			 
+sak_book1			 
+sak_book2			 
+sak_book3			 
+stukach_book			 
+sak_book4			 
+sak_plan			 
+quest_case_05			 
+quest_case_06			 
+quest_manycase_01		 
+decoder1			 
+decoder2			 
+garbage_pda			 
+pda_krysyka			 			 
+agroprom_pda			 
+und_pda				 
+ara_pda				 
+rad_pda				 
+yan_pda				 
+strelok_pda			 
+scaintist_pda			 
+sak_resiver			 
+sak_resiver_yantar		 
+sak_document			 
+sak_document2			 
+rad_document6			 
+rad_document7			 
+scaintist_docs			 
+medkit_npc			 			 
+acid_banka
+agr_black_box
+agr_shema
+amk_af_night_star
+amk_af_night_star_absorbation
+art_fly
+aver_bandit_letter
+bochonok_vine
+borzyi_letter
+box_ammo
+box_conserv
+box_medkit
+cherep_decoder
+closer_box
+closer_inv
+crazy_crystall
+dead_novice_letter
+detector_advances_fake
+detector_elite_fake
+detector_elite_sak_fake
+detector_sakbuzz_elite_fake
+detector_sakbuzz_sak_fake
+detector_sakbuzz_simple_fake
+detector_simple_fake
+docs_2_rad_psy
+docs_for_borov
+docs_rad_psy
+drag_cat_eyes
+drunk_dolg_letter
+energy_drink_new
+esc_bandit_letter
+freedoms_pda
+gar_bandit_letter
+green_kolbasa
+hard_disc
+harddisc
+im_chain
+instrument_box_shurup
+inventory_sakbox_04_lim
+inventory_sakbox_bar
+inventory_sakbox_borov
+inventory_sakbox_dolg_petrenko
+inventory_sakbox_gar_flame
+inventory_sakbox_mil_skraga
+inventory_sakbox_mil_svoboda
+inventory_sakbox_rad
+inventory_sakbox_repair_box
+inventory_sakbox_yan_kruglov
+item_psi_helmet_03
+klava_feik
+kulinar_voron_box
+leshyi_letter
+lot_many
+marsh_document
+marsh_inventory_box
+marsh_tuzla_document
+mil_kurjer_pda
+mil_rjaboi_letter
+mixture
+mon_exo
+monolit_instruments_case
+neum_drags
+non_vis_inv
+notebook
+paper_box
+personal_things
+postmens_bag
+postmens_text_1
+pri_doktor_documents
+quest_manycase_01_ivancov
+quest_manycase_01_kruglov
+quest_manycase_01_mil_kurjer
+rad_scaintist_doc
+rashpil_letter
+rastopka_immunities
+red_shtreck_letter
+redcatcher_albom
+repair_item_weapon_feik
+repair_itemoutfit_feik
+resiept_activ_anom
+rygyi_med_r
+same_quest_case
+scanner_anomaly
+scanner_artefact
+scarman_pda
+separator
+soldier_letter_1
+soldier_letter_2
+soldier_letter_3
+soldier_letter_4
+soldier_letter_5
+soldier_letter_6
+soldier_letter_7
+solt_bag
+uncoder
+vasiljev_letter
+war_document
+wpn_vodka_hud
+x10_document1
+x10_document2
+x18_botan_book
+x18_door3_code
+x18_order_code
+x8_botan_book
+x8_document
+wpn_gungauss
+wpn_ak_strelok
+alko_banka
+noghost_letter
+conserva_tm
+x16_flash
+ammo_gauss
+ammo_super_gauss
+ammo_gauss_oboima
+x8_document
+bun_document
+self_made_decoder
+marsh_pribor
+item_kamaz_accum
+
+af_mayatnik_stadion_new_capsule
+af_mayatnik_tesla_new_capsule
+af_mayatnik_tuman_new_capsule
+af_mayatnik_chaes_new_capsule
+af_mayatnik_radar_new_capsule
+af_mayatnik_les_new_capsule
+sak_document4
+sak_document3
+mar_ecolog_theory
+suhpay
+zapiska_volk
+svoboda_letter
+strelok_sheets
+strelok_book2
+strelok_book1
+amk_zapiska_sak
 
 super_scientific_outfit
 super_g_scientific_g_outfit
