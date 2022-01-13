@@ -2067,7 +2067,7 @@
 <!-- 500 -->		
 		<phrase id="501">
 			<text>escape_trader_new_start_dialog_501</text>
-			<action>dialogs.yes_trade</action>
+			<action>dialogs.no_trade</action>
 			<next>502</next>
 		</phrase>
 		<phrase id="502">
@@ -2109,7 +2109,7 @@
 <!-- 600 -->		
 		<phrase id="601">
 			<text>escape_trader_new_start_dialog_601</text>
-			<action>dialogs.yes_trade</action>
+			<action>dialogs.no_trade</action>
 			<next>6021</next>
 			<next>60211</next>
 			<next>6022</next>
@@ -2221,12 +2221,12 @@
 <!-- 700 -->		
 		<phrase id="701">
 			<text>escape_trader_new_start_dialog_701</text>
-			<action>dialogs.yes_trade</action>
+			<action>dialogs.no_trade</action>
 		</phrase>
 <!-- 800 -->		
 		<phrase id="801">
 			<text>escape_trader_new_start_dialog_801</text>
-			<action>dialogs.yes_trade</action>
+			<action>dialogs.no_trade</action>
 			<next>8021</next>
 			<next>8022</next>
 		</phrase>
