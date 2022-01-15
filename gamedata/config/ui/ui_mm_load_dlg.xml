@@ -78,7 +78,7 @@
 		</text_color>
 	</btn_bkp>
 	<txt_hint x="105" y="715" width="240" height="23">
-		<text font="letterica16" r="150" g="150" b="150">ui_st_preset1</text>
+		<text font="letterica16" r="238" g="153" b="26">ui_st_preset1</text>
 	</txt_hint>
  	
 </window>
