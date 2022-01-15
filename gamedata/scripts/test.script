@@ -1,3 +1,4 @@
+--проверка инфо
 function info(info)
 	if has_alife_info(info) then
 		sak.send_tip(info,"got info!",0,15,"g_g","sak","yellow")
@@ -5,18 +6,24 @@ function info(info)
 		sak.send_tip(info,"no info",0,15,"g_g","sak","yellow")
 	end
 end
+
+--выдача инфо
 function give_info( info )
 	db.actor:give_info_portion( info )
 	sak.send_tip(
 		"Выдан поршень: ".. info .."", nil, 1, 10, "g_g", "no", "green"
 		)
 end
+
+--удаление инфо
 function disable_info( info )
 	db.actor:disable_info_portion( info )
 	sak.send_tip(
 		"Поршень отключен: ".. info .."", nil, 1, 10, "g_g", "no", "red"
 		)
 end
+
+--удаление объекта
 function del_wrong_object(name)
 	local sobj = g_sim:object( name )
 	if sobj then
@@ -24,31 +31,41 @@ function del_wrong_object(name)
 		misc.release_obj( sobj )
 	end
 end
+
 -- gas_burner
 function spawn_lampada()
     dsh.create_candle( vector():set( 6.61, -7.82, -13.24 ), 7641, 2693, "new_item\\gas_burner" )
 end
+
 -- телепортация на 1, 5, 100, 300 метров
+--1
 function t1()
 	if level.present() and db.actor and db.actor:alive() then
 	   db.actor:set_actor_position(device().cam_pos:add(device().cam_dir:mul(1.0)))
     end	
 end
+
+--5
 function t5()
 	if level.present() and db.actor and db.actor:alive() then
 	   db.actor:set_actor_position(device().cam_pos:add(device().cam_dir:mul(5.0)))
     end	
 end
+
+--100
 function t100()
 	if level.present() and db.actor and db.actor:alive() then
 	   db.actor:set_actor_position(device().cam_pos:add(device().cam_dir:mul(100.0)))
     end	
 end
+
+--300
 function t300()
 	if level.present() and db.actor and db.actor:alive() then
 	   db.actor:set_actor_position(device().cam_pos:add(device().cam_dir:mul(300.0)))
     end	
 end
+
 -- метка на НПС
 function mark(id)
 	local obj
@@ -69,4 +86,12 @@ function mark(id)
 			sak.send_tip("no obj or other err","m_story_id@find_obj",0,15,"g_g","sak","yellow")
 		end
 	end
+end
+
+--перемотка времени в ч.
+function change_time( num )
+local gt = game.get_game_time()
+local y, m, d, hh, mm, ss, ms = gt:get()
+gt:updHMS( hh + num, 0 )
+game.set_game_time( gt )
 end

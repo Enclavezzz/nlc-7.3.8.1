@@ -445,7 +445,7 @@ function add_record_in_klava( msg_id, custom_msg )
         tbl_msg  = vergas_lib.str_explode(
                         "|", vergas_pda.read_message( msg_id,custom_msg ), true
                     )
-        msg_tema = "Инфо по сталкеру"
+        msg_tema = "Заметка"
         for i = 1, table.getn( tbl_msg ) do
             table.insert( tbl_txt, tbl_msg[ i ] )
         end

@@ -435,6 +435,18 @@ function keep_item(npc, item)
 		item:set_condition(lua_random(10,45)/100)
 		return true
 	end
+	if str_in_tab( section, always_offs_items )
+        or strposx( section, "outfit" )
+        or (
+                strposx( section, "wpn_" )
+                and item_id ~= npc:active_item():id()
+                and item_id ~= npc:item_in_slot( 1 ):id()
+                and item_id ~= npc:item_in_slot( 2 ):id()
+            )
+    then
+        alife():release( alife():object( item:id() ), true )
+        return true
+    end
     item_in_slot = npc:active_item()
 	if item_in_slot~=nil and item_in_slot:id()==item_id then
 		item:set_condition(lua_random(10,45)/100)

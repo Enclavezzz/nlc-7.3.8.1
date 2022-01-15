@@ -1,3 +1,4 @@
+--установка кондиции для пда
 function set_pda_condition( id, status_pda )
        local status = 1
     if status_pda then
@@ -16,6 +17,7 @@ function set_pda_condition( id, status_pda )
     end
 end
 
+--сортировка пда при загрузке
 function sort_actor_pda_on_load()
     db.actor:iterate_inventory(
         function( dummy, item )
