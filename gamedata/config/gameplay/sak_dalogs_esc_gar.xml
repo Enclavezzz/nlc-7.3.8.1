@@ -10164,7 +10164,7 @@
 		</phrase>
 <!--
 		<phrase id="501">
-			<text>esc_neumeha_start_dialog_451</text> <!-- это не ошибка, а чтобы одинаковые фразы не плодить
+			<text>esc_neumeha_start_dialog_451</text>  это не ошибка, а чтобы одинаковые фразы не плодить 
 		</phrase>
  -->
 		<phrase id="501">
@@ -14021,7 +14021,7 @@
 		</phrase>
 		<phrase id="3">
 			<text>sidor_conserv_done_3</text>
-			<action>sak_dialog.add_sidor_med</action>			
+			<action>sak_dialog.add_random_item( 1, 3 )</action>			
 			<next>4</next>			
 		</phrase>
 		<phrase id="4">
@@ -14030,8 +14030,7 @@
 		</phrase>		
 		<phrase id="5">
 			<text>sidor_conserv_done_5</text>
-			<action>sak_dialog.take_2conserva</action>
-			<action>sak.create_items(db.actor,"wpn_bm16",1)</action>			
+			<action>sak.create_items(db.actor,"conserva",2)</action>			
 		</phrase>
 	</phrase_list>
 </dialog>

@@ -4485,19 +4485,44 @@
 <string id="plichko_rpk_done_dialog_6"><text>Это, конечно, меняет дело, но в следующий раз подумаю... А, надо ли?</text></string>
 <string id="plichko_rpk_done_dialog_7"><text>Да не кипятись, сейчас зарядим.</text></string>
 
-<string id="tex_sidor_conserv"><text>\nСидорович попросил принести посылку со свинофермы, что за насыпью</text></string>
-<string id="sidor_conserv_start_0"><text>Может, ещё куда сходить, принести что надо?</text></string>
-<string id="sidor_conserv_start_1"><text>Есть одно дельце пустяшное. На ферме, что за насыпью, орлы мои партию товара мне оставили. Шалопаи из деревни близко не подходили, испугались, молодёжь. Там недавно плоти поселились. Но ты, смотрю, парень рисковый, сходил бы, посмотрел. Возьмёшься, или мне другого поискать?</text></string>
-<string id="sidor_conserv_start_2"><text>Возьмусь. Мне пока спешить некуда.</text></string>
-<string id="sidor_conserv_start_3"><text>Нет, других спрашивай.</text></string>
-<string id="sidor_conserv_start_4"><text>Вот и договорились. А я пока прикину, чем тебя наградить.</text></string>
+<!-- sidor_konservi -->
+<string id="tex_sidor_conserv">
+	<text>\nСидорович попросил принести посылку со свинофермы, что за насыпью</text>
+</string>
+<string id="sidor_conserv_start_0">
+	<text>Может, ещё куда сходить, принести что надо?</text>
+</string>
+<string id="sidor_conserv_start_1">
+	<text>Есть одно дельце пустяшное. На ферме, что за насыпью, орлы мои партию товара мне оставили. Шалопаи из деревни близко не подходили, испугались, молодёжь. Там недавно плоти поселились. Но ты, смотрю, парень рисковый, сходил бы, посмотрел. Возьмёшься, или мне другого поискать?</text>
+</string>
+<string id="sidor_conserv_start_2">
+	<text>Возьмусь. Мне пока спешить некуда.</text>
+</string>
+<string id="sidor_conserv_start_3">
+	<text>Нет, других спрашивай.</text>
+</string>
+<string id="sidor_conserv_start_4">
+	<text>Вот и договорились. А я пока прикину, чем тебя наградить.</text>
+</string>
 
-<string id="sidor_conserv_done_0"><text>Был я на ферме, нашёл твой товар.</text></string>
-<string id="sidor_conserv_done_1"><text>И как оно там?</text></string>
-<string id="sidor_conserv_done_2"><text>Твоего курьера плоти порвали. А про целый ящик мог бы и предупредить. Еле допёр.</text></string>
-<string id="sidor_conserv_done_3"><text>Ну-ну, чего начал, болезный... За работу держи по-божески...</text></string>
-<string id="sidor_conserv_done_4"><text>По-божески?! Мог бы хоть пару банок дать. А то тут, с холодухи, и без плотей ноги протянешь.</text></string>
-<string id="sidor_conserv_done_5"><text>Кушать хочется?.. Хорошо, уговорил, а то действительно... помрёшь раньше времени. И вот ещё обрезик возьми, а то под столом валяется без дела. Я им тут по первости, когда ещё коморку эту обустраивал, крыс гонял, так и лежит с тех пор.</text></string>
+<string id="sidor_conserv_done_0">
+	<text>Был я на ферме, нашёл твой товар.</text>
+</string>
+<string id="sidor_conserv_done_1">
+	<text>И как оно там?</text>
+</string>
+<string id="sidor_conserv_done_2">
+	<text>Твоего курьера плоти порвали. А про целый ящик мог бы и предупредить. Еле допёр.</text>
+</string>
+<string id="sidor_conserv_done_3">
+	<text>Ну-ну, чего начал, болезный... За работу держи по-божески...</text>
+</string>
+<string id="sidor_conserv_done_4">
+	<text>По-божески?! Мог бы хоть пару банок дать. А то тут, с холодухи, и без плотей ноги протянешь.</text>
+</string>
+<string id="sidor_conserv_done_5">
+	<text>Кушать хочется?.. Хорошо, уговорил, а то действительно... помрёшь раньше времени.</text>
+</string>
 
 <string id="tex_sidor_kishka"><text>\nСидорович попросил принести на пробу колбасы от Игната, который в Кишке</text></string>
 <string id="sidor_kishka_start_0"><text>Сидорович, может ещё какое дельце непыльное подкинешь?</text></string>
