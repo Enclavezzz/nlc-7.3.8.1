@@ -98,7 +98,7 @@
 <info_portion id="docent_pda_warlab_new"></info_portion>
 <info_portion id="docent_pda_warlab_new_done"></info_portion>
 <info_portion id="docent_message"></info_portion>
-<!-- exo_trade -->
+<!-- exo_trade --> 
 <info_portion id="barman_exo_good_trade"></info_portion>
 <info_portion id="barman_exo_new"></info_portion>
 <info_portion id="barman_exo_new_done"></info_portion>
@@ -2618,8 +2618,8 @@
 <info_portion id="bandit_krisyk_refused"></info_portion>
 <info_portion id="esc_reward_case_start"></info_portion>
 <info_portion id="esc_reward_case_done"></info_portion>
-<info_portion id="esc_tolik_five_teil_start"><article>tex_esc_tolik_five_teily</article></info_portion>
-<info_portion id="esc_tolik_five_teil_done"><disable>esc_tolik_five_teil_start</disable><article_disable>tex_esc_tolik_five_teily</article_disable></info_portion>
+<info_portion id="esc_tolik_five_teil_start"></info_portion>
+<info_portion id="esc_tolik_five_teil_done"><disable>esc_tolik_five_teil_start</disable></info_portion>
 <info_portion id="info_electra_off"></info_portion>
 <info_portion id="escape_lager_volk_document_start"><article>tex_escape_lager_volk_document</article></info_portion>
 <info_portion id="escape_lager_volk_document_done"><disable>escape_lager_volk_document_start</disable><article_disable>tex_escape_lager_volk_document</article_disable></info_portion>

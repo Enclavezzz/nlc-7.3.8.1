@@ -11919,6 +11919,22 @@ function give_random_recipes( table_recipes )
 		nlc_vars.rnd_table_recipes_position = nlc_vars.rnd_table_recipes_position + 1
 	end
 end
+--
+function firstlvl_recipes()
+    give_random_recipes( first_level )
+end
+
+function secondlvl_recipes()
+    give_random_recipes( second_level )
+end
+
+function thirdlvl_recipes()
+    give_random_recipes( third_level )
+end
+
+function dummy_recipes()
+    give_random_recipes( dummys )
+end
 ---------------------------------------------------------------------------
 
 ---------------------------------------------------------------------------
@@ -12135,3 +12151,99 @@ function transfer_wolf_reward()
 	end
 	xr_statistic.add_pts( "quests", "wolf_document", 1, 1.5 )
 end
+---------------------------------------------------------------------------
+
+--Новые/старые просьбы
+function show_random_npc_request( num )
+    local ind = amk_vars.r_treas_items or 1
+    local tbl = {
+		-- Толик и компоненты для рецепта 			
+        {
+            { "Однако для этого нужен глаз плоти. Сам я пытался поймать, да видишь, еле живой остался..." },
+            { "Однако для этого нужен хвост псевдособаки. Сам я пытался поймать, да видишь, еле живой остался..." },
+			{ "Однако для этого нужны три копыта кабана. Сам я пытался поймать, да видишь, еле живой остался..." }
+        },	
+		-- Лис и аптечки/антирады					
+        {
+            { "Если согласен, то я тебе за пяток антирадов рецептик подкину..." },
+            { "Если согласен, то я тебе за четыре армейские аптечки рецептик подкину..." },
+			{ "Если согласен, то я тебе за десяток аптечек рецептик подкину..." }
+        },	
+		-- Прапор первый квест после агропрома					
+        {
+            { "Настойку, говорит, сделай на хвостах котов, как рукой снимет. Ты принеси три, а у меня найдётся, чем тебя отблагодарить..." },
+            { "Настойку, говорит, сделай на глазах плотей, как рукой снимет. Ты принеси четыре, а у меня найдётся, чем тебя отблагодарить..." },
+			{ "Настойку, говорит, сделай на стопах снорков, как рукой снимет. Ты принеси три, а у меня найдётся, чем тебя отблагодарить..." }
+        },
+		-- Прапор последний квест					
+        {
+            { "Знающие люди говорят, что настойка из измельченного отростка гиганта - самый лучший способ. То ли у них радиация там скапливается, то ли ещё что, но прогревает до самых костей... \\nМожет, принесёшь мне, а я тебе артефакт редкий подгоню..." },
+            { "Знающие люди говорят, что настойка из глаза полтергейста - самый лучший способ. То ли их способности в нём заключаются, то ли ещё что, но прогревает до самых костей... \\nМожет, принесёшь мне, а я тебе артефакт редкий подгоню..." },
+			{ "Знающие люди говорят, что настойка из измельченной руки контролёра - самый лучший способ. Действует как обезболивающее и прогревает до самых костей... \\nМожет, принесёшь мне, а я тебе артефакт редкий подгоню..." }
+        }			
+	}
+	db.actor:give_talk_message(
+		"%c[255,216,186,140]" .. game.translate_string( tbl[ num ][ ind ][ 1 ] ),
+		"ui\\ui_iconsTotal", Frect():set( 0, 0, 0, 0), "simple_answer_item"
+	) 
+    if db.actor:object( "klava" ) ~= nil then
+		local npc_name = {
+			"\\n\\nПросьба от Толика",
+			"\\n\\nПросьба от Лиса",
+			"\\n\\nПросьба от Прапора",
+			"\\n\\nПросьба от Прапора",			
+		}	
+		local req_txt = game.translate_string( tbl[ num ][ ind ][ 1 ] .. tostring( npc_name[ num ] ) )
+        vergas_lib.add_record_in_klava( "custom", req_txt )
+    end	
+end
+
+
+function random_npc_request( num, flag_to_remove )
+    local ind = amk_vars.r_treas_items or 1
+    local tbl = {
+		-- Толик и компоненты для рецепта 			-- artmod_111_dialog	
+        {
+            { "mutant_flesh_eye", 1 },
+            { "mutant_psevdodog_tail", 1 },
+			{ "mutant_boar_leg", 3 }
+        },
+		-- Лис и аптечки/антирады					-- artmod_161_dialog
+        {
+            { "antirad", 5 },
+            { "medkit_army", 4 },
+			{ "medkit", 10 }
+        },
+		-- Прапор первый квест после агропрома		-- artmod_311_dialog
+        {
+            { "mutant_tail_cat", 3 },
+            { "mutant_flesh_eye", 4 }, 
+			{ "mutant_snork_leg", 3 }
+        },	
+		-- Прапор последний квест					-- artmod_712_dialog
+        {
+            { "mutant_psevdogigant_hand", 1 },
+            { "mutant_poltergeist_glas", 1 }, 
+			{ "mutant_hand_kontroler", 1 }
+        }	
+	}
+	local item 	 = tbl[ num ][ ind ][ 1 ]
+	local amount = tbl[ num ][ ind ][ 2 ]
+	
+	if flag_to_remove == false then
+		if str_in_tab( item, { "ammo_", "energy_drink", "medkit", "antirad" } ) then
+			return vergas_lib.search_items( item, amount, 1 )
+		else
+			return sak.have_items_count( item, amount ) ~= false
+		end	
+	end	
+	
+	if flag_to_remove == true then
+		if str_in_tab( item, { "ammo_", "energy_drink", "medkit", "antirad" } ) then
+			vergas_lib.search_items( item, amount, 2 )	
+		else	
+			sak_inventory.release_actor_items( item, amount )
+		end	
+	end	
+end
+---------------------------------------------------------------------------	

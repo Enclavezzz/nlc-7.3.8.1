@@ -10,7 +10,8 @@
 			<next>1</next>
 		</phrase>
 		<phrase id="1">
-			<text>artmod_111_dialog_1</text>					
+			<text>artmod_111_dialog_1</text>
+			<action>sak_dialog.show_random_npc_request( 1 )</action>				
 			<next>2</next>
 		</phrase>
 		<phrase id="2">
@@ -43,7 +44,7 @@
 </dialog>
 
 <dialog id="artmod_112_dialog">
-	<precondition>sak_dialog.five_teil_have</precondition>
+	<precondition>sak_dialog.random_npc_request( 1, false )</precondition>
 	<has_info>esc_tolik_five_teil_start</has_info>
 	<dont_has_info>esc_tolik_five_teil_done</dont_has_info>
 	<precondition>dialogs.is_not_wounded</precondition>
@@ -58,10 +59,10 @@
 			<next>22</next>
 		</phrase>
 		<phrase id="21">
-		<precondition>sak_dialog.five_teil_have</precondition>
+		<precondition>sak_dialog.random_npc_request( 1, false )</precondition>
 			<text>artmod_112_dialog_21</text>
 			<give_info>esc_tolik_five_teil_done</give_info>
-			<action>sak_dialog.give_five_teil</action>
+			<action>sak_dialog.random_npc_request( 1, true )</action>
 			<next>3</next>
 		</phrase>
 		<phrase id="22">
@@ -79,8 +80,7 @@
 		</phrase>	
 		<phrase id="51">
 			<text>artmod_112_dialog_51</text>
-			<give_info>info_artmod_ameba_slime_zharka</give_info>
-			<action>sak.info_artmod</action>		
+			<action>sak_dialog.firstlvl_recipes()</action>		
 		</phrase>
 		<phrase id="42">
 			<text>artmod_112_dialog_42</text>
@@ -88,12 +88,13 @@
 		</phrase>	
 		<phrase id="52">
 			<text>artmod_112_dialog_52</text>
-			<action>sak_dialog.add_5ammo_12x70_buck</action>
-			<action>sak_dialog.add_2medkit</action>		
+			<action>sak.create_items(db.actor,"timer",1)</action>
+			<action>sak_dialog.add_random_item(1)</action>		
 		</phrase>	
 	</phrase_list>
 </dialog>
-	
+<!-- end -->
+
 <dialog id="artmod_11_make_dialog">
 <precondition>sak_artmods.have_info_artmod_11</precondition>
 <precondition>dialogs.is_not_wounded</precondition>
