@@ -189,28 +189,23 @@ end
 
 function relocate_money(actor, type, amount)
 	if db.actor==nil then return false end
-	
-	if type == "in"  then colour = "%c[ 255, 105, 239, 146 ]" whom = "general_in_money"  end
-	if type == "out" then colour = "%c[ 255, 255, 085, 085 ]" whom = "general_out_money" end
-	
-	local tab = "\\n"
-	if actor:is_talking() then tab = " " end
 
-	local news_text = colour .. game.translate_string( whom ) .. tab .. "%c[default]" .. game.translate_string( tostring( amount ) .. " рублей" )
-	local task_texture, task_rect = get_texture_info( "ui_iconsTotal_found_money" )	
-			
-	local icon_group = "ui\\ui_icon_equipment_3"
-	local icon_pos = ""
-	if amount < 1000 					  then icon_pos = { 600, 600, 100, 50 } end
-	if amount >= 1000  and amount < 5000  then icon_pos = { 600, 650, 100, 50 } end
-	if amount >= 5000  and amount < 10000 then icon_pos = { 700, 600, 100, 50 } end	
-	if amount >= 10000 and amount < 20000 then icon_pos = { 700, 650, 100, 50 } end	
-	if amount >= 20000 and amount < 40000 then icon_pos = { 800, 600, 100, 50 } end
-	if amount >= 40000 					  then icon_pos = { 800, 650, 100, 50 } end	
+	if type=="in" then
+		local task_texture, task_rect = get_texture_info("ui_iconsTotal_found_money")
+		local news_text = "%%c[ 255, 105, 239, 146 ]"..game.translate_string("general_in_money").."\\n".."%c[default]"..game.translate_string(tostring(amount).." рублей")
 		
-	if actor:is_talking() then		
-		actor:give_talk_message( news_text, icon_group, Frect():set( unpack( icon_pos ) ), "ico_item_2_2" )		
-	else
-		actor:give_game_news( news_text, task_texture, task_rect, 0, 3000 )		
-	end	
+		if db.actor:is_talking() then
+			db.actor:give_talk_message(news_text, task_texture, task_rect, "iconed_answer_item")
+		else
+			db.actor:give_game_news(news_text, task_texture, task_rect, 0, 3000)
+		end		
+	elseif type=="out" or type==1 then
+		local task_texture, task_rect = get_texture_info("ui_iconsTotal_found_money")
+		local news_text = "%c[ 255, 255, 085, 085 ]"..game.translate_string("general_out_money").."\\n".."%c[default]"..game.translate_string(tostring(amount).." рублей")	
+		if db.actor:is_talking() then
+			db.actor:give_talk_message(news_text, task_texture, task_rect, "iconed_answer_item")
+		else
+			db.actor:give_game_news(news_text, task_texture, task_rect, 0, 3000)
+		end		
+	end
 end
