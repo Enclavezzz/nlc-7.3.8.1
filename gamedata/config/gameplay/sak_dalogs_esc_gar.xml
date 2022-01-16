@@ -1,3 +1,4 @@
+<!-- куртка шустрого -->
 <dialog id="shustriy_outfit_dialog">
 	<has_info>tutorial_wounded_give_info</has_info>
 	<dont_has_info>esc_shustryi_outfit_start</dont_has_info>
@@ -87,7 +88,7 @@
 		</phrase>
 		<phrase id="51">
 			<text>shustriy_outfit_reward_51</text>
-			<action>sak_dialog.take_item_esc_shustryi_outfit</action>
+			<action>sak.create_items(db.actor,"detector_simple",1)</action>
 			<next>6</next>
 		</phrase>
 		<phrase id="42">
@@ -96,7 +97,7 @@
 		</phrase>
 		<phrase id="52">
 			<text>shustriy_outfit_reward_52</text>
-			<action>sak_dialog.take_3000_money</action>
+			<action>sak_dialog.add_random_item( 1 )</action>
 			<next>6</next>
 		</phrase>
 		<phrase id="43">
@@ -105,7 +106,7 @@
 		</phrase>	
 		<phrase id="53">
 			<text>shustriy_outfit_reward_53</text>
-			<action>sak_dialog.add_shustriy_kishka_treasure</action>		
+			<action>sak_dialog.add_kishka_rukzak</action>		
 			<next>6</next>
 		</phrase>	
 		<phrase id="6">

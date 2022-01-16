@@ -9338,3 +9338,12 @@ end
 function gross_merc_ready()
 	db.actor:give_info_portion("gross_merc_ready")
 end
+
+--
+function off_on( sobj )
+    if sobj.online then
+        sim:set_switch_online ( sobj.id, false )
+        sim:set_switch_offline( sobj.id, true  )
+        amk.convert_npc[ sobj.id ] = 1
+    end
+end

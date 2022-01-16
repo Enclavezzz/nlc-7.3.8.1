@@ -12247,3 +12247,51 @@ function random_npc_request( num, flag_to_remove )
 	end	
 end
 ---------------------------------------------------------------------------	
+function spawn_no_ai( spawn_item, pos, gv, lv )
+    local obj = alife():create( spawn_item, pos, lv, gv )
+    obj       = alife():object( obj.id )
+    local pk  = get_netpk( obj, 1 )
+    if pk:isOk() then
+        local data        = pk:get()
+        data.object_flags = bit_and( data.object_flags, bit_not( 128 ) )
+        pk:set( data )
+    end
+    return obj
+end
+---------------------------------------------------------------------------
+-- Тайник Шустрого в Кишке
+
+function add_kishka_rukzak()
+    local coord = {
+		{ 484.621, -1.945, -424.767, 4163, 984827 }, --первый
+		{ 494.322, -1.715, -435.431, 4163, 984427 }, --первый
+		{ 502.241, -1.678, -415.140, 4163, 984427 }, --первый 
+		{ 441.390, -1.570, -509.637, 4155, 971760 }, --второй
+		{ 447.111, -1.666, -499.644, 4155, 971760 }, --второй
+		{ 441.998, -1.336, -524.989, 4155, 971760 }, --второй
+		{ 339.281, 23.102,  284.379, 4146, 810840 }, --третий
+		{ 350.533, 19.373,  291.642, 4142, 817931 }, --третий
+		{ 350.177, 23.022,  290.183, 4142, 818995 }	 --третий
+    }
+    local ind = lua_random( #coord )
+    local obj = this.spawn_no_ai( "rukzak_inventory_box",
+		sak.v3f( coord[ ind ][ 1 ], coord[ ind ][ 2 ], coord[ ind ][ 3 ] ),
+		coord[ ind ][ 4 ], coord[ ind ][ 5 ]
+	)				
+    misc.process_spawn()
+	local tbl = {
+		"antirad", 
+		"vodka",  
+		"ammo_9x18_fmj", 
+		"medkit" 
+	}
+	local rnd = lua_random( 1, 6 )
+    for i = 2, 4 do 
+		misc.spawn_to( tbl[ rnd ], obj ) 
+	end	
+	if obj then
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, 2, 3 ), obj )
+    end
+    sak.off_on( obj )	
+end
+-----------------------------------------------------------------------------------
