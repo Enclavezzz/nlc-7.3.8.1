@@ -1961,27 +1961,102 @@
 <info_portion id="marsh_baze_ecolog_gg"></info_portion>
 <info_portion id="marsh_baze_ecolog2_new_gg"></info_portion>
 <info_portion id="marsh_baze_ecolog_job_start"></info_portion>
-<info_portion id="esc_upir_bio"><article>esc_upir_bio</article></info_portion>
-<info_portion id="cherep_bio"><article>cherep_bio</article></info_portion>
-<info_portion id="master_bio"><article>master_bio</article></info_portion>
-<info_portion id="ivanzov_bio"><article>ivanzov_bio</article></info_portion>
-<info_portion id="dolgovazyi_bio"><article>dolgovazyi_bio</article></info_portion>
-<info_portion id="docent_bio"><article>docent_bio</article></info_portion>
-<info_portion id="osvedomitel_bio"><article>osvedomitel_bio</article></info_portion>
-<info_portion id="bes_bio"><article>bes_bio</article></info_portion>
-<info_portion id="krot_bio"><article>krot_bio</article></info_portion>
-<info_portion id="koval_bio"><article>koval_bio</article></info_portion>
-<info_portion id="esc_vorobey_bio"><article>esc_vorobey_bio</article></info_portion>
-<info_portion id="esc_fanat_bio"><article>esc_fanat_bio</article></info_portion>
-<info_portion id="esc_neumeha_bio"><article>esc_neumeha_bio</article></info_portion>
-<info_portion id="esc_fox_bio"><article>esc_fox_bio</article></info_portion>
-<info_portion id="esc_soldier_commander_bio"><article>esc_soldier_commander_bio</article></info_portion>
-<info_portion id="esc_wolf_bio"><article>esc_wolf_bio</article></info_portion>
-<info_portion id="esc_stas_bio"><article>esc_stas_bio</article></info_portion>
-<info_portion id="escape_trader_bio"><article>escape_trader_bio</article></info_portion>
-<info_portion id="esc_tolik_bio"><article>esc_tolik_bio</article></info_portion>
-<info_portion id="esc_shustryi_bio"><article>esc_shustryi_bio</article></info_portion>
-<info_portion id="esc_petruha_bio"><article>esc_petruha_bio</article></info_portion>
+
+<info_portion id="esc_stas_bio">
+    <article>esc_stas_bio</article>
+    <action>sak_dialog.stas_treasure</action>
+</info_portion>
+
+<info_portion id="escape_trader_bio">
+    <article>escape_trader_bio</article>
+    <action>sak_dialog.sidor_treasure</action>
+</info_portion>
+
+<info_portion id="esc_soldier_commander_bio">
+    <article>esc_soldier_commander_bio</article>
+    <action>sak_dialog.kuznecov_treasure</action>
+</info_portion>
+
+<info_portion id="esc_upir_bio">
+    <article>esc_upir_bio</article>
+    <action>sak_dialog.upir_treasure</action>
+</info_portion>
+
+<info_portion id="esc_petruha_bio">
+    <article>esc_petruha_bio</article>
+    <action>sak_dialog.petruha_treasure</action>
+</info_portion>
+
+<info_portion id="esc_neumeha_bio">
+    <article>esc_neumeha_bio</article>
+    <action>sak_dialog.neumeha_treasure</action>
+</info_portion>
+
+<info_portion id="esc_fox_bio">
+    <article>esc_fox_bio</article>
+    <action>sak_dialog.lis_treasure</action>
+</info_portion>
+
+<info_portion id="esc_tolik_bio">
+    <article>esc_tolik_bio</article>
+    <action>sak_dialog.tolik_treasure</action>
+</info_portion>
+
+<info_portion id="esc_vorobey_bio">
+    <article>esc_vorobey_bio</article>
+    <action>sak_dialog.vorobey_treasure</action>
+</info_portion>
+
+<info_portion id="esc_shustryi_bio">
+    <article>esc_shustryi_bio</article>
+    <action>sak_dialog.shustriy_treasure</action>
+</info_portion>
+
+<info_portion id="esc_fanat_bio">
+    <article>esc_fanat_bio</article>
+    <action>sak_dialog.fanat_treasure</action>
+</info_portion>
+
+<info_portion id="cherep_bio">
+    <article>cherep_bio</article>
+</info_portion>
+
+<info_portion id="master_bio">
+    <article>master_bio</article>
+</info_portion>
+
+<info_portion id="ivanzov_bio">
+    <article>ivanzov_bio</article>
+</info_portion>
+
+<info_portion id="dolgovazyi_bio">
+    <article>dolgovazyi_bio</article>
+</info_portion>
+
+<info_portion id="docent_bio">
+    <article>docent_bio</article>
+</info_portion>
+
+<info_portion id="osvedomitel_bio">
+    <article>osvedomitel_bio</article>
+</info_portion>
+
+<info_portion id="bes_bio">
+    <article>bes_bio</article>
+</info_portion>
+
+<info_portion id="krot_bio">
+    <article>krot_bio</article>
+</info_portion>
+
+<info_portion id="koval_bio">
+    <article>koval_bio</article>
+</info_portion>
+
+<info_portion id="esc_wolf_bio">
+    <article>esc_wolf_bio</article>
+</info_portion>
+
 <info_portion id="time_morning"><disable>time_night</disable><disable>time_day</disable><disable>time_evening</disable></info_portion>
 <info_portion id="time_day"><disable>time_morning</disable><disable>time_night</disable><disable>time_evening</disable></info_portion>
 <info_portion id="time_evening"><disable>time_day</disable><disable>time_morning</disable><disable>time_night</disable></info_portion>

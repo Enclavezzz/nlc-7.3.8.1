@@ -1,0 +1,13 @@
+function attach( sm )
+	sm:subscribe({ signal = "on_take_from_box",  fun = this.on_take_from_ruck})
+end
+
+function on_take_from_ruck( box, item )
+	if not strposx( box:name(), "rukzak_inventory_box" ) then return end			
+	local ids, cnt = registry.inv_objects( box:id(), true )
+	if cnt < 1 then				
+		level.start_stop_menu( level.main_input_receiver(), true )					
+		misc.release_obj( box:id() )
+		sak.create_items( db.actor, "rucksack", 1 )
+	end	
+end

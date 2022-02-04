@@ -1,0 +1,88 @@
+function attach( sm )
+	sm:subscribe({ signal = "on_safe_spawn",  fun = this.on_safe_spawn })
+end
+
+function on_safe_spawn()
+	-- if game_options.Coordinator == true then 
+		ogse_signals.get_mgr():subscribe({ signal = "on_update", fun = this.show_coordinates })
+	end
+-- end
+
+function show_coordinates()
+	ogse_signals.get_mgr():reschedule( 500 )
+	
+	local obj_name 				= "null"
+	local obj_id 				= "null" 
+	local ini_filename 			= "null"
+	local scheme_act_section 	= "null"
+	local scheme_act_logic 		= "null"
+	local profile_name 			= "null"
+	local obj_gulag_name 		= "null"
+	local obj_gulag_val 		= "null"
+	local obj_best_enemy 		= "null"
+	local obj_best_danger_name 	= "null"
+	local obj_best_danger_type 	= "null"
+	local obj 					= sleep_manager.get_target_obj()
+
+	if obj then        
+		obj_name 	= tostring( obj:name() )
+		obj_id 		= tostring( obj:id() )
+		if  IsStalker( obj ) or IsMonster( obj ) then
+			if obj:alive() then
+				if db.storage[ obj:id() ] then
+					scheme_act_section 	= tostring( db.storage[ obj:id() ].active_section )
+					scheme_act_logic 	= tostring( db.storage[ obj:id() ].section_logic  )
+					ini_filename 		= tostring( db.storage[ obj:id() ].ini_filename )
+					if IsStalker( obj ) then
+						profile_name = tostring( obj:profile_name() )
+					end
+						
+					if obj:best_enemy() and ( obj:best_enemy() ~= nil ) then
+						obj_best_enemy = tostring( obj:best_enemy():name() )
+					end
+						
+					local best_danger = obj:best_danger()
+					if best_danger and best_danger:object() then
+						obj_best_danger_name = best_danger:object():name()
+					end
+						
+					local gulag = xr_gulag.get_npc_gulag( obj )
+					if gulag then
+						obj_gulag_name = tostring( gulag.name )
+						obj_gulag_val  = tostring( xr_gulag.getGulagPopulation( obj_gulag_name ) )
+					end
+				end
+			end
+		end	
+	end 
+	
+	local hud = get_hud()
+	local cs = hud:GetCustomStatic( "cs_debug" )
+	if cs == nil then
+		hud:AddCustomStatic( "cs_debug", true )
+		cs = hud:GetCustomStatic( "cs_debug" )
+	end
+	local lvid, gvid = db.actor:level_vertex_id(), db.actor:game_vertex_id()
+	local pos, dir 	 = db.actor:position(), db.actor:direction()
+	local pos2 		 = level.vertex_position(lvid)
+	local d 		 = vector():sub(pos, pos2)
+	local valid 	 = (math.abs(d.x) <= 0.35 and math.abs(d.y) < 1.0 and math.abs(d.z) <= 0.35)
+	local msg 		 = string.format("lvid: %d\\n", lvid) ..
+	string.format("gvid: %d\\n", gvid) ..
+	string.format("pos: %.12f,%.12f,%.12f\\n", pos.x, pos.y, pos.z) ..
+	string.format("dir: %.12f,%.12f,%.12f\\n", dir.x, dir.y, dir.z) ..
+	"valid: " .. tostring(valid)..string.format("\\n")..
+	string.format("Object_name: %s\\n", obj_name)..
+	string.format("Object_ID: %s\\n", obj_id)..
+	string.format("Object_INI: %s\\n", ini_filename)..
+	string.format("Object profile_name: %s\\n", profile_name)..
+	string.format("Object best_enemy: %s\\n", obj_best_enemy)..
+	string.format("Object best_danger_name: %s\\n", obj_best_danger_name)..
+	string.format("Object gulag_name: %s\\n", obj_gulag_name).. 
+	string.format("Object gulag_val: %s\\n", obj_gulag_val).. 
+	string.format("Object active_section: %s\\n", scheme_act_section)..
+	string.format("Object active_logic: %s\\n", scheme_act_logic)
+	if cs ~= nil then
+		cs:wnd():SetText(msg)
+	end
+end

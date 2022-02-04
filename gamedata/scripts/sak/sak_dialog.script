@@ -12285,7 +12285,7 @@ function add_kishka_rukzak()
 		"ammo_9x18_fmj", 
 		"medkit" 
 	}
-	local rnd = lua_random( 1, 6 )
+	local rnd = lua_random( 1, #tbl )
     for i = 2, 4 do 
 		misc.spawn_to( tbl[ rnd ], obj ) 
 	end	
@@ -12295,3 +12295,244 @@ function add_kishka_rukzak()
     sak.off_on( obj )	
 end
 -----------------------------------------------------------------------------------
+--тайники всяких челов при попойке 
+--Стас
+function stas_treasure()
+    local coord = {
+		{ -236.779, -19.404, -155.897,   47,  20036 }, --кордон
+		{  517.077,   0.711, -150.063, 3563, 491590 }, --болота
+		{ -313.769,  -4.794, -517.796, 3954,  93541 }, --кишка 
+    }
+    local ind = amk_vars.r_treas_items or 1
+    local obj = this.spawn_no_ai( "rukzak_inventory_box",
+		sak.v3f( coord[ ind ][ 1 ], coord[ ind ][ 2 ], coord[ ind ][ 3 ] ),
+		coord[ ind ][ 4 ], coord[ ind ][ 5 ]
+	)				
+    misc.process_spawn()
+	local cnt = lua_random( 5, 15 )
+	if obj then
+		misc.spawn_multi ( "vodka", obj.position, obj.id, cnt ) 
+    end
+    sak.off_on( obj )	
+end
+--Сидор
+function sidor_treasure()
+    local coord = {
+		{   74.198,   2.338,  -66.834, 3335,  35955 }, --хутор
+		{ -253.951, -13.010,   -9.621,   67,   8570 }, --кордон
+		{  107.045,   2.334, -311.898, 4066, 522098 }, --кишка
+    }
+    local ind = amk_vars.r_treas_items or 1
+    local obj = this.spawn_no_ai( "rukzak_inventory_box",
+		sak.v3f( coord[ ind ][ 1 ], coord[ ind ][ 2 ], coord[ ind ][ 3 ] ),
+		coord[ ind ][ 4 ], coord[ ind ][ 5 ]
+	)				
+    misc.process_spawn()
+	local cnt = lua_random( 5, 10 )
+	if obj then
+		misc.spawn_multi ( "vodka", obj.position, obj.id, cnt )
+		misc.spawn_multi ( "conserva", obj.position, obj.id, cnt )
+		misc.spawn_multi ( "dollars50", obj.position, obj.id, cnt ) 
+    end
+    sak.off_on( obj )	
+end
+--Кузя
+function kuznecov_treasure()
+    local coord = {
+		{ 527.112, -0.047,   -4.916, 3567, 511303 }, --болота
+		{  79.615,  1.896, -108.685,  427, 314341 }, --агропром
+		{ 443.559,  0.238, -436.705, 4163, 975005 }, --кишка
+    }
+    local ind = amk_vars.r_treas_items or 1
+    local obj = this.spawn_no_ai( "rukzak_inventory_box",
+		sak.v3f( coord[ ind ][ 1 ], coord[ ind ][ 2 ], coord[ ind ][ 3 ] ),
+		coord[ ind ][ 4 ], coord[ ind ][ 5 ]
+	)				
+    misc.process_spawn()
+	if obj then
+		misc.spawn_multi ( "ammo_5.45x39_fmj", obj.position, obj.id, lua_random( 2, 5 ) )
+		misc.spawn_multi ( "grenade_f1", obj.position, obj.id, lua_random( 1, 2 ) )
+		misc.spawn_multi ( "grenade_rgd5", obj.position, obj.id, lua_random( 2, 4 ) )
+		misc.spawn_multi ( "medkit", obj.position, obj.id, lua_random( 2, 6 ) )
+    end
+    sak.off_on( obj )	
+end
+--Упырь
+function upir_treasure()
+    local coord = {
+		{  100.016, -4.353, 162.873,  325, 146944 }, --свалка
+		{  -70.003, -6.271, -20.006,  892,  89311 }, --долина
+		{ -423.537, -4.152, 538.958, 3943,  43936 }, --кишка
+    }
+    local ind = amk_vars.r_treas_items or 1
+    local obj = this.spawn_no_ai( "rukzak_inventory_box",
+		sak.v3f( coord[ ind ][ 1 ], coord[ ind ][ 2 ], coord[ ind ][ 3 ] ),
+		coord[ ind ][ 4 ], coord[ ind ][ 5 ]
+	)				
+    misc.process_spawn()
+	if obj then
+		misc.spawn_multi ( "antirad", obj.position, obj.id, lua_random( 4, 8 ) )
+		misc.spawn_multi ( "medkit_army", obj.position, obj.id, lua_random( 2, 3 ) )
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, lua_random( 1, 2 ), lua_random( 1, 4 ) ), obj )
+    end
+    sak.off_on( obj )	
+end
+--Петруха
+function petruha_treasure()
+    local coord = {
+		{ 132.806,  8.431, -180.521,  926, 329643 }, --долина
+		{ 458.077,  0.102,   99.880, 4158, 994584 }, --кишка
+		{ -44.522, 15.853, -193.934,  267, 144776 }, --свалка
+    }
+    local ind = amk_vars.r_treas_items or 1
+    local obj = this.spawn_no_ai( "rukzak_inventory_box",
+		sak.v3f( coord[ ind ][ 1 ], coord[ ind ][ 2 ], coord[ ind ][ 3 ] ),
+		coord[ ind ][ 4 ], coord[ ind ][ 5 ]
+	)				
+    misc.process_spawn()
+	local art = {
+		"af_electra_moonlight_new", 
+		"af_electra_flash_new", 
+		"af_dummy_sparkler",
+        "af_medus_new",
+        "af_crist_new",
+        "af_flower_new",
+        "af_star_new",
+        "af_glass_new",
+        "af_dummy_fire",
+	}
+	local rand = lua_random( 1, #art )
+	if obj then
+		misc.spawn_to( art[rand] , obj )
+    end
+    sak.off_on( obj )	
+end
+--Неумёха
+function neumeha_treasure()
+    local coord = {
+		{ -180.364, 0.538, 109.415,  341,  42143 }, --свалка
+		{  590.276, 3.443, 412.045, 3578, 520399 }, --болота
+		{   50.066, 9.672,  91.366, 3331,  29081 }, --хутор
+    }
+    local ind = amk_vars.r_treas_items or 1
+    local obj = this.spawn_no_ai( "rukzak_inventory_box",
+		sak.v3f( coord[ ind ][ 1 ], coord[ ind ][ 2 ], coord[ ind ][ 3 ] ),
+		coord[ ind ][ 4 ], coord[ ind ][ 5 ]
+	)				
+    misc.process_spawn()
+	if obj then
+		misc.spawn_multi ( "antirad", obj.position, obj.id, lua_random( 1, 4 ) )
+		misc.spawn_multi ( "medkit", obj.position, obj.id, lua_random( 1, 4 ) )
+		misc.spawn_multi ( "bandage", obj.position, obj.id, lua_random( 4, 6 ) )
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, lua_random( 1, 2 ), lua_random( 1, 4 ) ), obj )
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, lua_random( 1, 2 ), lua_random( 1, 4 ) ), obj )
+    end
+    sak.off_on( obj )	
+end
+--Лис
+function lis_treasure()
+    local coord = {
+		{   -58.518, 12.150,  0.135,  319, 133627 }, --свалка
+		{  -177.437,  1.271, 93.692,  532,  60630 }, --агро
+		{   -17.138, 14.748, 45.133, 3327,   9571 }, --хутор
+    }
+    local ind = amk_vars.r_treas_items or 1
+    local obj = this.spawn_no_ai( "rukzak_inventory_box",
+		sak.v3f( coord[ ind ][ 1 ], coord[ ind ][ 2 ], coord[ ind ][ 3 ] ),
+		coord[ ind ][ 4 ], coord[ ind ][ 5 ]
+	)				
+    misc.process_spawn()
+	if obj then
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, lua_random( 1, 2 ), lua_random( 1, 4 ) ), obj )
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, lua_random( 1, 2 ), lua_random( 1, 4 ) ), obj )
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, lua_random( 1, 2 ), lua_random( 1, 4 ) ), obj )
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, lua_random( 1, 2 ), lua_random( 1, 4 ) ), obj )
+    end
+    sak.off_on( obj )	
+end
+--Толик
+function tolik_treasure()
+    local coord = {
+		{  -215.226,  4.100,   9.150,  314,  20595 }, --свалка
+		{   256.539, -5.109, 526.099, 4102, 699632 }, --кишка
+		{   113.705,  0.229, -37.030,  124, 413831 }, --кордон
+    }
+    local ind = amk_vars.r_treas_items or 1
+    local obj = this.spawn_no_ai( "rukzak_inventory_box",
+		sak.v3f( coord[ ind ][ 1 ], coord[ ind ][ 2 ], coord[ ind ][ 3 ] ),
+		coord[ ind ][ 4 ], coord[ ind ][ 5 ]
+	)				
+    misc.process_spawn()
+	if obj then
+		misc.spawn_multi ( "antirad", obj.position, obj.id, lua_random( 1, 3 ) )
+		misc.spawn_multi ( "medkit", obj.position, obj.id, lua_random( 1, 3 ) )
+		misc.spawn_multi ( "bandage", obj.position, obj.id, lua_random( 3, 6 ) )
+		misc.spawn_multi ( "ammo_12x70_buck", obj.position, obj.id, lua_random( 2, 4 ) )
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, lua_random( 1, 2 ), lua_random( 1, 4 ) ), obj )
+    end
+    sak.off_on( obj )	
+end
+--Воробей
+function vorobey_treasure()
+    local coord = {
+		{ 273.154,  5.039, -135.824, 1289,  84431 }, --бар
+		{ 151.811, 13.832, -269.033,  964, 351355 }, --долина
+		{  67.119, 15.205,   50.544,  253, 211383 }, --свалка
+    }
+    local ind = amk_vars.r_treas_items or 1
+    local obj = this.spawn_no_ai( "rukzak_inventory_box",
+		sak.v3f( coord[ ind ][ 1 ], coord[ ind ][ 2 ], coord[ ind ][ 3 ] ),
+		coord[ ind ][ 4 ], coord[ ind ][ 5 ]
+	)				
+    misc.process_spawn()
+	if obj then
+		misc.spawn_multi ( "energy_drink", obj.position, obj.id, lua_random( 4, 8 ) )
+		misc.spawn_multi ( "mixture", obj.position, obj.id, lua_random( 3, 6 ) )
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, lua_random( 1, 2 ), lua_random( 1, 4 ) ), obj )
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, lua_random( 1, 2 ), lua_random( 1, 4 ) ), obj )
+    end
+    sak.off_on( obj )	
+end
+--Шустрый
+function shustriy_treasure()
+    local coord = {
+		{ -162.738, 1.024, -141.028,  280,  53911 }, --свалка
+		{  271.484, 1.115,  565.000, 4102, 723254 }, --кишка
+		{  284.836, 1.597, -185.629, 3510, 321968 }, --болота
+    }
+    local ind = amk_vars.r_treas_items or 1
+    local obj = this.spawn_no_ai( "rukzak_inventory_box",
+		sak.v3f( coord[ ind ][ 1 ], coord[ ind ][ 2 ], coord[ ind ][ 3 ] ),
+		coord[ ind ][ 4 ], coord[ ind ][ 5 ]
+	)				
+    misc.process_spawn()
+	if obj then
+		misc.spawn_multi ( "ammo_9x18_fmj", obj.position, obj.id, lua_random( 2, 4 ) )
+		misc.spawn_multi ( "medkit", obj.position, obj.id, lua_random( 1, 2 ) )
+		misc.spawn_multi ( "bandage", obj.position, obj.id, lua_random( 3, 6 ) )
+		misc.spawn_multi ( "ammo_12x70_buck", obj.position, obj.id, lua_random( 2, 4 ) )
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, lua_random( 1, 2 ), lua_random( 1, 4 ) ), obj )
+    end
+    sak.off_on( obj )	
+end
+--Фанат
+function fanat_treasure()
+    local coord = {
+		{  25.221, -0.734, -317.111,  842, 202997 }, --долина
+		{ -43.426,  1.457,  -13.824,  468, 196832 }, --агропром
+		{ 496.868,  6.570, -177.993, 3563, 476923 }, --болота
+    }
+    local ind = amk_vars.r_treas_items or 1
+    local obj = this.spawn_no_ai( "rukzak_inventory_box",
+		sak.v3f( coord[ ind ][ 1 ], coord[ ind ][ 2 ], coord[ ind ][ 3 ] ),
+		coord[ ind ][ 4 ], coord[ ind ][ 5 ]
+	)				
+    misc.process_spawn()
+	if obj then
+		misc.spawn_multi ( "medkit_army", obj.position, obj.id, lua_random( 1, 3 ) )
+		misc.spawn_multi ( "antirad", obj.position, obj.id, lua_random( 2, 4 ) )
+		misc.spawn_multi ( "ammo_7.62x39_fmj", obj.position, obj.id, lua_random( 2, 4 ) )
+		misc.spawn_to( this.rnd_rec_art_info( this.tbl_arts, lua_random( 1, 2 ), lua_random( 1, 4 ) ), obj )
+    end
+    sak.off_on( obj )	
+end

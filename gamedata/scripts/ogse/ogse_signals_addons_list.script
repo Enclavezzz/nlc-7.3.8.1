@@ -14,5 +14,6 @@ addons = {
 	"cleaning_masks_if_raining",
 	"set_far_dist_vision",
 	"projectors",
+	"on_ruck_take",
 	"dsh_hud_icons"
 }

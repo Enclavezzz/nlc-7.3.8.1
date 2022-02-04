@@ -543,7 +543,7 @@
 <string id="artmod_832_dialog_42"><text>Артефакт возьму. Некогда с варкой возиться.</text></string>
 <string id="artmod_832_dialog_51"><text>Записывай. Хороший арт получается.</text></string>
 <string id="artmod_832_dialog_52"><text>Бери, этот не жалко. Ещё и патронов, в нагрузку.</text></string>
-
+<!-- neumeha_banka -->
 <string id="neumeha_container_1_dialog_0"><text>Ты что, братишка, такой сморщенный?</text></string>
 <string id="neumeha_container_1_dialog_1"><text>Сморщишься тут! Нога не сгибается, колено распухло. Боль страшная. И Доктор упилил куда-то.\nЧёрт. Щас вот кончатся остатки запаса и чё делать... У Сидора, в долг, и снега зимой не выпросишь.</text></string>
 <string id="neumeha_container_1_dialog_2"><text>Ты про Болотного Доктора? Он вроде не так далеко - за мостом в хибаре.</text></string>

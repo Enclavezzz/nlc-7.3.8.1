@@ -362,25 +362,33 @@ function check_from_belt_object(obj)
 end
 
 function check_for_paper_object(obj)
-  local flag
-  if strpos(obj:section(),"playboy",1,true) 
-     or strpos(obj:section(),"zapiska",1,true)
-     or strpos(obj:section(),"document",1,true)
-     or strpos(obj:section(),"letter",1,true)
-     or strpos(obj:section(),"sheet",1,true)
-     or strpos(obj:section(),"theory",1,true)
-     or strpos(obj:section(),"book",1,true) 
-	 or strpos(obj:section(),"_pda",1,true)
-	 or strpos(obj:section(),"batt_torch",1,true)
-	 or strpos(obj:section(),"_code",1,true)
-	 or strpos(obj:section(),"docs_",1,true) then
-    flag = true
-  else
-    flag = false
-  end
- 
-  return flag
+    local flag
+    if str_in_tab( obj:section(),
+        {
+            "playboy",
+            "zapiska",
+            "document",
+            "letter",
+            "sheet",
+            "theory",
+            "book",
+            "pda",
+            "batt_torch",
+            "code",
+            "docs_",
+            "flash",
+            "klava",
+            "matches"
+        }
+    )
+    then
+        flag = true
+    else
+        flag = false
+    end
+    return flag
 end
+
 
 function search_work_belt(tbl)
   local i
